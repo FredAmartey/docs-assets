@@ -1,0 +1,22 @@
+# Leglas assets
+
+Source repository: https://github.com/FredAmartey/leglas
+
+These captures were used in historical pull requests. They are grouped by
+pull request so a future maintainer can trace each image back to the change it
+documents.
+
+| Directory | Pull request |
+| --- | --- |
+| `0002-change-request-lifecycle` | [#2](https://github.com/FredAmartey/leglas/pull/2) |
+| `0003-agent-watch` | [#3](https://github.com/FredAmartey/leglas/pull/3) |
+| `0009-split-widths` | [#9](https://github.com/FredAmartey/leglas/pull/9) |
+| `0010-typeface-row` | [#10](https://github.com/FredAmartey/leglas/pull/10) |
+| `0011-embedded-agent-runner` | [#11](https://github.com/FredAmartey/leglas/pull/11) |
+| `0012-hover-buttons` | [#12](https://github.com/FredAmartey/leglas/pull/12) |
+| `0013-preview-health` | [#13](https://github.com/FredAmartey/leglas/pull/13) |
+| `0014-mcp-connect` | [#14](https://github.com/FredAmartey/leglas/pull/14) |
+| `0017-row-drag-rename` | [#17](https://github.com/FredAmartey/leglas/pull/17) |
+
+Historical links should pin the commit that introduced this batch. Do not
+replace an existing capture in place.
