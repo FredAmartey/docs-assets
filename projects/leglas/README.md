@@ -17,6 +17,7 @@ documents.
 | `0013-preview-health` | [#13](https://github.com/FredAmartey/leglas/pull/13) |
 | `0014-mcp-connect` | [#14](https://github.com/FredAmartey/leglas/pull/14) |
 | `0017-row-drag-rename` | [#17](https://github.com/FredAmartey/leglas/pull/17) |
+| `0025-agent-run-legibility` | [#25](https://github.com/FredAmartey/leglas/pull/25) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
