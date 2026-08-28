@@ -19,6 +19,7 @@ documents.
 | `0017-row-drag-rename` | [#17](https://github.com/FredAmartey/leglas/pull/17) |
 | `0025-agent-run-legibility` | [#25](https://github.com/FredAmartey/leglas/pull/25) |
 | `0032-agent-eyes` | [#32](https://github.com/FredAmartey/leglas/pull/32) |
+| `0048-changelog-page` | [#48](https://github.com/FredAmartey/leglas/pull/48) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
