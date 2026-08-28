@@ -21,6 +21,7 @@ documents.
 | `0032-agent-eyes` | [#32](https://github.com/FredAmartey/leglas/pull/32) |
 | `0048-changelog-page` | [#48](https://github.com/FredAmartey/leglas/pull/48) |
 | `0050-homepage` | [#50](https://github.com/FredAmartey/leglas/pull/50) |
+| `0052-theme-switch` | [#52](https://github.com/FredAmartey/leglas/pull/52) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
