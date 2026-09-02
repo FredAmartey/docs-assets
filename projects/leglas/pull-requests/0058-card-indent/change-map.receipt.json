@@ -16,10 +16,10 @@
   },
   "head": {
     "title": "A rail row after: the graph in the gutter beside the card",
-    "rawSha256": "52c6b76f693304880cb345fa27ebf427a82d95af8777c2019015474c4dce3a7e",
-    "semanticSha256": "a2ec19780dc5f92bdd7329939f3e20a91c34b9d29da9d3af6415fcf00ae8d231",
-    "bytes": 3273,
-    "revision": "3b383ae3ca241489ada9cedad7fdd101a2b4b53a"
+    "rawSha256": "aade1ae5bb454f0393292635a036ee215f3ff83eeea75b9b24904d38f2f24785",
+    "semanticSha256": "7f2eb07f852bebffc9cfb6be1ac517aa18dc37910a725aa0125553aef4cb5a66",
+    "bytes": 3430,
+    "revision": "9db266a6ea3ba29a64442f44d01ec2be57bfc874"
   },
   "summary": {
     "components": {
@@ -172,8 +172,8 @@
     "Boundary identity is conservatively derived from kind + label."
   ],
   "artifact": {
-    "sha256": "5c84fce0caf3159b8ff8d53244e50c5587d9f6c38d76f35950045ed2fc4694fe",
-    "bytes": 1986217
+    "sha256": "89072903abee18b5ac8ac43b112cc230c731a31c1342a7e4a704edf864844981",
+    "bytes": 1986471
   },
   "validation": {
     "checksPassed": 28,

@@ -34,7 +34,7 @@
       "id": "row",
       "type": "frontend",
       "label": "Row",
-      "sublabel": "li, inset from what the whole tree draws",
+      "sublabel": "li, inset from the whole tree",
       "pos": [
         80,
         210
