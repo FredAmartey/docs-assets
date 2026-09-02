@@ -6,7 +6,7 @@
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
-      "revision": "4f70fee419078788fbbabe07ce59eae0eecefa9d"
+      "revision": "3b383ae3ca241489ada9cedad7fdd101a2b4b53a"
     }
   },
   "cards": [
@@ -14,7 +14,7 @@
       "dot": "rose",
       "title": "What changed",
       "items": [
-        "The card starts where its text does: roots at 16px, variants at 32px",
+        "The card starts where its text does: roots at 16px, variants at 32px, both further out when a family opens more lanes",
         "The gutter overlay moved from the card to the row",
         "The hover glow and the lifted drag surface follow the card"
       ]
@@ -34,7 +34,7 @@
       "id": "row",
       "type": "frontend",
       "label": "Row",
-      "sublabel": "li, padded by depth",
+      "sublabel": "li, inset from what the gutter draws",
       "pos": [
         80,
         210
@@ -46,8 +46,13 @@
       "sources": [
         {
           "path": "packages/shell/src/Shell.tsx",
-          "line": 2312,
+          "line": 2313,
           "label": "rowIndent"
+        },
+        {
+          "path": "packages/shell/src/Gutter.tsx",
+          "line": 80,
+          "label": "railInsets"
         }
       ]
     },
@@ -67,7 +72,7 @@
       "sources": [
         {
           "path": "packages/shell/src/Shell.tsx",
-          "line": 2379,
+          "line": 2385,
           "label": "Gutter in row"
         }
       ]
@@ -88,7 +93,7 @@
       "sources": [
         {
           "path": "packages/shell/src/Shell.tsx",
-          "line": 2403,
+          "line": 2409,
           "label": "card"
         }
       ]
@@ -109,7 +114,7 @@
       "sources": [
         {
           "path": "packages/shell/src/Shell.tsx",
-          "line": 833,
+          "line": 834,
           "label": "glowFor"
         }
       ]
