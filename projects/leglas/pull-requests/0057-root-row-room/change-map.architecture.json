@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Root rows and the trunk beside them",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "70da5578bca913a034e69f0f18a8e3ca153861b8"
+    }
+  },
+  "components": [
+    {
+      "id": "gutter",
+      "type": "frontend",
+      "label": "Gutter overlay",
+      "sublabel": "marks and lines in the row's padding",
+      "pos": [
+        80,
+        150
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Gutter.tsx",
+          "line": 42,
+          "label": "PAD"
+        }
+      ]
+    },
+    {
+      "id": "trail",
+      "type": "frontend",
+      "label": "Trail",
+      "sublabel": "light along the marks, 9px glow",
+      "pos": [
+        80,
+        330
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Trail.tsx",
+          "line": 205,
+          "label": "glow stroke"
+        }
+      ]
+    },
+    {
+      "id": "row",
+      "type": "frontend",
+      "label": "Root row",
+      "sublabel": "text now starts at 20px",
+      "pos": [
+        470,
+        240
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2304,
+          "label": "indent"
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "type": "frontend",
+      "label": "Variant rows",
+      "sublabel": "44px indent, unchanged",
+      "pos": [
+        800,
+        240
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2304,
+          "label": "indent"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Rail in the shell",
+      "wraps": [
+        "gutter",
+        "trail",
+        "row",
+        "variants"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "gutter-row",
+      "from": "gutter",
+      "to": "row",
+      "label": "lane 0 at x=4"
+    },
+    {
+      "id": "trail-row",
+      "from": "trail",
+      "to": "row",
+      "label": "glow clears the note",
+      "variant": "emphasis"
+    },
+    {
+      "id": "row-variants",
+      "from": "row",
+      "to": "variants",
+      "label": "families nest below",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "What changed",
+      "items": [
+        "Root rows start their text at 20px, not 12px",
+        "Variant rows keep their 44px indent",
+        "Both README captures reshot on this build"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Why",
+      "items": [
+        "The trunk hangs from the root's mark, 4px in",
+        "The light's glow is 9px wide beside the note",
+        "At 12px it ran against the first letter"
+      ]
+    }
+  ]
+}

@@ -25,6 +25,7 @@ documents.
 | `0053-hero-actions` | [#53](https://github.com/FredAmartey/leglas/pull/53) |
 | `0055-star-in-bar` | [#55](https://github.com/FredAmartey/leglas/pull/55) |
 | `0056-rail-lineage` | [#56](https://github.com/FredAmartey/leglas/pull/56) |
+| `0057-root-row-room` | [#57](https://github.com/FredAmartey/leglas/pull/57) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
