@@ -24,6 +24,7 @@ documents.
 | `0052-theme-switch` | [#52](https://github.com/FredAmartey/leglas/pull/52) |
 | `0053-hero-actions` | [#53](https://github.com/FredAmartey/leglas/pull/53) |
 | `0055-star-in-bar` | [#55](https://github.com/FredAmartey/leglas/pull/55) |
+| `0056-rail-lineage` | [#56](https://github.com/FredAmartey/leglas/pull/56) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
