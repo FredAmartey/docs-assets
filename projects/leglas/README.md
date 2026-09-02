@@ -23,6 +23,7 @@ documents.
 | `0050-homepage` | [#50](https://github.com/FredAmartey/leglas/pull/50) |
 | `0052-theme-switch` | [#52](https://github.com/FredAmartey/leglas/pull/52) |
 | `0053-hero-actions` | [#53](https://github.com/FredAmartey/leglas/pull/53) |
+| `0055-star-in-bar` | [#55](https://github.com/FredAmartey/leglas/pull/55) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
