@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A rail row after: the graph in the gutter beside the card",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "4f70fee419078788fbbabe07ce59eae0eecefa9d"
+    }
+  },
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "What changed",
+      "items": [
+        "The card starts where its text does: roots at 16px, variants at 32px",
+        "The gutter overlay moved from the card to the row",
+        "The hover glow and the lifted drag surface follow the card"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Why",
+      "items": [
+        "The active ring sat on the card's border and forks ran into it",
+        "Nested cards read as a tree; the light never crosses a card",
+        "A rail without families keeps full-width cards"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "row",
+      "type": "frontend",
+      "label": "Row",
+      "sublabel": "li, padded by depth",
+      "pos": [
+        80,
+        210
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2312,
+          "label": "rowIndent"
+        }
+      ]
+    },
+    {
+      "id": "gutter",
+      "type": "frontend",
+      "label": "Gutter overlay",
+      "sublabel": "in the row, left of the card",
+      "pos": [
+        400,
+        110
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2379,
+          "label": "Gutter in row"
+        }
+      ]
+    },
+    {
+      "id": "card",
+      "type": "frontend",
+      "label": "Card",
+      "sublabel": "starts at the text column, 12px padding",
+      "pos": [
+        400,
+        300
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2403,
+          "label": "card"
+        }
+      ]
+    },
+    {
+      "id": "glow",
+      "type": "frontend",
+      "label": "Hover glow",
+      "sublabel": "left edge from the card",
+      "pos": [
+        760,
+        300
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 833,
+          "label": "glowFor"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Rail in the shell",
+      "wraps": [
+        "row",
+        "gutter",
+        "card",
+        "glow"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "row-gutter",
+      "from": "row",
+      "to": "gutter",
+      "label": "contains",
+      "variant": "emphasis"
+    },
+    {
+      "id": "row-card",
+      "from": "row",
+      "to": "card",
+      "label": "contains"
+    },
+    {
+      "id": "card-glow",
+      "from": "card",
+      "to": "glow",
+      "label": "measured from the card",
+      "variant": "dashed"
+    }
+  ]
+}

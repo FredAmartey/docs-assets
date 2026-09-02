@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A rail row before: the graph inside the card",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "ba67daef9f9b65bda7501a63aeb9885d5b004098"
+    }
+  },
+  "components": [
+    {
+      "id": "row",
+      "type": "frontend",
+      "label": "Row",
+      "sublabel": "li, full width",
+      "pos": [
+        80,
+        210
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2304,
+          "label": "indent"
+        }
+      ]
+    },
+    {
+      "id": "card",
+      "type": "frontend",
+      "label": "Card",
+      "sublabel": "full width, text padded 20 or 44px",
+      "pos": [
+        400,
+        300
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2382,
+          "label": "card"
+        }
+      ]
+    },
+    {
+      "id": "gutter",
+      "type": "frontend",
+      "label": "Gutter overlay",
+      "sublabel": "inside the card's padding",
+      "pos": [
+        400,
+        110
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2420,
+          "label": "Gutter in card"
+        }
+      ]
+    },
+    {
+      "id": "glow",
+      "type": "frontend",
+      "label": "Hover glow",
+      "sublabel": "full rail width",
+      "pos": [
+        760,
+        300
+      ],
+      "size": [
+        210,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2846,
+          "label": "glow"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Rail in the shell",
+      "wraps": [
+        "row",
+        "card",
+        "gutter",
+        "glow"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "row-card",
+      "from": "row",
+      "to": "card",
+      "label": "contains"
+    },
+    {
+      "id": "card-gutter",
+      "from": "card",
+      "to": "gutter",
+      "label": "contains, marks under the border",
+      "variant": "emphasis"
+    },
+    {
+      "id": "row-glow",
+      "from": "row",
+      "to": "glow",
+      "label": "sized from the row",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom"
+    }
+  ]
+}

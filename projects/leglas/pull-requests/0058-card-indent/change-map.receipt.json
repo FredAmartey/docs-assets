@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "compare",
+  "type": "architecture",
+  "comparatorVersion": 1,
+  "canonicalVersion": 1,
+  "completeness": "complete",
+  "proofLevel": "revision-pinned",
+  "base": {
+    "title": "A rail row before: the graph inside the card",
+    "rawSha256": "b40b8f193d09fe7008fa2f1d214f3c4836ae360005904b1be49c5b5afb21ae2a",
+    "semanticSha256": "9349885365eaa9ec1349c3a1f6c8144d88b0aee6020f8d4c200838e747178e8f",
+    "bytes": 2516,
+    "revision": "ba67daef9f9b65bda7501a63aeb9885d5b004098"
+  },
+  "head": {
+    "title": "A rail row after: the graph in the gutter beside the card",
+    "rawSha256": "3672d272b3402f4fbc7305e97811a86d3a5e21b30f8c3b4c6fb53b487440795d",
+    "semanticSha256": "8726f68205b967f99eab4201ff1963019d3c3d98d18b6ac1e4fd4ee8e0997349",
+    "bytes": 3081,
+    "revision": "4f70fee419078788fbbabe07ce59eae0eecefa9d"
+  },
+  "summary": {
+    "components": {
+      "added": 0,
+      "changed": 4,
+      "evidenceChanged": 0,
+      "removed": 0,
+      "moved": 0
+    },
+    "connections": {
+      "added": 2,
+      "changed": 0,
+      "removed": 2,
+      "rerouted": 0
+    },
+    "boundaries": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0,
+      "geometryChanged": 0
+    },
+    "presentationChanged": true,
+    "provenanceChanged": true
+  },
+  "changes": {
+    "components": [
+      {
+        "id": "card",
+        "baseLabel": "Card",
+        "headLabel": "Card",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/sources",
+          "/sublabel"
+        ]
+      },
+      {
+        "id": "glow",
+        "baseLabel": "Hover glow",
+        "headLabel": "Hover glow",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/sources",
+          "/sublabel"
+        ]
+      },
+      {
+        "id": "gutter",
+        "baseLabel": "Gutter overlay",
+        "headLabel": "Gutter overlay",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/sources",
+          "/sublabel"
+        ]
+      },
+      {
+        "id": "row",
+        "baseLabel": "Row",
+        "headLabel": "Row",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/sources",
+          "/sublabel"
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "id": "card-glow",
+        "head": {
+          "from": "card",
+          "to": "glow",
+          "label": "measured from the card"
+        },
+        "status": "added",
+        "classifications": [
+          "topology"
+        ],
+        "changedFields": []
+      },
+      {
+        "id": "card-gutter",
+        "base": {
+          "from": "card",
+          "to": "gutter",
+          "label": "contains, marks under the border"
+        },
+        "status": "removed",
+        "classifications": [
+          "topology"
+        ],
+        "changedFields": []
+      },
+      {
+        "id": "row-glow",
+        "base": {
+          "from": "row",
+          "to": "glow",
+          "label": "sized from the row"
+        },
+        "status": "removed",
+        "classifications": [
+          "topology"
+        ],
+        "changedFields": []
+      },
+      {
+        "id": "row-gutter",
+        "head": {
+          "from": "row",
+          "to": "gutter",
+          "label": "contains"
+        },
+        "status": "added",
+        "classifications": [
+          "topology"
+        ],
+        "changedFields": []
+      }
+    ],
+    "boundaries": []
+  },
+  "identity": {
+    "components": "components[].id",
+    "connections": "connections[].id (required)",
+    "boundaries": "boundaries[].kind + boundaries[].label (derived)"
+  },
+  "view": {
+    "visualPreset": "classic"
+  },
+  "limitations": [
+    "Authored Architecture IR only; no runtime impact, causality, risk, or mergeability is inferred.",
+    "Boundary identity is conservatively derived from kind + label."
+  ],
+  "artifact": {
+    "sha256": "5b56d468365f631aeeb083651fb2771531cabffcf3e4e35cc35b55751d869d55",
+    "bytes": 1985759
+  },
+  "validation": {
+    "checksPassed": 28,
+    "checkCount": 28,
+    "baseComposition": "pass",
+    "headComposition": "pass"
+  }
+}
