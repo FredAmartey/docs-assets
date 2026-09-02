@@ -6,7 +6,7 @@
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
-      "revision": "3b383ae3ca241489ada9cedad7fdd101a2b4b53a"
+      "revision": "9db266a6ea3ba29a64442f44d01ec2be57bfc874"
     }
   },
   "cards": [
@@ -14,7 +14,7 @@
       "dot": "rose",
       "title": "What changed",
       "items": [
-        "The card starts where its text does: roots at 16px, variants at 32px, both further out when a family opens more lanes",
+        "The card starts where its text does: roots at 16px, variants at 32px, further out when a family opens more lanes, measured with every family open",
         "The gutter overlay moved from the card to the row",
         "The hover glow and the lifted drag surface follow the card"
       ]
@@ -34,7 +34,7 @@
       "id": "row",
       "type": "frontend",
       "label": "Row",
-      "sublabel": "li, inset from what the gutter draws",
+      "sublabel": "li, inset from what the whole tree draws",
       "pos": [
         80,
         210
@@ -53,6 +53,11 @@
           "path": "packages/shell/src/Gutter.tsx",
           "line": 80,
           "label": "railInsets"
+        },
+        {
+          "path": "packages/shell/src/useShellState.ts",
+          "line": 227,
+          "label": "measured open"
         }
       ]
     },
