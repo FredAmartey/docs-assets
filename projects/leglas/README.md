@@ -41,3 +41,4 @@ Made for the changelog (https://github.com/FredAmartey/leglas/blob/main/CHANGELO
 | `changelog/0.6.0-picker-and-mcp` | 0.6.0 |
 | `changelog/0.7.4-branch-starts-when-opened` | 0.7.4 |
 | `changelog/0.8.0-design-log` | 0.8.0 |
+| `changelog/0.9.0-rail-lineage` | 0.9.0 |
