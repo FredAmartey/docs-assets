@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "What a viewer request now passes through",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1240,
+      690
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "cde13e64ced30985a7a3b193ae32a2e4a5b86c08"
+    }
+  },
+  "components": [
+    {
+      "id": "viewer",
+      "type": "external",
+      "label": "Viewer's browser",
+      "sublabel": "No repo, one link",
+      "pos": [
+        40,
+        290
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "tunnel",
+      "type": "cloud",
+      "label": "cloudflared or ngrok",
+      "sublabel": "Borrowed, never shipped",
+      "pos": [
+        280,
+        290
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "links",
+      "type": "security",
+      "label": "Links",
+      "sublabel": "New: 16 per share, 24h, revocable",
+      "pos": [
+        560,
+        60
+      ],
+      "size": [
+        220,
+        78
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 211,
+          "label": "MAX_GRANTS"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 898,
+          "label": "mintGrant"
+        }
+      ]
+    },
+    {
+      "id": "refused",
+      "type": "security",
+      "label": "Always refused",
+      "sublabel": "New: control routes, hidden paths",
+      "pos": [
+        560,
+        215
+      ],
+      "size": [
+        220,
+        78
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 287,
+          "label": "DEV_CONTROL_ROUTES"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 446,
+          "label": "isHiddenPath"
+        }
+      ]
+    },
+    {
+      "id": "reach",
+      "type": "security",
+      "label": "Reach",
+      "sublabel": "New: everything, or only the list",
+      "pos": [
+        560,
+        370
+      ],
+      "size": [
+        220,
+        78
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 101,
+          "label": "routeAllowed"
+        }
+      ]
+    },
+    {
+      "id": "ceiling",
+      "type": "messagebus",
+      "label": "Ceiling",
+      "sublabel": "New: 12 at once, the rest wait here",
+      "pos": [
+        560,
+        525
+      ],
+      "size": [
+        220,
+        78
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 232,
+          "label": "VIEWER_CONCURRENCY"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 951,
+          "label": "pump"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 998,
+          "label": "admit"
+        }
+      ]
+    },
+    {
+      "id": "proxy",
+      "type": "backend",
+      "label": "Proxy",
+      "sublabel": "Unchanged",
+      "pos": [
+        880,
+        290
+      ],
+      "size": [
+        190,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/proxy.ts",
+          "label": "createProxyHandler"
+        }
+      ]
+    },
+    {
+      "id": "dev",
+      "type": "backend",
+      "label": "Dev server",
+      "sublabel": "Never faces the link bare",
+      "pos": [
+        880,
+        525
+      ],
+      "size": [
+        190,
+        78
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "Share listener: everything here is remote by construction",
+      "wraps": [
+        "links",
+        "refused",
+        "reach",
+        "ceiling"
+      ],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    {
+      "id": "viewer-tunnel",
+      "from": "viewer",
+      "to": "tunnel",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "tunnel-links",
+      "from": "tunnel",
+      "to": "links",
+      "label": "from 127.0.0.1, still a stranger",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "left",
+      "labelDx": -78
+    },
+    {
+      "id": "links-refused",
+      "from": "links",
+      "to": "refused",
+      "label": "cookie names one link",
+      "labelDy": 24
+    },
+    {
+      "id": "refused-reach",
+      "from": "refused",
+      "to": "reach",
+      "label": "GET only",
+      "labelDy": 24
+    },
+    {
+      "id": "reach-ceiling",
+      "from": "reach",
+      "to": "ceiling",
+      "label": "allowed path",
+      "labelDy": 24
+    },
+    {
+      "id": "ceiling-proxy",
+      "from": "ceiling",
+      "to": "proxy",
+      "label": "one of twelve slots",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "proxy-dev",
+      "from": "proxy",
+      "to": "dev",
+      "label": "GET",
+      "labelDy": 24,
+      "labelDx": -62
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Why a ceiling at all",
+      "items": [
+        "A dev server does not fail under a burst, it queues inside itself",
+        "The sharer's own reload joins the back of that queue",
+        "Held at twelve: sharer 136ms to 21ms, and the burst ran faster"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Measured, not guessed",
+      "items": [
+        "A real page load peaks at 6 at once, so twelve never waits",
+        "Latency-based shedding shed nothing at 153 in flight",
+        "8 of 22 files are dot paths, so hidden stops at node_modules"
+      ]
+    }
+  ]
+}
