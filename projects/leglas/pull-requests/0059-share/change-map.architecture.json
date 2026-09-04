@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas sharing: a second listener, never a reversed gate",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "5f5fc3272998b8b7a6d7ac98457ee4d2e4fc6dfd"
+    },
+    "views": [
+      {
+        "id": "sharer",
+        "label": "The sharer's loop",
+        "focus": [
+          "sharer",
+          "primary",
+          "dev"
+        ],
+        "note": "Everything that writes still arrives on the primary listener from loopback."
+      },
+      {
+        "id": "viewer",
+        "label": "The viewer's path",
+        "focus": [
+          "viewer",
+          "tunnel",
+          "share",
+          "gate",
+          "dev"
+        ],
+        "note": "A tunnel daemon connects from loopback too, so the listener is the signal, not the peer."
+      },
+      {
+        "id": "count",
+        "label": "Who is looking",
+        "focus": [
+          "share",
+          "hub",
+          "primary",
+          "sharer"
+        ],
+        "note": "Viewer sockets are tagged on the share listener and counted for the panel."
+      }
+    ],
+    "viewBox": [
+      960,
+      470
+    ]
+  },
+  "components": [
+    {
+      "id": "sharer",
+      "type": "frontend",
+      "label": "Sharer's browser",
+      "sublabel": "rail + share panel",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        150,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/SharePanel.tsx",
+          "label": "SharePanel"
+        }
+      ]
+    },
+    {
+      "id": "primary",
+      "type": "backend",
+      "label": "Primary listener",
+      "sublabel": "127.0.0.1:4100, unchanged",
+      "pos": [
+        430,
+        40
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "label": "handleRequest"
+        }
+      ]
+    },
+    {
+      "id": "dev",
+      "type": "external",
+      "label": "Your dev server",
+      "sublabel": "proxied, e.g. :3000",
+      "pos": [
+        730,
+        40
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "Share listener",
+      "sublabel": "127.0.0.1, ephemeral port",
+      "tag": "new",
+      "pos": [
+        430,
+        210
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "label": "createShareManager"
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "security",
+      "label": "Cookie gate",
+      "sublabel": "/leglas/s/<token> \u00b7 GET only",
+      "tag": "new",
+      "pos": [
+        730,
+        210
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "label": "refuse"
+        }
+      ]
+    },
+    {
+      "id": "tunnel",
+      "type": "cloud",
+      "label": "cloudflared / ngrok",
+      "sublabel": "borrowed, spawned per share",
+      "tag": "new",
+      "pos": [
+        430,
+        380
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/tunnel.ts",
+          "label": "startTunnel"
+        }
+      ]
+    },
+    {
+      "id": "viewer",
+      "type": "frontend",
+      "label": "Viewer's browser",
+      "sublabel": "read-only shell",
+      "tag": "new",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        150,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/App.tsx",
+          "label": "viewer"
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "messagebus",
+      "label": "Live hub",
+      "sublabel": "nudges + viewer count",
+      "pos": [
+        730,
+        380
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/live.ts",
+          "label": "createLiveHub"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Sharer's machine",
+      "wraps": [
+        "primary",
+        "dev",
+        "share",
+        "gate",
+        "tunnel",
+        "hub"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Remote by construction: no POST, GET allowlist",
+      "wraps": [
+        "share",
+        "gate"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "sharer-primary",
+      "from": "sharer",
+      "to": "primary",
+      "label": "POST /leglas/api/share, loopback only",
+      "variant": "emphasis"
+    },
+    {
+      "id": "primary-dev",
+      "from": "primary",
+      "to": "dev",
+      "label": "proxy"
+    },
+    {
+      "id": "primary-share",
+      "from": "primary",
+      "to": "share",
+      "label": "opens on start, closes on stop",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        515,
+        150
+      ]
+    },
+    {
+      "id": "share-gate",
+      "from": "share",
+      "to": "gate",
+      "label": "every request",
+      "variant": "security"
+    },
+    {
+      "id": "gate-dev",
+      "from": "gate",
+      "to": "dev",
+      "label": "GET with cookie",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "viewer-tunnel",
+      "from": "viewer",
+      "to": "tunnel",
+      "label": "https, public hostname",
+      "variant": "emphasis"
+    },
+    {
+      "id": "tunnel-share",
+      "from": "tunnel",
+      "to": "share",
+      "label": "from 127.0.0.1, spawned per share",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "share-hub",
+      "from": "share",
+      "to": "hub",
+      "label": "viewer sockets, tagged",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Trust boundary",
+      "items": [
+        "Every write still needs a loopback peer on the primary listener",
+        "The share listener refuses every write and serves nothing without the cookie"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Tunnel",
+      "items": [
+        "Found on the machine, never bundled, no account",
+        "Probed until it answers; a viewer arriving settles it"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Viewer",
+      "items": [
+        "The sharer's order, names, folds and viewport, seeded once",
+        "Flip, compare, search, change width; nothing writes back"
+      ]
+    }
+  ]
+}

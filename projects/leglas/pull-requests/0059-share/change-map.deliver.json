@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/private/tmp/claude-501/-Users-fred-Developer-leglas/4d114bc7-f000-47e9-9f22-41066ea62f89/scratchpad/archify/share.architecture.json",
+  "output": "/private/tmp/claude-501/-Users-fred-Developer-leglas/4d114bc7-f000-47e9-9f22-41066ea62f89/scratchpad/archify/share.html",
+  "specification": {
+    "sha256": "eab19f7dd6019f31185b603ba0b6d66c3392a52364c92a156302ee2e8eeb2e6c",
+    "bytes": 6634
+  },
+  "artifact": {
+    "sha256": "0b04b57062e72ceab274d86edf913a57dce2675ca5c8e27fd4ecbc39cebdb8c4",
+    "bytes": 714712
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "5f5fc3272998b8b7a6d7ac98457ee4d2e4fc6dfd",
+    "references": 7
+  }
+}

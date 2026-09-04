@@ -27,6 +27,7 @@ documents.
 | `0056-rail-lineage` | [#56](https://github.com/FredAmartey/leglas/pull/56) |
 | `0057-root-row-room` | [#57](https://github.com/FredAmartey/leglas/pull/57) |
 | `0058-card-indent` | [#58](https://github.com/FredAmartey/leglas/pull/58) |
+| `0059-share` | [#59](https://github.com/FredAmartey/leglas/pull/59) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
