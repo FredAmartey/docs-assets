@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "What a viewer's request passes through",
+    "viewBox": [
+      760,
+      540
+    ],
+    "quality_profile": "showcase",
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "viewer",
+      "type": "external",
+      "label": "Viewer",
+      "sublabel": "through the tunnel"
+    },
+    {
+      "id": "listener",
+      "type": "security",
+      "label": "Share listener",
+      "sublabel": "second loopback port"
+    },
+    {
+      "id": "app",
+      "type": "external",
+      "label": "Dev server",
+      "sublabel": "the sharer's machine"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 210,
+      "label": "Admit"
+    },
+    {
+      "from": 228,
+      "to": 360,
+      "label": "Policy"
+    },
+    {
+      "from": 378,
+      "to": 454,
+      "label": "Serve"
+    }
+  ],
+  "messages": [
+    {
+      "id": "entry",
+      "from": "viewer",
+      "to": "listener",
+      "y": 168,
+      "label": "GET with the link's cookie",
+      "variant": "emphasis"
+    },
+    {
+      "id": "nocookie",
+      "from": "listener",
+      "to": "viewer",
+      "y": 196,
+      "label": "403 without it, whoever is asking",
+      "variant": "return"
+    },
+    {
+      "id": "editor",
+      "from": "viewer",
+      "to": "listener",
+      "y": 244,
+      "label": "GET /__open-in-editor?file=",
+      "variant": "security"
+    },
+    {
+      "id": "noeditor",
+      "from": "listener",
+      "to": "viewer",
+      "y": 272,
+      "label": "403, in every spelling of the path",
+      "variant": "return"
+    },
+    {
+      "id": "sw",
+      "from": "viewer",
+      "to": "listener",
+      "y": 320,
+      "label": "register a service worker",
+      "variant": "security"
+    },
+    {
+      "id": "nosw",
+      "from": "listener",
+      "to": "viewer",
+      "y": 348,
+      "label": "403, it would outlive the share",
+      "variant": "return"
+    },
+    {
+      "id": "page",
+      "from": "viewer",
+      "to": "listener",
+      "y": 392,
+      "label": "GET a shared direction",
+      "variant": "emphasis"
+    },
+    {
+      "id": "proxied",
+      "from": "listener",
+      "to": "app",
+      "y": 420,
+      "label": "proxied, unchanged",
+      "variant": "default"
+    },
+    {
+      "id": "back",
+      "from": "app",
+      "to": "viewer",
+      "y": 448,
+      "label": "the app, as the sharer sees it",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "listener",
+      "from": 168,
+      "to": 448,
+      "type": "security"
+    },
+    {
+      "participant": "app",
+      "from": 420,
+      "to": 448,
+      "type": "external"
+    }
+  ]
+}
