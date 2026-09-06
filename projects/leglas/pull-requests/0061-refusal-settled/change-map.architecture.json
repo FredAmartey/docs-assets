@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A refusal is remembered as the path it named",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1180,
+      370
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "210f2bacb432c3f054290c20ea1be06701551b32"
+    }
+  },
+  "components": [
+    {
+      "id": "viewer",
+      "type": "external",
+      "label": "Viewer request",
+      "sublabel": "/assets/../secrets/x",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        200,
+        78
+      ]
+    },
+    {
+      "id": "list",
+      "type": "security",
+      "label": "Reach list",
+      "sublabel": "Reads the settled path",
+      "pos": [
+        320,
+        60
+      ],
+      "size": [
+        200,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 101,
+          "label": "routeAllowed"
+        }
+      ]
+    },
+    {
+      "id": "refused",
+      "type": "backend",
+      "label": "Refusal list",
+      "sublabel": "Changed: records the settled path too",
+      "tag": "changed",
+      "pos": [
+        600,
+        60
+      ],
+      "size": [
+        240,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 1208,
+          "label": "request"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 404,
+          "label": "canonical"
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "frontend",
+      "label": "Panel",
+      "sublabel": "Allow, one click",
+      "pos": [
+        920,
+        60
+      ],
+      "size": [
+        200,
+        78
+      ]
+    },
+    {
+      "id": "routes",
+      "type": "database",
+      "label": "Route list",
+      "sublabel": "Read the same way",
+      "pos": [
+        600,
+        240
+      ],
+      "size": [
+        240,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 1523,
+          "label": "allowRoute"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "viewer-list",
+      "from": "viewer",
+      "to": "list",
+      "label": "GET",
+      "variant": "emphasis"
+    },
+    {
+      "id": "list-refused",
+      "from": "list",
+      "to": "refused",
+      "label": "not on the list",
+      "variant": "emphasis"
+    },
+    {
+      "id": "refused-panel",
+      "from": "refused",
+      "to": "panel",
+      "label": "/secrets/x",
+      "variant": "emphasis"
+    },
+    {
+      "id": "panel-routes",
+      "from": "panel",
+      "to": "routes",
+      "label": "allow",
+      "fromSide": "bottom",
+      "toSide": "right"
+    },
+    {
+      "id": "routes-list",
+      "from": "routes",
+      "to": "list",
+      "label": "next request matches",
+      "fromSide": "left",
+      "toSide": "bottom",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Why",
+      "items": [
+        "The list is read on the settled path, so Allow has to add one",
+        "A raw spelling is a string the viewer chose; allowing it lets nothing through",
+        "Forty spellings of one path can no longer push forty real refusals out"
+      ]
+    }
+  ]
+}
