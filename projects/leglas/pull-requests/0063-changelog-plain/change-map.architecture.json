@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The share entries, said to the person reading them",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1180,
+      360
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "b27cc23f3efea1e4deeb981ce47d112be285c7e7"
+    }
+  },
+  "components": [
+    {
+      "id": "reader",
+      "type": "external",
+      "label": "Someone reading what's new",
+      "sublabel": "Deciding whether to share a client project",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        250,
+        78
+      ]
+    },
+    {
+      "id": "changelog",
+      "type": "frontend",
+      "label": "CHANGELOG.md, Unreleased",
+      "sublabel": "Changed: three share entries rewritten, facts kept",
+      "tag": "changed",
+      "pos": [
+        380,
+        90
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 15,
+          "label": "Unreleased"
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "cloud",
+      "label": "Changelog page",
+      "sublabel": "Made from that file and nothing else",
+      "pos": [
+        800,
+        90
+      ],
+      "size": [
+        280,
+        78
+      ],
+      "sources": [
+        {
+          "path": "changelog.ts",
+          "line": 63,
+          "label": "parser"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "reader-changelog",
+      "from": "reader",
+      "to": "changelog",
+      "label": "reads",
+      "variant": "emphasis"
+    },
+    {
+      "id": "changelog-page",
+      "from": "changelog",
+      "to": "page",
+      "label": "rendered by site.ts"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The first share entry was the model: what you can now do, to you, in order",
+        "The other three read like the pull request bodies they came from; same facts, said to a reader",
+        "The three entries go from 54 lines to 40; the parser's tests pass unchanged"
+      ]
+    }
+  ]
+}
