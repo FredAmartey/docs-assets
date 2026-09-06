@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "A refusal is remembered as the path it named",
+    "title": "A refusal is remembered as the path it named, and Allow means that path",
     "quality_profile": "showcase",
     "viewBox": [
       1180,
@@ -10,7 +10,7 @@
     ],
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
-      "revision": "210f2bacb432c3f054290c20ea1be06701551b32"
+      "revision": "33f286f5ee3edfad5696799b97d1b4774b6cae2b"
     }
   },
   "components": [
@@ -32,7 +32,7 @@
       "id": "list",
       "type": "security",
       "label": "Reach list",
-      "sublabel": "Reads the settled path",
+      "sublabel": "Settled path; /foo answers as /foo/ too",
       "pos": [
         320,
         60
@@ -66,12 +66,12 @@
       "sources": [
         {
           "path": "packages/server/src/share.ts",
-          "line": 1208,
+          "line": 1214,
           "label": "request"
         },
         {
           "path": "packages/server/src/share.ts",
-          "line": 404,
+          "line": 410,
           "label": "canonical"
         }
       ]
@@ -80,7 +80,7 @@
       "id": "panel",
       "type": "frontend",
       "label": "Panel",
-      "sublabel": "Allow, one click",
+      "sublabel": "Allow, or the folder",
       "pos": [
         920,
         60
@@ -88,13 +88,21 @@
       "size": [
         200,
         78
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "packages/shell/src/SharePanel.tsx",
+          "line": 564,
+          "label": "folder button"
+        }
       ]
     },
     {
       "id": "routes",
       "type": "database",
       "label": "Route list",
-      "sublabel": "Read the same way",
+      "sublabel": "Changed: exact unless told folder",
       "pos": [
         600,
         240
@@ -106,10 +114,16 @@
       "sources": [
         {
           "path": "packages/server/src/share.ts",
-          "line": 1523,
+          "line": 1529,
           "label": "allowRoute"
+        },
+        {
+          "path": "packages/server/src/share.ts",
+          "line": 1541,
+          "label": "subtree"
         }
-      ]
+      ],
+      "tag": "changed"
     }
   ],
   "connections": [
@@ -138,7 +152,7 @@
       "id": "panel-routes",
       "from": "panel",
       "to": "routes",
-      "label": "allow",
+      "label": "the path, or everything beneath it",
       "fromSide": "bottom",
       "toSide": "right"
     },
@@ -158,7 +172,7 @@
       "title": "Why",
       "items": [
         "The list is read on the settled path, so Allow has to add one",
-        "A raw spelling is a string the viewer chose; allowing it lets nothing through",
+        "A trailing slash means the folder; a refusal for /foo/ ends in one, so the intent now travels with the click",
         "Forty spellings of one path can no longer push forty real refusals out"
       ]
     }
