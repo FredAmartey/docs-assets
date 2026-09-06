@@ -30,6 +30,7 @@ documents.
 | `0059-share` | [#59](https://github.com/FredAmartey/leglas/pull/59) |
 | `0060-share-hardening` | [#60](https://github.com/FredAmartey/leglas/pull/60) |
 | `0061-refusal-settled` | [#61](https://github.com/FredAmartey/leglas/pull/61) |
+| `0062-readme-shape` | [#62](https://github.com/FredAmartey/leglas/pull/62) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

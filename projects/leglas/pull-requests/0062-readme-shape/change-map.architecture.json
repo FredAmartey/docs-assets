@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Who reads what: the README reshaped around the person reading it",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1240,
+      560
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "91e929c689fe3b7420c156bfdf34c5b6ea9e95e0"
+    }
+  },
+  "components": [
+    {
+      "id": "person",
+      "type": "external",
+      "label": "Someone in the interface",
+      "sublabel": "Designer, founder, client",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        220,
+        78
+      ]
+    },
+    {
+      "id": "dev",
+      "type": "external",
+      "label": "A developer",
+      "sublabel": "Setting the project up",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        220,
+        78
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "A coding agent",
+      "sublabel": "Doing the building",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        220,
+        78
+      ]
+    },
+    {
+      "id": "contributor",
+      "type": "external",
+      "label": "A contributor",
+      "sublabel": "Changing Leglas itself",
+      "pos": [
+        40,
+        480
+      ],
+      "size": [
+        220,
+        78
+      ]
+    },
+    {
+      "id": "readme",
+      "type": "frontend",
+      "label": "README",
+      "sublabel": "Changed: Using, Setting up, Working with agents",
+      "tag": "changed",
+      "pos": [
+        420,
+        130
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "label": "README"
+        }
+      ]
+    },
+    {
+      "id": "agentsmd",
+      "type": "backend",
+      "label": "AGENTS.md",
+      "sublabel": "Written by leglas init; the agent's whole workflow",
+      "pos": [
+        420,
+        340
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/init.ts",
+          "line": 19,
+          "label": "AGENTS_SECTION"
+        }
+      ]
+    },
+    {
+      "id": "contributing",
+      "type": "frontend",
+      "label": "CONTRIBUTING.md",
+      "sublabel": "New: build, checks, changelog, releases",
+      "tag": "new",
+      "pos": [
+        420,
+        480
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "label": "CONTRIBUTING"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "cloud",
+      "label": "Homepage",
+      "sublabel": "Unchanged; its two captures stay",
+      "pos": [
+        880,
+        130
+      ],
+      "size": [
+        260,
+        78
+      ],
+      "sources": [
+        {
+          "path": "home.ts",
+          "line": 10,
+          "label": "CAPTURES"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "person-readme",
+      "from": "person",
+      "to": "readme",
+      "label": "Get started, Using Leglas",
+      "variant": "emphasis",
+      "toSide": "left"
+    },
+    {
+      "id": "dev-readme",
+      "from": "dev",
+      "to": "readme",
+      "label": "Setting up a project",
+      "variant": "emphasis",
+      "toSide": "left"
+    },
+    {
+      "id": "agent-agentsmd",
+      "from": "agent",
+      "to": "agentsmd",
+      "label": "reads the section init wrote",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-agentsmd",
+      "from": "readme",
+      "to": "agentsmd",
+      "label": "Working with agents points here",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 40
+    },
+    {
+      "id": "contributor-contributing",
+      "from": "contributor",
+      "to": "contributing",
+      "label": "Development points here",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-site",
+      "from": "readme",
+      "to": "site",
+      "label": "same captures",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The split",
+      "items": [
+        "Each reader stops when their section ends; nobody reads past what they need",
+        "Agents were never reading the README: init writes their whole workflow into AGENTS.md",
+        "627 lines to 479, the options list to --help, the release process to CONTRIBUTING"
+      ]
+    }
+  ]
+}
