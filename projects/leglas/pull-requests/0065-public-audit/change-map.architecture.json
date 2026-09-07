@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Three lines that said more than they needed to",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1160,
+      380
+    ]
+  },
+  "components": [
+    {
+      "id": "reader",
+      "type": "external",
+      "label": "Someone reading in public",
+      "sublabel": "GitHub, npm, the site",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        250,
+        78
+      ]
+    },
+    {
+      "id": "readme",
+      "type": "frontend",
+      "label": "README",
+      "sublabel": "Changed: one 'for now' gone",
+      "tag": "changed",
+      "pos": [
+        420,
+        40
+      ],
+      "size": [
+        340,
+        78
+      ]
+    },
+    {
+      "id": "changelog",
+      "type": "frontend",
+      "label": "CHANGELOG",
+      "sublabel": "Changed: 0.7.1 kept to its fact, 0.3.0 one line lighter",
+      "tag": "changed",
+      "pos": [
+        420,
+        200
+      ],
+      "size": [
+        340,
+        78
+      ]
+    },
+    {
+      "id": "site",
+      "type": "cloud",
+      "label": "Site",
+      "sublabel": "Rebuilds from the changelog",
+      "pos": [
+        860,
+        200
+      ],
+      "size": [
+        260,
+        78
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "r-readme",
+      "from": "reader",
+      "to": "readme",
+      "label": "reads",
+      "variant": "emphasis",
+      "toSide": "left"
+    },
+    {
+      "id": "r-changelog",
+      "from": "reader",
+      "to": "changelog",
+      "label": "reads",
+      "variant": "emphasis",
+      "toSide": "left"
+    },
+    {
+      "id": "c-site",
+      "from": "changelog",
+      "to": "site",
+      "label": "rendered by site.ts",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The audit",
+      "items": [
+        "Nothing internal on any of the three surfaces: no paths, names, tooling or reviewer narration",
+        "Explaining a bug's cause stays; three lines narrated process or promised work instead",
+        "Left as history on purpose: the 0.1.0 provenance note and the 1.0.0 opener"
+      ]
+    }
+  ]
+}
