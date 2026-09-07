@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A Cursor run from Leglas now starts",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1240,
+      520
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "revision": "c9e2e54a9cc79d1f3ad27806439529bedd681c17"
+    }
+  },
+  "components": [
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "Runner",
+      "sublabel": "Spawns the chosen agent per request",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        240,
+        78
+      ]
+    },
+    {
+      "id": "adapter",
+      "type": "backend",
+      "label": "Cursor adapter",
+      "sublabel": "Changed: --trust on every invocation",
+      "tag": "changed",
+      "pos": [
+        400,
+        60
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents.ts",
+          "line": 191,
+          "label": "args"
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "cursor-agent",
+      "sublabel": "Stopped at a trust prompt; now runs",
+      "pos": [
+        860,
+        60
+      ],
+      "size": [
+        300,
+        78
+      ]
+    },
+    {
+      "id": "reader",
+      "type": "backend",
+      "label": "Activity reader",
+      "sublabel": "Changed: editToolCall, tool key by suffix",
+      "tag": "changed",
+      "pos": [
+        400,
+        340
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents.ts",
+          "line": 550,
+          "label": "cursorActivity"
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "security",
+      "label": "Cold rerun gate",
+      "sublabel": "Cursor now verified, so a dead session is retried once",
+      "tag": "changed",
+      "pos": [
+        860,
+        340
+      ],
+      "size": [
+        300,
+        78
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/runner.ts",
+          "line": 714,
+          "label": "activityVerified"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "runner-adapter",
+      "from": "runner",
+      "to": "adapter",
+      "label": "builds argv",
+      "variant": "emphasis",
+      "toSide": "left"
+    },
+    {
+      "id": "adapter-cli",
+      "from": "adapter",
+      "to": "cli",
+      "label": "argv, now with --trust",
+      "variant": "emphasis"
+    },
+    {
+      "id": "cli-reader",
+      "from": "cli",
+      "to": "reader",
+      "label": "tool_call events",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "reader-gate",
+      "from": "reader",
+      "to": "gate",
+      "label": "edited, or not",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gate-runner",
+      "from": "gate",
+      "to": "runner",
+      "label": "one cold retry",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Read off the real CLI, 2026.09.02",
+      "items": [
+        "Without --trust, print mode exits 1 in one second with no events: no Cursor run from Leglas had ever started",
+        "The tool that changes a file is editToolCall, not the documented writeToolCall; the wrapper carries bookkeeping keys beside it",
+        "End to end: a request against the demo's Table produced a new direction registered under it"
+      ]
+    }
+  ]
+}

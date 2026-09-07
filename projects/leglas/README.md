@@ -34,6 +34,7 @@ documents.
 | `0063-changelog-plain` | [#63](https://github.com/FredAmartey/leglas/pull/63) |
 | `0064-versions-internal` | [#64](https://github.com/FredAmartey/leglas/pull/64) |
 | `0065-public-audit` | [#65](https://github.com/FredAmartey/leglas/pull/65) |
+| `0066-cursor-verified` | [#66](https://github.com/FredAmartey/leglas/pull/66) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
