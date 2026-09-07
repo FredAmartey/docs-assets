@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One paragraph out of CONTRIBUTING",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1300,
+      360
+    ]
+  },
+  "components": [
+    {
+      "id": "contributor",
+      "type": "external",
+      "label": "A contributor",
+      "sublabel": "Reads how to build, check and release",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        260,
+        78
+      ]
+    },
+    {
+      "id": "contributing",
+      "type": "frontend",
+      "label": "CONTRIBUTING.md",
+      "sublabel": "Changed: the Versions section removed",
+      "tag": "changed",
+      "pos": [
+        400,
+        90
+      ],
+      "size": [
+        300,
+        78
+      ]
+    },
+    {
+      "id": "workflow",
+      "type": "backend",
+      "label": "publish.yml",
+      "sublabel": "Unchanged; still refuses a patch tag that moved the surface",
+      "pos": [
+        900,
+        90
+      ],
+      "size": [
+        340,
+        78
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c-c",
+      "from": "contributor",
+      "to": "contributing",
+      "label": "reads",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-w",
+      "from": "contributing",
+      "to": "workflow",
+      "label": "describes",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Why",
+      "items": [
+        "How the maintainer picks a number is a maintainer's note, not a contributor's instruction",
+        "The one rule a contributor can trip, the patch guard, stays described under Releases",
+        "75 lines to 67; nothing else in the file moves"
+      ]
+    }
+  ]
+}
