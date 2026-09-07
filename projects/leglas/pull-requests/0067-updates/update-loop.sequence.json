@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "How Leglas learns about a release and brings it in",
+    "viewBox": [
+      1000,
+      660
+    ],
+    "quality_profile": "showcase",
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "person",
+      "type": "external",
+      "label": "You",
+      "sublabel": "terminal and browser"
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "Interface",
+      "sublabel": "version chip"
+    },
+    {
+      "id": "leglas",
+      "type": "backend",
+      "label": "Leglas 1.0.0",
+      "sublabel": "CLI and server"
+    },
+    {
+      "id": "registry",
+      "type": "external",
+      "label": "npm",
+      "sublabel": "registry"
+    },
+    {
+      "id": "site",
+      "type": "external",
+      "label": "Site",
+      "sublabel": "releases.json"
+    },
+    {
+      "id": "installer",
+      "type": "backend",
+      "label": "Installer",
+      "sublabel": "npm, pnpm, yarn, bun"
+    },
+    {
+      "id": "next",
+      "type": "backend",
+      "label": "Leglas 1.1.0",
+      "sublabel": "same port"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 336,
+      "label": "At startup, once a day"
+    },
+    {
+      "from": 352,
+      "to": 600,
+      "label": "Update from the interface"
+    }
+  ],
+  "messages": [
+    {
+      "from": "leglas",
+      "to": "registry",
+      "y": 174,
+      "label": "GET leglas/latest; releases.json for the title",
+      "variant": "emphasis"
+    },
+    {
+      "from": "registry",
+      "to": "leglas",
+      "y": 208,
+      "label": "1.1.0, cached a day in ~/.leglas/update.json",
+      "variant": "return"
+    },
+    {
+      "from": "leglas",
+      "to": "person",
+      "y": 242,
+      "label": "update   1.1.0 is out, you have 1.0.0",
+      "variant": "default"
+    },
+    {
+      "from": "leglas",
+      "to": "shell",
+      "y": 276,
+      "label": "status: newer, so the chip wears a dot",
+      "variant": "return"
+    },
+    {
+      "from": "person",
+      "to": "shell",
+      "y": 372,
+      "label": "Update",
+      "variant": "emphasis"
+    },
+    {
+      "from": "shell",
+      "to": "leglas",
+      "y": 406,
+      "label": "POST /leglas/api/update/install",
+      "variant": "emphasis"
+    },
+    {
+      "from": "leglas",
+      "to": "installer",
+      "y": 440,
+      "label": "npm i -g leglas@1.1.0",
+      "variant": "emphasis"
+    },
+    {
+      "from": "leglas",
+      "to": "next",
+      "y": 474,
+      "label": "close the server, spawn --port 4100 --no-open",
+      "variant": "emphasis"
+    },
+    {
+      "from": "shell",
+      "to": "next",
+      "y": 508,
+      "label": "GET /leglas/api/update, every second",
+      "variant": "dashed"
+    },
+    {
+      "from": "next",
+      "to": "shell",
+      "y": 542,
+      "label": "version 1.1.0",
+      "variant": "return"
+    },
+    {
+      "from": "shell",
+      "to": "person",
+      "y": 576,
+      "label": "reload, then: Leglas is now 1.1.0",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "leglas",
+      "from": 168,
+      "to": 282,
+      "type": "backend"
+    },
+    {
+      "participant": "shell",
+      "from": 366,
+      "to": 412,
+      "type": "frontend"
+    },
+    {
+      "participant": "leglas",
+      "from": 400,
+      "to": 480,
+      "type": "backend"
+    },
+    {
+      "participant": "installer",
+      "from": 434,
+      "to": 450,
+      "type": "backend"
+    },
+    {
+      "participant": "next",
+      "from": 468,
+      "to": 548,
+      "type": "backend"
+    },
+    {
+      "participant": "shell",
+      "from": 502,
+      "to": 582,
+      "type": "frontend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Once a day, never in the way",
+      "items": [
+        "Startup never waits on npm; a failed check changes nothing",
+        "Off under CI or LEGLAS_NO_UPDATE_CHECK=1; the panel still checks by hand"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Update runs what the install kind needs",
+      "items": [
+        "npx: no install, the restart is npx leglas@1.1.0; global and project use their manager",
+        "A checkout is told to pull; Skip quietens a version until the next one"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The old process hands over",
+      "items": [
+        "It closes its server first, forwards Ctrl+C and exits with the child's code",
+        "The page reloads once 1.1.0 answers, and gives up after 90 seconds"
+      ]
+    }
+  ]
+}

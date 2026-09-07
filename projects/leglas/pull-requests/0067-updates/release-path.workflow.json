@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "What a release now reaches",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "maintainer", "label": "Maintainer" },
+    { "id": "ci", "label": "GitHub Actions, publish.yml" },
+    { "id": "npm", "label": "npm" },
+    { "id": "site", "label": "Vercel, site.ts" },
+    { "id": "people", "label": "Everyone running Leglas" }
+  ],
+  "mainPath": ["tag", "publish", "registry", "check", "notice"],
+  "nodes": [
+    { "id": "tag", "lane": "maintainer", "col": 0, "type": "frontend", "label": "Push v1.1.0", "sublabel": "release commit + tag" },
+    { "id": "publish", "lane": "ci", "col": 1, "type": "backend", "label": "publish job", "sublabel": "guards, build, test" },
+    { "id": "registry", "lane": "npm", "col": 2, "type": "external", "label": "leglas 1.1.0", "sublabel": "and leglas-mcp" },
+    { "id": "release", "lane": "ci", "col": 3, "type": "backend", "label": "release job", "sublabel": "release-notes.ts", "tag": "new" },
+    { "id": "ghrelease", "lane": "maintainer", "col": 4, "type": "external", "label": "GitHub Release", "sublabel": "watchers get a note", "tag": "new" },
+    { "id": "build", "lane": "site", "col": 2, "type": "cloud", "label": "Site build", "sublabel": "on the push to main" },
+    { "id": "releases", "lane": "site", "col": 3, "type": "database", "label": "releases.json", "sublabel": "versions and titles", "tag": "new" },
+    { "id": "check", "lane": "people", "col": 4, "type": "backend", "label": "Leglas starts", "sublabel": "asks once a day", "tag": "new" },
+    { "id": "notice", "lane": "people", "col": 5, "type": "frontend", "label": "Notice", "sublabel": "terminal + chip" }
+  ],
+  "edges": [
+    { "from": "tag", "to": "publish", "label": "v* tag" },
+    { "from": "publish", "to": "registry", "label": "trusted publishing", "variant": "emphasis" },
+    { "from": "publish", "to": "release", "label": "needs: publish", "variant": "emphasis" },
+    { "from": "release", "to": "ghrelease", "label": "gh release create" },
+    { "from": "tag", "to": "build", "label": "main moved", "variant": "dashed" },
+    { "from": "build", "to": "releases" },
+    { "from": "registry", "to": "check", "label": "GET leglas/latest", "variant": "emphasis" },
+    { "from": "releases", "to": "check", "label": "GET releases.json", "variant": "dashed" },
+    { "from": "check", "to": "notice", "label": "newer than mine" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Two announcements, one source", "items": ["The changelog entry is the GitHub Release body and the title in releases.json", "The release job runs only after npm has the version", "The publish job keeps contents: read; only the release job may write"] },
+    { "dot": "cyan", "title": "npm decides, the site decorates", "items": ["A newer version on npm is what makes a notice", "The site's title is best effort; without it the notice still names the version", "Neither call can delay Leglas starting"] }
+  ]
+}
