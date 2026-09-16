@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "React Doctor cleanup: what moved",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/TariffWars",
+      "revision": "4ba1485ddc7f44c5f3439579276891691fb44a8e"
+    }
+  },
+  "components": [
+    {
+      "id": "mount",
+      "type": "frontend",
+      "label": "index.tsx",
+      "sublabel": "createRoot mount",
+      "tag": "changed",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/index.tsx",
+          "line": 8,
+          "end_line": 12,
+          "label": "createRoot"
+        }
+      ]
+    },
+    {
+      "id": "providers",
+      "type": "frontend",
+      "label": "App providers",
+      "sublabel": "Theme, Notifications",
+      "tag": "memoised values",
+      "pos": [
+        260,
+        90
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/context/ThemeContext.tsx",
+          "line": 53,
+          "label": "theme value"
+        },
+        {
+          "path": "frontend/context/NotificationsContext.tsx",
+          "line": 46,
+          "end_line": 49,
+          "label": "notifications value"
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "type": "frontend",
+      "label": "TariffTable",
+      "sublabel": "fetch lifecycle",
+      "tag": "changed",
+      "pos": [
+        480,
+        90
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/components/dashboard/TariffTable.tsx",
+          "line": 678,
+          "end_line": 680,
+          "label": "ref effect"
+        },
+        {
+          "path": "frontend/components/dashboard/TariffTable.tsx",
+          "line": 646,
+          "end_line": 650,
+          "label": "finally"
+        },
+        {
+          "path": "frontend/components/dashboard/TariffTable.tsx",
+          "line": 436,
+          "label": "MobileTariffCard"
+        }
+      ]
+    },
+    {
+      "id": "filter",
+      "type": "frontend",
+      "label": "lib/filterParams",
+      "sublabel": "flat query params",
+      "tag": "new",
+      "pos": [
+        480,
+        250
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/lib/filterParams.ts",
+          "line": 7,
+          "end_line": 11,
+          "label": "helper"
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "frontend",
+      "label": "services/api",
+      "sublabel": "getTariffRates",
+      "pos": [
+        700,
+        90
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/services/api.ts",
+          "line": 33,
+          "label": "getTariffRates"
+        }
+      ]
+    },
+    {
+      "id": "axios",
+      "type": "external",
+      "label": "axios",
+      "sublabel": "1.8.4 to 1.20.0",
+      "tag": "bumped",
+      "pos": [
+        920,
+        90
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 20,
+          "label": "frontend"
+        },
+        {
+          "path": "backend/package.json",
+          "line": 17,
+          "label": "backend"
+        }
+      ]
+    },
+    {
+      "id": "express",
+      "type": "backend",
+      "label": "Express API",
+      "sublabel": "/projects/tariff-wars/api",
+      "pos": [
+        700,
+        500
+      ],
+      "size": [
+        140,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/server.ts",
+          "line": 11,
+          "label": "routes"
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "marketAnalysisService",
+      "sublabel": "reads run together",
+      "tag": "changed",
+      "pos": [
+        920,
+        500
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/services/marketAnalysisService.ts",
+          "line": 368,
+          "end_line": 371,
+          "label": "Promise.all"
+        },
+        {
+          "path": "backend/src/services/marketAnalysisService.ts",
+          "line": 449,
+          "end_line": 451,
+          "label": "Set sample"
+        }
+      ]
+    },
+    {
+      "id": "tariff",
+      "type": "database",
+      "label": "tariffService",
+      "sublabel": "CSV rows",
+      "pos": [
+        920,
+        390
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/services/tariffService.ts",
+          "line": 213,
+          "label": "getTariffRates"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "type": "backend",
+      "label": "newsService",
+      "sublabel": "tariff news",
+      "pos": [
+        920,
+        610
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/services/newsService.ts",
+          "line": 88,
+          "label": "getTariffNews"
+        }
+      ]
+    },
+    {
+      "id": "openai",
+      "type": "external",
+      "label": "OpenAI",
+      "sublabel": "prose only",
+      "pos": [
+        1140,
+        500
+      ],
+      "size": [
+        120,
+        60
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Browser: Vite + React 18",
+      "wraps": [
+        "mount",
+        "providers",
+        "table",
+        "filter",
+        "api"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Node: Express",
+      "wraps": [
+        "express",
+        "analysis",
+        "tariff",
+        "news"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "mount-render",
+      "from": "mount",
+      "to": "providers",
+      "label": "render",
+      "variant": "emphasis"
+    },
+    {
+      "id": "providers-table",
+      "from": "providers",
+      "to": "table",
+      "label": "context"
+    },
+    {
+      "id": "table-filter",
+      "from": "table",
+      "to": "filter",
+      "label": "filters",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "table-api",
+      "from": "table",
+      "to": "api",
+      "label": "fetch",
+      "variant": "emphasis"
+    },
+    {
+      "id": "api-axios",
+      "from": "api",
+      "to": "axios",
+      "label": "HTTP client"
+    },
+    {
+      "id": "api-express",
+      "from": "api",
+      "to": "express",
+      "label": "GET /api",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "express-analysis",
+      "from": "express",
+      "to": "analysis",
+      "label": "routes"
+    },
+    {
+      "id": "analysis-tariff",
+      "from": "analysis",
+      "to": "tariff",
+      "label": "parallel read",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "analysis-news",
+      "from": "analysis",
+      "to": "news",
+      "label": "parallel read",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "analysis-openai",
+      "from": "analysis",
+      "to": "openai",
+      "label": "prompt",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Errors cleared",
+      "items": [
+        "fetchRef is written from an effect, not during render",
+        "axios 1.8.4 carried open advisories; both packages now resolve 1.20.0"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Warnings cleared",
+      "items": [
+        "createRoot replaces the legacy render root",
+        "Both context values are memoised",
+        "isLoading clears in one finally; MobileTariffCard lives at module scope",
+        "Tariff and news reads run together in marketAnalysisService"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Left alone",
+      "items": [
+        "Index keys, giant components and complexity: separate work",
+        "The guarded finally is still flagged by the detector; false positive"
+      ]
+    }
+  ]
+}

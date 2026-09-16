@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "<local>/react-cleanup.architecture.json",
+  "output": "<local>/react-cleanup.architecture.html",
+  "specification": {
+    "sha256": "7259c9e741e7c699fa4d44bb31d0d03cff97ca0f67a50e246ca8b1e2c26a487d",
+    "bytes": 8219
+  },
+  "artifact": {
+    "sha256": "0e3a2795991df3058a8e6587d28f6bda9a09d614326db5121d2657741a80c16b",
+    "bytes": 818113
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/TariffWars",
+    "revision": "4ba1485ddc7f44c5f3439579276891691fb44a8e",
+    "references": 15
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Freshness alert closes itself",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "data",
+      "label": "Dataset"
+    },
+    {
+      "id": "check",
+      "label": "data-freshness job, daily 14:00 UTC"
+    },
+    {
+      "id": "issues",
+      "label": "GitHub issues, label stale-data"
+    }
+  ],
+  "phases": [
+    {
+      "id": "measure_phase",
+      "label": "Measure",
+      "fromCol": 0,
+      "toCol": 2
+    },
+    {
+      "id": "act_phase",
+      "label": "Act on the result",
+      "fromCol": 3,
+      "toCol": 4,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "cron",
+    "measure",
+    "threshold",
+    "close"
+  ],
+  "nodes": [
+    {
+      "id": "routine",
+      "lane": "data",
+      "col": 0,
+      "type": "cloud",
+      "label": "Weekly refresh",
+      "sublabel": "writes meta.json",
+      "width": 132
+    },
+    {
+      "id": "cron",
+      "lane": "check",
+      "col": 0,
+      "type": "external",
+      "label": "Daily cron",
+      "sublabel": "14:00 UTC",
+      "width": 132
+    },
+    {
+      "id": "measure",
+      "lane": "check",
+      "col": 1,
+      "type": "backend",
+      "label": "Measure age",
+      "sublabel": "days since lastUpdated",
+      "width": 132
+    },
+    {
+      "id": "threshold",
+      "lane": "check",
+      "col": 2,
+      "type": "security",
+      "label": "Stale?",
+      "sublabel": "more than 9 days",
+      "width": 132
+    },
+    {
+      "id": "alert",
+      "lane": "issues",
+      "col": 3,
+      "type": "external",
+      "label": "File or comment",
+      "sublabel": "one open alert",
+      "width": 132
+    },
+    {
+      "id": "close",
+      "lane": "issues",
+      "col": 4,
+      "type": "external",
+      "label": "Close resolved alert",
+      "sublabel": "gh issue close",
+      "tag": "new step",
+      "width": 184
+    }
+  ],
+  "edges": [
+    {
+      "id": "routine-measure",
+      "from": "routine",
+      "to": "measure",
+      "label": "lastUpdated",
+      "variant": "dashed"
+    },
+    {
+      "id": "cron-measure",
+      "from": "cron",
+      "to": "measure"
+    },
+    {
+      "id": "measure-threshold",
+      "from": "measure",
+      "to": "threshold"
+    },
+    {
+      "id": "stale",
+      "from": "threshold",
+      "to": "alert",
+      "label": "stale",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "fresh",
+      "from": "threshold",
+      "to": "close",
+      "label": "fresh",
+      "variant": "emphasis"
+    },
+    {
+      "id": "alert-close",
+      "from": "alert",
+      "to": "close",
+      "label": "next fresh run",
+      "variant": "dashed",
+      "role": "branch"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What changed",
+      "items": [
+        "A third step runs when the data is fresh",
+        "It closes every open stale-data issue, with a comment naming the new lastUpdated"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Why",
+      "items": [
+        "#4 opened 2026-08-20; the routine caught up on 2026-08-31",
+        "The issue then sat open through three more refreshes"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Unchanged",
+      "items": [
+        "Stale runs still file once, then comment daily",
+        "Threshold stays 9 days, overridable from workflow_dispatch"
+      ]
+    }
+  ]
+}

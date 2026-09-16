@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "sequence",
+  "input": "<local>/fetch-lifecycle.sequence.json",
+  "output": "<local>/fetch-lifecycle.sequence.html",
+  "specification": {
+    "sha256": "f12d4f7a4a0df416977f2e8e5b0b5d7b2c00bb69d1e6087877d898d1d9a111a9",
+    "bytes": 2782
+  },
+  "artifact": {
+    "sha256": "c8ed785b2c53afae28ec753706060d90fee554759679109f4c2ffba36b830173",
+    "bytes": 805698
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

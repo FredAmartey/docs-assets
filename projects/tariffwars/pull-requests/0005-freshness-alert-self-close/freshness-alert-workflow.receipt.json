@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "<local>/stale-alert.workflow.json",
+  "output": "<local>/stale-alert.workflow.html",
+  "specification": {
+    "sha256": "7e68954dc3731cdf67c7e7c6391b1d360542e05c5159d7959901ed9eb62f5a02",
+    "bytes": 3389
+  },
+  "artifact": {
+    "sha256": "4a2f6f8ceef07d32c0efd50b45af83322b622e62d5e051a3753c0af7dceda6e7",
+    "bytes": 804529
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

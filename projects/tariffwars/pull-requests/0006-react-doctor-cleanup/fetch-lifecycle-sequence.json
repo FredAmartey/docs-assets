@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "TariffTable fetch after the change",
+    "quality_profile": "showcase",
+    "viewBox": [1080, 500],
+    "column_fit": "spread"
+  },
+  "participants": [
+    { "id": "render", "type": "frontend", "label": "Render", "sublabel": "TariffTable" },
+    { "id": "refeffect", "type": "frontend", "label": "Ref effect", "sublabel": "first in file" },
+    { "id": "fetcheffect", "type": "frontend", "label": "Fetch effect", "sublabel": "reads fetchRef" },
+    { "id": "api", "type": "backend", "label": "apiService", "sublabel": "getTariffRates" },
+    { "id": "state", "type": "database", "label": "State", "sublabel": "data, error, isLoading" }
+  ],
+  "segments": [
+    { "from": 150, "to": 205, "label": "Commit" },
+    { "from": 215, "to": 275, "label": "Fetch" },
+    { "from": 285, "to": 400, "label": "Settle" }
+  ],
+  "messages": [
+    { "id": "write-ref", "from": "render", "to": "refeffect", "y": 165, "label": "commit: fetchRef.current = fetchData", "variant": "emphasis" },
+    { "id": "deps-changed", "from": "render", "to": "fetcheffect", "y": 195, "label": "commit: search, sort, page or tab changed", "variant": "default" },
+    { "id": "call", "from": "fetcheffect", "to": "api", "y": 228, "label": "fetchRef.current(): getTariffRates(params)", "variant": "emphasis" },
+    { "id": "reply", "from": "api", "to": "fetcheffect", "y": 262, "label": "response, or rejection", "variant": "return" },
+    { "id": "stale-guard", "from": "fetcheffect", "to": "state", "y": 298, "label": "stale request? touch nothing", "variant": "security" },
+    { "id": "settle", "from": "fetcheffect", "to": "state", "y": 330, "label": "set data + total, or error", "variant": "default" },
+    { "id": "finally", "from": "fetcheffect", "to": "state", "y": 364, "label": "finally: isLoading = false", "variant": "emphasis" }
+  ],
+  "activations": [
+    { "participant": "refeffect", "from": 160, "to": 178, "type": "frontend" },
+    { "participant": "fetcheffect", "from": 190, "to": 372, "type": "frontend" },
+    { "participant": "api", "from": 223, "to": 268, "type": "backend" },
+    { "participant": "state", "from": 293, "to": 370, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Before", "items": ["fetchRef was assigned during render, which React may replay or discard", "isLoading was cleared at the end of try and again in catch", "A separate effect reset the page on tab change, duplicating the tab handler"] },
+    { "dot": "emerald", "title": "After", "items": ["The first effect writes the ref; the second reads it, so it is always current", "One finally clears the flag on success and on rejection", "A superseded request leaves the flag to the request that replaced it"] }
+  ]
+}
