@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "<local>/sources-dedupe.workflow.json",
+  "output": "<local>/sources-dedupe.workflow.html",
+  "specification": {
+    "sha256": "77e747355093e9372efe46c86199c125681390094a5cea482de863bc1f4aea1a",
+    "bytes": 3244
+  },
+  "artifact": {
+    "sha256": "3725d2256a6faf54e853ab39c9042ca696ce551081ec93183e3409ba661344ee",
+    "bytes": 804005
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

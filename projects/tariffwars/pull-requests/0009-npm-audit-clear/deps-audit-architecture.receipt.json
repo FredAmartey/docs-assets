@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "<local>/deps-audit.architecture.json",
+  "output": "<local>/deps-audit.architecture.html",
+  "specification": {
+    "sha256": "e82c7bc80987aefe36dfc4aa7421d7501f8598751bcc3397017c28e8b1cea1b9",
+    "bytes": 7014
+  },
+  "artifact": {
+    "sha256": "4aafa455f1dd02c05dee3ff1724f9ec27e415f25be310cf44696048fe38d8bf5",
+    "bytes": 815426
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/TariffWars",
+    "revision": "b4b0b30e651cf40066f24de1f94757a9d6b8cce7",
+    "references": 12
+  }
+}

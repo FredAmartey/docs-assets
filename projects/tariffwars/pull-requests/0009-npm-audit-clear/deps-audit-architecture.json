@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "npm audit to zero",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/TariffWars",
+      "revision": "b4b0b30e651cf40066f24de1f94757a9d6b8cce7"
+    }
+  },
+  "components": [
+    {
+      "id": "validator",
+      "type": "backend",
+      "label": "validate-data.mjs",
+      "sublabel": "csv-parse/sync",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "scripts/validate-data.mjs",
+          "line": 7,
+          "label": "import"
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "type": "backend",
+      "label": "record-history.mjs",
+      "sublabel": "csv-parse/sync",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "scripts/record-history.mjs",
+          "line": 12,
+          "label": "import"
+        }
+      ]
+    },
+    {
+      "id": "tariff",
+      "type": "backend",
+      "label": "tariffService",
+      "sublabel": "csv-parse stream",
+      "pos": [
+        40,
+        310
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/services/tariffService.ts",
+          "line": 4,
+          "label": "import"
+        }
+      ]
+    },
+    {
+      "id": "csv",
+      "type": "external",
+      "label": "csv-parse",
+      "sublabel": "5.6.0 to 7.0.2",
+      "tag": "major",
+      "pos": [
+        320,
+        200
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 23,
+          "label": "root"
+        },
+        {
+          "path": "backend/package.json",
+          "line": 19,
+          "label": "backend"
+        }
+      ]
+    },
+    {
+      "id": "express",
+      "type": "backend",
+      "label": "Express API",
+      "sublabel": "express, body-parser, qs, path-to-regexp",
+      "tag": "patched",
+      "pos": [
+        900,
+        310
+      ],
+      "size": [
+        200,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/package.json",
+          "line": 22,
+          "label": "express"
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "frontend",
+      "label": "React app",
+      "sublabel": "react-router-dom 7.18, lodash 4.18",
+      "tag": "patched",
+      "pos": [
+        900,
+        200
+      ],
+      "size": [
+        200,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 30,
+          "label": "react-router-dom"
+        },
+        {
+          "path": "package.json",
+          "line": 25,
+          "label": "lodash"
+        }
+      ]
+    },
+    {
+      "id": "vite",
+      "type": "external",
+      "label": "vite",
+      "sublabel": "5.4 to 8.3, rolldown",
+      "tag": "major",
+      "pos": [
+        620,
+        90
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 48,
+          "label": "vite"
+        },
+        {
+          "path": "vite.config.ts",
+          "line": 14,
+          "label": "import.meta.dirname"
+        }
+      ]
+    },
+    {
+      "id": "plugin",
+      "type": "external",
+      "label": "@vitejs/plugin-react",
+      "sublabel": "4.3 to 6.1",
+      "tag": "major",
+      "pos": [
+        620,
+        200
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 41,
+          "label": "plugin"
+        }
+      ]
+    },
+    {
+      "id": "vitest",
+      "type": "external",
+      "label": "vitest",
+      "sublabel": "2.1 to 5.0, jsdom kept",
+      "tag": "major",
+      "pos": [
+        620,
+        310
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 49,
+          "label": "vitest"
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "type": "cloud",
+      "label": "npm run build",
+      "sublabel": "dist, pixel-identical",
+      "pos": [
+        900,
+        90
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "security",
+      "label": "npm test",
+      "sublabel": "30 pass",
+      "pos": [
+        900,
+        430
+      ],
+      "size": [
+        200,
+        60
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "csv-parse consumers",
+      "wraps": [
+        "validator",
+        "history",
+        "tariff"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Build tool chain, dev only",
+      "wraps": [
+        "vite",
+        "plugin",
+        "vitest"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "validator-csv",
+      "from": "validator",
+      "to": "csv",
+      "label": "parse",
+      "variant": "emphasis"
+    },
+    {
+      "id": "history-csv",
+      "from": "history",
+      "to": "csv",
+      "variant": "emphasis"
+    },
+    {
+      "id": "tariff-csv",
+      "from": "tariff",
+      "to": "csv",
+      "label": "parse",
+      "variant": "emphasis"
+    },
+    {
+      "id": "vite-build",
+      "from": "vite",
+      "to": "build",
+      "label": "bundles",
+      "variant": "emphasis"
+    },
+    {
+      "id": "plugin-vite",
+      "from": "plugin",
+      "to": "vite",
+      "label": "peer vite 8",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -16
+    },
+    {
+      "id": "vitest-tests",
+      "from": "vitest",
+      "to": "tests",
+      "label": "runs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "build-app",
+      "from": "build",
+      "to": "app",
+      "label": "serves",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 22
+    },
+    {
+      "id": "app-express",
+      "from": "app",
+      "to": "express",
+      "label": "GET /api",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 22
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Audit result",
+      "items": [
+        "Root and backend: 0 vulnerabilities, dev dependencies included",
+        "Runtime patches came from npm audit fix with no majors"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "The two majors",
+      "items": [
+        "csv-parse 7: the 6.0 breaking changes were option renames this code never used",
+        "vite 8 with vitest 5 and plugin-react 6: peer set would not resolve incrementally, so the root lockfile was regenerated"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Evidence",
+      "items": [
+        "tsc, eslint, vitest, vite build, backend tsc and node:test, the data validator",
+        "vite 8 dev server and production preview compared in the browser: 0 differing pixels, both themes"
+      ]
+    }
+  ]
+}

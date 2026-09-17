@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Helpers out of component files",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/TariffWars",
+      "revision": "831229630607bedcb286d9a529d0d015cfb53862"
+    }
+  },
+  "components": [
+    {
+      "id": "newsfeed",
+      "type": "frontend",
+      "label": "NewsFeed",
+      "sublabel": "components only now",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/components/NewsFeed.tsx",
+          "line": 16,
+          "label": "imports lib/news"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "type": "backend",
+      "label": "lib/news",
+      "sublabel": "bookmarks, URL check, summary",
+      "tag": "new",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/lib/news.ts",
+          "line": 30,
+          "label": "readBookmarks"
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "type": "frontend",
+      "label": "TariffTable",
+      "sublabel": "imports isInactive",
+      "pos": [
+        240,
+        90
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/components/dashboard/TariffTable.tsx",
+          "line": 16,
+          "label": "imports lib/tariffs"
+        }
+      ]
+    },
+    {
+      "id": "rates",
+      "type": "frontend",
+      "label": "TariffRates",
+      "sublabel": "filter chips keyed by field",
+      "tag": "keys",
+      "pos": [
+        440,
+        90
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/components/TariffRates.tsx",
+          "line": 3,
+          "label": "imports lib/tariffs"
+        },
+        {
+          "path": "frontend/components/TariffRates.tsx",
+          "line": 208,
+          "label": "key by field"
+        }
+      ]
+    },
+    {
+      "id": "tariffs",
+      "type": "backend",
+      "label": "lib/tariffs",
+      "sublabel": "isInactive, sort presets",
+      "tag": "new",
+      "pos": [
+        340,
+        260
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/lib/tariffs.ts",
+          "line": 51,
+          "label": "sortOptionsFor"
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "security",
+      "label": "logic.test.ts",
+      "sublabel": "imports the lib modules",
+      "pos": [
+        180,
+        430
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/test/logic.test.ts",
+          "line": 6,
+          "label": "imports"
+        }
+      ]
+    },
+    {
+      "id": "providers",
+      "type": "frontend",
+      "label": "Theme + Notifications providers",
+      "sublabel": "Dashboard reads theme.ts",
+      "pos": [
+        660,
+        90
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/context/ThemeContext.tsx",
+          "line": 2,
+          "label": "imports theme.ts"
+        },
+        {
+          "path": "frontend/context/NotificationsContext.tsx",
+          "line": 2,
+          "label": "imports notifications.ts"
+        },
+        {
+          "path": "frontend/components/Dashboard.tsx",
+          "line": 8,
+          "label": "Dashboard import"
+        }
+      ]
+    },
+    {
+      "id": "contexts",
+      "type": "backend",
+      "label": "context/theme.ts, notifications.ts",
+      "sublabel": "context objects only",
+      "tag": "new",
+      "pos": [
+        660,
+        260
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/context/theme.ts",
+          "line": 13,
+          "label": "ThemeContext"
+        },
+        {
+          "path": "frontend/context/notifications.ts",
+          "line": 17,
+          "label": "NotificationsContext"
+        }
+      ]
+    },
+    {
+      "id": "lists",
+      "type": "frontend",
+      "label": "AI insights, stocks, analysis",
+      "sublabel": "content keys, not index",
+      "tag": "keys",
+      "pos": [
+        940,
+        90
+      ],
+      "size": [
+        204,
+        60
+      ],
+      "sources": [
+        {
+          "path": "frontend/components/dashboard/AIInsights.tsx",
+          "line": 134,
+          "label": "insight key"
+        },
+        {
+          "path": "frontend/components/dashboard/AffectedStocks.tsx",
+          "line": 384,
+          "label": "marquee copy key"
+        },
+        {
+          "path": "frontend/components/dashboard/DetailedMarketAnalysis.tsx",
+          "line": 348,
+          "label": "region key"
+        }
+      ]
+    },
+    {
+      "id": "svc",
+      "type": "backend",
+      "label": "marketAnalysisService",
+      "sublabel": "region Set per row",
+      "pos": [
+        940,
+        300
+      ],
+      "size": [
+        204,
+        60
+      ],
+      "sources": [
+        {
+          "path": "backend/src/services/marketAnalysisService.ts",
+          "line": 504,
+          "label": "regionSets"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Component files: components only",
+      "wraps": [
+        "newsfeed",
+        "table",
+        "rates",
+        "providers",
+        "lists"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Plain modules",
+      "wraps": [
+        "news",
+        "tariffs",
+        "contexts"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "newsfeed-news",
+      "from": "newsfeed",
+      "to": "news",
+      "label": "imports",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "table-tariffs",
+      "from": "table",
+      "to": "tariffs",
+      "label": "isInactive",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "rates-tariffs",
+      "from": "rates",
+      "to": "tariffs",
+      "label": "sortOptionsFor",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "tests-news",
+      "from": "tests",
+      "to": "news",
+      "label": "tests",
+      "variant": "dashed",
+      "fromSide": "left",
+      "toSide": "bottom"
+    },
+    {
+      "id": "tests-tariffs",
+      "from": "tests",
+      "to": "tariffs",
+      "label": "tests",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "providers-contexts",
+      "from": "providers",
+      "to": "contexts",
+      "label": "imports",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "lists-svc",
+      "from": "lists",
+      "to": "svc",
+      "label": "analysis data",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Fast Refresh",
+      "items": [
+        "Each component file now exports components only, so an edit swaps in place instead of remounting the tree",
+        "Helper bodies moved unchanged; tests import them from their new homes"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Keys",
+      "items": [
+        "Filters: one per field, so the field is the key and removal is by field",
+        "Stock marquee: the second copy of the list carries its own key",
+        "AI lists: keyed by name, region, timeframe or text"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Still open",
+      "items": [
+        "Four high-complexity components and two giant ones: real refactors, separate PRs",
+        "The guarded finally is the documented detector false positive"
+      ]
+    }
+  ]
+}

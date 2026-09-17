@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "<local>/react-warnings.architecture.json",
+  "output": "<local>/react-warnings.architecture.html",
+  "specification": {
+    "sha256": "8ba4a1d4c4121871edc8be7290885dcb49230f359d53b5f486da8d8472c36ff9",
+    "bytes": 7995
+  },
+  "artifact": {
+    "sha256": "32b69b46530309ffeb98e7b76124615f0c4dba396cea4703deec78bab0fb53de",
+    "bytes": 815589
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/TariffWars",
+    "revision": "831229630607bedcb286d9a529d0d015cfb53862",
+    "references": 16
+  }
+}

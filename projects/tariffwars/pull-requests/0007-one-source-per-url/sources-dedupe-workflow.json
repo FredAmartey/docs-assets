@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "One source per URL",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "data",
+      "label": "Weekly refresh output"
+    },
+    {
+      "id": "gate",
+      "label": "Validator"
+    },
+    {
+      "id": "site",
+      "label": "Site"
+    }
+  ],
+  "phases": [
+    {
+      "id": "write",
+      "label": "Write + check",
+      "fromCol": 0,
+      "toCol": 2
+    },
+    {
+      "id": "serve",
+      "label": "Serve + render",
+      "fromCol": 3,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "routine",
+    "meta",
+    "validator",
+    "api",
+    "dedupe",
+    "stamp"
+  ],
+  "nodes": [
+    {
+      "id": "routine",
+      "lane": "data",
+      "col": 0,
+      "type": "cloud",
+      "label": "Weekly refresh",
+      "sublabel": "writes meta.json",
+      "width": 132
+    },
+    {
+      "id": "meta",
+      "lane": "data",
+      "col": 1,
+      "type": "database",
+      "label": "meta.json",
+      "sublabel": "sources list",
+      "width": 132
+    },
+    {
+      "id": "validator",
+      "lane": "gate",
+      "col": 2,
+      "type": "security",
+      "label": "validate-data",
+      "sublabel": "warns on a repeated URL",
+      "tag": "changed",
+      "width": 156
+    },
+    {
+      "id": "api",
+      "lane": "site",
+      "col": 3,
+      "type": "backend",
+      "label": "GET /api/tariffs/meta",
+      "sublabel": "serves the file",
+      "width": 184
+    },
+    {
+      "id": "dedupe",
+      "lane": "site",
+      "col": 4,
+      "type": "frontend",
+      "label": "dedupeSources",
+      "sublabel": "first name per URL",
+      "tag": "new",
+      "width": 140
+    },
+    {
+      "id": "stamp",
+      "lane": "site",
+      "col": 5,
+      "type": "frontend",
+      "label": "Freshness stamp",
+      "sublabel": "keys by URL",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "routine-meta",
+      "from": "routine",
+      "to": "meta"
+    },
+    {
+      "id": "meta-validator",
+      "from": "meta",
+      "to": "validator",
+      "label": "checked before push"
+    },
+    {
+      "id": "validator-api",
+      "from": "validator",
+      "to": "api",
+      "label": "merged as is",
+      "variant": "dashed"
+    },
+    {
+      "id": "api-dedupe",
+      "from": "api",
+      "to": "dedupe",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dedupe-stamp",
+      "from": "dedupe",
+      "to": "stamp",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "What was wrong",
+      "items": [
+        "The September refresh listed whitehouse.gov/presidential-actions/ twice under two names",
+        "The stamp keys its list by URL, so React warned about duplicate keys on every load"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "What changed",
+      "items": [
+        "The stamp renders one entry per URL, first name wins",
+        "The validator warns on a repeated URL instead of failing the refresh"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Deliberately not",
+      "items": [
+        "No data edit: the routine rewrites meta.json weekly, and a fail here would block a refresh over a cosmetic repeat"
+      ]
+    }
+  ]
+}
