@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "shell-regions.architecture.json",
+  "output": "shell-regions.html",
+  "specification": {
+    "sha256": "88c9b53c30e4f4e3ed56f148bf534ffa522129b1484892630e8e94e52fa2d7c7",
+    "bytes": 4570
+  },
+  "artifact": {
+    "sha256": "82b93f4effdae8a6fb395604e170080968d5d3e6cf19ff9b83bd797adc345fe1",
+    "bytes": 806607
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "2411c7d8ea540b987be5a3a615966876880dc787",
+    "references": 8
+  }
+}

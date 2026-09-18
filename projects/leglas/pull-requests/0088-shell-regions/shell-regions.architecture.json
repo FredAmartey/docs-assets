@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Shell.tsx hands out its markup and keeps its state",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2411c7d8ea540b987be5a3a615966876880dc787"
+    }
+  },
+  "components": [
+    {
+      "id": "header",
+      "type": "backend",
+      "label": "rail/Header.tsx",
+      "sublabel": "took the share and update hooks",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/Header.tsx"
+        }
+      ]
+    },
+    {
+      "id": "row",
+      "type": "backend",
+      "label": "rail/Row.tsx",
+      "sublabel": "was a 470-line closure",
+      "pos": [
+        40,
+        182
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/Row.tsx"
+        }
+      ]
+    },
+    {
+      "id": "composer",
+      "type": "backend",
+      "label": "composer/",
+      "sublabel": "mode, attach, annotate, send",
+      "pos": [
+        40,
+        314
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/composer/ModeChip.tsx"
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "Shell.tsx",
+      "sublabel": "3998 lines to 2757; the state stays",
+      "pos": [
+        430,
+        182
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "database",
+      "label": "Shell.test.tsx",
+      "sublabel": "mounts the whole shell, 10 tests",
+      "pos": [
+        430,
+        314
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.test.tsx"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "stage/ToolsPopover.tsx",
+      "sublabel": "the preferences the widget opens",
+      "pos": [
+        820,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/stage/ToolsPopover.tsx"
+        }
+      ]
+    },
+    {
+      "id": "pane",
+      "type": "backend",
+      "label": "stage/Pane.tsx",
+      "sublabel": "one direction, and its overlays",
+      "pos": [
+        820,
+        182
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/stage/Pane.tsx"
+        }
+      ]
+    },
+    {
+      "id": "picker",
+      "type": "backend",
+      "label": "agents/AgentPicker.tsx",
+      "sublabel": "who runs the changes",
+      "pos": [
+        820,
+        314
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/AgentPicker.tsx"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "packages/shell/src",
+      "wraps": [
+        "header",
+        "row",
+        "composer",
+        "shell",
+        "test",
+        "tools",
+        "pane",
+        "picker"
+      ],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    {
+      "id": "shell-row",
+      "from": "shell",
+      "to": "row",
+      "label": "one per direction"
+    },
+    {
+      "id": "shell-pane",
+      "from": "shell",
+      "to": "pane",
+      "label": "one per direction",
+      "variant": "emphasis"
+    },
+    {
+      "id": "test-shell",
+      "from": "test",
+      "to": "shell",
+      "label": "mounts"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "What moved and what stayed",
+      "items": [
+        "Five regions of markup became components; every piece of state another part of Shell reads stayed in Shell, so no effect runs in a different order",
+        "The exception is the header, whose share and update hooks had no other reader and went with it"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "A throwaway harness ran the old Shell from git and the new one side by side through 40 interactions in 5 scenarios and compared the markup after every step",
+        "Then the checks it stood in for became Shell.test.tsx: 91 test files, 1581 tests, and a deliberate break in the mode chip failed it"
+      ]
+    }
+  ]
+}
