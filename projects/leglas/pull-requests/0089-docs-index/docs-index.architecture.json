@@ -2,42 +2,23 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The manual is what its index links",
+    "title": "The manual is named, and git keeps the name honest",
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "0d2113ffefab21698826f722a6ee3133a8e76061"
+      "revision": "00d5ee51bc17bb397ee3adca549ba88cd610fd97"
     }
   },
   "components": [
     {
-      "id": "index",
+      "id": "list",
       "type": "frontend",
-      "label": "docs/README.md",
-      "sublabel": "the manual's own list of pages",
-      "pos": [
-        40,
-        200
-      ],
-      "size": [
-        250,
-        62
-      ],
-      "sources": [
-        {
-          "path": "docs/README.md"
-        }
-      ]
-    },
-    {
-      "id": "reader",
-      "type": "backend",
-      "label": "site/docs.ts",
-      "sublabel": "reads the index, not the folder",
+      "label": "PAGES in site/docs.ts",
+      "sublabel": "the manual, named and in order",
       "pos": [
         430,
-        200
+        50
       ],
       "size": [
         250,
@@ -56,7 +37,7 @@
       "sublabel": "what the site serves",
       "pos": [
         820,
-        50
+        200
       ],
       "size": [
         250,
@@ -75,7 +56,7 @@
       "sublabel": "uncommitted, in .git/info/exclude",
       "pos": [
         40,
-        350
+        200
       ],
       "size": [
         250,
@@ -83,10 +64,10 @@
       ]
     },
     {
-      "id": "build",
-      "type": "external",
-      "label": "site/build.test.ts",
-      "sublabel": "expects what the index names",
+      "id": "repo",
+      "type": "database",
+      "label": "test/docs.test.ts",
+      "sublabel": "asks git what is committed",
       "pos": [
         430,
         350
@@ -97,58 +78,48 @@
       ],
       "sources": [
         {
-          "path": "site/build.test.ts"
+          "path": "test/docs.test.ts"
         }
       ]
     }
   ],
   "connections": [
     {
-      "id": "index-reader",
-      "from": "index",
-      "to": "reader",
-      "label": "names them, in order",
+      "id": "list-pages",
+      "from": "list",
+      "to": "pages",
+      "label": "builds; a name with no file throws",
       "variant": "emphasis"
     },
     {
-      "id": "reader-pages",
-      "from": "reader",
-      "to": "pages",
-      "label": "builds"
-    },
-    {
-      "id": "notes-reader",
+      "id": "notes-list",
       "from": "notes",
-      "to": "reader",
-      "label": "no longer reaches it",
+      "to": "list",
+      "label": "never named, never served",
       "variant": "dashed"
     },
     {
-      "id": "build-reader",
-      "from": "build",
-      "to": "reader",
-      "label": "asks the same question",
-      "labelAt": [
-        555,
-        300
-      ]
+      "id": "repo-list",
+      "from": "repo",
+      "to": "list",
+      "label": "a committed page nobody named fails"
     }
   ],
   "cards": [
     {
       "dot": "slate",
-      "title": "Why it mattered",
+      "title": "Why not read the index",
       "items": [
-        "docs/ is the public manual and also where this repository's conventions put notes that are never committed",
-        "A maintainer's checkout built those notes as pages and failed the suite there; CI, which has only the committed files, passed"
+        "docs/ is the public manual and also where this repository's conventions put notes that are never committed, so reading the folder published a maintainer's notes and failed the suite in their checkout",
+        "Reading the index instead meant parsing markdown links, and three review rounds each found another valid shape that dropped a page in silence"
       ]
     },
     {
       "dot": "emerald",
-      "title": "Checked",
+      "title": "Both ways of going wrong are loud",
       "items": [
-        "Two tests written first: a file the index does not link is not a page, and an index linking a page nobody wrote fails naming it",
-        "The site suite passes with the uncommitted notes present and absent, and the built manual holds its six pages either way"
+        "A page named here with no file stops the build, naming it",
+        "A committed page in docs/ that nobody named fails the suite, which was checked by committing one and not naming it"
       ]
     }
   ]
