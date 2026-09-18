@@ -54,6 +54,7 @@ documents.
 | `0086-shell-pieces` | [#86](https://github.com/FredAmartey/leglas/pull/86) |
 | `0087-tip-portal` | [#87](https://github.com/FredAmartey/leglas/pull/87) |
 | `0088-shell-regions` | [#88](https://github.com/FredAmartey/leglas/pull/88) |
+| `0089-docs-index` | [#89](https://github.com/FredAmartey/leglas/pull/89) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

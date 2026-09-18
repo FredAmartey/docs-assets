@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The manual is what its index links",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "0d2113ffefab21698826f722a6ee3133a8e76061"
+    }
+  },
+  "components": [
+    {
+      "id": "index",
+      "type": "frontend",
+      "label": "docs/README.md",
+      "sublabel": "the manual's own list of pages",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/README.md"
+        }
+      ]
+    },
+    {
+      "id": "reader",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "reads the index, not the folder",
+      "pos": [
+        430,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts"
+        }
+      ]
+    },
+    {
+      "id": "pages",
+      "type": "cloud",
+      "label": "the six pages",
+      "sublabel": "what the site serves",
+      "pos": [
+        820,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/guide.md"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "security",
+      "label": "docs/lessons.md, docs/plans/",
+      "sublabel": "uncommitted, in .git/info/exclude",
+      "pos": [
+        40,
+        350
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "build",
+      "type": "external",
+      "label": "site/build.test.ts",
+      "sublabel": "expects what the index names",
+      "pos": [
+        430,
+        350
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.test.ts"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "index-reader",
+      "from": "index",
+      "to": "reader",
+      "label": "names them, in order",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reader-pages",
+      "from": "reader",
+      "to": "pages",
+      "label": "builds"
+    },
+    {
+      "id": "notes-reader",
+      "from": "notes",
+      "to": "reader",
+      "label": "no longer reaches it",
+      "variant": "dashed"
+    },
+    {
+      "id": "build-reader",
+      "from": "build",
+      "to": "reader",
+      "label": "asks the same question",
+      "labelAt": [
+        555,
+        300
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "Why it mattered",
+      "items": [
+        "docs/ is the public manual and also where this repository's conventions put notes that are never committed",
+        "A maintainer's checkout built those notes as pages and failed the suite there; CI, which has only the committed files, passed"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "Two tests written first: a file the index does not link is not a page, and an index linking a page nobody wrote fails naming it",
+        "The site suite passes with the uncommitted notes present and absent, and the built manual holds its six pages either way"
+      ]
+    }
+  ]
+}
