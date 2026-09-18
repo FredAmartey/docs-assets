@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The recorded run and the verifier it used",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "1bcbd507c233164f6ae03abf0934996f9503ecfd"
+    }
+  },
+  "components": [
+    {
+      "id": "run",
+      "type": "database",
+      "label": "Results, 2026-09-16",
+      "sublabel": "three agents, 8/8 each",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/results/2026-09-16.md"
+        }
+      ]
+    },
+    {
+      "id": "old",
+      "type": "backend",
+      "label": "Verifier then",
+      "sublabel": "vitest under the agent's config",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        190,
+        60
+      ]
+    },
+    {
+      "id": "new",
+      "type": "security",
+      "label": "Verifier now",
+      "sublabel": "baseline copies, exact collection",
+      "pos": [
+        330,
+        220
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/templates/test.sh"
+        }
+      ]
+    },
+    {
+      "id": "note",
+      "type": "frontend",
+      "label": "evals/README.md",
+      "sublabel": "says which one produced the numbers",
+      "pos": [
+        330,
+        60
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "evals/README.md",
+          "line": 78,
+          "end_line": 82
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-old",
+      "from": "run",
+      "to": "old",
+      "label": "scored by",
+      "labelDy": 24
+    },
+    {
+      "id": "old-new",
+      "from": "old",
+      "to": "new",
+      "label": "hardened in #73",
+      "variant": "emphasis"
+    },
+    {
+      "id": "note-run",
+      "from": "note",
+      "to": "run",
+      "label": "quotes",
+      "variant": "dashed"
+    },
+    {
+      "id": "note-new",
+      "from": "note",
+      "to": "new",
+      "label": "not yet rerun under",
+      "variant": "dashed",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "What the note says",
+      "items": [
+        "The numbers predate the refusal of a changed test configuration and the check that every hidden file ran",
+        "Every agent fixed every task, so the hardened checks would not have changed a reward",
+        "The run has not been repeated under them"
+      ]
+    }
+  ]
+}
