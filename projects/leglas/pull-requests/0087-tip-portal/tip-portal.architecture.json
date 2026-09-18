@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A tip's label leaves whatever clips its control",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "e89a7198b832b99d806aba8d963e764879de7a44"
+    }
+  },
+  "components": [
+    {
+      "id": "list",
+      "type": "security",
+      "label": "the rail's scrolling list",
+      "sublabel": "a mask fades its top and bottom edges",
+      "pos": [
+        410,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "row",
+      "type": "frontend",
+      "label": "a row in the rail",
+      "sublabel": "its control sits inside the masked list",
+      "pos": [
+        40,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tip",
+      "type": "backend",
+      "label": "Tip label",
+      "sublabel": "position: fixed, opens over the stage",
+      "pos": [
+        410,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/kit.tsx"
+        }
+      ]
+    },
+    {
+      "id": "root",
+      "type": "frontend",
+      "label": "the shell's root",
+      "sublabel": "sets the typeface, clips nothing",
+      "pos": [
+        790,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "dialog",
+      "type": "external",
+      "label": "a modal dialog",
+      "sublabel": "the top layer keeps its own tips",
+      "pos": [
+        410,
+        330
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "test",
+      "type": "database",
+      "label": "kit.test.tsx",
+      "sublabel": "the shell's first DOM test, on happy-dom",
+      "pos": [
+        790,
+        330
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/kit.test.tsx"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "row-tip",
+      "from": "row",
+      "to": "tip",
+      "label": "opens on hover"
+    },
+    {
+      "id": "tip-root",
+      "from": "tip",
+      "to": "root",
+      "label": "mounts through a portal",
+      "variant": "emphasis"
+    },
+    {
+      "id": "list-tip",
+      "from": "list",
+      "to": "tip",
+      "label": "no longer contains it",
+      "variant": "dashed",
+      "labelAt": [
+        535,
+        146
+      ]
+    },
+    {
+      "id": "tip-dialog",
+      "from": "tip",
+      "to": "dialog",
+      "label": "or here, from inside one",
+      "labelAt": [
+        535,
+        286
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "Why it was never drawn",
+      "items": [
+        "A mask draws an element's whole subtree through itself, a position: fixed child included, and hides what reaches past its box",
+        "A row's card opens to the right of the rail, over the stage, so since 0.9.0 it was in the page at full opacity and never painted"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "The test failed first: the label was a descendant of the clipped container. It passes with the label on the shell's root, in a dialog, and on the body when there is no shell",
+        "Seen in the running interface, before and after, captured through a fresh raster: the card is drawn, in the rail's typeface, and an ordinary tip still opens in place"
+      ]
+    }
+  ]
+}

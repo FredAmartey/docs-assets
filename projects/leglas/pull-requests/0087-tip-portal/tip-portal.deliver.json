@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "tip-portal.architecture.json",
+  "output": "tip-portal.html",
+  "specification": {
+    "sha256": "8e6fae4a790ea3167d4f4384306743c38e6de36ffafddf62b9dd7d98a6b13660",
+    "bytes": 3740
+  },
+  "artifact": {
+    "sha256": "79f2964ef1c42ff9df3bd256096b0f7d15c74f860c885f9fd1e85e534a031ca2",
+    "bytes": 805089
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "e89a7198b832b99d806aba8d963e764879de7a44",
+    "references": 4
+  }
+}
