@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The README becomes a front door; the manual lives under docs/",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "294d17c9c80961eba3e67a5c7ac3b95451d546cb"
+    }
+  },
+  "components": [
+    {
+      "id": "npm",
+      "type": "external",
+      "label": "npm package page",
+      "sublabel": "shows README.md as published",
+      "pos": [
+        30,
+        60
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/package.json",
+          "line": 28,
+          "end_line": 30,
+          "label": "prepack"
+        }
+      ]
+    },
+    {
+      "id": "readme",
+      "type": "frontend",
+      "label": "README.md",
+      "sublabel": "front door, 149 lines",
+      "pos": [
+        30,
+        300
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "cut",
+      "sources": [
+        {
+          "path": "README.md"
+        }
+      ]
+    },
+    {
+      "id": "index",
+      "type": "database",
+      "label": "docs/README.md",
+      "sublabel": "index of the manual",
+      "pos": [
+        320,
+        40
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/README.md"
+        }
+      ]
+    },
+    {
+      "id": "guide",
+      "type": "database",
+      "label": "guide.md",
+      "sublabel": "using the interface",
+      "pos": [
+        320,
+        150
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/guide.md"
+        }
+      ]
+    },
+    {
+      "id": "sharing",
+      "type": "database",
+      "label": "sharing.md",
+      "sublabel": "a rail for someone with no repo",
+      "pos": [
+        320,
+        260
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/sharing.md"
+        }
+      ]
+    },
+    {
+      "id": "configuration",
+      "type": "database",
+      "label": "configuration.md",
+      "sublabel": "setting up a project",
+      "pos": [
+        320,
+        370
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/configuration.md"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "database",
+      "label": "agents.md",
+      "sublabel": "working with agents",
+      "pos": [
+        320,
+        480
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/agents.md"
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "type": "database",
+      "label": "cli.md",
+      "sublabel": "the command line",
+      "pos": [
+        320,
+        590
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/cli.md"
+        }
+      ]
+    },
+    {
+      "id": "homepage",
+      "type": "cloud",
+      "label": "leglas.vercel.app",
+      "sublabel": "footer now links the docs",
+      "pos": [
+        610,
+        40
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "site/home.ts",
+          "line": 122
+        }
+      ]
+    },
+    {
+      "id": "issues",
+      "type": "external",
+      "label": "Issue chooser",
+      "sublabel": "Documentation link now docs/",
+      "pos": [
+        610,
+        300
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": ".github/ISSUE_TEMPLATE/config.yml",
+          "line": 3,
+          "end_line": 5
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "docs/: the manual, one page per reader",
+      "wraps": [
+        "index",
+        "guide",
+        "sharing",
+        "configuration",
+        "agents",
+        "cli"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "npm-copies-readme",
+      "from": "npm",
+      "to": "readme",
+      "label": "prepack copies",
+      "variant": "dashed",
+      "labelDy": 24
+    },
+    {
+      "id": "readme-guide",
+      "from": "readme",
+      "to": "guide",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-sharing",
+      "from": "readme",
+      "to": "sharing",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-configuration",
+      "from": "readme",
+      "to": "configuration",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-agents",
+      "from": "readme",
+      "to": "agents",
+      "variant": "emphasis"
+    },
+    {
+      "id": "readme-cli",
+      "from": "readme",
+      "to": "cli",
+      "variant": "emphasis"
+    },
+    {
+      "id": "homepage-docs",
+      "from": "homepage",
+      "to": "index",
+      "label": "footer link"
+    },
+    {
+      "id": "issues-docs",
+      "from": "issues",
+      "to": "index",
+      "label": "Documentation"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What moved where",
+      "items": [
+        "Using Leglas, keys and the update check: guide.md",
+        "Sharing, with its three captures: sharing.md",
+        "Configuration, no dev server, branches, how it works, limitations: configuration.md",
+        "Working with agents, MCP server, Agent Plugin: agents.md; the command block: cli.md"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Who points at docs now",
+      "items": [
+        "The homepage footer",
+        "The issue chooser's Documentation link",
+        "A docs row in CONTRIBUTING's map"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Kept",
+      "items": [
+        "Every sentence of the old README lands in a page; five were reworded for the new links",
+        "Captures stay in .github/assets at their raw URLs",
+        "npm still shows the README; its relative links are rewritten to GitHub"
+      ]
+    }
+  ]
+}
