@@ -39,6 +39,7 @@ documents.
 | `0068-repo-layout` | [#68](https://github.com/FredAmartey/leglas/pull/68) |
 | `0070-docs-pages` | [#70](https://github.com/FredAmartey/leglas/pull/70) |
 | `0072-docs-site` | [#72](https://github.com/FredAmartey/leglas/pull/72) |
+| `0073-evals` | [#73](https://github.com/FredAmartey/leglas/pull/73) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

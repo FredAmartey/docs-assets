@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A benchmark cut from this repository's own fixes",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "f2448308cdc9f122e30f68cdbf573b178ea60c6d"
+    }
+  },
+  "components": [
+    {
+      "id": "build",
+      "type": "backend",
+      "label": "evals/build.ts",
+      "sublabel": "8 fixes named in manifest.json",
+      "pos": [
+        30,
+        190
+      ],
+      "size": [
+        160,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/build.ts"
+        },
+        {
+          "path": "evals/manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "dockerfile",
+      "type": "database",
+      "label": "Dockerfile",
+      "sublabel": "the repo at the fix's parent",
+      "pos": [
+        260,
+        40
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/templates/Dockerfile"
+        }
+      ]
+    },
+    {
+      "id": "instruction",
+      "type": "frontend",
+      "label": "instruction.md",
+      "sublabel": "what a user saw, by hand",
+      "pos": [
+        260,
+        190
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/tasks/share-stop-mid-start/instruction.md"
+        }
+      ]
+    },
+    {
+      "id": "hidden",
+      "type": "security",
+      "label": "Hidden tests",
+      "sublabel": "the fix's test files",
+      "pos": [
+        260,
+        340
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/templates/test.sh"
+        },
+        {
+          "path": "evals/templates/collected.mjs"
+        }
+      ]
+    },
+    {
+      "id": "oracle",
+      "type": "database",
+      "label": "Oracle patch",
+      "sublabel": "the fix, tests left out",
+      "pos": [
+        260,
+        490
+      ],
+      "size": [
+        170,
+        60
+      ]
+    },
+    {
+      "id": "container",
+      "type": "cloud",
+      "label": "Container",
+      "sublabel": "built, history cut off",
+      "pos": [
+        530,
+        40
+      ],
+      "size": [
+        170,
+        60
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "Agent",
+      "sublabel": "Claude Code or Codex",
+      "pos": [
+        530,
+        190
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/run.sh"
+        }
+      ]
+    },
+    {
+      "id": "verify",
+      "type": "security",
+      "label": "test.sh",
+      "sublabel": "config untouched, tests collected",
+      "pos": [
+        530,
+        340
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "hardened",
+      "sources": [
+        {
+          "path": "evals/templates/test.sh",
+          "line": 15,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "report",
+      "type": "backend",
+      "label": "evals/report.ts",
+      "sublabel": "pass rate, time, tokens, cost",
+      "pos": [
+        530,
+        490
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/report.ts"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "evals/tasks/<name>, derived from git",
+      "wraps": [
+        "dockerfile",
+        "instruction",
+        "hidden",
+        "oracle"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Harbor, one container per trial",
+      "wraps": [
+        "container",
+        "agent",
+        "verify"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "build-dockerfile",
+      "from": "build",
+      "to": "dockerfile"
+    },
+    {
+      "id": "build-hidden",
+      "from": "build",
+      "to": "hidden"
+    },
+    {
+      "id": "build-oracle",
+      "from": "build",
+      "to": "oracle"
+    },
+    {
+      "id": "dockerfile-container",
+      "from": "dockerfile",
+      "to": "container",
+      "label": "builds",
+      "variant": "emphasis"
+    },
+    {
+      "id": "instruction-agent",
+      "from": "instruction",
+      "to": "agent",
+      "label": "the task"
+    },
+    {
+      "id": "hidden-verify",
+      "from": "hidden",
+      "to": "verify",
+      "label": "copied back",
+      "variant": "security"
+    },
+    {
+      "id": "container-agent",
+      "from": "container",
+      "to": "agent",
+      "variant": "emphasis"
+    },
+    {
+      "id": "agent-verify",
+      "from": "agent",
+      "to": "verify",
+      "label": "edited tree",
+      "variant": "emphasis",
+      "labelDy": 24
+    },
+    {
+      "id": "verify-report",
+      "from": "verify",
+      "to": "report",
+      "label": "reward 0 or 1",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Derived, so it cannot drift",
+      "items": [
+        "The environment is the repo at the fix's parent commit, history cut off there",
+        "The hidden tests are the test files the fix touched, at the fix commit",
+        "The oracle is the fix's diff without tests or changelog; the oracle run applies it instead of an agent"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The verifier, after review",
+      "items": [
+        "Refuses a run that changed vitest.config.ts or the package manifests",
+        "Checks by name that every hidden file was collected and passed, since a green exit is also what an empty run returns"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Kept out of the suite",
+      "items": [
+        "vitest excludes evals/, so the hidden copies never run here",
+        "evals/jobs/ is ignored; results/ keeps the 2026-09-16 run",
+        "oracle 8/8 and nop 0/8 calibrate before any agent is believed"
+      ]
+    }
+  ]
+}
