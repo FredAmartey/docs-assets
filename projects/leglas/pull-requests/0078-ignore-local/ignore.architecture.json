@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Two ignore lists, one checkout",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "ed2316bb54fbd080ee9d0997c197d52a40617791"
+    }
+  },
+  "components": [
+    {
+      "id": "checkout",
+      "type": "database",
+      "label": "A checkout",
+      "sublabel": "accumulates dot directories from tools",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
+      "id": "gitexclude",
+      "type": "backend",
+      "label": "git's local exclude",
+      "sublabel": "hides them from git only",
+      "pos": [
+        340,
+        60
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
+      "id": "prettierignore",
+      "type": "security",
+      "label": ".prettierignore",
+      "sublabel": "skips every dot directory but .github",
+      "pos": [
+        340,
+        220
+      ],
+      "size": [
+        200,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": ".prettierignore",
+          "line": 12,
+          "end_line": 16
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "cloud",
+      "label": "pnpm format:check",
+      "sublabel": "same answer locally and in CI",
+      "pos": [
+        640,
+        220
+      ],
+      "size": [
+        200,
+        60
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "checkout-git",
+      "from": "checkout",
+      "to": "gitexclude",
+      "label": "not in git",
+      "variant": "dashed"
+    },
+    {
+      "id": "checkout-prettier",
+      "from": "checkout",
+      "to": "prettierignore",
+      "label": "skipped by prettier",
+      "variant": "emphasis"
+    },
+    {
+      "id": "prettier-check",
+      "from": "prettierignore",
+      "to": "check",
+      "label": "narrows"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "Why",
+      "items": [
+        "After #76 the check passed in CI and failed on the maintainer's machine, on files inside a dot directory a local tool had left behind, which git ignores through .git/info/exclude",
+        "Prettier does not read git's exclude file; rather than name each tool, its ignore list skips every dot directory and re-includes .github, whose workflows are worth checking"
+      ]
+    }
+  ]
+}
