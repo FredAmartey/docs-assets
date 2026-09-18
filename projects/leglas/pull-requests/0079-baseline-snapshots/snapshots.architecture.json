@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Baseline copies that no scanner mistakes for a project",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "9c06a38d7358eb6be3dd13ec1a93eeca663d7db4"
+    }
+  },
+  "components": [
+    {
+      "id": "build",
+      "type": "backend",
+      "label": "evals/build.ts",
+      "sublabel": "copies each guarded file from the base commit",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/build.ts"
+        }
+      ]
+    },
+    {
+      "id": "snapshots",
+      "type": "database",
+      "label": "tests/baseline/<path>.snapshot",
+      "sublabel": "same bytes, a name no scanner reads",
+      "pos": [
+        350,
+        60
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "tag": "renamed",
+      "sources": [
+        {
+          "path": "evals/templates/test.sh",
+          "line": 22,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "verifier",
+      "type": "security",
+      "label": "test.sh",
+      "sublabel": "cmp against the .snapshot name",
+      "pos": [
+        350,
+        220
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/templates/test.sh"
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "type": "external",
+      "label": "GitHub dependency graph",
+      "sublabel": "finds no lockfile under evals/",
+      "pos": [
+        680,
+        60
+      ],
+      "size": [
+        230,
+        60
+      ]
+    },
+    {
+      "id": "dependabot",
+      "type": "cloud",
+      "label": "dependabot.yml",
+      "sublabel": "back to the Actions entry only",
+      "pos": [
+        680,
+        220
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": ".github/dependabot.yml"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "build-snapshots",
+      "from": "build",
+      "to": "snapshots",
+      "label": "writes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "verifier-snapshots",
+      "from": "verifier",
+      "to": "snapshots",
+      "label": "reads, every trial",
+      "labelDy": -50
+    },
+    {
+      "id": "graph-snapshots",
+      "from": "graph",
+      "to": "snapshots",
+      "label": "no longer parses",
+      "variant": "dashed"
+    },
+    {
+      "id": "dependabot-graph",
+      "from": "dependabot",
+      "to": "graph",
+      "label": "nothing left to scope",
+      "variant": "dashed",
+      "labelDy": -50
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Why",
+      "items": [
+        "Eight copied pnpm-lock.yaml files were read as eight projects: 128 of the 142 open alerts, with nothing installed from any of them",
+        "The 14 alerts on the real root lockfile are a separate change"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "The verifier's comparison, three times per trial, and the refusal of unknown packages or runner configs",
+        "The bytes: build.ts still takes them from the parent commit with git show"
+      ]
+    }
+  ]
+}

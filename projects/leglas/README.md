@@ -44,6 +44,7 @@ documents.
 | `0076-prettier` | [#76](https://github.com/FredAmartey/leglas/pull/76) |
 | `0077-dependabot-scope` | [#77](https://github.com/FredAmartey/leglas/pull/77) |
 | `0078-ignore-local` | [#78](https://github.com/FredAmartey/leglas/pull/78) |
+| `0079-baseline-snapshots` | [#79](https://github.com/FredAmartey/leglas/pull/79) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
