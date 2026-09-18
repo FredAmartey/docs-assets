@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One formatter, checked in CI",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "ce66c95a00d3fc2a0d95da8c31406703aaf0d41f"
+    }
+  },
+  "components": [
+    {
+      "id": "contributor",
+      "type": "external",
+      "label": "Contributor",
+      "sublabel": "edits, then pnpm format",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        180,
+        60
+      ]
+    },
+    {
+      "id": "config",
+      "type": "database",
+      "label": ".prettierrc",
+      "sublabel": "printWidth 100, else defaults",
+      "pos": [
+        330,
+        60
+      ],
+      "size": [
+        180,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": ".prettierrc"
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "type": "database",
+      "label": ".prettierignore",
+      "sublabel": "prose, vendored and generated files",
+      "pos": [
+        330,
+        200
+      ],
+      "size": [
+        180,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": ".prettierignore"
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "type": "backend",
+      "label": "The tree",
+      "sublabel": "136 files formatted once",
+      "pos": [
+        620,
+        60
+      ],
+      "size": [
+        180,
+        60
+      ],
+      "tag": "reformatted"
+    },
+    {
+      "id": "ci",
+      "type": "cloud",
+      "label": "ci.yml",
+      "sublabel": "pnpm format:check before the build",
+      "pos": [
+        620,
+        200
+      ],
+      "size": [
+        180,
+        60
+      ],
+      "tag": "new step",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 17,
+          "end_line": 22
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "contributor-config",
+      "from": "contributor",
+      "to": "config",
+      "label": "pnpm format reads",
+      "variant": "emphasis"
+    },
+    {
+      "id": "config-tree",
+      "from": "config",
+      "to": "tree",
+      "label": "writes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ignore-config",
+      "from": "ignore",
+      "to": "config",
+      "label": "narrows"
+    },
+    {
+      "id": "ci-tree",
+      "from": "ci",
+      "to": "tree",
+      "label": "refuses a drift",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "In scope",
+      "items": [
+        "TypeScript, JSON, YAML, CSS and HTML across packages/, site/, scripts/, test/ and evals/",
+        "printWidth 100: the width that moved the fewest files"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Left alone",
+      "items": [
+        "Markdown: prose is wrapped by hand and CHANGELOG.md has a parser that expects its shape",
+        "evals/tasks: copies of other commits that build.ts regenerates from git",
+        "schemas/ (vendored), pnpm-lock.yaml, api-surface.txt"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked after the reformat",
+      "items": [
+        "1562 tests, typecheck and the site build unchanged",
+        "api-surface.txt byte-identical, so the patch guard is untouched"
+      ]
+    }
+  ]
+}

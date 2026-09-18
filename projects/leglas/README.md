@@ -41,6 +41,7 @@ documents.
 | `0072-docs-site` | [#72](https://github.com/FredAmartey/leglas/pull/72) |
 | `0073-evals` | [#73](https://github.com/FredAmartey/leglas/pull/73) |
 | `0074-evals-note` | [#74](https://github.com/FredAmartey/leglas/pull/74) |
+| `0076-prettier` | [#76](https://github.com/FredAmartey/leglas/pull/76) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

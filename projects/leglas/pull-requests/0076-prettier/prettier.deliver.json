@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "prettier.architecture.json",
+  "output": "prettier.html",
+  "specification": {
+    "sha256": "73d52eb3aa6e402915bcaf937bc0f1454e9a0775faf3d5b363543588cb8d172e",
+    "bytes": 3344
+  },
+  "artifact": {
+    "sha256": "5049efcd9e594300678844984092cdefb4c56b0e6cd137675444c6c65a58d56f",
+    "bytes": 803284
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "ce66c95a00d3fc2a0d95da8c31406703aaf0d41f",
+    "references": 3
+  }
+}
