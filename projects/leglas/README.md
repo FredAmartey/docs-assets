@@ -47,6 +47,7 @@ documents.
 | `0079-baseline-snapshots` | [#79](https://github.com/FredAmartey/leglas/pull/79) |
 | `0080-results-2026-09-18` | [#80](https://github.com/FredAmartey/leglas/pull/80) |
 | `0081-deps-audit` | [#81](https://github.com/FredAmartey/leglas/pull/81) |
+| `0082-esbuild-range` | [#82](https://github.com/FredAmartey/leglas/pull/82) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Two esbuilds, each where its dependent declared it",
+    "quality_profile": "showcase",
+    "repository": { "url": "https://github.com/FredAmartey/leglas", "provider": "github", "revision": "f6cdc03c40c856411ddb9af5105ca0480b61723b" }
+  },
+  "components": [
+    { "id": "tsup", "type": "backend", "label": "tsup 8.5.1", "sublabel": "bundles the cli; declares esbuild ^0.27", "pos": [40, 60], "size": [210, 60] },
+    { "id": "vite", "type": "backend", "label": "vite 8", "sublabel": "builds the shell; declares esbuild ^0.28", "pos": [40, 220], "size": [210, 60] },
+    { "id": "old", "type": "database", "label": "esbuild 0.27.7", "sublabel": "build API only; the advisory is the dev server", "pos": [360, 60], "size": [230, 60], "tag": "kept" },
+    { "id": "new", "type": "database", "label": "esbuild 0.28.2", "sublabel": "vite's own range reaches it", "pos": [360, 220], "size": [230, 60] },
+    { "id": "overrides", "type": "security", "label": "pnpm-workspace.yaml", "sublabel": "esbuild override removed; hono, qs, nanoid stay", "pos": [700, 140], "size": [230, 60], "tag": "changed", "sources": [{ "path": "pnpm-workspace.yaml" }] }
+  ],
+  "connections": [
+    { "id": "tsup-old", "from": "tsup", "to": "old", "label": "in range", "variant": "emphasis" },
+    { "id": "vite-new", "from": "vite", "to": "new", "label": "in range" },
+    { "id": "overrides-old", "from": "overrides", "to": "old", "label": "no longer forced up", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "slate", "title": "Why undo one override", "items": ["The review of #81 noted tsup's declared esbuild range is not in the lockfile; the registry says ^0.27.0, so 0.28.2 sat outside it", "GHSA-g7r4-m6w7-qqqr is a path traversal in esbuild's development server on Windows; tsup only calls the build API"] },
+    { "dot": "emerald", "title": "State after", "items": ["pnpm audit: one low advisory, dismissed on the repository as tolerable risk with this reason", "Build, typecheck, 1562 tests, api-surface.txt and the format check clean"] }
+  ]
+}

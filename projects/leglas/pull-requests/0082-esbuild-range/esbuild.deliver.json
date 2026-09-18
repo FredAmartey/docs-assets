@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "esbuild.architecture.json",
+  "output": "esbuild.html",
+  "specification": {
+    "sha256": "867f207b71d14fda98380a9923660daa7a3d449b8895f75d435cd8d7d0c03b94",
+    "bytes": 2118
+  },
+  "artifact": {
+    "sha256": "ae2f49129d1ee013d5234c5d1551c25adb4e5d47140452a4701b65616c32364e",
+    "bytes": 801671
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "f6cdc03c40c856411ddb9af5105ca0480b61723b",
+    "references": 1
+  }
+}
