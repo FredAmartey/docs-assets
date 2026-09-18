@@ -49,6 +49,7 @@ documents.
 | `0081-deps-audit` | [#81](https://github.com/FredAmartey/leglas/pull/81) |
 | `0082-esbuild-range` | [#82](https://github.com/FredAmartey/leglas/pull/82) |
 | `0083-architecture-page` | [#83](https://github.com/FredAmartey/leglas/pull/83) |
+| `0084-server-folders` | [#84](https://github.com/FredAmartey/leglas/pull/84) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

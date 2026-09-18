@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The server's source, grouped by area",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "d719575b88c516e0132697e2c67a4988bfe6aab1"
+    }
+  },
+  "components": [
+    {
+      "id": "agents",
+      "type": "backend",
+      "label": "src/agents/",
+      "sublabel": "detect, three transports, runner, failure",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts"
+        }
+      ]
+    },
+    {
+      "id": "requests",
+      "type": "database",
+      "label": "src/requests/",
+      "sublabel": "the queue, notes, attachments",
+      "pos": [
+        40,
+        190
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/requests/requests.ts"
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "backend",
+      "label": "src/capture/",
+      "sublabel": "browser, screenshot, hydration",
+      "pos": [
+        40,
+        330
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts"
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "frontend",
+      "label": "src/server.ts",
+      "sublabel": "stays at the top, with proxy and live",
+      "pos": [
+        420,
+        190
+      ],
+      "size": [
+        240,
+        64
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts"
+        }
+      ]
+    },
+    {
+      "id": "index",
+      "type": "security",
+      "label": "src/index.ts",
+      "sublabel": "same exports, new paths",
+      "pos": [
+        420,
+        330
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/index.ts"
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "backend",
+      "label": "src/config/",
+      "sublabel": "find, load, local previews, renames",
+      "pos": [
+        810,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/config/load-config.ts"
+        }
+      ]
+    },
+    {
+      "id": "branches",
+      "type": "backend",
+      "label": "src/branches/",
+      "sublabel": "classify, worktree, registry",
+      "pos": [
+        810,
+        190
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/branches/branches.ts"
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "type": "cloud",
+      "label": "src/share/",
+      "sublabel": "the share and its tunnel",
+      "pos": [
+        810,
+        330
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "tag": "new folder",
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.ts"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "server-requests",
+      "from": "server",
+      "to": "requests",
+      "label": "queues",
+      "variant": "emphasis"
+    },
+    {
+      "id": "requests-capture",
+      "from": "requests",
+      "to": "capture",
+      "label": "asks for a screenshot",
+      "labelAt": [
+        160,
+        290
+      ]
+    },
+    {
+      "id": "agents-requests",
+      "from": "agents",
+      "to": "requests",
+      "label": "drains",
+      "labelAt": [
+        160,
+        150
+      ]
+    },
+    {
+      "id": "server-branches",
+      "from": "server",
+      "to": "branches",
+      "label": "starts on open"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "A move and nothing else",
+      "items": [
+        "server.ts imports all six folders; the arrows show only the path a change request takes and where a branch preview starts",
+        "45 files renamed, 5 files with import lines changed; a scripted check found no changed line that is not an import or export specifier",
+        "api-surface.txt is byte-identical after pnpm api:update"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "Build, typecheck, 89 test files and 1563 tests, format check",
+        "No other package imports a server source path except one mcp test, which points at server-info.ts and that file did not move"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "packages/server/src",
+      "wraps": [
+        "agents",
+        "requests",
+        "capture",
+        "server",
+        "index",
+        "config",
+        "branches",
+        "share"
+      ],
+      "pad": 26
+    }
+  ]
+}
