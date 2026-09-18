@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Four chains, one lockfile, nothing shipped changes",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "dd3e7a283c82f96ad26aa22c5ec2ea7fce507adc"
+    }
+  },
+  "components": [
+    {
+      "id": "ajv",
+      "type": "backend",
+      "label": "ajv",
+      "sublabel": "root dev dependency, plugin test",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        190,
+        60
+      ]
+    },
+    {
+      "id": "sdk",
+      "type": "backend",
+      "label": "Agent SDK, MCP SDK",
+      "sublabel": "server dev dependency, mcp runtime",
+      "pos": [
+        40,
+        160
+      ],
+      "size": [
+        190,
+        60
+      ]
+    },
+    {
+      "id": "tsup",
+      "type": "backend",
+      "label": "tsup",
+      "sublabel": "cli dev dependency",
+      "pos": [
+        40,
+        280
+      ],
+      "size": [
+        190,
+        60
+      ]
+    },
+    {
+      "id": "vitest",
+      "type": "backend",
+      "label": "vitest",
+      "sublabel": "root dev dependency",
+      "pos": [
+        40,
+        400
+      ],
+      "size": [
+        190,
+        60
+      ]
+    },
+    {
+      "id": "fasturi",
+      "type": "security",
+      "label": "fast-uri 3.1.8",
+      "sublabel": "was 3.1.5, high",
+      "pos": [
+        340,
+        40
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "tag": "updated"
+    },
+    {
+      "id": "honoqs",
+      "type": "security",
+      "label": "hono 4.13.8, qs 6.16.0",
+      "sublabel": "were 4.12.32 and 6.15.3",
+      "pos": [
+        340,
+        160
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "tag": "overridden"
+    },
+    {
+      "id": "esbuild",
+      "type": "security",
+      "label": "esbuild 0.28.2",
+      "sublabel": "was 0.27.7 for tsup, low",
+      "pos": [
+        340,
+        280
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "tag": "overridden"
+    },
+    {
+      "id": "nanoid",
+      "type": "security",
+      "label": "nanoid 3.3.19",
+      "sublabel": "was 3.3.16, high",
+      "pos": [
+        340,
+        400
+      ],
+      "size": [
+        190,
+        60
+      ],
+      "tag": "overridden"
+    },
+    {
+      "id": "lockfile",
+      "type": "database",
+      "label": "pnpm-lock.yaml",
+      "sublabel": "what CI and contributors install",
+      "pos": [
+        640,
+        160
+      ],
+      "size": [
+        200,
+        60
+      ],
+      "tag": "changed"
+    },
+    {
+      "id": "overrides",
+      "type": "database",
+      "label": "pnpm-workspace.yaml",
+      "sublabel": "overrides, bounded to each major",
+      "pos": [
+        640,
+        320
+      ],
+      "size": [
+        200,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "pnpm-workspace.yaml"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ajv-fasturi",
+      "from": "ajv",
+      "to": "fasturi",
+      "label": "range allowed it"
+    },
+    {
+      "id": "sdk-honoqs",
+      "from": "sdk",
+      "to": "honoqs",
+      "label": "pinned below"
+    },
+    {
+      "id": "tsup-esbuild",
+      "from": "tsup",
+      "to": "esbuild",
+      "label": "kept 0.27"
+    },
+    {
+      "id": "vitest-nanoid",
+      "from": "vitest",
+      "to": "nanoid",
+      "label": "via postcss"
+    },
+    {
+      "id": "overrides-lockfile",
+      "from": "overrides",
+      "to": "lockfile",
+      "label": "resolves",
+      "variant": "emphasis"
+    },
+    {
+      "id": "honoqs-lockfile",
+      "from": "honoqs",
+      "to": "lockfile",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "pnpm audit: no known vulnerabilities",
+        "1562 tests, typecheck, the site build and api-surface.txt unchanged",
+        "pnpm install --frozen-lockfile, as CI runs it, is clean"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Who this reaches",
+      "items": [
+        "Nobody outside the repository: leglas bundles no dependency and leglas-mcp resolves the MCP SDK's ranges at install time, which already reach these versions",
+        "So no changelog entry; the lockfile is what CI and contributors install"
+      ]
+    }
+  ]
+}
