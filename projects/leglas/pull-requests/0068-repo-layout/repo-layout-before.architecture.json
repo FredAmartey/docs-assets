@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Root tooling before the move",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "d02edc12464a8e396764dddecfc5e6948c35cfbe"
+    }
+  },
+  "components": [
+    {
+      "id": "changelog",
+      "type": "database",
+      "label": "CHANGELOG.md",
+      "sublabel": "the release record",
+      "pos": [
+        30,
+        60
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "id": "snapshot",
+      "type": "database",
+      "label": "api-surface.txt",
+      "sublabel": "the public API record",
+      "pos": [
+        30,
+        220
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "api-surface.txt"
+        }
+      ]
+    },
+    {
+      "id": "manifests",
+      "type": "database",
+      "label": "plugin.json + mcp.json",
+      "sublabel": "Agent Plugin manifests",
+      "pos": [
+        30,
+        380
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "plugin.json"
+        },
+        {
+          "path": "mcp.json"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "backend",
+      "label": "site.ts, home.ts, \u2026",
+      "sublabel": "homepage, changelog, release notes",
+      "pos": [
+        260,
+        60
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "site.ts"
+        },
+        {
+          "path": "release-notes.ts"
+        }
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "backend",
+      "label": "api-surface.ts",
+      "sublabel": "at the root",
+      "pos": [
+        260,
+        220
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "api-surface.ts"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "three root tests",
+      "sublabel": "manifests, publish steps, CLI wording",
+      "pos": [
+        260,
+        380
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "sources": [
+        {
+          "path": "plugin.test.ts"
+        },
+        {
+          "path": "publish.test.ts"
+        },
+        {
+          "path": "copy.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "type": "cloud",
+      "label": "Vercel",
+      "sublabel": "node site.ts on every push",
+      "pos": [
+        530,
+        60
+      ],
+      "size": [
+        170,
+        56
+      ],
+      "sources": [
+        {
+          "path": "vercel.json"
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "type": "cloud",
+      "label": "publish.yml",
+      "sublabel": "node release-notes.ts",
+      "pos": [
+        530,
+        300
+      ],
+      "size": [
+        170,
+        56
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/publish.yml",
+          "line": 150,
+          "end_line": 160
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Repository root",
+      "wraps": [
+        "changelog",
+        "snapshot",
+        "manifests",
+        "site",
+        "scripts",
+        "test"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "site-reads-changelog",
+      "from": "site",
+      "to": "changelog",
+      "label": "reads"
+    },
+    {
+      "id": "vercel-builds-site",
+      "from": "vercel",
+      "to": "site",
+      "label": "builds",
+      "variant": "emphasis"
+    },
+    {
+      "id": "publish-release-notes",
+      "from": "publish",
+      "to": "site",
+      "label": "release notes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "scripts-writes-snapshot",
+      "from": "scripts",
+      "to": "snapshot",
+      "label": "writes"
+    },
+    {
+      "id": "test-validates-manifests",
+      "from": "test",
+      "to": "manifests",
+      "label": "validates"
+    },
+    {
+      "id": "test-runs-publish",
+      "from": "test",
+      "to": "publish",
+      "label": "runs its steps"
+    }
+  ]
+}

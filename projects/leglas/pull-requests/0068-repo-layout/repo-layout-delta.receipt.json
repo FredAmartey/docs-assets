@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "compare",
+  "type": "architecture",
+  "comparatorVersion": 1,
+  "canonicalVersion": 1,
+  "completeness": "complete",
+  "proofLevel": "revision-pinned",
+  "base": {
+    "title": "Root tooling before the move",
+    "rawSha256": "4ca85dee1c2f2909a458622e159eab30e84507df16d1c6257cf6f652f4a465ee",
+    "semanticSha256": "20f897586527f8af75f494baa5ff552f5c3336e9af70d6bd32c05623c55d08d9",
+    "bytes": 4220,
+    "revision": "d02edc12464a8e396764dddecfc5e6948c35cfbe"
+  },
+  "head": {
+    "title": "Root tooling moves into site/, scripts/ and test/",
+    "rawSha256": "e353c1a1cd70a75d909cbf06e961d40621dd35a25516671186841b95b380d049",
+    "semanticSha256": "559a8d54916c852d082e52cfcd979bf8e09ff788f76475aabebe14f7c6a60b52",
+    "bytes": 5322,
+    "revision": "d477146cfd812b9788cfa2f770baac3d16336cd0"
+  },
+  "summary": {
+    "components": {
+      "added": 0,
+      "changed": 5,
+      "evidenceChanged": 0,
+      "removed": 0,
+      "moved": 0
+    },
+    "connections": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0,
+      "rerouted": 0
+    },
+    "boundaries": {
+      "added": 2,
+      "changed": 0,
+      "removed": 1,
+      "geometryChanged": 0
+    },
+    "presentationChanged": true,
+    "provenanceChanged": true
+  },
+  "changes": {
+    "components": [
+      {
+        "id": "publish",
+        "baseLabel": "publish.yml",
+        "headLabel": "publish.yml",
+        "status": "changed",
+        "classifications": [
+          "semantic"
+        ],
+        "changedFields": [
+          "/sublabel"
+        ]
+      },
+      {
+        "id": "scripts",
+        "baseLabel": "api-surface.ts",
+        "headLabel": "scripts/",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/label",
+          "/sources",
+          "/sublabel",
+          "/tag"
+        ]
+      },
+      {
+        "id": "site",
+        "baseLabel": "site.ts, home.ts, …",
+        "headLabel": "site/",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/label",
+          "/sources",
+          "/tag"
+        ]
+      },
+      {
+        "id": "test",
+        "baseLabel": "three root tests",
+        "headLabel": "test/",
+        "status": "changed",
+        "classifications": [
+          "evidence",
+          "semantic"
+        ],
+        "changedFields": [
+          "/label",
+          "/sources",
+          "/tag"
+        ]
+      },
+      {
+        "id": "vercel",
+        "baseLabel": "Vercel",
+        "headLabel": "Vercel",
+        "status": "changed",
+        "classifications": [
+          "semantic"
+        ],
+        "changedFields": [
+          "/sublabel"
+        ]
+      }
+    ],
+    "connections": [],
+    "boundaries": [
+      {
+        "key": "region:Moved out of the root",
+        "kind": "region",
+        "label": "Moved out of the root",
+        "status": "added",
+        "classifications": [
+          "scope"
+        ],
+        "changedFields": []
+      },
+      {
+        "key": "region:Repository root",
+        "kind": "region",
+        "label": "Repository root",
+        "status": "removed",
+        "classifications": [
+          "scope"
+        ],
+        "changedFields": []
+      },
+      {
+        "key": "region:Repository root: records",
+        "kind": "region",
+        "label": "Repository root: records",
+        "status": "added",
+        "classifications": [
+          "scope"
+        ],
+        "changedFields": []
+      }
+    ]
+  },
+  "identity": {
+    "components": "components[].id",
+    "connections": "connections[].id (required)",
+    "boundaries": "boundaries[].kind + boundaries[].label (derived)"
+  },
+  "view": {
+    "visualPreset": "classic"
+  },
+  "limitations": [
+    "Authored Architecture IR only; no runtime impact, causality, risk, or mergeability is inferred.",
+    "Boundary identity is conservatively derived from kind + label."
+  ],
+  "artifact": {
+    "sha256": "bb3178ff3a953397ff8a4bc0098c5797eaef1f4f5972165e3199c17746f3011e",
+    "bytes": 2211645
+  },
+  "validation": {
+    "checksPassed": 28,
+    "checkCount": 28,
+    "baseComposition": "pass",
+    "headComposition": "pass"
+  }
+}

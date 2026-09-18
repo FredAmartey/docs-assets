@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Root tooling moves into site/, scripts/ and test/",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "d477146cfd812b9788cfa2f770baac3d16336cd0"
+    }
+  },
+  "components": [
+    {
+      "id": "changelog",
+      "type": "database",
+      "label": "CHANGELOG.md",
+      "sublabel": "the release record",
+      "pos": [
+        30,
+        60
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "id": "snapshot",
+      "type": "database",
+      "label": "api-surface.txt",
+      "sublabel": "the public API record",
+      "pos": [
+        30,
+        220
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "api-surface.txt"
+        }
+      ]
+    },
+    {
+      "id": "manifests",
+      "type": "database",
+      "label": "plugin.json + mcp.json",
+      "sublabel": "Agent Plugin manifests",
+      "pos": [
+        30,
+        380
+      ],
+      "size": [
+        150,
+        60
+      ],
+      "sources": [
+        {
+          "path": "plugin.json"
+        },
+        {
+          "path": "mcp.json"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "backend",
+      "label": "site/",
+      "sublabel": "homepage, changelog, release notes",
+      "pos": [
+        260,
+        60
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "moved",
+      "sources": [
+        {
+          "path": "site/build.ts"
+        },
+        {
+          "path": "site/release-notes.ts"
+        }
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "backend",
+      "label": "scripts/",
+      "sublabel": "api-surface.ts",
+      "pos": [
+        260,
+        220
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "moved",
+      "sources": [
+        {
+          "path": "scripts/api-surface.ts"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "test/",
+      "sublabel": "manifests, publish steps, CLI wording",
+      "pos": [
+        260,
+        380
+      ],
+      "size": [
+        170,
+        60
+      ],
+      "tag": "moved",
+      "sources": [
+        {
+          "path": "test/plugin.test.ts"
+        },
+        {
+          "path": "test/publish.test.ts"
+        },
+        {
+          "path": "test/copy.test.ts"
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "type": "cloud",
+      "label": "Vercel",
+      "sublabel": "node site/build.ts on every push",
+      "pos": [
+        530,
+        60
+      ],
+      "size": [
+        170,
+        56
+      ],
+      "sources": [
+        {
+          "path": "vercel.json"
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "type": "cloud",
+      "label": "publish.yml",
+      "sublabel": "node site/release-notes.ts",
+      "pos": [
+        530,
+        300
+      ],
+      "size": [
+        170,
+        56
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/publish.yml",
+          "line": 150,
+          "end_line": 160
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Repository root: records",
+      "wraps": [
+        "changelog",
+        "snapshot",
+        "manifests"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Moved out of the root",
+      "wraps": [
+        "site",
+        "scripts",
+        "test"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "site-reads-changelog",
+      "from": "site",
+      "to": "changelog",
+      "label": "reads"
+    },
+    {
+      "id": "vercel-builds-site",
+      "from": "vercel",
+      "to": "site",
+      "label": "builds",
+      "variant": "emphasis"
+    },
+    {
+      "id": "publish-release-notes",
+      "from": "publish",
+      "to": "site",
+      "label": "release notes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "scripts-writes-snapshot",
+      "from": "scripts",
+      "to": "snapshot",
+      "label": "writes"
+    },
+    {
+      "id": "test-validates-manifests",
+      "from": "test",
+      "to": "manifests",
+      "label": "validates"
+    },
+    {
+      "id": "test-runs-publish",
+      "from": "test",
+      "to": "publish",
+      "label": "runs its steps"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What moved",
+      "items": [
+        "site.ts becomes site/build.ts; home, chrome, changelog and release-notes follow it",
+        "api-surface.ts goes to scripts/; copy, plugin and publish tests go to test/",
+        "Each derives the root as one level up"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Callers updated",
+      "items": [
+        "package.json: api:update and site",
+        "vercel.json buildCommand",
+        "publish.yml release notes step",
+        "tsconfig.json include list"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Unchanged",
+      "items": [
+        "packages/ and every published file",
+        "api-surface.txt and its header line, so the patch guard still compares against older tags",
+        "ci.yml and vitest.config.ts: the suite is collected by glob"
+      ]
+    }
+  ]
+}
