@@ -7,7 +7,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "294d17c9c80961eba3e67a5c7ac3b95451d546cb"
+      "revision": "6424a47082c485042f192e7ff90c61a90170726e"
     }
   },
   "components": [
@@ -307,7 +307,7 @@
       "items": [
         "Every sentence of the old README lands in a page; five were reworded for the new links",
         "Captures stay in .github/assets at their raw URLs",
-        "npm still shows the README; its relative links are rewritten to GitHub"
+        "npm still shows the README; its links are absolute, since npm resolves relative ones against packages/cli"
       ]
     }
   ]
