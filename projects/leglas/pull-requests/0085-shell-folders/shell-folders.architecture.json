@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The interface's source, one folder per feature",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "4351d95eacdf3bcf0cd516e53aee32fe8e6906dc"
+    }
+  },
+  "components": [
+    {
+      "id": "share",
+      "type": "cloud",
+      "label": "src/share/",
+      "sublabel": "panel, state, API, hook",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/share/SharePanel.tsx"
+        }
+      ]
+    },
+    {
+      "id": "update",
+      "type": "backend",
+      "label": "src/update/",
+      "sublabel": "chip, panel, API, hook",
+      "pos": [
+        40,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/update/UpdatePanel.tsx"
+        }
+      ]
+    },
+    {
+      "id": "annotate",
+      "type": "backend",
+      "label": "src/annotate/",
+      "sublabel": "notes layer, anchors, API",
+      "pos": [
+        40,
+        306
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/annotate/AnnotateLayer.tsx"
+        }
+      ]
+    },
+    {
+      "id": "references",
+      "type": "backend",
+      "label": "src/references/",
+      "sublabel": "strip, admission, upload",
+      "pos": [
+        40,
+        434
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/references/references.ts"
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "frontend",
+      "label": "src/App.tsx",
+      "sublabel": "reads the config, picks what to show",
+      "pos": [
+        420,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/App.tsx"
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "src/Shell.tsx",
+      "sublabel": "the rail and the stage, still at the top",
+      "pos": [
+        420,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "net",
+      "type": "messagebus",
+      "label": "src/net/",
+      "sublabel": "fetch, live socket, poll",
+      "pos": [
+        420,
+        306
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/live.ts"
+        }
+      ]
+    },
+    {
+      "id": "bundle",
+      "type": "security",
+      "label": "dist/assets",
+      "sublabel": "built bundle byte-identical",
+      "pos": [
+        420,
+        434
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/vite.config.ts"
+        }
+      ]
+    },
+    {
+      "id": "lineage",
+      "type": "backend",
+      "label": "src/lineage/",
+      "sublabel": "tree, gutter, crumbs, trail",
+      "pos": [
+        810,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/lineage/lineage.ts"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "backend",
+      "label": "src/agents/",
+      "sublabel": "picker, request status, MCP connect",
+      "pos": [
+        810,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/request-status.ts"
+        }
+      ]
+    },
+    {
+      "id": "preview",
+      "type": "backend",
+      "label": "src/preview/",
+      "sublabel": "frame identity, scan, health, compare",
+      "pos": [
+        810,
+        306
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/preview/scan.ts"
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "type": "external",
+      "label": "src/ui/",
+      "sublabel": "kit, tips, toasts, orb, widget",
+      "pos": [
+        810,
+        434
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/ui/kit.tsx"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "packages/shell",
+      "wraps": [
+        "share",
+        "update",
+        "annotate",
+        "references",
+        "app",
+        "shell",
+        "net",
+        "bundle",
+        "lineage",
+        "agents",
+        "preview",
+        "ui"
+      ],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    {
+      "id": "app-shell",
+      "from": "app",
+      "to": "shell",
+      "label": "renders",
+      "labelAt": [
+        540,
+        144
+      ]
+    },
+    {
+      "id": "shell-net",
+      "from": "shell",
+      "to": "net",
+      "label": "reads the server",
+      "variant": "emphasis",
+      "labelAt": [
+        540,
+        272
+      ]
+    },
+    {
+      "id": "shell-update",
+      "from": "shell",
+      "to": "update",
+      "label": "chip and panel"
+    },
+    {
+      "id": "shell-agents",
+      "from": "shell",
+      "to": "agents",
+      "label": "composer and status"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "A move and nothing else",
+      "items": [
+        "Shell.tsx imports all nine folders; the arrows show four of those relationships, the ones that sit beside it",
+        "69 files renamed and 3 files with import lines changed; a scripted check found no changed line that is not an import or export specifier"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "The built JS and CSS carry the same content hashes before and after, so what a browser loads is byte-identical",
+        "Build, typecheck, 89 test files and 1563 tests, api-surface.txt unchanged, format check"
+      ]
+    }
+  ]
+}
