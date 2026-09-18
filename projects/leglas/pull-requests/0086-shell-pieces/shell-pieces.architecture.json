@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The first pieces out of Shell.tsx",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "115f542944e5e673da244df73e681f76f7fa0fcc"
+    }
+  },
+  "components": [
+    {
+      "id": "search",
+      "type": "backend",
+      "label": "src/rail/Search.tsx",
+      "sublabel": "owns its focused flag",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/Search.tsx"
+        }
+      ]
+    },
+    {
+      "id": "rowcard",
+      "type": "backend",
+      "label": "src/rail/RowCard.tsx",
+      "sublabel": "HoverCard and cardFor, as one",
+      "pos": [
+        40,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/RowCard.tsx"
+        }
+      ]
+    },
+    {
+      "id": "dialog",
+      "type": "backend",
+      "label": "src/rail/DeleteRemovedDialog.tsx",
+      "sublabel": "moved as it was",
+      "pos": [
+        40,
+        306
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/DeleteRemovedDialog.tsx"
+        }
+      ]
+    },
+    {
+      "id": "tags",
+      "type": "backend",
+      "label": "src/rail/tags.ts",
+      "sublabel": "tag colours, now tested",
+      "pos": [
+        40,
+        434
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/tags.ts"
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "type": "backend",
+      "label": "src/HelpOverlay.tsx",
+      "sublabel": "moved as it was",
+      "pos": [
+        420,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/HelpOverlay.tsx"
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "src/Shell.tsx",
+      "sublabel": "4507 lines to 3998; state stays here",
+      "pos": [
+        420,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "css",
+      "type": "security",
+      "label": "dist/assets/index.css",
+      "sublabel": "byte-identical stylesheet",
+      "pos": [
+        420,
+        434
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/index.css"
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "type": "cloud",
+      "label": "src/share/ViewerBanner.tsx",
+      "sublabel": "what a viewer sees at the top",
+      "pos": [
+        810,
+        50
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/share/ViewerBanner.tsx"
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "type": "backend",
+      "label": "src/agents/StatusCard.tsx",
+      "sublabel": "owns its one-second clock",
+      "pos": [
+        810,
+        178
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/StatusCard.tsx"
+        }
+      ]
+    },
+    {
+      "id": "logic",
+      "type": "database",
+      "label": "src/agents/request-status.ts",
+      "sublabel": "cardHeadline and cardDetail, tested",
+      "pos": [
+        810,
+        306
+      ],
+      "size": [
+        240,
+        60
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/request-status.ts"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "packages/shell",
+      "wraps": [
+        "search",
+        "rowcard",
+        "dialog",
+        "tags",
+        "help",
+        "shell",
+        "css",
+        "banner",
+        "status",
+        "logic"
+      ],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    {
+      "id": "shell-rowcard",
+      "from": "shell",
+      "to": "rowcard",
+      "label": "wraps each row"
+    },
+    {
+      "id": "shell-status",
+      "from": "shell",
+      "to": "status",
+      "label": "above the composer",
+      "variant": "emphasis"
+    },
+    {
+      "id": "status-logic",
+      "from": "status",
+      "to": "logic",
+      "label": "headline and detail",
+      "labelAt": [
+        930,
+        272
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "What moved and what did not",
+      "items": [
+        "Markup became components; every useState, ref and effect that another part of Shell reads stayed in Shell, so no effect runs in a different order",
+        "Two pieces of state moved with their only reader: the card's elapsed clock and the search field's focused flag. A run in flight no longer redraws the rail and the stage once a second"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Checked",
+      "items": [
+        "The old JSX from git and the new components render identical markup in 48 cases: every card kind and action, every row card case",
+        "Stylesheet byte-identical, 90 test files and 1571 tests, React Doctor reports nothing new, and the search, the help overlay and the hover card were driven in the running interface"
+      ]
+    }
+  ]
+}

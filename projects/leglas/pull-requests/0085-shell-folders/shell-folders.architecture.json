@@ -7,7 +7,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "4351d95eacdf3bcf0cd516e53aee32fe8e6906dc"
+      "revision": "6922c57c99a162a640de5dbd4dc0f371979bb77c"
     }
   },
   "components": [
@@ -302,7 +302,7 @@
       "title": "A move and nothing else",
       "items": [
         "Shell.tsx imports all nine folders; the arrows show four of those relationships, the ones that sit beside it",
-        "69 files renamed and 3 files with import lines changed; a scripted check found no changed line that is not an import or export specifier"
+        "67 files renamed and 3 files with import lines changed; a scripted check found no changed line that is not an import or export specifier"
       ]
     },
     {
