@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "dependabot.architecture.json",
+  "output": "dependabot.html",
+  "specification": {
+    "sha256": "2d2acc6974ac9d13c74d13cb50f26efef246f4b3d4e1634ff0006f3c66232313",
+    "bytes": 2017
+  },
+  "artifact": {
+    "sha256": "14d583fc59377932fdaee815db7301fb40f1cd2d6cede31e4beea8bb0cd5982c",
+    "bytes": 800739
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "d1bfb374a98f1e2231d9addb80326c0fce03bd95",
+    "references": 1
+  }
+}

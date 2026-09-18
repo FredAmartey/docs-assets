@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Dependabot and the benchmark baselines",
+    "quality_profile": "showcase",
+    "repository": { "url": "https://github.com/FredAmartey/leglas", "provider": "github", "revision": "d1bfb374a98f1e2231d9addb80326c0fce03bd95" }
+  },
+  "components": [
+    { "id": "dependabot", "type": "external", "label": "Dependabot", "sublabel": "security updates scan every manifest", "pos": [40, 60], "size": [190, 60] },
+    { "id": "config", "type": "database", "label": "dependabot.yml", "sublabel": "npm entry for the baselines: ignore everything", "pos": [330, 60], "size": [210, 60], "tag": "changed", "sources": [{ "path": ".github/dependabot.yml", "line": 7, "end_line": 19 }] },
+    { "id": "baselines", "type": "security", "label": "evals/tasks/*/tests/baseline", "sublabel": "other commits' manifests, byte for byte", "pos": [330, 220], "size": [210, 60] },
+    { "id": "verifier", "type": "backend", "label": "test.sh", "sublabel": "compares the tree against them", "pos": [640, 220], "size": [190, 60] }
+  ],
+  "connections": [
+    { "id": "dependabot-config", "from": "dependabot", "to": "config", "label": "reads", "variant": "emphasis" },
+    { "id": "config-baselines", "from": "config", "to": "baselines", "label": "no updates here", "variant": "security", "labelDy": 24 },
+    { "id": "verifier-baselines", "from": "verifier", "to": "baselines", "label": "cmp, every trial", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Why", "items": ["#75 tried to bump vitest inside one baseline; merged, every trial of that task would have scored 0", "The copies are regenerated from git by evals/build.ts and must match the parent commit exactly"] },
+    { "dot": "slate", "title": "How", "items": ["An npm entry scoped to the baseline directories with ignore: dependency-name \"*\" and no version-update pull requests", "GitHub documents ignore as applying to security updates for the manifests it covers"] }
+  ]
+}
