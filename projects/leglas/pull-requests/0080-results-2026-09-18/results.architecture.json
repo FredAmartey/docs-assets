@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One run, recorded",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "e4ac1f0667c618061437fed81edcb7e9739f0cc5"
+    }
+  },
+  "components": [
+    {
+      "id": "harbor",
+      "type": "cloud",
+      "label": "Harbor, 2026-09-18",
+      "sublabel": "oracle, nop, three agents, 8 tasks each",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        220,
+        60
+      ]
+    },
+    {
+      "id": "jobs",
+      "type": "database",
+      "label": "evals/jobs/*",
+      "sublabel": "16 job directories, ignored by git",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        220,
+        60
+      ]
+    },
+    {
+      "id": "report",
+      "type": "backend",
+      "label": "evals/report.ts",
+      "sublabel": "rewards, times, tokens, per agent and model",
+      "pos": [
+        360,
+        220
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "sources": [
+        {
+          "path": "evals/report.ts"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "database",
+      "label": "results/2026-09-18.md",
+      "sublabel": "tables, JSON, how the run went",
+      "pos": [
+        680,
+        220
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "evals/results/2026-09-18.md"
+        }
+      ]
+    },
+    {
+      "id": "readme",
+      "type": "frontend",
+      "label": "evals/README.md",
+      "sublabel": "Results section, rewritten",
+      "pos": [
+        680,
+        60
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "evals/README.md",
+          "line": 77,
+          "end_line": 120
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "harbor-jobs",
+      "from": "harbor",
+      "to": "jobs",
+      "label": "writes",
+      "labelDy": 24
+    },
+    {
+      "id": "jobs-report",
+      "from": "jobs",
+      "to": "report",
+      "label": "reads",
+      "variant": "emphasis"
+    },
+    {
+      "id": "report-results",
+      "from": "report",
+      "to": "results",
+      "label": "tables and JSON",
+      "variant": "emphasis"
+    },
+    {
+      "id": "results-readme",
+      "from": "results",
+      "to": "readme",
+      "label": "summarised",
+      "variant": "dashed",
+      "labelDy": -50
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What the run says",
+      "items": [
+        "Claude Code 8/8, GPT-6 astra 8/8 completed, GPT-5.5 7/8 with one wording miss",
+        "The hardened verifier changed no reward: every refusal was hidden tests that did not pass"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "What went wrong and is stated",
+      "items": [
+        "The host disk filled mid-run; four astra trials raised before their agent ran and were rerun one at a time",
+        "report.ts counts a raised trial as a failure, so the astra row shows 12 trials and 4 exceptions"
+      ]
+    }
+  ]
+}
