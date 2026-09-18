@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "The site renders docs/ alongside the changelog and the homepage",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "In the repository"
+    },
+    {
+      "label": "site/"
+    },
+    {
+      "label": "dist/site"
+    },
+    {
+      "label": "Served"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "docs",
+      "type": "database",
+      "label": "docs/*.md",
+      "sublabel": "the manual, six files",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "changelog",
+      "type": "database",
+      "label": "CHANGELOG.md",
+      "sublabel": "the release record",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "captures",
+      "type": "database",
+      "label": ".github/assets",
+      "sublabel": "README captures",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "docsts",
+      "type": "backend",
+      "label": "docs.ts",
+      "sublabel": "narrow markdown reader",
+      "stage": 1,
+      "row": 0,
+      "tag": "new"
+    },
+    {
+      "id": "changelogts",
+      "type": "backend",
+      "label": "changelog.ts",
+      "sublabel": "parser and page",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "homets",
+      "type": "backend",
+      "label": "home.ts",
+      "sublabel": "the homepage",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "docpages",
+      "type": "frontend",
+      "label": "docs/<page>/",
+      "sublabel": "links resolved for the site",
+      "stage": 2,
+      "row": 0,
+      "tag": "new"
+    },
+    {
+      "id": "changelogpage",
+      "type": "frontend",
+      "label": "changelog/",
+      "sublabel": "unchanged",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "homepage",
+      "type": "frontend",
+      "label": "index.html",
+      "sublabel": "footer now links /docs/",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "vercel",
+      "type": "cloud",
+      "label": "leglas.vercel.app",
+      "sublabel": "builds on every push",
+      "stage": 3,
+      "row": 0
+    }
+  ],
+  "flows": [
+    {
+      "id": "docs-read",
+      "from": "docs",
+      "to": "docsts",
+      "label": "markdown",
+      "classification": "at build",
+      "variant": "emphasis"
+    },
+    {
+      "id": "changelog-read",
+      "from": "changelog",
+      "to": "changelogts",
+      "label": "markdown",
+      "classification": "at build"
+    },
+    {
+      "id": "captures-copy",
+      "from": "captures",
+      "to": "homets",
+      "label": "copies",
+      "classification": "copied"
+    },
+    {
+      "id": "docs-html",
+      "from": "docsts",
+      "to": "docpages",
+      "label": "HTML",
+      "classification": "rewritten links",
+      "variant": "emphasis"
+    },
+    {
+      "id": "changelog-html",
+      "from": "changelogts",
+      "to": "changelogpage",
+      "label": "HTML",
+      "classification": "unchanged"
+    },
+    {
+      "id": "home-html",
+      "from": "homets",
+      "to": "homepage",
+      "label": "HTML",
+      "classification": "unchanged"
+    },
+    {
+      "id": "docs-deploy",
+      "from": "docpages",
+      "to": "vercel",
+      "label": "/docs/",
+      "classification": "static",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What docs.ts reads",
+      "items": [
+        "Headings, paragraphs, bullet lists, fenced code, pipe tables and the centred capture blocks",
+        "Anything else fails the build naming the file and line, so a page never shows its own markdown"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Links written for GitHub",
+      "items": [
+        "Another page becomes its directory; the repository README becomes the homepage",
+        "Anything else in the tree becomes a GitHub blob URL; absolute links pass through",
+        "Heading ids follow GitHub's rules, so cross-page fragments hold"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Shared chrome",
+      "items": [
+        "All three land in dist/site and Vercel serves them; only /docs/ is new",
+        "The bar gains a Docs link on every page; chrome.ts's Place carries the path",
+        "No dependencies: Vercel runs the build with no install step, as before"
+      ]
+    }
+  ]
+}
