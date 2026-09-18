@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One new page, read in two places",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "015017009bd27fb8f4427096504c5affe76076ae"
+    }
+  },
+  "components": [
+    {
+      "id": "contributing",
+      "type": "external",
+      "label": "CONTRIBUTING.md",
+      "sublabel": "links to the longer answer",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md"
+        }
+      ]
+    },
+    {
+      "id": "index",
+      "type": "external",
+      "label": "docs/README.md",
+      "sublabel": "the manual's index, one more entry",
+      "pos": [
+        40,
+        230
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "sources": [
+        {
+          "path": "docs/README.md"
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "docs/architecture.md",
+      "sublabel": "what runs where, and a request's path",
+      "pos": [
+        350,
+        145
+      ],
+      "size": [
+        250,
+        64
+      ],
+      "tag": "new",
+      "sources": [
+        {
+          "path": "docs/architecture.md"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "type": "cloud",
+      "label": "GitHub",
+      "sublabel": "renders the markdown as it is",
+      "pos": [
+        690,
+        60
+      ],
+      "size": [
+        220,
+        60
+      ]
+    },
+    {
+      "id": "reader",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "now reads numbered lists",
+      "pos": [
+        690,
+        230
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "site/docs.ts"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "cloud",
+      "label": "/docs/architecture/",
+      "sublabel": "the same page on the site",
+      "pos": [
+        690,
+        400
+      ],
+      "size": [
+        220,
+        60
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "contributing-page",
+      "from": "contributing",
+      "to": "page",
+      "label": "links"
+    },
+    {
+      "id": "index-page",
+      "from": "index",
+      "to": "page",
+      "label": "lists"
+    },
+    {
+      "id": "page-github",
+      "from": "page",
+      "to": "github",
+      "label": "read on"
+    },
+    {
+      "id": "page-reader",
+      "from": "page",
+      "to": "reader",
+      "label": "parsed by",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reader-site",
+      "from": "reader",
+      "to": "site",
+      "label": "builds",
+      "labelAt": [
+        800,
+        345
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "Why the reader changed",
+      "items": [
+        "The path of a change request is a numbered list, and the site's reader refuses markdown it cannot show",
+        "A list must count 1, 2, 3 or the build fails, because GitHub numbers from the first item and ignores the rest"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Also here",
+      "items": [
+        ".gitattributes marks what evals/build.ts rewrites as generated, so it folds in diffs and leaves the language statistics",
+        "The instruction and task.toml of a task are written by hand and stay ordinary files"
+      ]
+    }
+  ]
+}
