@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Every command answers --help",
+    "quality_profile": "showcase",
+    "viewBox": [740, 500],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "5ad4380c9e10f85ca29d8137d4e21f17b2dfd701"
+    }
+  },
+  "components": [
+    {
+      "id": "typed",
+      "type": "frontend",
+      "label": "leglas show --help",
+      "sublabel": "or any of the twelve commands",
+      "pos": [40, 40],
+      "size": [250, 62]
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "parseArgs",
+      "sublabel": "looks for --help first",
+      "tag": "changed",
+      "pos": [40, 200],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/cli/src/args.ts", "line": 430 }]
+    },
+    {
+      "id": "help",
+      "type": "frontend",
+      "label": "the help",
+      "sublabel": "every command's options",
+      "pos": [450, 200],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/cli/src/bin.ts", "line": 19 }]
+    },
+    {
+      "id": "parsers",
+      "type": "backend",
+      "label": "each command's parser",
+      "sublabel": "never sees --help now",
+      "pos": [40, 360],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/cli/src/args.ts", "line": 99 }]
+    }
+  ],
+  "connections": [
+    { "id": "typed-parse", "from": "typed", "to": "parse", "label": "argv", "labelAt": [165, 151] },
+    { "id": "parse-help", "from": "parse", "to": "help", "label": "--help or -h", "variant": "emphasis" },
+    { "id": "parse-parsers", "from": "parse", "to": "parsers", "label": "anything else", "labelAt": [165, 311] }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changes",
+      "items": ["init, explore, list, log, show, requests, keep", "log -h no longer looks for an entry named -h"]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": ["The help text itself", "Every other argument, parsed as before"]
+    }
+  ]
+}
