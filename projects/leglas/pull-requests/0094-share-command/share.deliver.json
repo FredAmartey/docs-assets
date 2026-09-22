@@ -6,12 +6,12 @@
   "input": "share.architecture.json",
   "output": "share.html",
   "specification": {
-    "sha256": "0991c593e9d479616a4c0cf70406f8de4c7803dd9a5b1db73d6c2ce9e5783ac8",
-    "bytes": 4800
+    "sha256": "a633f10de58fb368d19e4131629b4c81c6fc135da2540dec24288389474268e1",
+    "bytes": 4431
   },
   "artifact": {
-    "sha256": "d5c8ca461c849628128e12f87e23657136955e529c41b155015c2ec521851789",
-    "bytes": 807576
+    "sha256": "5d5cd2c0d2bc0f2944c92fd63ac337bb94d732d921c6bc018c5d4db6c35a1fb6",
+    "bytes": 807667
   },
   "validation": {
     "checksPassed": 9,

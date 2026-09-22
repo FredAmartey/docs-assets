@@ -5,8 +5,8 @@
     "title": "A share now starts from a terminal or an agent",
     "quality_profile": "showcase",
     "viewBox": [
-      910,
-      530
+      740,
+      700
     ],
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
@@ -18,15 +18,15 @@
     {
       "id": "command",
       "type": "frontend",
-      "label": "leglas share",
-      "sublabel": "the rail, a title or a pair",
+      "label": "leglas share, MCP share",
+      "sublabel": "a terminal, or an agent when asked",
       "tag": "new",
       "pos": [
         40,
-        60
+        40
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -36,24 +36,7 @@
         },
         {
           "path": "packages/cli/src/bin.ts"
-        }
-      ]
-    },
-    {
-      "id": "tool",
-      "type": "frontend",
-      "label": "MCP share tool",
-      "sublabel": "only when the user asks",
-      "tag": "new",
-      "pos": [
-        40,
-        240
-      ],
-      "size": [
-        190,
-        62
-      ],
-      "sources": [
+        },
         {
           "path": "packages/mcp/src/tools.ts",
           "line": 392
@@ -67,11 +50,11 @@
       "sublabel": "the project's rail, as renamed",
       "tag": "new",
       "pos": [
-        340,
-        60
+        40,
+        200
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -88,11 +71,11 @@
       "sublabel": "this project's Leglas only",
       "tag": "moved",
       "pos": [
-        340,
-        240
+        40,
+        380
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -109,11 +92,11 @@
       "sublabel": "its lookup, moved out as is",
       "tag": "changed",
       "pos": [
-        340,
-        420
+        40,
+        560
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -130,11 +113,11 @@
       "sublabel": "what the share panel calls",
       "tag": "unchanged",
       "pos": [
-        680,
-        60
+        450,
+        200
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -151,11 +134,11 @@
       "sublabel": "cloudflared or ngrok",
       "tag": "unchanged",
       "pos": [
-        680,
-        240
+        450,
+        380
       ],
       "size": [
-        190,
+        250,
         62
       ],
       "sources": [
@@ -171,13 +154,11 @@
       "from": "command",
       "to": "run",
       "label": "titles, reach",
-      "variant": "emphasis"
-    },
-    {
-      "id": "tool-run",
-      "from": "tool",
-      "to": "run",
-      "label": "json: true"
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        151
+      ]
     },
     {
       "id": "run-find",
@@ -185,19 +166,15 @@
       "to": "find",
       "label": "cwd, --port",
       "labelAt": [
-        435,
-        181
+        165,
+        321
       ]
     },
     {
       "id": "show-find",
       "from": "show",
       "to": "find",
-      "label": "cwd, --port",
-      "labelAt": [
-        435,
-        361
-      ]
+      "label": "cwd, --port"
     },
     {
       "id": "run-api",
@@ -213,8 +190,8 @@
       "label": "starts",
       "variant": "dashed",
       "labelAt": [
-        775,
-        181
+        575,
+        321
       ]
     }
   ],
