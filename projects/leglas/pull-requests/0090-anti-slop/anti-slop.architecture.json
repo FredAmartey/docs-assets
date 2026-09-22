@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "anti-slop is vendored and wired to pnpm lint; CI waits for the cleanup",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      620
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "94b17493889af34ec441f102743e18f8298d249e"
+    }
+  },
+  "components": [
+    {
+      "id": "ci",
+      "type": "messagebus",
+      "label": "CI workflow",
+      "sublabel": "unchanged: format, build, typecheck, test",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml"
+        }
+      ]
+    },
+    {
+      "id": "lint",
+      "type": "external",
+      "label": "pnpm lint",
+      "sublabel": "new root script",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "id": "oxlint",
+      "type": "backend",
+      "label": "oxlint 1.85.0",
+      "sublabel": "@oxlint/plugins pinned to the same version",
+      "pos": [
+        440,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 20,
+          "end_line": 23
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "frontend",
+      "label": "packages, site, scripts, test, evals",
+      "sublabel": "5,136 findings in 209 files today",
+      "pos": [
+        850,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "config",
+      "type": "security",
+      "label": ".oxlintrc.json",
+      "sublabel": "19 rules at error, plugin and ignores",
+      "pos": [
+        440,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".oxlintrc.json"
+        }
+      ]
+    },
+    {
+      "id": "plugin",
+      "type": "cloud",
+      "label": "tools/oxlint/anti-slop/",
+      "sublabel": "vendored from dmmulroy/anti-slop c44ef22",
+      "pos": [
+        850,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "tools/oxlint/anti-slop/index.ts"
+        },
+        {
+          "path": "tools/oxlint/anti-slop/UPSTREAM.md"
+        }
+      ]
+    },
+    {
+      "id": "ignored",
+      "type": "external",
+      "label": "dot dirs, dist, eval copies",
+      "sublabel": "never linted",
+      "pos": [
+        40,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ci-lint",
+      "from": "ci",
+      "to": "lint",
+      "label": "no lint step until the tree is clean",
+      "variant": "dashed",
+      "labelAt": [
+        155,
+        191
+      ]
+    },
+    {
+      "id": "lint-oxlint",
+      "from": "lint",
+      "to": "oxlint",
+      "label": "runs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "oxlint-source",
+      "from": "oxlint",
+      "to": "source",
+      "label": "lints",
+      "variant": "emphasis"
+    },
+    {
+      "id": "oxlint-config",
+      "from": "oxlint",
+      "to": "config",
+      "label": "reads",
+      "labelAt": [
+        555,
+        391
+      ]
+    },
+    {
+      "id": "config-plugin",
+      "from": "config",
+      "to": "plugin",
+      "label": "jsPlugins loads index.ts",
+      "variant": "emphasis"
+    },
+    {
+      "id": "config-ignored",
+      "from": "config",
+      "to": "ignored",
+      "label": "ignorePatterns",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What this diff owns",
+      "items": [
+        "The lint config, the pinned pair of dev dependencies, the pnpm lint script, one CONTRIBUTING line and the vendored dir in .prettierignore",
+        "UPSTREAM.md records the exact upstream commit the copied files match"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Vendored and unmodified",
+      "items": [
+        "43 files byte-identical to upstream; the update path is the skill's three-way merge",
+        "effect/ is copied but not registered: this repository does not depend on Effect"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Why CI is untouched",
+      "items": [
+        "4,188 of the findings are the blank-line rule and autofix; 948 need a real read, six of them test files that mock modules",
+        "The cleanup is its own change, and the CI step lands with it"
+      ]
+    }
+  ]
+}

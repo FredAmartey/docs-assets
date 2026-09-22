@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "anti-slop.architecture.json",
+  "output": "anti-slop.html",
+  "specification": {
+    "sha256": "49dc511ed23639d792c9eb26f030af4e439681f482ed90f7aa35df382d5a02e6",
+    "bytes": 4665
+  },
+  "artifact": {
+    "sha256": "557e725334fdf264824c66b6a83bf2df37327c57f0d1997e194e82df4ccce659",
+    "bytes": 808498
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "94b17493889af34ec441f102743e18f8298d249e",
+    "references": 6
+  }
+}
