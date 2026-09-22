@@ -5,8 +5,8 @@
     "title": "A quiet agent is named at 3 minutes and ended at 30",
     "quality_profile": "showcase",
     "viewBox": [
-      1120,
-      620
+      740,
+      640
     ],
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
@@ -22,10 +22,10 @@
       "sublabel": "stdout and stderr",
       "pos": [
         40,
-        60
+        40
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -40,11 +40,11 @@
       "label": "runChild",
       "sublabel": "any line resets heardAt",
       "pos": [
-        445,
-        60
+        450,
+        40
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -60,10 +60,10 @@
       "sublabel": "measured limits",
       "pos": [
         40,
-        260
+        200
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -78,11 +78,11 @@
       "label": "listen, every 2 s",
       "sublabel": "how long since heardAt",
       "pos": [
-        445,
-        260
+        450,
+        200
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -97,11 +97,11 @@
       "label": "status card",
       "sublabel": "no output for 3m 22s",
       "pos": [
-        850,
-        260
+        40,
+        360
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -119,11 +119,11 @@
       "label": "end()",
       "sublabel": "the Stop path: SIGTERM, grace, SIGKILL",
       "pos": [
-        445,
-        460
+        450,
+        360
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -138,11 +138,11 @@
       "label": "verdict agent-silent",
       "sublabel": "never retried, queue moves on",
       "pos": [
-        40,
-        460
+        450,
+        520
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -169,8 +169,8 @@
       "to": "poll",
       "label": "heardAt",
       "labelAt": [
-        560,
-        191
+        575,
+        151
       ]
     },
     {
@@ -194,15 +194,19 @@
       "label": "quiet 30 min",
       "variant": "emphasis",
       "labelAt": [
-        560,
-        391
+        575,
+        311
       ]
     },
     {
       "id": "end-verdict",
       "from": "end",
       "to": "verdict",
-      "label": "settles as silent"
+      "label": "settles as silent",
+      "labelAt": [
+        575,
+        471
+      ]
     }
   ],
   "cards": [

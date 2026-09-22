@@ -6,12 +6,12 @@
   "input": "quiet.architecture.json",
   "output": "quiet.html",
   "specification": {
-    "sha256": "3dc682178fc2e5385d5c40ac75c39f60dabeeb14b6ca69c0ea67c21ffbaecd9d",
-    "bytes": 4485
+    "sha256": "9dc6cdd3ea531e30eb5c9496d408d21796b0a239ba37e0b2c547bb2ffd9116a8",
+    "bytes": 4537
   },
   "artifact": {
-    "sha256": "a1754c954ff4faeae9fd7a6bed66d22c9fd1b85626282a7d77f30647b7c2fe45",
-    "bytes": 807659
+    "sha256": "272fa106925a2b6bccbf5c138b30fd8f51eba67411421162f069220b8948788e",
+    "bytes": 807722
   },
   "validation": {
     "checksPassed": 9,
