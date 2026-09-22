@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A share now starts from a terminal or an agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      910,
+      530
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "62363949abc61e7eed43ebdcd8cf614c57583db9"
+    }
+  },
+  "components": [
+    {
+      "id": "command",
+      "type": "frontend",
+      "label": "leglas share",
+      "sublabel": "the rail, a title or a pair",
+      "tag": "new",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 347
+        },
+        {
+          "path": "packages/cli/src/bin.ts"
+        }
+      ]
+    },
+    {
+      "id": "tool",
+      "type": "frontend",
+      "label": "MCP share tool",
+      "sublabel": "only when the user asks",
+      "tag": "new",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 392
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "runShare",
+      "sublabel": "the project's rail, as renamed",
+      "tag": "new",
+      "pos": [
+        340,
+        60
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-share.ts",
+          "line": 250
+        }
+      ]
+    },
+    {
+      "id": "find",
+      "type": "security",
+      "label": "findLeglas",
+      "sublabel": "this project's Leglas only",
+      "tag": "moved",
+      "pos": [
+        340,
+        240
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/running.ts",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "show",
+      "type": "frontend",
+      "label": "leglas show --screenshot",
+      "sublabel": "its lookup, moved out as is",
+      "tag": "changed",
+      "pos": [
+        340,
+        420
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-show.ts",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "messagebus",
+      "label": "/leglas/api/share",
+      "sublabel": "what the share panel calls",
+      "tag": "unchanged",
+      "pos": [
+        680,
+        60
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1159
+        }
+      ]
+    },
+    {
+      "id": "tunnel",
+      "type": "cloud",
+      "label": "tunnel",
+      "sublabel": "cloudflared or ngrok",
+      "tag": "unchanged",
+      "pos": [
+        680,
+        240
+      ],
+      "size": [
+        190,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.ts"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "command-run",
+      "from": "command",
+      "to": "run",
+      "label": "titles, reach",
+      "variant": "emphasis"
+    },
+    {
+      "id": "tool-run",
+      "from": "tool",
+      "to": "run",
+      "label": "json: true"
+    },
+    {
+      "id": "run-find",
+      "from": "run",
+      "to": "find",
+      "label": "cwd, --port",
+      "labelAt": [
+        435,
+        181
+      ]
+    },
+    {
+      "id": "show-find",
+      "from": "show",
+      "to": "find",
+      "label": "cwd, --port",
+      "labelAt": [
+        435,
+        361
+      ]
+    },
+    {
+      "id": "run-api",
+      "from": "run",
+      "to": "api",
+      "label": "start, poll, stop",
+      "variant": "emphasis"
+    },
+    {
+      "id": "api-tunnel",
+      "from": "api",
+      "to": "tunnel",
+      "label": "starts",
+      "variant": "dashed",
+      "labelAt": [
+        775,
+        181
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it prints",
+      "items": [
+        "The link, the day it ends and how to stop",
+        "A running share is shown, not replaced"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "When it goes wrong",
+      "items": [
+        "Another project's Leglas is refused",
+        "A failure after the start stops the share"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What it leaves alone",
+      "items": [
+        "The server: no endpoint or rule changed",
+        "Branch directions still can't be shared"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "running Leglas, unchanged",
+      "wraps": [
+        "api",
+        "tunnel"
+      ],
+      "pad": 18
+    }
+  ]
+}
