@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A refused frame is named instead of drawn broken",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      620
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "d3649e900e14ba3a1822830cc6b16a729cef0114"
+    }
+  },
+  "components": [
+    {
+      "id": "frame",
+      "type": "frontend",
+      "label": "pane iframe",
+      "sublabel": "load fires either way",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/stage/Pane.tsx"
+        }
+      ]
+    },
+    {
+      "id": "ready",
+      "type": "frontend",
+      "label": "markPreviewReady",
+      "sublabel": "absolute URL: ask first",
+      "pos": [
+        445,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx"
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "type": "messagebus",
+      "label": "GET previews/framing",
+      "sublabel": "the config's own URL only",
+      "pos": [
+        850,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts"
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "checkFraming",
+      "sublabel": "redirects followed, 4 s",
+      "pos": [
+        850,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/frame-policy.ts"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "external",
+      "label": "the page",
+      "sublabel": "github.com: frame-ancestors 'none'",
+      "pos": [
+        850,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "security",
+      "label": "framingFor",
+      "sublabel": "the HTML standard's check",
+      "pos": [
+        445,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/frame-policy.ts"
+        }
+      ]
+    },
+    {
+      "id": "overlay",
+      "type": "frontend",
+      "label": "RefusedOverlay",
+      "sublabel": "site, header, a tab, or show it",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/ui/kit.tsx"
+        },
+        {
+          "path": "packages/shell/src/preview/framing.ts"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "frame-ready",
+      "from": "frame",
+      "to": "ready",
+      "label": "load",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ready-route",
+      "from": "ready",
+      "to": "route",
+      "label": "title",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route-check",
+      "from": "route",
+      "to": "check",
+      "label": "absolute URL",
+      "labelAt": [
+        965,
+        191
+      ]
+    },
+    {
+      "id": "check-site",
+      "from": "check",
+      "to": "site",
+      "label": "asks, no cookies",
+      "variant": "dashed",
+      "labelAt": [
+        965,
+        391
+      ]
+    },
+    {
+      "id": "check-rules",
+      "from": "check",
+      "to": "rules",
+      "label": "headers"
+    },
+    {
+      "id": "rules-overlay",
+      "from": "rules",
+      "to": "overlay",
+      "label": "refused: header, value",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the pane says",
+      "items": [
+        "The site, the header as sent, a tab",
+        "Show the frame anyway, for signed-in pages"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Why the server asks",
+      "items": [
+        "A cross-origin frame never says why it failed",
+        "Project URLs only; share viewers are refused"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "The rules",
+      "items": [
+        "frame-ancestors decides, else X-Frame-Options",
+        "DENY, SAMEORIGIN and conflicts refuse"
+      ]
+    }
+  ]
+}

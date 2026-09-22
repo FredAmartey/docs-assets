@@ -58,6 +58,7 @@ documents.
 | `0090-anti-slop` | [#90](https://github.com/FredAmartey/leglas/pull/90) |
 | `0091-anti-slop-cleanup` | [#91](https://github.com/FredAmartey/leglas/pull/91) |
 | `0092-quiet-agent` | [#92](https://github.com/FredAmartey/leglas/pull/92) |
+| `0093-frame-refusal` | [#93](https://github.com/FredAmartey/leglas/pull/93) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
