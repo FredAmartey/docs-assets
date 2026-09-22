@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A quiet agent is named at 3 minutes and ended at 30",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      620
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "12ba047126074bb3a9ce6b25ee9c82b4ae0f0790"
+    }
+  },
+  "components": [
+    {
+      "id": "child",
+      "type": "external",
+      "label": "agent process",
+      "sublabel": "stdout and stderr",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts"
+        }
+      ]
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "runChild",
+      "sublabel": "any line resets heardAt",
+      "pos": [
+        445,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts"
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "type": "security",
+      "label": "silence.ts",
+      "sublabel": "measured limits",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/silence.ts"
+        }
+      ]
+    },
+    {
+      "id": "poll",
+      "type": "backend",
+      "label": "listen, every 2 s",
+      "sublabel": "how long since heardAt",
+      "pos": [
+        445,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts"
+        }
+      ]
+    },
+    {
+      "id": "card",
+      "type": "frontend",
+      "label": "status card",
+      "sublabel": "no output for 3m 22s",
+      "pos": [
+        850,
+        260
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/request-status.ts"
+        },
+        {
+          "path": "packages/shell/src/agents/StatusCard.tsx"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "backend",
+      "label": "end()",
+      "sublabel": "the Stop path: SIGTERM, grace, SIGKILL",
+      "pos": [
+        445,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts"
+        }
+      ]
+    },
+    {
+      "id": "verdict",
+      "type": "database",
+      "label": "verdict agent-silent",
+      "sublabel": "never retried, queue moves on",
+      "pos": [
+        40,
+        460
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/failure.ts"
+        },
+        {
+          "path": "packages/server/src/requests/requests.ts"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "child-runner",
+      "from": "child",
+      "to": "runner",
+      "label": "every line",
+      "variant": "emphasis"
+    },
+    {
+      "id": "runner-poll",
+      "from": "runner",
+      "to": "poll",
+      "label": "heardAt",
+      "labelAt": [
+        560,
+        191
+      ]
+    },
+    {
+      "id": "limits-poll",
+      "from": "limits",
+      "to": "poll",
+      "label": "3 and 30 min",
+      "variant": "dashed"
+    },
+    {
+      "id": "poll-card",
+      "from": "poll",
+      "to": "card",
+      "label": "quiet 3 min",
+      "variant": "emphasis"
+    },
+    {
+      "id": "poll-end",
+      "from": "poll",
+      "to": "end",
+      "label": "quiet 30 min",
+      "variant": "emphasis",
+      "labelAt": [
+        560,
+        391
+      ]
+    },
+    {
+      "id": "end-verdict",
+      "from": "end",
+      "to": "verdict",
+      "label": "settles as silent"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the card says",
+      "items": [
+        "After 3 quiet minutes: no output for Xm Ys",
+        "A vendor retry or a stop outranks it"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Why 30 minutes",
+      "items": [
+        "Longest measured silence: 19 min, Codex at high effort",
+        "Claude's unattended longest: 2 min"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What cannot rename the verdict",
+      "items": [
+        "A stop during the shutdown is refused",
+        "An error on the way out keeps it"
+      ]
+    }
+  ]
+}
