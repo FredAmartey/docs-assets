@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A stop reaches what the agent started",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      660
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "478837f25e5c80813f32b0b8ed6c1a1e691a3887"
+    }
+  },
+  "components": [
+    {
+      "id": "stop",
+      "type": "frontend",
+      "label": "Stop, silence or shutdown",
+      "sublabel": "leglas-mcp now on SIGHUP too",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts",
+          "line": 1019,
+          "label": "cancel"
+        },
+        {
+          "path": "packages/server/src/agents/runner.ts",
+          "line": 993,
+          "label": "listen"
+        },
+        {
+          "path": "packages/mcp/src/bin.ts",
+          "line": 49,
+          "label": "leglas-mcp shutdown"
+        }
+      ]
+    },
+    {
+      "id": "signal",
+      "type": "backend",
+      "label": "signalChild",
+      "sublabel": "SIGTERM, SIGKILL after 5 s",
+      "tag": "new",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts",
+          "line": 954
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "type": "backend",
+      "label": "a transport's turn",
+      "sublabel": "the vendor's interrupt, as before",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/codex-app-server.ts",
+          "line": 126
+        },
+        {
+          "path": "packages/server/src/agents/claude-agent-session.ts",
+          "line": 234
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "type": "security",
+      "label": "signalTree",
+      "sublabel": "negative pid; taskkill on Windows",
+      "tag": "new",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/process-tree.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "group",
+      "type": "external",
+      "label": "the agent's process group",
+      "sublabel": "the agent and what it started",
+      "pos": [
+        40,
+        560
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/runner.ts",
+          "line": 596,
+          "label": "spawnAgent"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "stop-signal",
+      "from": "stop",
+      "to": "signal",
+      "label": "end()",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "signal-turn",
+      "from": "signal",
+      "to": "turn",
+      "label": "no process",
+      "variant": "dashed"
+    },
+    {
+      "id": "signal-tree",
+      "from": "signal",
+      "to": "tree",
+      "label": "spawned by Leglas",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        321
+      ]
+    },
+    {
+      "id": "tree-group",
+      "from": "tree",
+      "to": "group",
+      "label": "kill(-pid)",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        501
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What goes now",
+      "items": [
+        "A dev server or watcher the agent ran",
+        "A wrapper's child holding the pipe"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Claude and Codex warm turns: vendor interrupt",
+        "Something that left the group itself"
+      ]
+    }
+  ]
+}

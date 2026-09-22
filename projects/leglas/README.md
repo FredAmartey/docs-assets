@@ -61,6 +61,7 @@ documents.
 | `0093-frame-refusal` | [#93](https://github.com/FredAmartey/leglas/pull/93) |
 | `0094-share-command` | [#94](https://github.com/FredAmartey/leglas/pull/94) |
 | `0095-help-everywhere` | [#95](https://github.com/FredAmartey/leglas/pull/95) |
+| `0096-agent-process-group` | [#96](https://github.com/FredAmartey/leglas/pull/96) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
