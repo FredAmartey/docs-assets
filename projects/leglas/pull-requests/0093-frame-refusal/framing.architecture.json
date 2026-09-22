@@ -5,13 +5,13 @@
     "title": "A refused frame is named instead of drawn broken",
     "quality_profile": "showcase",
     "viewBox": [
-      1120,
-      620
+      740,
+      640
     ],
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "d3649e900e14ba3a1822830cc6b16a729cef0114"
+      "revision": "badb2a24f35e43923614be570376a3327e9036d2"
     }
   },
   "components": [
@@ -22,10 +22,10 @@
       "sublabel": "load fires either way",
       "pos": [
         40,
-        60
+        40
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -40,11 +40,11 @@
       "label": "markPreviewReady",
       "sublabel": "absolute URL: ask first",
       "pos": [
-        445,
-        60
+        450,
+        40
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -59,11 +59,11 @@
       "label": "GET previews/framing",
       "sublabel": "the config's own URL only",
       "pos": [
-        850,
-        60
+        450,
+        200
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -78,11 +78,11 @@
       "label": "checkFraming",
       "sublabel": "redirects followed, 4 s",
       "pos": [
-        850,
-        260
+        450,
+        360
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -97,11 +97,11 @@
       "label": "the page",
       "sublabel": "github.com: frame-ancestors 'none'",
       "pos": [
-        850,
-        460
+        40,
+        360
       ],
       "size": [
-        230,
+        250,
         62
       ]
     },
@@ -111,11 +111,11 @@
       "label": "framingFor",
       "sublabel": "the HTML standard's check",
       "pos": [
-        445,
-        260
+        450,
+        520
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -131,10 +131,10 @@
       "sublabel": "site, header, a tab, or show it",
       "pos": [
         40,
-        260
+        520
       ],
       "size": [
-        230,
+        250,
         62
       ],
       "sources": [
@@ -160,7 +160,11 @@
       "from": "ready",
       "to": "route",
       "label": "title",
-      "variant": "emphasis"
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
     },
     {
       "id": "route-check",
@@ -168,8 +172,8 @@
       "to": "check",
       "label": "absolute URL",
       "labelAt": [
-        965,
-        191
+        575,
+        311
       ]
     },
     {
@@ -177,17 +181,17 @@
       "from": "check",
       "to": "site",
       "label": "asks, no cookies",
-      "variant": "dashed",
-      "labelAt": [
-        965,
-        391
-      ]
+      "variant": "dashed"
     },
     {
       "id": "check-rules",
       "from": "check",
       "to": "rules",
-      "label": "headers"
+      "label": "headers",
+      "labelAt": [
+        575,
+        471
+      ]
     },
     {
       "id": "rules-overlay",
