@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "cleanup.architecture.json",
+  "output": "cleanup.html",
+  "specification": {
+    "sha256": "0cf0c0f7d997ff22fcad01c63ca3fdddafff2adb203788c179185c7d0bd34365",
+    "bytes": 3629
+  },
+  "artifact": {
+    "sha256": "d228dbf224ef15a9974a7349b00f26c0e4077cd343fabde091c7cbdb2ceb7e78",
+    "bytes": 804914
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

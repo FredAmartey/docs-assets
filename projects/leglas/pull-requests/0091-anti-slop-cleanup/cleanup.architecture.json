@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Every read is parsed once, every cast says why, and lint runs in CI",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      640
+    ]
+  },
+  "components": [
+    {
+      "id": "ci",
+      "type": "messagebus",
+      "label": "CI workflow",
+      "sublabel": "lint joins format, typecheck and test",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "lint",
+      "type": "external",
+      "label": "pnpm lint",
+      "sublabel": "5,136 findings on main, 0 here",
+      "pos": [
+        445,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "config",
+      "type": "security",
+      "label": ".oxlintrc.json",
+      "sublabel": "typeof allowed inside type predicates",
+      "pos": [
+        850,
+        60
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "packages/shell",
+      "sublabel": "parses through json.ts predicates",
+      "pos": [
+        40,
+        320
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "cli",
+      "type": "backend",
+      "label": "packages/cli, packages/mcp",
+      "sublabel": "startup takes its services as arguments",
+      "pos": [
+        445,
+        320
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "packages/server",
+      "sublabel": "json.ts, one isJsonRecord, no module mock",
+      "pos": [
+        850,
+        320
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "external",
+      "label": "the tests",
+      "sublabel": "fakes go in through seams, not vi.mock",
+      "pos": [
+        445,
+        540
+      ],
+      "size": [
+        230,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ci-lint",
+      "from": "ci",
+      "to": "lint",
+      "label": "runs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "lint-config",
+      "from": "lint",
+      "to": "config",
+      "label": "reads"
+    },
+    {
+      "id": "lint-shell",
+      "from": "lint",
+      "to": "shell",
+      "label": "checks"
+    },
+    {
+      "id": "lint-cli",
+      "from": "lint",
+      "to": "cli",
+      "label": "checks",
+      "variant": "emphasis",
+      "labelAt": [
+        560,
+        221
+      ]
+    },
+    {
+      "id": "lint-server",
+      "from": "lint",
+      "to": "server",
+      "label": "checks"
+    },
+    {
+      "id": "tests-cli",
+      "from": "tests",
+      "to": "cli",
+      "label": "inject fakes",
+      "variant": "dashed"
+    },
+    {
+      "id": "tests-server",
+      "from": "tests",
+      "to": "server",
+      "label": "inject fakes",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What moved",
+      "items": [
+        "JSON from the wire, storage and the server is parsed once, through predicates",
+        "Module mocks are gone; the tests hand fakes to real seams"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "By the numbers",
+      "items": [
+        "5,136 findings on main, 0 here; 4,188 were blank lines",
+        "API surface unchanged; 1,607 tests pass"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Two fixes on purpose",
+      "items": [
+        "A null capture reply is a failed capture, not a crash",
+        "A non-text request intent gets a 400, not a hung request"
+      ]
+    }
+  ]
+}

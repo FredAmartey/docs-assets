@@ -56,6 +56,7 @@ documents.
 | `0088-shell-regions` | [#88](https://github.com/FredAmartey/leglas/pull/88) |
 | `0089-docs-index` | [#89](https://github.com/FredAmartey/leglas/pull/89) |
 | `0090-anti-slop` | [#90](https://github.com/FredAmartey/leglas/pull/90) |
+| `0091-anti-slop-cleanup` | [#91](https://github.com/FredAmartey/leglas/pull/91) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
