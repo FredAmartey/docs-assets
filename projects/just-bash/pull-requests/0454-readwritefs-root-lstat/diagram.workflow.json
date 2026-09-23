@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How ReadWriteFs authorizes lstat('/')",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "commands",
+      "label": "Commands at the root"
+    },
+    {
+      "id": "fs",
+      "label": "ReadWriteFs, with this PR"
+    },
+    {
+      "id": "before",
+      "label": "Before this PR (3.2.0+)",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "walk",
+    "lstat",
+    "isroot",
+    "resolve",
+    "listed"
+  ],
+  "nodes": [
+    {
+      "id": "walk",
+      "lane": "commands",
+      "col": 0,
+      "type": "external",
+      "label": "Walk from /",
+      "sublabel": "find \u00b7 du \u00b7 chmod -R \u00b7 file",
+      "width": 150
+    },
+    {
+      "id": "lstat",
+      "lane": "fs",
+      "col": 1,
+      "type": "backend",
+      "label": "lstat \u00b7 readlink",
+      "sublabel": "called on the root",
+      "width": 150
+    },
+    {
+      "id": "isroot",
+      "lane": "fs",
+      "col": 2,
+      "type": "backend",
+      "label": "Sandbox root?",
+      "sublabel": "compared to this.root",
+      "width": 150
+    },
+    {
+      "id": "resolve",
+      "lane": "fs",
+      "col": 3,
+      "type": "frontend",
+      "label": "resolveAndValidate",
+      "sublabel": "new: checks the root itself",
+      "width": 190
+    },
+    {
+      "id": "listed",
+      "lane": "commands",
+      "col": 4,
+      "type": "backend",
+      "label": "find lists the tree",
+      "sublabel": "du, chmod -R and file work",
+      "width": 190
+    },
+    {
+      "id": "oldparent",
+      "lane": "before",
+      "col": 2,
+      "type": "security",
+      "label": "validateParent('/')",
+      "sublabel": "checks the host dir above /",
+      "width": 190
+    },
+    {
+      "id": "eacces",
+      "lane": "before",
+      "col": 3,
+      "type": "security",
+      "label": "EACCES",
+      "sublabel": "host dir is outside the sandbox",
+      "width": 190
+    },
+    {
+      "id": "silent",
+      "lane": "before",
+      "col": 4,
+      "type": "external",
+      "label": "find prints nothing",
+      "sublabel": "node dropped, exit 0",
+      "width": 190
+    }
+  ],
+  "edges": [
+    {
+      "id": "walk-lstat",
+      "from": "walk",
+      "to": "lstat",
+      "role": "main"
+    },
+    {
+      "id": "lstat-isroot",
+      "from": "lstat",
+      "to": "isroot",
+      "role": "main"
+    },
+    {
+      "id": "isroot-resolve",
+      "from": "isroot",
+      "to": "resolve",
+      "label": "root",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "resolve-listed",
+      "from": "resolve",
+      "to": "listed",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "lstat-oldparent",
+      "from": "lstat",
+      "to": "oldparent",
+      "label": "before",
+      "variant": "dashed",
+      "role": "error"
+    },
+    {
+      "id": "eacces-silent",
+      "from": "eacces",
+      "to": "silent",
+      "variant": "dashed",
+      "role": "error"
+    },
+    {
+      "id": "oldparent-eacces",
+      "from": "oldparent",
+      "to": "eacces",
+      "variant": "dashed",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Every other path is unchanged",
+      "items": [
+        "Non-root paths still go through validateParent, so a symlink in the last component is inspected, not followed."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Kept on purpose",
+      "items": [
+        "rm, mv, cp and symlink still reject the root. The rm command has no --preserve-root guard, so that rejection is what keeps rm -rf / off the host directory."
+      ]
+    }
+  ]
+}

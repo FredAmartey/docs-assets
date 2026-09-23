@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Who puts the TTY in raw mode",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "readline",
+      "type": "external",
+      "label": "Terminal.readLine",
+      "sublabel": "reads a whole line",
+      "pos": [
+        40,
+        110
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "readinput",
+      "type": "external",
+      "label": "Terminal.readInput",
+      "sublabel": "keys for Prompt.run",
+      "pos": [
+        40,
+        330
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "rlref",
+      "type": "backend",
+      "label": "rlRef",
+      "sublabel": "readline \u00b7 10 ms idle TTL",
+      "pos": [
+        360,
+        110
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "rawref",
+      "type": "frontend",
+      "label": "rawModeRef",
+      "sublabel": "new \u00b7 10 ms idle TTL",
+      "pos": [
+        360,
+        330
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "stdin",
+      "type": "external",
+      "label": "stdin (TTY)",
+      "sublabel": "cooked unless raw is held",
+      "pos": [
+        680,
+        220
+      ],
+      "size": [
+        170,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "NodeTerminal.make (scoped)",
+      "wraps": [
+        "rlref",
+        "rawref"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "readline-rl",
+      "from": "readline",
+      "to": "rlref",
+      "label": "line events"
+    },
+    {
+      "id": "readinput-rl",
+      "from": "readinput",
+      "to": "rlref",
+      "label": "keypress events",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "readinput-raw",
+      "from": "readinput",
+      "to": "rawref",
+      "label": "held while reading",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rl-stdin",
+      "from": "rlref",
+      "to": "stdin",
+      "label": "reads input"
+    },
+    {
+      "id": "raw-stdin",
+      "from": "rawref",
+      "to": "stdin",
+      "label": "setRawMode(true / false)",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Before",
+      "items": [
+        "Acquiring rlRef also called setRawMode(true), so readLine ran raw: nothing echoed, Ctrl+U landed in the line and Ctrl+C was ignored."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "After",
+      "items": [
+        "readLine never takes rawModeRef. The terminal echoes, edits the line and turns Ctrl+C into SIGINT.",
+        "Prompts still hold raw mode for their whole scope, so password input is never echoed."
+      ]
+    }
+  ]
+}

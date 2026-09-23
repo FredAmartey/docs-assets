@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Where the skill link is measured from",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "install",
+      "label": "createSymlink, with this PR"
+    },
+    {
+      "id": "before",
+      "label": "Before this PR",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "add",
+    "linkdir",
+    "realpath",
+    "relpath",
+    "canonical"
+  ],
+  "nodes": [
+    {
+      "id": "add",
+      "lane": "install",
+      "col": 0,
+      "type": "external",
+      "label": "skills add",
+      "sublabel": "-a claude-code",
+      "width": 160
+    },
+    {
+      "id": "linkdir",
+      "lane": "install",
+      "col": 1,
+      "type": "backend",
+      "label": "~/.claude/skills",
+      "sublabel": "a symlink into dotfiles",
+      "width": 160
+    },
+    {
+      "id": "realpath",
+      "lane": "install",
+      "col": 2,
+      "type": "frontend",
+      "label": "realpath(linkDir)",
+      "sublabel": "new: the real directory",
+      "width": 160
+    },
+    {
+      "id": "relpath",
+      "lane": "install",
+      "col": 3,
+      "type": "backend",
+      "label": "Relative link",
+      "sublabel": "../../../../.agents/\u2026",
+      "width": 160
+    },
+    {
+      "id": "canonical",
+      "lane": "install",
+      "col": 4,
+      "type": "database",
+      "label": "Canonical skill",
+      "sublabel": "~/.agents/skills/demo-skill",
+      "width": 160
+    },
+    {
+      "id": "oldresolve",
+      "lane": "before",
+      "col": 2,
+      "type": "security",
+      "label": "resolveParentSymlinks",
+      "sublabel": "resolves parents only",
+      "width": 190
+    },
+    {
+      "id": "oldrel",
+      "lane": "before",
+      "col": 3,
+      "type": "external",
+      "label": "Relative link",
+      "sublabel": "../../.agents/\u2026",
+      "width": 160
+    },
+    {
+      "id": "dangling",
+      "lane": "before",
+      "col": 4,
+      "type": "security",
+      "label": "Dangling link",
+      "sublabel": "\u2026/dotfiles/config/.agents/\u2026",
+      "width": 160
+    }
+  ],
+  "edges": [
+    {
+      "id": "add-linkdir",
+      "from": "add",
+      "to": "linkdir",
+      "role": "main"
+    },
+    {
+      "id": "linkdir-realpath",
+      "from": "linkdir",
+      "to": "realpath",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "realpath-relpath",
+      "from": "realpath",
+      "to": "relpath",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "relpath-canonical",
+      "from": "relpath",
+      "to": "canonical",
+      "label": "resolves",
+      "role": "main"
+    },
+    {
+      "id": "linkdir-oldresolve",
+      "from": "linkdir",
+      "to": "oldresolve",
+      "label": "before",
+      "variant": "dashed",
+      "role": "error"
+    },
+    {
+      "id": "oldresolve-oldrel",
+      "from": "oldresolve",
+      "to": "oldrel",
+      "variant": "dashed",
+      "role": "error"
+    },
+    {
+      "id": "oldrel-dangling",
+      "from": "oldrel",
+      "to": "dangling",
+      "label": "missing",
+      "variant": "dashed",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Measured from the real directory",
+      "items": [
+        "The OS resolves a relative link from the directory it physically lives in, so the path is now computed from there. Links stay relative, so committed project installs still work in every clone."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Reinstalling repairs old links",
+      "items": [
+        "The old already-linked check used the same unresolved path and kept broken links. The realpath check earlier in createSymlink already returns early for links that work, so the old check is gone."
+      ]
+    }
+  ]
+}
