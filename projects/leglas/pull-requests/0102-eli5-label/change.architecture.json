@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The plain diagram's fold is labelled ELI5",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "db94afaad9dd426a482f90a279bcb0c87d60ddec"
+    }
+  },
+  "components": [
+    {
+      "id": "arch",
+      "type": "frontend",
+      "label": "docs/architecture.md",
+      "sublabel": "the fold's summary starts with ELI5:",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture.md",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "site/docs.test.ts",
+      "sublabel": "its fold fixture starts the same way",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.test.ts",
+          "line": 281
+        }
+      ]
+    },
+    {
+      "id": "renderer",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "the details block, not touched",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 206
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "external",
+      "label": "the docs site",
+      "sublabel": "GitHub renders the fold too",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "arch-renderer",
+      "from": "arch",
+      "to": "renderer",
+      "label": "gets built",
+      "variant": "emphasis"
+    },
+    {
+      "id": "test-renderer",
+      "from": "test",
+      "to": "renderer",
+      "label": "renders a fold fixture"
+    },
+    {
+      "id": "renderer-site",
+      "from": "renderer",
+      "to": "site",
+      "label": "writes the page",
+      "labelAt": [
+        575,
+        151
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "arch",
+        "test"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The fold's summary reads ELI5: and the plain title",
+        "The renderer's fixture uses the same line"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The details block in the renderer",
+        "Both diagrams and their captions"
+      ]
+    }
+  ]
+}
