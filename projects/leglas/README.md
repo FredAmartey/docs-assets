@@ -62,6 +62,7 @@ documents.
 | `0094-share-command` | [#94](https://github.com/FredAmartey/leglas/pull/94) |
 | `0095-help-everywhere` | [#95](https://github.com/FredAmartey/leglas/pull/95) |
 | `0096-agent-process-group` | [#96](https://github.com/FredAmartey/leglas/pull/96) |
+| `0097-test-clock` | [#97](https://github.com/FredAmartey/leglas/pull/97) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

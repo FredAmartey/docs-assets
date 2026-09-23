@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Three tests wait for what they check",
+    "quality_profile": "showcase",
+    "viewBox": [740, 500],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "1f11b3ec420a0486ef3d7912d8020c19c85cd7c5"
+    }
+  },
+  "components": [
+    {
+      "id": "healthTest",
+      "type": "frontend",
+      "label": "health nudge test",
+      "sublabel": "was a fixed 40 ms",
+      "tag": "changed",
+      "pos": [40, 40],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/server.test.ts", "line": 2764 }]
+    },
+    {
+      "id": "health",
+      "type": "backend",
+      "label": "watchHealth",
+      "sublabel": "first probe is the baseline",
+      "tag": "unchanged",
+      "pos": [450, 40],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/server.ts", "line": 725 }]
+    },
+    {
+      "id": "turnTest",
+      "type": "frontend",
+      "label": "turn timeout test",
+      "sublabel": "was a 10 ms race",
+      "tag": "changed",
+      "pos": [40, 200],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/codex-app-server.test.ts", "line": 369 }]
+    },
+    {
+      "id": "turn",
+      "type": "backend",
+      "label": "requestRaw",
+      "sublabel": "one timeout for every request",
+      "tag": "unchanged",
+      "pos": [450, 200],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/codex-app-server.ts", "line": 536 }]
+    },
+    {
+      "id": "pruneTest",
+      "type": "frontend",
+      "label": "reference prune test",
+      "sublabel": "was a fixed 50 ms",
+      "tag": "changed",
+      "pos": [40, 360],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/server.test.ts", "line": 922 }]
+    },
+    {
+      "id": "prune",
+      "type": "backend",
+      "label": "pruneReferences",
+      "sublabel": "runs off the response",
+      "tag": "unchanged",
+      "pos": [450, 360],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/requests/attachments.ts", "line": 513 }]
+    }
+  ],
+  "connections": [
+    { "id": "health-wait", "from": "healthTest", "to": "health", "label": "a second probe", "variant": "emphasis" },
+    { "id": "turn-wait", "from": "turnTest", "to": "turn", "label": "answered on read", "variant": "emphasis" },
+    { "id": "prune-wait", "from": "pruneTest", "to": "prune", "label": "the file gone", "variant": "emphasis" }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "How they failed under load",
+      "items": ["The flip came before the baseline", "A rejection before its handler"]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": ["All product code", "Every other test"]
+    }
+  ]
+}

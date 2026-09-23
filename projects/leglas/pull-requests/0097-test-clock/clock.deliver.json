@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "clock.architecture.json",
+  "output": "clock.html",
+  "specification": {
+    "sha256": "b3623d90380b993ea49019f64691fd676d71f22ff7599bb0a47e42895e112481",
+    "bytes": 2850
+  },
+  "artifact": {
+    "sha256": "d50efc792c64a5a95785e47b9c0170d277891f65b9ddbcb46d114e44e9e69f76",
+    "bytes": 803753
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "1f11b3ec420a0486ef3d7912d8020c19c85cd7c5",
+    "references": 6
+  }
+}
