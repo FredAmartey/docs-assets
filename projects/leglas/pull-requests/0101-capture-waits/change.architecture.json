@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Screenshots wait for what a page asks for after load",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "98520a794fa37eab0a2d718ff41b2d8974880e22"
+    }
+  },
+  "components": [
+    {
+      "id": "load",
+      "type": "external",
+      "label": "Page.loadEventFired",
+      "sublabel": "React draws after it",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 284
+        }
+      ]
+    },
+    {
+      "id": "direction",
+      "type": "frontend",
+      "label": "a React direction",
+      "sublabel": "served by a Vite dev server",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "wait",
+      "type": "backend",
+      "label": "the wait after load",
+      "sublabel": "was one fonts.ready check",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 299
+        }
+      ]
+    },
+    {
+      "id": "requests",
+      "type": "backend",
+      "label": "DRAWN_WITH requests",
+      "sublabel": "Script, Stylesheet, Font, Image",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "id": "settle",
+      "type": "backend",
+      "label": "settle animations",
+      "sublabel": "finish entrances, then a frame",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 339
+        }
+      ]
+    },
+    {
+      "id": "shot",
+      "type": "backend",
+      "label": "Page.captureScreenshot",
+      "sublabel": "what show --screenshot returns",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 413
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "wait",
+        "requests"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "load-wait",
+      "from": "load",
+      "to": "wait",
+      "label": "then",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "direction-requests",
+      "from": "direction",
+      "to": "requests",
+      "label": "asks for, after load",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "requests-wait",
+      "from": "requests",
+      "to": "wait",
+      "label": "watched until they land",
+      "variant": "emphasis"
+    },
+    {
+      "id": "wait-settle",
+      "from": "wait",
+      "to": "settle",
+      "label": "none left, nothing new",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    },
+    {
+      "id": "settle-shot",
+      "from": "settle",
+      "to": "shot",
+      "label": "then"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What a shot waits for now",
+      "items": [
+        "Stylesheets and the fonts they declare",
+        "Images and lazy code",
+        "At most 2 s, as the font check did"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Load, settle and the shutter",
+        "Not waited for: video and data"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Screenshots now wait for what a page loads late",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "98520a794fa37eab0a2d718ff41b2d8974880e22"
+    }
+  },
+  "components": [
+    {
+      "id": "load",
+      "type": "external",
+      "label": "The page finishes loading",
+      "sublabel": "designs appear after this",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 284
+        }
+      ]
+    },
+    {
+      "id": "direction",
+      "type": "frontend",
+      "label": "A direction being tried",
+      "sublabel": "running inside the app",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "wait",
+      "type": "backend",
+      "label": "Waiting for late files",
+      "sublabel": "was one font check",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 299
+        }
+      ]
+    },
+    {
+      "id": "requests",
+      "type": "backend",
+      "label": "What the design downloads",
+      "sublabel": "code, styling, fonts, pictures",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "id": "settle",
+      "type": "backend",
+      "label": "Opening animations jump ahead",
+      "sublabel": "then the page redraws",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 339
+        }
+      ]
+    },
+    {
+      "id": "shot",
+      "type": "backend",
+      "label": "The screenshot",
+      "sublabel": "what an agent sees",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 413
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "wait",
+        "requests"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "load-wait",
+      "from": "load",
+      "to": "wait",
+      "label": "then",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "direction-requests",
+      "from": "direction",
+      "to": "requests",
+      "label": "asks for, after loading",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "requests-wait",
+      "from": "requests",
+      "to": "wait",
+      "label": "watched until they arrive",
+      "variant": "emphasis"
+    },
+    {
+      "id": "wait-settle",
+      "from": "wait",
+      "to": "settle",
+      "label": "once nothing is coming",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    },
+    {
+      "id": "settle-shot",
+      "from": "settle",
+      "to": "shot",
+      "label": "then"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What screenshots wait for",
+      "items": [
+        "Styling and its fonts",
+        "Pictures and late code",
+        "At most two seconds"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Loading, settling, the shot",
+        "No waiting on video or data"
+      ]
+    }
+  ]
+}
