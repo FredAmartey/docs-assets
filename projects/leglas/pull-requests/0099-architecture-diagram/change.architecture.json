@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The architecture page opens with a diagram pair",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "585173d6eb0d135d71ec35b6e1e6c887c6a94b5e"
+    }
+  },
+  "components": [
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "docs/architecture.md",
+      "sublabel": "two capture blocks and a heading",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture.md",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "assets",
+      "type": "backend",
+      "label": "two diagram files",
+      "sublabel": ".github/assets, 90 KB each",
+      "tag": "added",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/assets/architecture.png"
+        },
+        {
+          "path": ".github/assets/architecture-plain.png"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "renders the page, unchanged",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 229
+        }
+      ]
+    },
+    {
+      "id": "pages",
+      "type": "external",
+      "label": "the GitHub page and the docs site",
+      "sublabel": "both load the images by raw URL on main",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "page-site",
+      "from": "page",
+      "to": "site",
+      "label": "the docs build reads it",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "site-pages",
+      "from": "site",
+      "to": "pages",
+      "label": "writes the page",
+      "variant": "emphasis"
+    },
+    {
+      "id": "assets-pages",
+      "from": "assets",
+      "to": "pages",
+      "label": "raw URL on main",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the reader gets",
+      "items": [
+        "The system in one picture, up front",
+        "A plain-English twin beneath it"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every section below, unchanged",
+        "Images by raw URL on main, like the other docs pages"
+      ]
+    }
+  ]
+}

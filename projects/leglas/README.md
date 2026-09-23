@@ -64,6 +64,7 @@ documents.
 | `0096-agent-process-group` | [#96](https://github.com/FredAmartey/leglas/pull/96) |
 | `0097-test-clock` | [#97](https://github.com/FredAmartey/leglas/pull/97) |
 | `0098-readme-audit` | [#98](https://github.com/FredAmartey/leglas/pull/98) |
+| `0099-architecture-diagram` | [#99](https://github.com/FredAmartey/leglas/pull/99) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

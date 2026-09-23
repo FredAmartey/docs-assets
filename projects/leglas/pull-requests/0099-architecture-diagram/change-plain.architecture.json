@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The page about how Leglas is built now opens with two pictures",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "585173d6eb0d135d71ec35b6e1e6c887c6a94b5e"
+    }
+  },
+  "components": [
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "The architecture page",
+      "sublabel": "two new pictures",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture.md",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "assets",
+      "type": "backend",
+      "label": "The two picture files",
+      "sublabel": "one technical, one plain",
+      "tag": "added",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/assets/architecture.png"
+        },
+        {
+          "path": ".github/assets/architecture-plain.png"
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "backend",
+      "label": "The site builder",
+      "sublabel": "unchanged, reads the page",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 229
+        }
+      ]
+    },
+    {
+      "id": "pages",
+      "type": "external",
+      "label": "Where people read it",
+      "sublabel": "GitHub and the site",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "page-site",
+      "from": "page",
+      "to": "site",
+      "label": "gets built",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "site-pages",
+      "from": "site",
+      "to": "pages",
+      "label": "makes the page",
+      "variant": "emphasis"
+    },
+    {
+      "id": "assets-pages",
+      "from": "assets",
+      "to": "pages",
+      "label": "fetched from GitHub",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What you get",
+      "items": [
+        "One picture of the whole system at the top of the page",
+        "The same picture again in plain words"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Everything else on the page",
+        "The pictures load the same way as on the other pages"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "In plain English",
+      "items": [
+        "Before this change the page about how Leglas is built was all text.",
+        "Now it opens with a picture of the whole system, and the same picture again in plain words.",
+        "Someone new can see what runs where before reading a word."
+      ]
+    }
+  ]
+}
