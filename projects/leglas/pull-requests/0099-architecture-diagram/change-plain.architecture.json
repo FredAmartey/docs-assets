@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The page about how Leglas is built now opens with two pictures",
+    "title": "The page about how Leglas is built now opens with two pictures, and the second one folds away",
     "quality_profile": "showcase",
     "viewBox": [
       740,
@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "585173d6eb0d135d71ec35b6e1e6c887c6a94b5e"
+      "revision": "0e1022698a058b69658eed087623f72b93c78cd3"
     }
   },
   "components": [
@@ -19,7 +19,7 @@
       "id": "page",
       "type": "frontend",
       "label": "The architecture page",
-      "sublabel": "two new pictures",
+      "sublabel": "two new pictures, one folded",
       "tag": "changed",
       "pos": [
         40,
@@ -63,8 +63,8 @@
       "id": "site",
       "type": "backend",
       "label": "The site builder",
-      "sublabel": "unchanged, reads the page",
-      "tag": "unchanged",
+      "sublabel": "learned to fold a section",
+      "tag": "changed",
       "pos": [
         40,
         200
@@ -76,7 +76,7 @@
       "sources": [
         {
           "path": "site/docs.ts",
-          "line": 229
+          "line": 206
         }
       ]
     },
@@ -131,7 +131,7 @@
       "title": "What you get",
       "items": [
         "One picture of the whole system at the top of the page",
-        "The same picture again in plain words"
+        "The same picture in plain words, folded underneath"
       ]
     },
     {
@@ -147,8 +147,8 @@
       "title": "In plain English",
       "items": [
         "Before this change the page about how Leglas is built was all text.",
-        "Now it opens with a picture of the whole system, and the same picture again in plain words.",
-        "Someone new can see what runs where before reading a word."
+        "Now it opens with a picture of the whole system, with the same picture in plain words folded underneath it.",
+        "Someone new can see what runs where before reading a word, and skip the plain one if they do not need it."
       ]
     }
   ]

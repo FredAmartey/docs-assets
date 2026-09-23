@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The architecture page opens with a diagram pair",
+    "title": "The architecture page opens with a diagram pair, folded on the site too",
     "quality_profile": "showcase",
     "viewBox": [
       740,
@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "585173d6eb0d135d71ec35b6e1e6c887c6a94b5e"
+      "revision": "0e1022698a058b69658eed087623f72b93c78cd3"
     }
   },
   "components": [
@@ -19,7 +19,7 @@
       "id": "page",
       "type": "frontend",
       "label": "docs/architecture.md",
-      "sublabel": "two capture blocks and a heading",
+      "sublabel": "two capture blocks, one folded",
       "tag": "changed",
       "pos": [
         40,
@@ -63,8 +63,8 @@
       "id": "site",
       "type": "backend",
       "label": "site/docs.ts",
-      "sublabel": "renders the page, unchanged",
-      "tag": "unchanged",
+      "sublabel": "a details block: summary and captures",
+      "tag": "changed",
       "pos": [
         40,
         200
@@ -76,7 +76,7 @@
       "sources": [
         {
           "path": "site/docs.ts",
-          "line": 229
+          "line": 206
         }
       ]
     },
@@ -84,7 +84,7 @@
       "id": "pages",
       "type": "external",
       "label": "the GitHub page and the docs site",
-      "sublabel": "both load the images by raw URL on main",
+      "sublabel": "both fold the plain version away",
       "pos": [
         450,
         200
@@ -110,7 +110,7 @@
       "id": "site-pages",
       "from": "site",
       "to": "pages",
-      "label": "writes the page",
+      "label": "writes the page, fold included",
       "variant": "emphasis"
     },
     {
@@ -131,7 +131,7 @@
       "title": "What the reader gets",
       "items": [
         "The system in one picture, up front",
-        "A plain-English twin beneath it"
+        "A plain-English twin, folded beneath it"
       ]
     },
     {
