@@ -65,6 +65,7 @@ documents.
 | `0097-test-clock` | [#97](https://github.com/FredAmartey/leglas/pull/97) |
 | `0098-readme-audit` | [#98](https://github.com/FredAmartey/leglas/pull/98) |
 | `0099-architecture-diagram` | [#99](https://github.com/FredAmartey/leglas/pull/99) |
+| `0100-architecture-intro` | [#100](https://github.com/FredAmartey/leglas/pull/100) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

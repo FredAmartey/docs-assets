@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One click copies the words to give your agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "85eea3a8d95893208049cbe9561a09d176af76e6"
+    }
+  },
+  "components": [
+    {
+      "id": "arch",
+      "type": "frontend",
+      "label": "The architecture page",
+      "sublabel": "new intro, one button",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture.md",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "frontend",
+      "label": "The agents page",
+      "sublabel": "holds the prompt",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/agents.md",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "id": "renderer",
+      "type": "backend",
+      "label": "The site builder",
+      "sublabel": "turns the link into a button",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 401
+        }
+      ]
+    },
+    {
+      "id": "chrome",
+      "type": "backend",
+      "label": "The site's shared parts",
+      "sublabel": "the button itself",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "external",
+      "label": "The docs site",
+      "sublabel": "GitHub shows a link instead",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "arch-agents",
+      "from": "arch",
+      "to": "agents",
+      "label": "points at the prompt",
+      "variant": "emphasis"
+    },
+    {
+      "id": "arch-renderer",
+      "from": "arch",
+      "to": "renderer",
+      "label": "gets built",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "renderer-chrome",
+      "from": "renderer",
+      "to": "chrome",
+      "label": "borrows the button",
+      "variant": "emphasis"
+    },
+    {
+      "id": "renderer-site",
+      "from": "renderer",
+      "to": "site",
+      "label": "makes both pages",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What you get",
+      "items": [
+        "A shorter intro that says where to go next",
+        "A button that copies the words to give your agent"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "The pictures and the fold",
+        "On GitHub the button is a link to the same words"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "In plain English",
+      "items": [
+        "Before this change the page pointed readers at the agents page and left them to copy the install line themselves.",
+        "Now one click copies a ready-made prompt, and the intro says in three sentences where to go next.",
+        "Anyone can hand their agent the right words without reading the manual first."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The architecture page gets a button that copies a prompt for your agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "85eea3a8d95893208049cbe9561a09d176af76e6"
+    }
+  },
+  "components": [
+    {
+      "id": "arch",
+      "type": "frontend",
+      "label": "docs/architecture.md",
+      "sublabel": "new intro, links to the prompt",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/architecture.md",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "frontend",
+      "label": "docs/agents.md",
+      "sublabel": "the prompt, in a prompt block",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/agents.md",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "id": "renderer",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "prompt links and blocks become buttons",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 401
+        }
+      ]
+    },
+    {
+      "id": "chrome",
+      "type": "backend",
+      "label": "site/chrome.ts",
+      "sublabel": "the button, in the star's clothes",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "external",
+      "label": "the docs site",
+      "sublabel": "GitHub shows the link instead",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "arch-agents",
+      "from": "arch",
+      "to": "agents",
+      "label": "links to the prompt",
+      "variant": "emphasis"
+    },
+    {
+      "id": "arch-renderer",
+      "from": "arch",
+      "to": "renderer",
+      "label": "gets built",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "renderer-chrome",
+      "from": "renderer",
+      "to": "chrome",
+      "label": "asks for the button",
+      "variant": "emphasis"
+    },
+    {
+      "id": "renderer-site",
+      "from": "renderer",
+      "to": "site",
+      "label": "writes both pages",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the reader gets",
+      "items": [
+        "A new intro with three ways onward",
+        "A button that copies a setup prompt"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The diagrams and the fold",
+        "A link to the same prompt on GitHub"
+      ]
+    }
+  ]
+}
