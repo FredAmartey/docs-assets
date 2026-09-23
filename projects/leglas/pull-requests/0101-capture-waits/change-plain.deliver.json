@@ -6,12 +6,12 @@
   "input": "change-plain.architecture.json",
   "output": "change-plain.html",
   "specification": {
-    "sha256": "e6245608f65c88c3c99d3d38240582c18094a3397056dadc7bb4654381523404",
-    "bytes": 4070
+    "sha256": "bb72a775b3ae4f0e0f0513b9a0d82a6ca5f357355692f36b77d5eafa783c0d92",
+    "bytes": 4098
   },
   "artifact": {
-    "sha256": "890ada592a04ca7303333d0553c72e8c1ffcf59c351e8b0e821e63246d28f1aa",
-    "bytes": 805807
+    "sha256": "8503505834ba821ee47a1c7dba8d68814b84baa2b596120576113c3a61286c0d",
+    "bytes": 805903
   },
   "validation": {
     "checksPassed": 9,

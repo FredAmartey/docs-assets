@@ -6,12 +6,12 @@
   "input": "change.architecture.json",
   "output": "change.html",
   "specification": {
-    "sha256": "7773e71156e344cb6cc7689e9d24097b0512fc27dacbfe0993ab15e6ffa1988c",
-    "bytes": 4105
+    "sha256": "2ee8fa85dc1e1ab1ef1099a379e46b797c7fc16b9b5e0be05ee5b3da25b208cf",
+    "bytes": 4124
   },
   "artifact": {
-    "sha256": "ce26cf9ba233b99d79df2e308cd7aaeb53a135153a3c47284b5e4237a5eb549a",
-    "bytes": 805903
+    "sha256": "8f6798c9b953b1a4cac11b0b8853f752b692111739c60d836b618058b0d3e54d",
+    "bytes": 805960
   },
   "validation": {
     "checksPassed": 9,

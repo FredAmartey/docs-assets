@@ -7,8 +7,8 @@
   "visualReview": "pending",
   "artifact": {
     "path": "change.html",
-    "sha256": "ce26cf9ba233b99d79df2e308cd7aaeb53a135153a3c47284b5e4237a5eb549a",
-    "bytes": 805903
+    "sha256": "8f6798c9b953b1a4cac11b0b8853f752b692111739c60d836b618058b0d3e54d",
+    "bytes": 805960
   },
   "state": {
     "detail": "read",
@@ -35,7 +35,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true
       },
@@ -59,7 +59,7 @@
         "innerWidth": 1600,
         "innerHeight": 1000,
         "scrollWidth": 1600,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true
       },
@@ -83,12 +83,36 @@
         "innerWidth": 1920,
         "innerHeight": 1080,
         "scrollWidth": 1920,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true
       },
       "supportedFixes": [
         "contain the rendered layout within 1920x1080, then rerun visual-check"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 2048x1320 light viewport.",
+      "subject": {
+        "artifact": "change.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1350,
+        "overflowX": false,
+        "overflowY": true
+      },
+      "supportedFixes": [
+        "contain the rendered layout within 2048x1320, then rerun visual-check"
       ]
     },
     {
@@ -107,12 +131,36 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true
       },
       "supportedFixes": [
         "contain the rendered layout within 1440x900, then rerun visual-check"
+      ]
+    },
+    {
+      "code": "viewer/viewport-overflow",
+      "severity": "error",
+      "message": "The rendered artifact overflows the 2048x1320 dark viewport.",
+      "subject": {
+        "artifact": "change.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "dark"
+        }
+      },
+      "evidence": {
+        "innerWidth": 2048,
+        "innerHeight": 1320,
+        "scrollWidth": 2048,
+        "scrollHeight": 1350,
+        "overflowX": false,
+        "overflowY": true
+      },
+      "supportedFixes": [
+        "contain the rendered layout within 2048x1320, then rerun visual-check"
       ]
     }
   ],
@@ -126,7 +174,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -157,7 +205,7 @@
         "innerWidth": 1600,
         "innerHeight": 1000,
         "scrollWidth": 1600,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -188,7 +236,7 @@
         "innerWidth": 1920,
         "innerHeight": 1080,
         "scrollWidth": 1920,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -219,10 +267,10 @@
         "innerWidth": 2048,
         "innerHeight": 1320,
         "scrollWidth": 2048,
-        "scrollHeight": 1320,
+        "scrollHeight": 1350,
         "overflowX": false,
-        "overflowY": false,
-        "ok": true,
+        "overflowY": true,
+        "ok": false,
         "readerWidth": 1440,
         "diagramWidth": 1390,
         "viewBoxWidth": 740,
@@ -256,7 +304,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -287,7 +335,7 @@
         "innerWidth": 1600,
         "innerHeight": 1000,
         "scrollWidth": 1600,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -318,7 +366,7 @@
         "innerWidth": 1920,
         "innerHeight": 1080,
         "scrollWidth": 1920,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -349,10 +397,10 @@
         "innerWidth": 2048,
         "innerHeight": 1320,
         "scrollWidth": 2048,
-        "scrollHeight": 1320,
+        "scrollHeight": 1350,
         "overflowX": false,
-        "overflowY": false,
-        "ok": true,
+        "overflowY": true,
+        "ok": false,
         "readerWidth": 1440,
         "diagramWidth": 1390,
         "viewBoxWidth": 740,
@@ -385,7 +433,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -416,7 +464,7 @@
         "innerWidth": 1600,
         "innerHeight": 1000,
         "scrollWidth": 1600,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -447,7 +495,7 @@
         "innerWidth": 1920,
         "innerHeight": 1080,
         "scrollWidth": 1920,
-        "scrollHeight": 1291,
+        "scrollHeight": 1322,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -478,10 +526,10 @@
         "innerWidth": 2048,
         "innerHeight": 1320,
         "scrollWidth": 2048,
-        "scrollHeight": 1320,
+        "scrollHeight": 1350,
         "overflowX": false,
-        "overflowY": false,
-        "ok": true,
+        "overflowY": true,
+        "ok": false,
         "readerWidth": 1440,
         "diagramWidth": 1390,
         "viewBoxWidth": 740,
@@ -514,7 +562,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -546,7 +594,7 @@
         "innerWidth": 1440,
         "innerHeight": 900,
         "scrollWidth": 1440,
-        "scrollHeight": 1171,
+        "scrollHeight": 1202,
         "overflowX": false,
         "overflowY": true,
         "ok": false,
@@ -578,10 +626,10 @@
         "innerWidth": 2048,
         "innerHeight": 1320,
         "scrollWidth": 2048,
-        "scrollHeight": 1320,
+        "scrollHeight": 1350,
         "overflowX": false,
-        "overflowY": false,
-        "ok": true,
+        "overflowY": true,
+        "ok": false,
         "readerWidth": 1440,
         "diagramWidth": 1390,
         "viewBoxWidth": 740,
@@ -610,10 +658,10 @@
         "innerWidth": 2048,
         "innerHeight": 1320,
         "scrollWidth": 2048,
-        "scrollHeight": 1320,
+        "scrollHeight": 1350,
         "overflowX": false,
-        "overflowY": false,
-        "ok": true,
+        "overflowY": true,
+        "ok": false,
         "readerWidth": 1440,
         "diagramWidth": 1390,
         "viewBoxWidth": 740,
