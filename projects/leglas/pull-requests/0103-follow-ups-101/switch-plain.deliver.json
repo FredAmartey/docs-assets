@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "switch-plain.architecture.json",
+  "output": "switch-plain.html",
+  "specification": {
+    "sha256": "abfb7bcd837d5f5f9123e3883d93cd545d9d446ea9c705818870d142b7fae192",
+    "bytes": 2656
+  },
+  "artifact": {
+    "sha256": "037afce7593286d81100f2c8fe00981e1e578153ad23cb21336f50d5cff075aa",
+    "bytes": 801071
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "424f9a2423487a66e2ed48a3d706cbf1254e4797",
+    "references": 1
+  }
+}

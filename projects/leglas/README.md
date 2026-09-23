@@ -68,6 +68,7 @@ documents.
 | `0100-architecture-intro` | [#100](https://github.com/FredAmartey/leglas/pull/100) |
 | `0101-capture-waits` | [#101](https://github.com/FredAmartey/leglas/pull/101) |
 | `0102-eli5-label` | [#102](https://github.com/FredAmartey/leglas/pull/102) |
+| `0103-follow-ups-101` | [#103](https://github.com/FredAmartey/leglas/pull/103) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

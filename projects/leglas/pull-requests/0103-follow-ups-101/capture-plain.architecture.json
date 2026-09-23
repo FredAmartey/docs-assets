@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Screenshots now wait for a lazy part to appear",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "424f9a2423487a66e2ed48a3d706cbf1254e4797"
+    }
+  },
+  "components": [
+    {
+      "id": "load",
+      "type": "external",
+      "label": "The page finishes loading",
+      "sublabel": "designs appear after this",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "script",
+      "type": "backend",
+      "label": "Code asked for late",
+      "sublabel": "its arrival time is noted",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "type": "backend",
+      "label": "Waiting for late files",
+      "sublabel": "300 ms more, then another look",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 361
+        }
+      ]
+    },
+    {
+      "id": "shot",
+      "type": "backend",
+      "label": "The screenshot",
+      "sublabel": "shows the revealed part",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "load-script",
+      "from": "load",
+      "to": "script",
+      "label": "then, a late piece of code"
+    },
+    {
+      "id": "script-wait",
+      "from": "script",
+      "to": "wait",
+      "label": "arrives",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "wait-shot",
+      "from": "wait",
+      "to": "shot",
+      "label": "settled, nothing new asked",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "script",
+        "wait"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Code asked for late is noted, with when it arrived",
+        "Then up to 300 ms more, and one more look"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "The two-second limit",
+        "Settling and the shot"
+      ]
+    }
+  ]
+}

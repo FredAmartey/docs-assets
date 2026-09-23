@@ -1,0 +1,6 @@
+structure: PASS
+labels: 0 FAIL, 3 WARN
+  WARN over-four components[1].sublabel "its arrival time is noted" (5 words)
+  WARN over-four components[2].sublabel "300 ms more, then another look" (6 words)
+  WARN over-four connections[0].label "then, a late piece of code" (6 words)
+result: PASS

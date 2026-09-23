@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The shutter waits out a lazy chunk's 300 ms reveal",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "424f9a2423487a66e2ed48a3d706cbf1254e4797"
+    }
+  },
+  "components": [
+    {
+      "id": "load",
+      "type": "external",
+      "label": "Page.loadEventFired",
+      "sublabel": "React draws after it",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "script",
+      "type": "backend",
+      "label": "a Script asked for after load",
+      "sublabel": "its landing time is recorded",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "type": "backend",
+      "label": "the wait after load",
+      "sublabel": "the rest of 300 ms, then one more look",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 361
+        }
+      ]
+    },
+    {
+      "id": "shot",
+      "type": "backend",
+      "label": "Page.captureScreenshot",
+      "sublabel": "sees the revealed content",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "load-script",
+      "from": "load",
+      "to": "script",
+      "label": "then, a lazy chunk"
+    },
+    {
+      "id": "script-wait",
+      "from": "script",
+      "to": "wait",
+      "label": "lands",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "wait-shot",
+      "from": "wait",
+      "to": "shot",
+      "label": "settled, nothing new asked",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "script",
+        "wait"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Scripts asked for after load are tracked, with their landing time",
+        "After settling, the loop waits the rest of the 300 ms window, then looks again"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The 2 s deadline",
+        "The settle phase and the shutter"
+      ]
+    }
+  ]
+}

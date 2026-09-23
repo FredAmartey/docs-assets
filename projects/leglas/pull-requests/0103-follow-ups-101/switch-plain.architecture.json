@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Adding a direction no longer reloads the page",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "424f9a2423487a66e2ed48a3d706cbf1254e4797"
+    }
+  },
+  "components": [
+    {
+      "id": "new",
+      "type": "backend",
+      "label": "The new command",
+      "sublabel": "keeps its picker private",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/new.ts",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "id": "switch",
+      "type": "frontend",
+      "label": "The switch file",
+      "sublabel": "exports the switch alone",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "refresh",
+      "type": "external",
+      "label": "The live-update tool",
+      "sublabel": "swaps component files in place",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "page",
+      "type": "external",
+      "label": "The page in your browser",
+      "sublabel": "keeps its place on an edit",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "new-switch",
+      "from": "new",
+      "to": "switch",
+      "label": "writes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "switch-refresh",
+      "from": "switch",
+      "to": "refresh",
+      "label": "an edit reaches",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "refresh-page",
+      "from": "refresh",
+      "to": "page",
+      "label": "swaps in place, no reload",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "new",
+        "switch"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The helper that picks a direction is no longer exported",
+        "A check confirms the switch is the file's only export"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "How a direction is picked",
+        "The files the command writes"
+      ]
+    }
+  ]
+}
