@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One program between your browser and the app you are building",
+    "quality_profile": "showcase",
+    "viewBox": [
+      970,
+      770
+    ]
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Your browser",
+      "sublabel": "Leglas and your app",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "interface",
+      "type": "frontend",
+      "label": "The Leglas page",
+      "sublabel": "served as ready-made files",
+      "pos": [
+        380,
+        60
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Takes in requests",
+      "sublabel": "only from this computer",
+      "pos": [
+        380,
+        210
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "chromium",
+      "type": "external",
+      "label": "A browser for screenshots",
+      "sublabel": "already on this computer",
+      "pos": [
+        710,
+        210
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "Runs the agent",
+      "sublabel": "takes the next request",
+      "pos": [
+        380,
+        360
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "Your AI agent",
+      "sublabel": "Claude, Codex or any tool",
+      "pos": [
+        710,
+        360
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "live",
+      "type": "backend",
+      "label": "Tells your browser",
+      "sublabel": "something changed, look again",
+      "pos": [
+        380,
+        510
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "project",
+      "type": "external",
+      "label": "Your project's files",
+      "sublabel": "code and Leglas notes",
+      "pos": [
+        710,
+        510
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "proxy",
+      "type": "backend",
+      "label": "The pass-through",
+      "sublabel": "everything else, untouched",
+      "pos": [
+        380,
+        660
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "devserver",
+      "type": "external",
+      "label": "Your app, running",
+      "sublabel": "Leglas never runs it",
+      "pos": [
+        40,
+        660
+      ],
+      "size": [
+        220,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "The one Leglas program",
+      "wraps": [
+        "interface",
+        "api",
+        "runner",
+        "live",
+        "proxy"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "browser-interface",
+      "from": "browser",
+      "to": "interface",
+      "label": "opens Leglas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "interface-api",
+      "from": "interface",
+      "to": "api",
+      "label": "sends your change",
+      "variant": "emphasis",
+      "labelAt": [
+        490,
+        166
+      ]
+    },
+    {
+      "id": "api-chromium",
+      "from": "api",
+      "to": "chromium",
+      "label": "takes a screenshot"
+    },
+    {
+      "id": "api-runner",
+      "from": "api",
+      "to": "runner",
+      "label": "waits its turn",
+      "variant": "emphasis",
+      "labelAt": [
+        490,
+        316
+      ]
+    },
+    {
+      "id": "runner-agent",
+      "from": "runner",
+      "to": "agent",
+      "label": "asks for the change",
+      "variant": "emphasis"
+    },
+    {
+      "id": "agent-project",
+      "from": "agent",
+      "to": "project",
+      "label": "edits the code",
+      "variant": "emphasis",
+      "labelAt": [
+        820,
+        466
+      ]
+    },
+    {
+      "id": "project-live",
+      "from": "project",
+      "to": "live",
+      "label": "a file changed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "live-browser",
+      "from": "live",
+      "to": "browser",
+      "label": "look again",
+      "variant": "emphasis",
+      "via": [
+        [
+          150,
+          541
+        ]
+      ],
+      "labelAt": [
+        150,
+        330
+      ],
+      "toSide": "bottom"
+    },
+    {
+      "id": "browser-proxy",
+      "from": "browser",
+      "to": "proxy",
+      "label": "everything else",
+      "labelAt": [
+        320,
+        400
+      ],
+      "via": [
+        [
+          283,
+          91
+        ],
+        [
+          283,
+          616
+        ],
+        [
+          490,
+          616
+        ]
+      ],
+      "toSide": "top",
+      "fromSide": "right"
+    },
+    {
+      "id": "proxy-devserver",
+      "from": "proxy",
+      "to": "devserver",
+      "label": "passes it along",
+      "labelAt": [
+        320,
+        712
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What happens",
+      "items": [
+        "You type a change and Leglas takes a screenshot, then hands both to your agent",
+        "When the agent saves a file, your browser is told to look again"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What never happens",
+      "items": [
+        "Leglas never runs or changes your app by itself",
+        "No account and no database: everything is kept in a folder next to your code"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "In plain English",
+      "items": [
+        "Leglas is one program that sits between your browser and the app you are building.",
+        "You type a change, Leglas takes a screenshot, an agent edits the code and your browser is told to look again.",
+        "It never runs your app itself, which is why it works with any framework."
+      ]
+    }
+  ]
+}

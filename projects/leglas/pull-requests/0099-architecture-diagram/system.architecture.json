@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "What runs where",
+    "quality_profile": "showcase",
+    "viewBox": [
+      970,
+      770
+    ]
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Your browser",
+      "sublabel": "interface and previews",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "interface",
+      "type": "frontend",
+      "label": "The interface",
+      "sublabel": "React, built by Vite",
+      "pos": [
+        380,
+        60
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "The API and the queue",
+      "sublabel": "POST from this machine only",
+      "pos": [
+        380,
+        210
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "chromium",
+      "type": "external",
+      "label": "Chromium on this machine",
+      "sublabel": "driven over DevTools",
+      "pos": [
+        710,
+        210
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "The agent runner",
+      "sublabel": "drains the queue",
+      "pos": [
+        380,
+        360
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "An agent",
+      "sublabel": "three ways to reach one",
+      "pos": [
+        710,
+        360
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "live",
+      "type": "backend",
+      "label": "The WebSocket",
+      "sublabel": "one nudge names what moved",
+      "pos": [
+        380,
+        510
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "project",
+      "type": "external",
+      "label": "Your project on disk",
+      "sublabel": "your code and .leglas/",
+      "pos": [
+        710,
+        510
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "proxy",
+      "type": "backend",
+      "label": "The proxy",
+      "sublabel": "every path outside /leglas",
+      "pos": [
+        380,
+        660
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "devserver",
+      "type": "external",
+      "label": "Your dev server",
+      "sublabel": "only ever proxied",
+      "pos": [
+        40,
+        660
+      ],
+      "size": [
+        220,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "One Node process: npx leglas",
+      "wraps": [
+        "interface",
+        "api",
+        "runner",
+        "live",
+        "proxy"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "browser-interface",
+      "from": "browser",
+      "to": "interface",
+      "label": "loads /leglas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "interface-api",
+      "from": "interface",
+      "to": "api",
+      "label": "POST /leglas/api/request",
+      "variant": "emphasis",
+      "labelAt": [
+        490,
+        166
+      ]
+    },
+    {
+      "id": "api-chromium",
+      "from": "api",
+      "to": "chromium",
+      "label": "screenshot"
+    },
+    {
+      "id": "api-runner",
+      "from": "api",
+      "to": "runner",
+      "label": "queued with its images",
+      "variant": "emphasis",
+      "labelAt": [
+        490,
+        316
+      ]
+    },
+    {
+      "id": "runner-agent",
+      "from": "runner",
+      "to": "agent",
+      "label": "runs it",
+      "variant": "emphasis"
+    },
+    {
+      "id": "agent-project",
+      "from": "agent",
+      "to": "project",
+      "label": "edits the code",
+      "variant": "emphasis",
+      "labelAt": [
+        820,
+        466
+      ]
+    },
+    {
+      "id": "project-live",
+      "from": "project",
+      "to": "live",
+      "label": "a file changed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "live-browser",
+      "from": "live",
+      "to": "browser",
+      "label": "nudge, then a fetch",
+      "variant": "emphasis",
+      "via": [
+        [
+          150,
+          541
+        ]
+      ],
+      "labelAt": [
+        150,
+        330
+      ],
+      "toSide": "bottom"
+    },
+    {
+      "id": "browser-proxy",
+      "from": "browser",
+      "to": "proxy",
+      "label": "every other path",
+      "labelAt": [
+        320,
+        400
+      ],
+      "via": [
+        [
+          283,
+          91
+        ],
+        [
+          283,
+          616
+        ],
+        [
+          490,
+          616
+        ]
+      ],
+      "toSide": "top",
+      "fromSide": "right"
+    },
+    {
+      "id": "proxy-devserver",
+      "from": "proxy",
+      "to": "devserver",
+      "label": "forwards HTTP",
+      "labelAt": [
+        320,
+        712
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The loop",
+      "items": [
+        "A request leaves the composer with a screenshot",
+        "The rail shows the result when a file changes"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What never happens",
+      "items": [
+        "Leglas does not import or run your app",
+        "No account, no database: state is in .leglas/"
+      ]
+    }
+  ]
+}
