@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One README, two front doors",
+    "quality_profile": "showcase",
+    "viewBox": [740, 340],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "e53576043fec5223758b813130ab0ea76cb7aa5a"
+    }
+  },
+  "components": [
+    {
+      "id": "readme",
+      "type": "frontend",
+      "label": "README.md",
+      "sublabel": "intro, sharing, install, agents",
+      "tag": "changed",
+      "pos": [40, 40],
+      "size": [250, 62],
+      "sources": [{ "path": "README.md", "line": 24 }]
+    },
+    {
+      "id": "github",
+      "type": "external",
+      "label": "the GitHub page",
+      "sublabel": "shows it as soon as it merges",
+      "pos": [450, 40],
+      "size": [250, 62]
+    },
+    {
+      "id": "pack",
+      "type": "backend",
+      "label": "prepack, both packages",
+      "sublabel": "copies the README in",
+      "tag": "unchanged",
+      "pos": [40, 200],
+      "size": [250, 62],
+      "sources": [
+        { "path": "packages/cli/package.json", "line": 32 },
+        { "path": "packages/mcp/package.json", "line": 18 }
+      ]
+    },
+    {
+      "id": "npm",
+      "type": "external",
+      "label": "the npm pages",
+      "sublabel": "show it from the next release",
+      "pos": [450, 200],
+      "size": [250, 62]
+    }
+  ],
+  "connections": [
+    { "id": "readme-github", "from": "readme", "to": "github", "label": "on merge", "variant": "emphasis" },
+    { "id": "readme-pack", "from": "readme", "to": "pack", "label": "at publish", "labelAt": [165, 151] },
+    { "id": "pack-npm", "from": "pack", "to": "npm", "label": "next release" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the reader sees now",
+      "items": ["Sharing from a terminal or an agent", "Leglas updates itself"]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": ["The order of sections", "Every link, still absolute"]
+    }
+  ]
+}
