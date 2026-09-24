@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "wrap-plain.architecture.json",
+  "output": "wrap-plain.html",
+  "specification": {
+    "sha256": "9c047b1c492003d9fdabe06c1c8554cb06bca83a40e974cd359d7b70aaeb63ab",
+    "bytes": 3227
+  },
+  "artifact": {
+    "sha256": "394cd1448940f27958f28b17df0f10103ec3985fed2912e687e5028bf6072189",
+    "bytes": 802106
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "6784890942cff019789de3a89b8d8908bf31fcf1",
+    "references": 2
+  }
+}

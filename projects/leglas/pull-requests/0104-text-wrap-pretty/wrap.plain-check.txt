@@ -1,0 +1,7 @@
+structure: PASS
+labels: 0 FAIL, 4 WARN
+  WARN over-four components[1].label "Home, docs and changelog pages" (5 words)
+  WARN over-four components[1].sublabel "each built on that style" (5 words)
+  WARN over-four components[2].sublabel "their paragraphs follow the rule" (5 words)
+  WARN over-four components[3].sublabel "avoids a lone last word" (5 words)
+result: PASS

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Every page on the site gets text-wrap: pretty from the shared body rule",
+    "quality_profile": "showcase",
+    "viewBox": [740, 340],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6784890942cff019789de3a89b8d8908bf31fcf1"
+    }
+  },
+  "components": [
+    {
+      "id": "chrome",
+      "type": "frontend",
+      "label": "site/chrome.ts",
+      "sublabel": "body gains text-wrap: pretty",
+      "tag": "changed",
+      "pos": [40, 40],
+      "size": [250, 62],
+      "sources": [{ "path": "site/chrome.ts", "line": 151 }]
+    },
+    {
+      "id": "pages",
+      "type": "backend",
+      "label": "home, docs and changelog",
+      "sublabel": "each wraps its page in document()",
+      "tag": "unchanged",
+      "pos": [450, 40],
+      "size": [250, 62],
+      "sources": [{ "path": "site/chrome.ts", "line": 306 }]
+    },
+    {
+      "id": "built",
+      "type": "frontend",
+      "label": "dist/site, nine pages",
+      "sublabel": "prose inherits the rule",
+      "tag": "unchanged",
+      "pos": [450, 200],
+      "size": [250, 62]
+    },
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "the reader's browser",
+      "sublabel": "avoids a one-word last line",
+      "tag": "unchanged",
+      "pos": [40, 200],
+      "size": [250, 62]
+    }
+  ],
+  "connections": [
+    { "id": "chrome-pages", "from": "chrome", "to": "pages", "label": "base styles", "variant": "emphasis" },
+    { "id": "pages-built", "from": "pages", "to": "built", "label": "pnpm site writes", "labelAt": [575, 151] },
+    { "id": "built-browser", "from": "built", "to": "browser", "label": "served to", "variant": "emphasis" }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "changed in this PR", "wraps": ["chrome"], "pad": 16 }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "One declaration on body, inherited by every page",
+        "One-word last lines: 45 to 25 at 1440px, 65 to 20 at 390px"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Line count and page height, every page at every width",
+        "Balanced headings, code blocks and nowrap cells"
+      ]
+    }
+  ]
+}

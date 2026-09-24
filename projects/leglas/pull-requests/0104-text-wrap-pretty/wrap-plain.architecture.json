@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Paragraphs on the site stop ending on a single word",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6784890942cff019789de3a89b8d8908bf31fcf1"
+    }
+  },
+  "components": [
+    {
+      "id": "chrome",
+      "type": "frontend",
+      "label": "The site's shared style",
+      "sublabel": "adds one line-breaking rule",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "id": "pages",
+      "type": "backend",
+      "label": "Home, docs and changelog pages",
+      "sublabel": "each built on that style",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 306
+        }
+      ]
+    },
+    {
+      "id": "built",
+      "type": "frontend",
+      "label": "The nine finished pages",
+      "sublabel": "their paragraphs follow the rule",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "The reader's browser",
+      "sublabel": "avoids a lone last word",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "chrome-pages",
+      "from": "chrome",
+      "to": "pages",
+      "label": "passes its style to",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pages-built",
+      "from": "pages",
+      "to": "built",
+      "label": "get built into",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "built-browser",
+      "from": "built",
+      "to": "browser",
+      "label": "sent to",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "chrome"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "One rule added to the shared style",
+        "Paragraphs ending on one word: 45 to 25 on a wide screen, 65 to 20 on a phone"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Every page keeps its length at every screen width",
+        "Headings, code samples and one-line table cells keep their own rules"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change a paragraph on the site could end with one word alone on its last line.",
+        "Now every page asks the browser to choose line breaks that avoid that.",
+        "Paragraphs read more evenly and no page gets longer; a browser that ignores the request shows the text as before."
+      ]
+    }
+  ]
+}
