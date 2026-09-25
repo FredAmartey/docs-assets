@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "watch.architecture.json",
+  "output": "watch.html",
+  "specification": {
+    "sha256": "a8a6fb55870874ad3dbc7e0e5e78ade11658cfba1c5cdef966ca4ac5b9c36983",
+    "bytes": 2895
+  },
+  "artifact": {
+    "sha256": "2dc169f634e6380d8dbdc0e6f8569865ed652e5cd144b44edac2c31214f6fc78",
+    "bytes": 801512
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "bdc4bd39cf50bbbdda957d9ab291e51b664ed369",
+    "references": 3
+  }
+}

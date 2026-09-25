@@ -1,0 +1,5 @@
+structure: PASS
+labels: 0 FAIL, 2 WARN
+  WARN over-four components[2].sublabel "reports each step as a line" (6 words)
+  WARN over-four components[3].sublabel "machine lines; agent text kept aside" (6 words)
+result: PASS

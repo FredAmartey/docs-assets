@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "leglas watch --json prints one JSON line per event",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "bdc4bd39cf50bbbdda957d9ab291e51b664ed369"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "leglas watch --json",
+      "sublabel": "an agent host following along",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "parseWatch in args.ts",
+      "sublabel": "takes --json instead of refusing it",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 302
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "type": "backend",
+      "label": "runWatch in run-watch.ts",
+      "sublabel": "emits watching, started, done, failed",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-watch.ts",
+          "line": 130
+        },
+        {
+          "path": "packages/cli/src/run-watch.ts",
+          "line": 91
+        }
+      ]
+    },
+    {
+      "id": "out",
+      "type": "frontend",
+      "label": "stdout",
+      "sublabel": "JSON lines only; agent output on stderr",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "cli-parse",
+      "from": "cli",
+      "to": "parse",
+      "label": "argv",
+      "variant": "emphasis"
+    },
+    {
+      "id": "parse-loop",
+      "from": "parse",
+      "to": "loop",
+      "label": "json: true",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "loop-out",
+      "from": "loop",
+      "to": "out",
+      "label": "one event per line",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "parse",
+        "loop"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "watch takes --json; events listed in docs/cli.md",
+        "Under --json the agent's stdout goes to stderr"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "watch without --json prints what it always did",
+        "The queue, the heartbeat and failure bookkeeping"
+      ]
+    }
+  ]
+}

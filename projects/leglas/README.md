@@ -74,6 +74,7 @@ documents.
 | `0106-installer-reason` | [#106](https://github.com/FredAmartey/leglas/pull/106) |
 | `0107-project-dir-docs` | [#107](https://github.com/FredAmartey/leglas/pull/107) |
 | `0108-keep-absolute-destination` | [#108](https://github.com/FredAmartey/leglas/pull/108) |
+| `0109-watch-json` | [#109](https://github.com/FredAmartey/leglas/pull/109) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

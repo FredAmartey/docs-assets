@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The watch command can now report each step in machine-readable lines",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "bdc4bd39cf50bbbdda957d9ab291e51b664ed369"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "The watch command",
+      "sublabel": "asked for machine output",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "The option reader",
+      "sublabel": "now accepts that request",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 302
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "type": "backend",
+      "label": "The request watcher",
+      "sublabel": "reports each step as a line",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-watch.ts",
+          "line": 130
+        },
+        {
+          "path": "packages/cli/src/run-watch.ts",
+          "line": 91
+        }
+      ]
+    },
+    {
+      "id": "out",
+      "type": "frontend",
+      "label": "The command's output",
+      "sublabel": "machine lines; agent text kept aside",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "cli-parse",
+      "from": "cli",
+      "to": "parse",
+      "label": "passes the options",
+      "variant": "emphasis"
+    },
+    {
+      "id": "parse-loop",
+      "from": "parse",
+      "to": "loop",
+      "label": "turns it on",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "loop-out",
+      "from": "loop",
+      "to": "out",
+      "label": "one line per step",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "parse",
+        "loop"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Machine output works for the watch command",
+        "The agent's own text goes to a separate channel"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "What watch prints for a person",
+        "How requests are picked up and recorded"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change the watch command refused to give machine-readable output, although the guides say every command accepts it.",
+        "Now it prints one line for each step, such as a request starting, finishing or failing, and keeps the agent's own text on a separate channel.",
+        "An agent host can follow the queue as it happens without reading prose."
+      ]
+    }
+  ]
+}
