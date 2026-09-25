@@ -87,6 +87,7 @@ documents.
 | `0119-trust-every-method` | [#119](https://github.com/FredAmartey/leglas/pull/119) |
 | `0120-drop-unused-reorder` | [#120](https://github.com/FredAmartey/leglas/pull/120) |
 | `0121-generation-ux` | [#121](https://github.com/FredAmartey/leglas/pull/121) |
+| `0122-generation-codex` | [#122](https://github.com/FredAmartey/leglas/pull/122) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A set built with Codex: restricted runs, its MCP servers off, the agent named on every label",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "500a41929844e30cb8b7a68e5105a278b237cbfb"
+    }
+  },
+  "components": [
+    {
+      "id": "brief",
+      "type": "frontend",
+      "label": "brief with Codex chosen",
+      "sublabel": "Build 3 with Codex",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 1719
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "type": "backend",
+      "label": "POST /api/generate",
+      "sublabel": "reads the chosen agent",
+      "pos": [
+        450,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1177
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "generation job",
+      "sublabel": "Claude or Codex profile",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 898
+        },
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 164
+        }
+      ]
+    },
+    {
+      "id": "labels",
+      "type": "frontend",
+      "label": "cover, badge and button",
+      "sublabel": "name the agent building it",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/GenerationCover.tsx",
+          "line": 75
+        },
+        {
+          "path": "packages/shell/src/rail/Row.tsx",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "database",
+      "label": "Codex config.toml",
+      "sublabel": "the person's MCP servers",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 55
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "type": "external",
+      "label": "codex exec --json",
+      "sublabel": "read-only plan, workspace-write builds",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 19
+        },
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 87
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "brief-route",
+      "from": "brief",
+      "to": "route",
+      "label": "brief, count",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route-job",
+      "from": "route",
+      "to": "job",
+      "label": "the chosen agent",
+      "labelAt": [
+        575,
+        161
+      ]
+    },
+    {
+      "id": "job-labels",
+      "from": "job",
+      "to": "labels",
+      "label": "which agent built it"
+    },
+    {
+      "id": "job-codex",
+      "from": "job",
+      "to": "codex",
+      "label": "restricted runs",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "config-codex",
+      "from": "config",
+      "to": "codex",
+      "label": "each server switched off"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "Codex as the agent that builds a set",
+        "Its MCP servers switched off by name",
+        "The agent named on the button, cover and badge"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Claude's runs and the engine's invariants",
+        "Other agents refused, with the reason"
+      ]
+    }
+  ]
+}

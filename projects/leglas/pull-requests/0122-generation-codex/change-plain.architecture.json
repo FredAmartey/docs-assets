@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas can now build a set of designs with Codex as well as Claude",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "500a41929844e30cb8b7a68e5105a278b237cbfb"
+    }
+  },
+  "components": [
+    {
+      "id": "brief",
+      "type": "frontend",
+      "label": "A brief, Codex chosen",
+      "sublabel": "the button says Codex",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 1719
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "type": "backend",
+      "label": "Starts building the set",
+      "sublabel": "reads which agent is chosen",
+      "pos": [
+        450,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1177
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "Picks how to run it",
+      "sublabel": "Claude's way or Codex's way",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 898
+        },
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 164
+        }
+      ]
+    },
+    {
+      "id": "labels",
+      "type": "frontend",
+      "label": "Names who is building",
+      "sublabel": "on the preview, list and button",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/GenerationCover.tsx",
+          "line": 75
+        },
+        {
+          "path": "packages/shell/src/rail/Row.tsx",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "database",
+      "label": "Codex's own settings",
+      "sublabel": "list its connected tools",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 55
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "type": "external",
+      "label": "Codex doing the work",
+      "sublabel": "plans without writing, then builds",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 19
+        },
+        {
+          "path": "packages/server/src/generation/codex.ts",
+          "line": 87
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "brief-route",
+      "from": "brief",
+      "to": "route",
+      "label": "the brief and how many",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route-job",
+      "from": "route",
+      "to": "job",
+      "label": "which agent to use",
+      "labelAt": [
+        575,
+        161
+      ]
+    },
+    {
+      "id": "job-labels",
+      "from": "job",
+      "to": "labels",
+      "label": "who built it"
+    },
+    {
+      "id": "job-codex",
+      "from": "job",
+      "to": "codex",
+      "label": "runs kept to their task",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "config-codex",
+      "from": "config",
+      "to": "codex",
+      "label": "each tool switched off"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "Codex can build the designs",
+        "Its connected tools stay off",
+        "Every label names who is building"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "How Claude builds them",
+        "Other agents turned away, with why"
+      ]
+    }
+  ]
+}
