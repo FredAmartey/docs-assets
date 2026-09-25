@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas builds a set of directions itself, all at once, with Claude",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      800
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "c7a2ef406a3aafd4d9c1f6aae9ec10b8f6e7962e"
+    }
+  },
+  "components": [
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "POST /api/generate",
+      "sublabel": "from leglas explore --build",
+      "tag": "new",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1124
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "generation job",
+      "sublabel": "one at a time, 5 min per build",
+      "tag": "new",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "external",
+      "label": "Claude plan run",
+      "sublabel": "restricted, no tools, medium",
+      "tag": "new",
+      "pos": [
+        450,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/claude.ts",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "id": "slots",
+      "type": "database",
+      "label": "switch file, previews.json",
+      "sublabel": "every concept on the rail at once",
+      "tag": "new",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/switch-file.ts",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "id": "builds",
+      "type": "external",
+      "label": "Claude builds",
+      "sublabel": "all at once, Read/Write/Edit",
+      "tag": "new",
+      "pos": [
+        450,
+        380
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/claude.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "render check",
+      "sublabel": "capture; one fix run on errors",
+      "tag": "new",
+      "pos": [
+        450,
+        540
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2692
+        }
+      ]
+    },
+    {
+      "id": "rail",
+      "type": "frontend",
+      "label": "the rail",
+      "sublabel": "placeholders, then directions",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        700
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "api",
+        "job",
+        "plan",
+        "slots",
+        "builds",
+        "render"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "api-job",
+      "from": "api",
+      "to": "job",
+      "label": "starts one",
+      "labelAt": [
+        165,
+        171
+      ]
+    },
+    {
+      "id": "job-plan",
+      "from": "job",
+      "to": "plan",
+      "label": "asks for N concepts",
+      "variant": "emphasis"
+    },
+    {
+      "id": "job-slots",
+      "from": "job",
+      "to": "slots",
+      "label": "writes slots, registers all",
+      "labelAt": [
+        165,
+        331
+      ]
+    },
+    {
+      "id": "plan-builds",
+      "from": "plan",
+      "to": "builds",
+      "label": "one build per concept",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        331
+      ]
+    },
+    {
+      "id": "builds-render",
+      "from": "builds",
+      "to": "render",
+      "label": "each finished file",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        491
+      ]
+    },
+    {
+      "id": "slots-rail",
+      "from": "slots",
+      "to": "rail",
+      "label": "shown at once",
+      "labelAt": [
+        165,
+        571
+      ]
+    },
+    {
+      "id": "render-rail",
+      "from": "render",
+      "to": "rail",
+      "label": "ready, or failed",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What a run does",
+      "items": [
+        "Plans N concepts together",
+        "Builds all of them in parallel",
+        "Renders each before calling it ready"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The composer's runner, one request at a time",
+        "Cursor and custom agents: the explore brief"
+      ]
+    }
+  ]
+}

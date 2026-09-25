@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas now builds several designs at once from one short brief",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      800
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "c7a2ef406a3aafd4d9c1f6aae9ec10b8f6e7962e"
+    }
+  },
+  "components": [
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Asking for a set",
+      "sublabel": "from the command line",
+      "tag": "new",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1124
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "One set at a time",
+      "sublabel": "five minutes per build",
+      "tag": "new",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "external",
+      "label": "Claude plans the ideas",
+      "sublabel": "reads nothing, answers fast",
+      "tag": "new",
+      "pos": [
+        450,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/claude.ts",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "id": "slots",
+      "type": "database",
+      "label": "Room for each idea",
+      "sublabel": "on the rail at once",
+      "tag": "new",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/switch-file.ts",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "id": "builds",
+      "type": "external",
+      "label": "Claude builds every idea",
+      "sublabel": "all together",
+      "tag": "new",
+      "pos": [
+        450,
+        380
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/claude.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "Leglas opens each page",
+      "sublabel": "one fix if broken",
+      "tag": "new",
+      "pos": [
+        450,
+        540
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2692
+        }
+      ]
+    },
+    {
+      "id": "rail",
+      "type": "frontend",
+      "label": "The rail",
+      "sublabel": "fills as pages finish",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        700
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what is new",
+      "wraps": [
+        "api",
+        "job",
+        "plan",
+        "slots",
+        "builds",
+        "render"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "api-job",
+      "from": "api",
+      "to": "job",
+      "label": "starts one",
+      "labelAt": [
+        165,
+        171
+      ]
+    },
+    {
+      "id": "job-plan",
+      "from": "job",
+      "to": "plan",
+      "label": "asks for ideas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "job-slots",
+      "from": "job",
+      "to": "slots",
+      "label": "makes room, lists them",
+      "labelAt": [
+        165,
+        331
+      ]
+    },
+    {
+      "id": "plan-builds",
+      "from": "plan",
+      "to": "builds",
+      "label": "one build per idea",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        331
+      ]
+    },
+    {
+      "id": "builds-render",
+      "from": "builds",
+      "to": "render",
+      "label": "each finished page",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        491
+      ]
+    },
+    {
+      "id": "slots-rail",
+      "from": "slots",
+      "to": "rail",
+      "label": "shown at once",
+      "labelAt": [
+        165,
+        571
+      ]
+    },
+    {
+      "id": "render-rail",
+      "from": "render",
+      "to": "rail",
+      "label": "ready, or failed",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What a run does",
+      "items": [
+        "Plans the ideas together",
+        "Builds them all at once",
+        "Opens each page before it counts"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Requests you type, one at a time",
+        "Other agents keep today's steps"
+      ]
+    }
+  ]
+}
