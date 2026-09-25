@@ -6,12 +6,12 @@
   "input": "agent-probe-plain.architecture.json",
   "output": "agent-probe-plain.html",
   "specification": {
-    "sha256": "47b876d0e2945d17200cd98a5a79f74a6ccebd8c5813350bef5ecdd714e20229",
+    "sha256": "1b8f3a12a2fa26c32e7291431c77df5f05cfc989ecece5cffdc3cd250aa0999a",
     "bytes": 3647
   },
   "artifact": {
-    "sha256": "e1e8914d070ed61c082e0da7abb29e1cc93646fd37490514bc8e60abe9d4f87f",
-    "bytes": 800982
+    "sha256": "a4dfae570dc12627f2f138d1c5e391b91b5e3e233e17e80b3f004c6ff62d5031",
+    "bytes": 801048
   },
   "validation": {
     "checksPassed": 9,
@@ -24,7 +24,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809",
+    "revision": "6fdfa80e22e484431c771de44f6ce70af8c6467e",
     "references": 4
   }
 }

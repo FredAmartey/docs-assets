@@ -11,15 +11,15 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809"
+      "revision": "6fdfa80e22e484431c771de44f6ce70af8c6467e"
     }
   },
   "components": [
     {
       "id": "tests",
       "type": "backend",
-      "label": "server, cli and mcp tests",
-      "sublabel": "130 real server starts a run",
+      "label": "server and cli tests",
+      "sublabel": "129 real server starts a run",
       "tag": "changed",
       "pos": [
         40,
@@ -149,7 +149,7 @@
       "title": "What changed",
       "items": [
         "Test servers get detectNoAgents as detect",
-        "The mcp start tool takes its boot as an internal option",
+        "The mcp start test keeps the bundled CLI and puts stand-in CLIs first on PATH",
         "390 agent CLI launches a run became 0"
       ]
     },
@@ -158,7 +158,7 @@
       "title": "What stays",
       "items": [
         "Every test still starts a real server",
-        "Production detection and the public API"
+        "All production code and the public API"
       ]
     }
   ]

@@ -1,6 +1,7 @@
 structure: PASS
-labels: 0 FAIL, 6 WARN
-  WARN over-four components[0].sublabel "start 130 real servers each run" (6 words)
+labels: 0 FAIL, 7 WARN
+  WARN over-four components[0].label "Leglas's server and command-line checks" (5 words)
+  WARN over-four components[0].sublabel "start 129 real servers each run" (6 words)
   WARN over-four components[1].sublabel "says no coding agent is installed" (6 words)
   WARN over-four components[2].sublabel "asks which agents are ready" (5 words)
   WARN over-four components[3].sublabel "each asked about its login" (5 words)

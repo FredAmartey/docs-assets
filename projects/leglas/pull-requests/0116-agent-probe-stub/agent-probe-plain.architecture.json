@@ -11,15 +11,15 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809"
+      "revision": "6fdfa80e22e484431c771de44f6ce70af8c6467e"
     }
   },
   "components": [
     {
       "id": "tests",
       "type": "backend",
-      "label": "Leglas's own checks",
-      "sublabel": "start 130 real servers each run",
+      "label": "Leglas's server and command-line checks",
+      "sublabel": "start 129 real servers each run",
       "tag": "changed",
       "pos": [
         40,
@@ -157,7 +157,7 @@
       "title": "What stayed the same",
       "items": [
         "Every check still starts a real server",
-        "How Leglas finds agents in normal use"
+        "All of Leglas's own code"
       ]
     },
     {
@@ -165,7 +165,7 @@
       "title": "ELI5",
       "items": [
         "Before this change, each check that started a Leglas server also asked Claude, Codex and Cursor about their logins, 390 times a run.",
-        "Now those checks hand the server a stand-in answer, so none of the three programs runs.",
+        "Now the checks get stand-in answers instead, so none of the three programs runs.",
         "The affected checks finish in about 3 seconds instead of over 20."
       ]
     }
