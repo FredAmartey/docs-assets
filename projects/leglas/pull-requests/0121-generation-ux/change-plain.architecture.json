@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas now makes variations of a design you like and shows a whole set side by side",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "9af9325a6e0b85efa8d60c2601042389fef04e62"
+    }
+  },
+  "components": [
+    {
+      "id": "ask",
+      "type": "frontend",
+      "label": "More like this design",
+      "sublabel": "a button, or a typed command",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 600
+        },
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 630
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "type": "backend",
+      "label": "Finds the chosen design",
+      "sublabel": "looks it up in the list",
+      "pos": [
+        450,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1155
+        },
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "Plans and builds variations",
+      "sublabel": "from the chosen design's code",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 648
+        },
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 223
+        }
+      ]
+    },
+    {
+      "id": "view",
+      "type": "frontend",
+      "label": "Build progress on screen",
+      "sublabel": "each build's current step and time",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/GenerationCover.tsx",
+          "line": 17
+        },
+        {
+          "path": "packages/shell/src/generation/GenerationCard.tsx",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "id": "grid",
+      "type": "frontend",
+      "label": "The set side by side",
+      "sublabel": "each drawn at its real width",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/preview/compare.ts",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "backend",
+      "label": "Adds them to the list",
+      "sublabel": "under it, with brief and section",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 227
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ask-route",
+      "from": "ask",
+      "to": "route",
+      "label": "the design's name",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route-job",
+      "from": "route",
+      "to": "job",
+      "label": "the design and its idea",
+      "labelAt": [
+        575,
+        161
+      ]
+    },
+    {
+      "id": "job-view",
+      "from": "job",
+      "to": "view",
+      "label": "each build's current step"
+    },
+    {
+      "id": "view-grid",
+      "from": "view",
+      "to": "grid",
+      "label": "press Compare all",
+      "labelAt": [
+        165,
+        301
+      ]
+    },
+    {
+      "id": "job-registry",
+      "from": "job",
+      "to": "registry",
+      "label": "each new variation",
+      "labelAt": [
+        575,
+        301
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "More of a design you like",
+        "A whole set side by side",
+        "Each build's step and time"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "How builds recover, from the earlier change",
+        "Asking a design to change"
+      ]
+    }
+  ]
+}
