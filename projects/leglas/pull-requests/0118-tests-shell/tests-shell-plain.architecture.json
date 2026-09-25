@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Interface checks catch real breaks",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "91b03c8d92397016a2a9205a2d6ae63e83fd6752"
+    }
+  },
+  "components": [
+    {
+      "id": "shelltests",
+      "type": "frontend",
+      "label": "The interface's checks",
+      "sublabel": "5 removed, 15 rewritten",
+      "tag": "changed",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.test.tsx",
+          "line": 271
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "The interface itself",
+      "sublabel": "folding families, recovering the app",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 172
+        }
+      ]
+    },
+    {
+      "id": "servertest",
+      "type": "backend",
+      "label": "A new upload check",
+      "sublabel": "uses the interface's size limit",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 619
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Saving a pasted picture",
+      "sublabel": "accepts the limit, refuses more",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "id": "sitetest",
+      "type": "frontend",
+      "label": "The website's browser check",
+      "sublabel": "cleans up even when it fails",
+      "tag": "changed",
+      "pos": [
+        40,
+        290
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.test.ts",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "type": "frontend",
+      "label": "The project's home page",
+      "sublabel": "has a light and dark switch",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        290
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 301
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "shelltests-shell",
+      "from": "shelltests",
+      "to": "shell",
+      "label": "fold it, then recover it"
+    },
+    {
+      "id": "servertest-server",
+      "from": "servertest",
+      "to": "server",
+      "label": "send the limit, then one more"
+    },
+    {
+      "id": "sitetest-home",
+      "from": "sitetest",
+      "to": "home",
+      "label": "click the switch"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "shelltests",
+        "servertest",
+        "sitetest"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Each rewritten check fails when broken"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the interface behaves"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, some interface checks repeated others, compared a value with itself, or missed a past fix.",
+        "Now each rewritten check fails when its behavior is broken on purpose, and the picture size limit is checked on both sides.",
+        "A broken interface now fails its checks."
+      ]
+    }
+  ]
+}

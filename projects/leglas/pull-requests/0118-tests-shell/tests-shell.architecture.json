@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Shell tests check what their names promise",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "91b03c8d92397016a2a9205a2d6ae63e83fd6752"
+    }
+  },
+  "components": [
+    {
+      "id": "shelltests",
+      "type": "frontend",
+      "label": "shell tests",
+      "sublabel": "5 deleted, 15 rewritten",
+      "tag": "changed",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.test.tsx",
+          "line": 271
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "Shell component",
+      "sublabel": "fold, recovery, rescans",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 172
+        }
+      ]
+    },
+    {
+      "id": "servertest",
+      "type": "backend",
+      "label": "server upload test",
+      "sublabel": "new: the shell's cap",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 619
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "reference upload route",
+      "sublabel": "200 at the cap, 413 over",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "id": "sitetest",
+      "type": "frontend",
+      "label": "site theme browser test",
+      "sublabel": "split skip, always cleans up",
+      "tag": "changed",
+      "pos": [
+        40,
+        290
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.test.ts",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "type": "frontend",
+      "label": "built homepage",
+      "sublabel": "the theme switch",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        290
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/chrome.ts",
+          "line": 301
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "shelltests-shell",
+      "from": "shelltests",
+      "to": "shell",
+      "label": "drive fold and recovery"
+    },
+    {
+      "id": "servertest-server",
+      "from": "servertest",
+      "to": "server",
+      "label": "upload the cap, one over"
+    },
+    {
+      "id": "sitetest-home",
+      "from": "sitetest",
+      "to": "home",
+      "label": "click the switch"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "shelltests",
+        "servertest",
+        "sitetest"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Tests check contracts, each proven by a break",
+        "A server test pins the shared upload cap"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "All shell, server and site code"
+      ]
+    }
+  ]
+}

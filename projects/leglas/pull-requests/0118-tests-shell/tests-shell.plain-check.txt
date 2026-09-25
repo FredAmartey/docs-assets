@@ -1,0 +1,10 @@
+structure: PASS
+labels: 0 FAIL, 7 WARN
+  WARN over-four components[1].sublabel "folding families, recovering the app" (5 words)
+  WARN over-four components[2].sublabel "uses the interface's size limit" (5 words)
+  WARN over-four components[3].sublabel "accepts the limit, refuses more" (5 words)
+  WARN over-four components[4].sublabel "cleans up even when it fails" (6 words)
+  WARN over-four components[5].sublabel "has a light and dark switch" (6 words)
+  WARN over-four connections[0].label "fold it, then recover it" (5 words)
+  WARN over-four connections[1].label "send the limit, then one more" (6 words)
+result: PASS

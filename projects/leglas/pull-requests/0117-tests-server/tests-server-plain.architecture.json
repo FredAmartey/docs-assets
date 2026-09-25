@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Server checks catch real breaks",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6e9777234ad73354fe90d0642b98460015e152a8"
+    }
+  },
+  "components": [
+    {
+      "id": "audit",
+      "type": "external",
+      "label": "The test review",
+      "sublabel": "reading and deliberate breaking",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "Leglas's server checks",
+      "sublabel": "10 removed, 44 rewritten",
+      "tag": "changed",
+      "pos": [
+        40,
+        180
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 3862
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "type": "backend",
+      "label": "Two timing settings for checks",
+      "sublabel": "capture limit and probe pace",
+      "tag": "changed",
+      "pos": [
+        450,
+        180
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 181
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "backend",
+      "label": "Taking a screenshot",
+      "sublabel": "gives up when a page stalls",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1839
+        }
+      ]
+    },
+    {
+      "id": "health",
+      "type": "backend",
+      "label": "Checking the app is up",
+      "sublabel": "only while someone is watching",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        320
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 729
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "audit-tests",
+      "from": "audit",
+      "to": "tests",
+      "label": "flagged",
+      "labelAt": [
+        165,
+        141
+      ]
+    },
+    {
+      "id": "tests-options",
+      "from": "tests",
+      "to": "options",
+      "label": "set these, not fake clocks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "options-capture",
+      "from": "options",
+      "to": "capture",
+      "label": "limits",
+      "labelAt": [
+        575,
+        141
+      ]
+    },
+    {
+      "id": "options-health",
+      "from": "options",
+      "to": "health",
+      "label": "paces",
+      "labelAt": [
+        575,
+        281
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "tests",
+        "options"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Each rewritten check fails when broken"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the server behaves"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, some server checks repeated others, copied numbers from the code, or passed while broken.",
+        "Now each rewritten check fails when its behavior is broken on purpose, and two waits are settings, not faked clocks.",
+        "A broken server now fails its checks."
+      ]
+    }
+  ]
+}

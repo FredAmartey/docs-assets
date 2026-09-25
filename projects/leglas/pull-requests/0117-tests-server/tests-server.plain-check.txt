@@ -1,0 +1,9 @@
+structure: PASS
+labels: 0 FAIL, 6 WARN
+  WARN over-four components[2].label "Two timing settings for checks" (5 words)
+  WARN over-four components[2].sublabel "capture limit and probe pace" (5 words)
+  WARN over-four components[3].sublabel "gives up when a page stalls" (6 words)
+  WARN over-four components[4].label "Checking the app is up" (5 words)
+  WARN over-four components[4].sublabel "only while someone is watching" (5 words)
+  WARN over-four connections[1].label "set these, not fake clocks" (5 words)
+result: PASS
