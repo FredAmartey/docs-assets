@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "cli tests check the behavior their names promise",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "1cc17b9a69b1e72aa3bbc4765494bb83305d68db"
+    }
+  },
+  "components": [
+    {
+      "id": "audit",
+      "type": "external",
+      "label": "the test audit",
+      "sublabel": "reading plus mutation data",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "packages/cli tests",
+      "sublabel": "5 deleted, 11 rewritten",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "seam",
+      "type": "backend",
+      "label": "startViewer handoff deps",
+      "sublabel": "real spawn and exit by default",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/bin-start.ts",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "backend",
+      "label": "the shutdown guard",
+      "sublabel": "if (handedOff()) return",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/bin-start.ts",
+          "line": 63
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "audit-tests",
+      "from": "audit",
+      "to": "tests",
+      "label": "flagged"
+    },
+    {
+      "id": "tests-seam",
+      "from": "tests",
+      "to": "seam",
+      "label": "inject fakes",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "seam-guard",
+      "from": "seam",
+      "to": "guard",
+      "label": "one SIGINT reaches",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "tests",
+        "seam"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Duplicates gone; weak tests test the contract",
+        "Each rewrite failed when its behavior was broken"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every behavior the CLI had",
+        "startViewer's defaults: real spawn, exit, process"
+      ]
+    }
+  ]
+}

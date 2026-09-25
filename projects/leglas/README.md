@@ -77,6 +77,7 @@ documents.
 | `0109-watch-json` | [#109](https://github.com/FredAmartey/leglas/pull/109) |
 | `0110-explore-build` | [#110](https://github.com/FredAmartey/leglas/pull/110) |
 | `0111-placeholder-baseline` | [#111](https://github.com/FredAmartey/leglas/pull/111) |
+| `0112-tests-cli` | [#112](https://github.com/FredAmartey/leglas/pull/112) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

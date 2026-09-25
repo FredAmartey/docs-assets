@@ -1,0 +1,5 @@
+structure: PASS
+labels: 0 FAIL, 2 WARN
+  WARN over-four components[1].sublabel "duplicates gone, weak ones rewritten" (5 words)
+  WARN over-four components[2].label "A test hook at startup" (5 words)
+result: PASS
