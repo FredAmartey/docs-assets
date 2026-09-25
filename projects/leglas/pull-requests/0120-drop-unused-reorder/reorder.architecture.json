@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The unused reorder goes, the hidden sibling rule is tested",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "e651168b100c0bc53e1fbe13fe1c77de2bcce16d"
+    }
+  },
+  "components": [
+    {
+      "id": "hook",
+      "type": "frontend",
+      "label": "shell state hook",
+      "sublabel": "moves a direction on drag",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/useShellState.ts",
+          "line": 268
+        }
+      ]
+    },
+    {
+      "id": "siblings",
+      "type": "frontend",
+      "label": "reorderAmongSiblings",
+      "sublabel": "the rail's reorder",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/lineage/lineage.ts",
+          "line": 240
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "frontend",
+      "label": "lineage test",
+      "sublabel": "hidden sibling keeps its place",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/lineage/lineage.test.ts",
+          "line": 347
+        }
+      ]
+    },
+    {
+      "id": "reorder",
+      "type": "frontend",
+      "label": "prefs reorder()",
+      "sublabel": "removed, nothing called it",
+      "tag": "changed",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/prefs.ts",
+          "line": 176
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "hook-siblings",
+      "from": "hook",
+      "to": "siblings",
+      "label": "calls",
+      "labelAt": [
+        575,
+        136
+      ]
+    },
+    {
+      "id": "test-siblings",
+      "from": "test",
+      "to": "siblings",
+      "label": "checks the rule",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reorder-siblings",
+      "from": "reorder",
+      "to": "siblings",
+      "label": "replaced by"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "test",
+        "reorder"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "reorder() and its four tests are gone",
+        "The rule it tested now tests the code the rail runs"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "How the rail reorders"
+      ]
+    }
+  ]
+}

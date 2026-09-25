@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "An unused piece goes",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "e651168b100c0bc53e1fbe13fe1c77de2bcce16d"
+    }
+  },
+  "components": [
+    {
+      "id": "hook",
+      "type": "frontend",
+      "label": "Dragging a direction",
+      "sublabel": "moves it on the rail",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/useShellState.ts",
+          "line": 268
+        }
+      ]
+    },
+    {
+      "id": "siblings",
+      "type": "frontend",
+      "label": "Moving among its siblings",
+      "sublabel": "the move the rail uses",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/lineage/lineage.ts",
+          "line": 240
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "frontend",
+      "label": "A new check",
+      "sublabel": "a hidden direction stays put",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/lineage/lineage.test.ts",
+          "line": 347
+        }
+      ]
+    },
+    {
+      "id": "reorder",
+      "type": "frontend",
+      "label": "An old way of moving",
+      "sublabel": "removed, nothing used it",
+      "tag": "changed",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/prefs.ts",
+          "line": 176
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "hook-siblings",
+      "from": "hook",
+      "to": "siblings",
+      "label": "uses",
+      "labelAt": [
+        575,
+        136
+      ]
+    },
+    {
+      "id": "test-siblings",
+      "from": "test",
+      "to": "siblings",
+      "label": "checks the rule",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reorder-siblings",
+      "from": "reorder",
+      "to": "siblings",
+      "label": "replaced by"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "test",
+        "reorder"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The old way and its checks are gone"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the rail reorders"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, an old way of reordering the rail was still in the code with its own checks, unused since early September.",
+        "Now it is gone, and its rule, that a hidden direction keeps its place, is checked on the move the rail really makes.",
+        "The checks guard what people use."
+      ]
+    }
+  ]
+}

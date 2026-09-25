@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "reorder.architecture.json",
+  "output": "reorder.html",
+  "specification": {
+    "sha256": "a8e88938dc9956dd9e7eb72b0048aa59f408f100ef278358f76b852d7a96a525",
+    "bytes": 2956
+  },
+  "artifact": {
+    "sha256": "d728a6fea35c75b745fbeea418953c354970716f3c918384556fc82340a26fd5",
+    "bytes": 800789
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "e651168b100c0bc53e1fbe13fe1c77de2bcce16d",
+    "references": 4
+  }
+}

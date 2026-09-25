@@ -1,0 +1,7 @@
+structure: PASS
+labels: 0 FAIL, 4 WARN
+  WARN over-four components[0].sublabel "moves it on the rail" (5 words)
+  WARN over-four components[1].sublabel "the move the rail uses" (5 words)
+  WARN over-four components[2].sublabel "a hidden direction stays put" (5 words)
+  WARN over-four components[3].label "An old way of moving" (5 words)
+result: PASS
