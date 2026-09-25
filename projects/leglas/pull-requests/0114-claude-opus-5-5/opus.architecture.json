@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "@claude on leglas runs on Opus 5.5 instead of the action's default Sonnet 5",
+    "quality_profile": "showcase",
+    "viewBox": [740, 340],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "0b6916b6b80b12a493b8464a8b8222dcbb832190"
+    }
+  },
+  "components": [
+    {
+      "id": "comment",
+      "type": "external",
+      "label": "@claude comment",
+      "sublabel": "on a PR, issue or review",
+      "tag": "unchanged",
+      "pos": [40, 40],
+      "size": [250, 62]
+    },
+    {
+      "id": "workflow",
+      "type": "backend",
+      "label": ".github/workflows/claude.yml",
+      "sublabel": "adds --model claude-opus-5-5",
+      "tag": "changed",
+      "pos": [450, 40],
+      "size": [250, 62],
+      "sources": [{ "path": ".github/workflows/claude.yml", "line": 31 }]
+    },
+    {
+      "id": "action",
+      "type": "backend",
+      "label": "claude-code-action@v1",
+      "sublabel": "runs Claude Code on the runner",
+      "tag": "unchanged",
+      "pos": [450, 200],
+      "size": [250, 62],
+      "sources": [{ "path": ".github/workflows/claude.yml", "line": 28 }]
+    },
+    {
+      "id": "model",
+      "type": "cloud",
+      "label": "Claude Opus 5.5",
+      "sublabel": "was claude-sonnet-5",
+      "tag": "changed",
+      "pos": [40, 200],
+      "size": [250, 62]
+    }
+  ],
+  "connections": [
+    { "id": "comment-workflow", "from": "comment", "to": "workflow", "label": "triggers" },
+    { "id": "workflow-action", "from": "workflow", "to": "action", "label": "claude_args", "labelAt": [575, 151], "variant": "emphasis" },
+    { "id": "action-model", "from": "action", "to": "model", "label": "writes the reply with", "variant": "emphasis" }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "changed in this PR", "wraps": ["workflow"], "pad": 16 }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "claude.yml passes --model claude-opus-5-5",
+        "Recent runs logged claude-sonnet-5, the action's default"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Triggers, permissions and the OAuth token",
+        "The action stays on the floating v1 tag"
+      ]
+    }
+  ]
+}

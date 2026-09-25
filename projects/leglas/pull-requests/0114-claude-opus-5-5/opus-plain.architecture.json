@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Asking Claude on this project's GitHub now gets the newest Opus model",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "0b6916b6b80b12a493b8464a8b8222dcbb832190"
+    }
+  },
+  "components": [
+    {
+      "id": "comment",
+      "type": "external",
+      "label": "Someone mentions Claude",
+      "sublabel": "in a GitHub comment",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "workflow",
+      "type": "backend",
+      "label": "The project's Claude settings",
+      "sublabel": "now name the model",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/claude.yml",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "id": "action",
+      "type": "backend",
+      "label": "GitHub's Claude helper",
+      "sublabel": "runs Claude on GitHub",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/claude.yml",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "type": "cloud",
+      "label": "Claude's newest Opus model",
+      "sublabel": "replaces the smaller default",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "comment-workflow",
+      "from": "comment",
+      "to": "workflow",
+      "label": "starts"
+    },
+    {
+      "id": "workflow-action",
+      "from": "workflow",
+      "to": "action",
+      "label": "passes the model choice",
+      "labelAt": [
+        575,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "action-model",
+      "from": "action",
+      "to": "model",
+      "label": "writes the answer with",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "workflow"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The settings now name the model to use",
+        "Before, the smaller default model answered"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "When Claude starts and what it may touch",
+        "Which helper version GitHub runs"
+      ]
+    }
+  ]
+}
