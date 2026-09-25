@@ -1,0 +1,7 @@
+structure: PASS
+labels: 0 FAIL, 4 WARN
+  WARN over-four components[0].sublabel "given a full file path" (5 words)
+  WARN over-four components[1].sublabel "reads it inside the project" (5 words)
+  WARN over-four components[3].label "The chosen file in your code" (6 words)
+  WARN over-four connections[1].label "a path in the project" (5 words)
+result: PASS

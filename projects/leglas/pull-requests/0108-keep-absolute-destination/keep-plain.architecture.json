@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Keeping a design to a full path now puts it where the path points",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "5f22184bc3ec01d27f44b80ab20bdf4291df2e4d"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "The keep command",
+      "sublabel": "given a full file path",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "The keep step",
+      "sublabel": "reads it inside the project",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-keep.ts",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "backend",
+      "label": "The destination check",
+      "sublabel": "refuses places outside it",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/keep.ts",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "id": "file",
+      "type": "frontend",
+      "label": "The chosen file in your code",
+      "sublabel": "and the decision record",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "cli-run",
+      "from": "cli",
+      "to": "run",
+      "label": "passes the path",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-plan",
+      "from": "run",
+      "to": "plan",
+      "label": "a path in the project",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "plan-file",
+      "from": "plan",
+      "to": "file",
+      "label": "moves the winner to",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "run",
+        "plan"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "A full path inside the project works",
+        "A full path outside it is refused"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Short paths from the project folder",
+        "The refusal of hidden and outside folders"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, keeping a winning design to a full file path, which is how agents usually write paths, put the file in a copy of that whole path nested inside the project, and a path outside the project was accepted the same way.",
+        "Now a full path inside the project lands exactly where it points, and one outside the project is refused before anything moves.",
+        "An agent finishing an exploration puts the winner in the file it named."
+      ]
+    }
+  ]
+}

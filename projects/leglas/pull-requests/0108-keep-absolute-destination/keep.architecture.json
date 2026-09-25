@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "leglas keep reads an absolute --to as the file it names",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "5f22184bc3ec01d27f44b80ab20bdf4291df2e4d"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "keep \"Aurora\" --to /abs/path",
+      "sublabel": "an agent's usual form",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "runKeep in run-keep.ts",
+      "sublabel": "makes it relative to the project",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-keep.ts",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "backend",
+      "label": "planKeep in keep.ts",
+      "sublabel": "refuses .. and absolute paths",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/keep.ts",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "id": "file",
+      "type": "frontend",
+      "label": "src/components/hero.tsx",
+      "sublabel": "plus the design-log entry",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "cli-run",
+      "from": "cli",
+      "to": "run",
+      "label": "--to",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-plan",
+      "from": "run",
+      "to": "plan",
+      "label": "a project path",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "plan-file",
+      "from": "plan",
+      "to": "file",
+      "label": "moves the winner to",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "run",
+        "plan"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Inside the project: kept where the relative path would go",
+        "Outside it: refused, nothing moves"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Relative --to paths behave exactly as before",
+        "The .leglas and .. refusals"
+      ]
+    }
+  ]
+}
