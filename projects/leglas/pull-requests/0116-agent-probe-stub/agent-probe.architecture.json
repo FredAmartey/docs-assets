@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Test servers stop running the agent login checks",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809"
+    }
+  },
+  "components": [
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "server, cli and mcp tests",
+      "sublabel": "130 real server starts a run",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 182
+        }
+      ]
+    },
+    {
+      "id": "stub",
+      "type": "backend",
+      "label": "detectNoAgents",
+      "sublabel": "lookup and probe stubbed",
+      "tag": "changed",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/test-helpers.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "startServer",
+      "sublabel": "probes agents at startup",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        130
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 869
+        }
+      ]
+    },
+    {
+      "id": "clis",
+      "type": "external",
+      "label": "claude, codex, cursor-agent",
+      "sublabel": "login status commands",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        310
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/agents.ts",
+          "line": 109
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "tests-server",
+      "from": "tests",
+      "to": "server",
+      "label": "start, detect: stub",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "server-stub",
+      "from": "server",
+      "to": "stub",
+      "label": "asks, in tests",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "right",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "server-clis",
+      "from": "server",
+      "to": "clis",
+      "label": "asks, by default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        575,
+        251
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "tests",
+        "stub"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Test servers get detectNoAgents as detect",
+        "The mcp start tool takes its boot as an internal option",
+        "390 agent CLI launches a run became 0"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every test still starts a real server",
+        "Production detection and the public API"
+      ]
+    }
+  ]
+}

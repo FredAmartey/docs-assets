@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas's checks no longer run Claude, Codex or Cursor",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809"
+    }
+  },
+  "components": [
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "Leglas's own checks",
+      "sublabel": "start 130 real servers each run",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 182
+        }
+      ]
+    },
+    {
+      "id": "stub",
+      "type": "backend",
+      "label": "A stand-in answer",
+      "sublabel": "says no coding agent is installed",
+      "tag": "changed",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/test-helpers.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Starting a Leglas server",
+      "sublabel": "asks which agents are ready",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        130
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 869
+        }
+      ]
+    },
+    {
+      "id": "clis",
+      "type": "external",
+      "label": "Claude, Codex and Cursor",
+      "sublabel": "each asked about its login",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        310
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/agents.ts",
+          "line": 109
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "tests-server",
+      "from": "tests",
+      "to": "server",
+      "label": "starts one, with the stand-in",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "server-stub",
+      "from": "server",
+      "to": "stub",
+      "label": "asks it, during checks",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "right",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "server-clis",
+      "from": "server",
+      "to": "clis",
+      "label": "asks them, in normal use",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        575,
+        251
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "tests",
+        "stub"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Checks give each server a stand-in answer",
+        "390 program launches a run became none"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Every check still starts a real server",
+        "How Leglas finds agents in normal use"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, each check that started a Leglas server also asked Claude, Codex and Cursor about their logins, 390 times a run.",
+        "Now those checks hand the server a stand-in answer, so none of the three programs runs.",
+        "The affected checks finish in about 3 seconds instead of over 20."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "agent-probe-plain.architecture.json",
+  "output": "agent-probe-plain.html",
+  "specification": {
+    "sha256": "47b876d0e2945d17200cd98a5a79f74a6ccebd8c5813350bef5ecdd714e20229",
+    "bytes": 3647
+  },
+  "artifact": {
+    "sha256": "e1e8914d070ed61c082e0da7abb29e1cc93646fd37490514bc8e60abe9d4f87f",
+    "bytes": 800982
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "fc91148b785f9806f52b0602dc5c3f7a5a9dd809",
+    "references": 4
+  }
+}

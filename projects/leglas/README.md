@@ -81,6 +81,7 @@ documents.
 | `0113-tests-rest` | [#113](https://github.com/FredAmartey/leglas/pull/113) |
 | `0114-claude-opus-5-5` | [#114](https://github.com/FredAmartey/leglas/pull/114) |
 | `0115-generation-interface` | [#115](https://github.com/FredAmartey/leglas/pull/115) |
+| `0116-agent-probe-stub` | [#116](https://github.com/FredAmartey/leglas/pull/116) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
