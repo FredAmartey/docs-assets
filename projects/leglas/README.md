@@ -84,6 +84,7 @@ documents.
 | `0116-agent-probe-stub` | [#116](https://github.com/FredAmartey/leglas/pull/116) |
 | `0117-tests-server` | [#117](https://github.com/FredAmartey/leglas/pull/117) |
 | `0118-tests-shell` | [#118](https://github.com/FredAmartey/leglas/pull/118) |
+| `0119-trust-every-method` | [#119](https://github.com/FredAmartey/leglas/pull/119) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

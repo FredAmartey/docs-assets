@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Other sites can't change Leglas",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "41f762303d3039657182f0c8cf4a93c1600e81c9"
+    }
+  },
+  "components": [
+    {
+      "id": "foreign",
+      "type": "external",
+      "label": "A page on another website",
+      "sublabel": "tries to change something",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "backend",
+      "label": "Leglas's same-site check",
+      "sublabel": "now covers every kind of change",
+      "tag": "changed",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1078
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "A new check",
+      "sublabel": "tries three kinds of change",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 3671
+        }
+      ]
+    },
+    {
+      "id": "routes",
+      "type": "backend",
+      "label": "Leglas's own commands",
+      "sublabel": "reached from Leglas's page only",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        300
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2247
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "foreign-guard",
+      "from": "foreign",
+      "to": "guard",
+      "label": "turned away",
+      "labelAt": [
+        575,
+        136
+      ]
+    },
+    {
+      "id": "test-guard",
+      "from": "test",
+      "to": "guard",
+      "label": "tries each kind",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guard-routes",
+      "from": "guard",
+      "to": "routes",
+      "label": "lets its own page through",
+      "labelAt": [
+        575,
+        266
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "test",
+        "guard"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Every kind of change is checked"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Everything Leglas does today"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, Leglas turned away changes from other sites only in the one kind of request its commands use.",
+        "Now every kind that could change something is turned away unless it comes from Leglas's own page.",
+        "The gap closes before anything could use it."
+      ]
+    }
+  ]
+}

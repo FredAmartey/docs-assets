@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The cross-origin guard covers every method but GET and HEAD",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      400
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "41f762303d3039657182f0c8cf4a93c1600e81c9"
+    }
+  },
+  "components": [
+    {
+      "id": "foreign",
+      "type": "external",
+      "label": "a page on another site",
+      "sublabel": "PUT, PATCH, DELETE or POST",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "backend",
+      "label": "cross-origin guard",
+      "sublabel": "every method but GET and HEAD",
+      "tag": "changed",
+      "pos": [
+        450,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1078
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "guard test",
+      "sublabel": "three methods, two controls",
+      "tag": "changed",
+      "pos": [
+        40,
+        170
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 3671
+        }
+      ]
+    },
+    {
+      "id": "routes",
+      "type": "backend",
+      "label": "API routes",
+      "sublabel": "every mutation a POST today",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        300
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2247
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "foreign-guard",
+      "from": "foreign",
+      "to": "guard",
+      "label": "refused, 403",
+      "labelAt": [
+        575,
+        136
+      ]
+    },
+    {
+      "id": "test-guard",
+      "from": "test",
+      "to": "guard",
+      "label": "sends each method",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guard-routes",
+      "from": "guard",
+      "to": "routes",
+      "label": "only trusted pass",
+      "labelAt": [
+        575,
+        266
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "test",
+        "guard"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "PUT, PATCH and DELETE meet the same guard as POST"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every existing route, and reads from anywhere"
+      ]
+    }
+  ]
+}
