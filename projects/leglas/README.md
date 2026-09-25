@@ -70,6 +70,7 @@ documents.
 | `0102-eli5-label` | [#102](https://github.com/FredAmartey/leglas/pull/102) |
 | `0103-follow-ups-101` | [#103](https://github.com/FredAmartey/leglas/pull/103) |
 | `0104-text-wrap-pretty` | [#104](https://github.com/FredAmartey/leglas/pull/104) |
+| `0105-live-update-frame` | [#105](https://github.com/FredAmartey/leglas/pull/105) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

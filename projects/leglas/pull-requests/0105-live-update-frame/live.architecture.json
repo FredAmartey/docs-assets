@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The interface now hears the update frame the server sends",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "b31317339a3d5ac1e48f31af2de7614183d46bb8"
+    }
+  },
+  "components": [
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "update service in the server",
+      "sublabel": "nudges on every transition",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2604
+        }
+      ]
+    },
+    {
+      "id": "socket",
+      "type": "messagebus",
+      "label": "live socket /leglas/api/live",
+      "sublabel": "sends {changed: \"update\"}",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/live.ts",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "reader",
+      "type": "frontend",
+      "label": "shell net/live.ts",
+      "sublabel": "CHANGES now lists update",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/live.ts",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "frontend",
+      "label": "the update chip and panel",
+      "sublabel": "re-read status on the frame",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/update/useUpdate.ts",
+          "line": 151
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "server-socket",
+      "from": "server",
+      "to": "socket",
+      "label": "nudge(\"update\")"
+    },
+    {
+      "id": "socket-reader",
+      "from": "socket",
+      "to": "reader",
+      "label": "frame",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "reader-panel",
+      "from": "reader",
+      "to": "panel",
+      "label": "on(\"update\") fires",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "reader"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "update joins the list changeFrom reads",
+        "LiveChange is read off that list, so the two cannot drift"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The frame format and the other four kinds",
+        "The 15 s and 15 min fallback polls"
+      ]
+    }
+  ]
+}

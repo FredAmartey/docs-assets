@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "News of a new version reaches the open page at once",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "b31317339a3d5ac1e48f31af2de7614183d46bb8"
+    }
+  },
+  "components": [
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Leglas's update checker",
+      "sublabel": "speaks up at every step",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2604
+        }
+      ]
+    },
+    {
+      "id": "socket",
+      "type": "messagebus",
+      "label": "The live connection",
+      "sublabel": "carries a short update message",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/live.ts",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "reader",
+      "type": "frontend",
+      "label": "The page's message reader",
+      "sublabel": "now accepts update messages",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/live.ts",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "frontend",
+      "label": "The update button and panel",
+      "sublabel": "look again straight away",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/update/useUpdate.ts",
+          "line": 151
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "server-socket",
+      "from": "server",
+      "to": "socket",
+      "label": "announces the change"
+    },
+    {
+      "id": "socket-reader",
+      "from": "socket",
+      "to": "reader",
+      "label": "delivers it",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "reader-panel",
+      "from": "reader",
+      "to": "panel",
+      "label": "wakes them up",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "reader"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The page now reads the update message",
+        "The reader's list and its rules can no longer disagree"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Every other message the page reads",
+        "The slow checks that run when no message comes"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change the page threw away the message Leglas sends when it learns about a new version or an update moves a step, so the news waited for the page's next slow check: up to 15 seconds with the panel open and up to 15 minutes with it closed.",
+        "Now the page reads that message and the update button and panel look again straight away.",
+        "Anyone with Leglas open sees a new version, and each step of installing it, as it happens."
+      ]
+    }
+  ]
+}
