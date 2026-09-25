@@ -78,6 +78,7 @@ documents.
 | `0110-explore-build` | [#110](https://github.com/FredAmartey/leglas/pull/110) |
 | `0111-placeholder-baseline` | [#111](https://github.com/FredAmartey/leglas/pull/111) |
 | `0112-tests-cli` | [#112](https://github.com/FredAmartey/leglas/pull/112) |
+| `0113-tests-rest` | [#113](https://github.com/FredAmartey/leglas/pull/113) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

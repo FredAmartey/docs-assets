@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "mcp, site and scripts tests check what their names promise",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "8cf3c4fb62f9f0bba435c183e9cfeee6a980dcf8"
+    }
+  },
+  "components": [
+    {
+      "id": "audit",
+      "type": "external",
+      "label": "the test audit",
+      "sublabel": "reading plus mutation data",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "mcp, site and scripts tests",
+      "sublabel": "4 deleted, 10 rewritten",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.test.ts",
+          "line": 149
+        }
+      ]
+    },
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "headless Chrome",
+      "sublabel": "the server's launchBrowser",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "the built homepage",
+      "sublabel": "theme flips, kept, less motion",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "audit-tests",
+      "from": "audit",
+      "to": "tests",
+      "label": "flagged"
+    },
+    {
+      "id": "tests-browser",
+      "from": "tests",
+      "to": "browser",
+      "label": "drive",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "browser-page",
+      "from": "browser",
+      "to": "page",
+      "label": "clicks the theme switch",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "tests"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Tests read rendered pages, not source text",
+        "The theme switch is clicked in a real browser"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every page and tool behaves as before",
+        "The browser launcher captures already use"
+      ]
+    }
+  ]
+}

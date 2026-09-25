@@ -1,0 +1,6 @@
+structure: PASS
+labels: 0 FAIL, 3 WARN
+  WARN over-four components[1].label "The website and connector checks" (5 words)
+  WARN over-four components[1].sublabel "repeats gone, weak ones rewritten" (5 words)
+  WARN over-four components[3].sublabel "flips theme and remembers it" (5 words)
+result: PASS

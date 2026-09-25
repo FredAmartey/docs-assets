@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The website and agent-connector checks now test what people actually see",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "8cf3c4fb62f9f0bba435c183e9cfeee6a980dcf8"
+    }
+  },
+  "components": [
+    {
+      "id": "audit",
+      "type": "external",
+      "label": "The test review",
+      "sublabel": "reading and deliberate breaking",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "The website and connector checks",
+      "sublabel": "repeats gone, weak ones rewritten",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.test.ts",
+          "line": 149
+        }
+      ]
+    },
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "A real browser",
+      "sublabel": "the one screenshots use",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "The project's home page",
+      "sublabel": "flips theme and remembers it",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "audit-tests",
+      "from": "audit",
+      "to": "tests",
+      "label": "flagged"
+    },
+    {
+      "id": "tests-browser",
+      "from": "tests",
+      "to": "browser",
+      "label": "drive",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "browser-page",
+      "from": "browser",
+      "to": "page",
+      "label": "clicks the light-dark switch",
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "tests"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Checks read pages the way readers get them",
+        "A real browser clicks the light and dark switch"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the website and connector behave",
+        "The browser Leglas already uses for screenshots"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, some website and agent-connector checks read the site's source text or repeated each other, so a broken page could still pass.",
+        "Now they read pages as readers get them, and a real browser clicks the light and dark switch to check it flips and is remembered.",
+        "The website and the connector are held to what people actually see."
+      ]
+    }
+  ]
+}
