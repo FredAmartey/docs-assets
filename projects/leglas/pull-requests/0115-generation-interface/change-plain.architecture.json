@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas now builds a set of designs from one brief and shows each one's progress",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      640
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6262f9e9e9b4ebfd78a8187833feca5c6a2e31be"
+    }
+  },
+  "components": [
+    {
+      "id": "switch",
+      "type": "frontend",
+      "label": "A switch in the tools",
+      "sublabel": "starts switched off",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/stage/ToolsPopover.tsx",
+          "line": 193
+        }
+      ]
+    },
+    {
+      "id": "brief",
+      "type": "frontend",
+      "label": "Write a short brief",
+      "sublabel": "opened by the plus button",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/BriefToolbar.tsx",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "poll",
+      "type": "frontend",
+      "label": "Watches every build",
+      "sublabel": "checks when one changes",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/useGeneration.ts",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "id": "states",
+      "type": "frontend",
+      "label": "Progress on each design",
+      "sublabel": "in the list and the preview",
+      "pos": [
+        40,
+        480
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/Row.tsx",
+          "line": 35
+        },
+        {
+          "path": "packages/shell/src/generation/GenerationCard.tsx",
+          "line": 32
+        },
+        {
+          "path": "packages/shell/src/generation/GenerationCover.tsx",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "type": "backend",
+      "label": "Starts building the set",
+      "sublabel": "from the previous change",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1124
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "Builds the designs together",
+      "sublabel": "at the same time",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 201
+        }
+      ]
+    },
+    {
+      "id": "act",
+      "type": "backend",
+      "label": "Stop, retry, new idea",
+      "sublabel": "what the buttons ask",
+      "pos": [
+        450,
+        480
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1119
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what is new",
+      "wraps": [
+        "switch",
+        "brief",
+        "poll",
+        "states"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "switch-brief",
+      "from": "switch",
+      "to": "brief",
+      "label": "turns it on",
+      "labelAt": [
+        165,
+        161
+      ]
+    },
+    {
+      "id": "brief-start",
+      "from": "brief",
+      "to": "start",
+      "label": "your brief, how many",
+      "variant": "emphasis"
+    },
+    {
+      "id": "start-job",
+      "from": "start",
+      "to": "job",
+      "label": "starts a set",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "job-poll",
+      "from": "job",
+      "to": "poll",
+      "label": "says something moved",
+      "variant": "emphasis"
+    },
+    {
+      "id": "poll-states",
+      "from": "poll",
+      "to": "states",
+      "label": "each design's progress",
+      "labelAt": [
+        165,
+        441
+      ]
+    },
+    {
+      "id": "states-act",
+      "from": "states",
+      "to": "act",
+      "label": "you press a button"
+    },
+    {
+      "id": "act-job",
+      "from": "act",
+      "to": "job",
+      "label": "changes one design"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "A brief box, behind a switch",
+        "Each design's progress, where you look",
+        "Stop, retry or a new idea"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "How Leglas builds the designs",
+        "Asking for changes to one design"
+      ]
+    }
+  ]
+}

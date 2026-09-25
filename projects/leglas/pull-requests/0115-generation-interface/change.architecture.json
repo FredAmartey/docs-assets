@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The rail builds a set of directions and shows each one's progress",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      640
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6262f9e9e9b4ebfd78a8187833feca5c6a2e31be"
+    }
+  },
+  "components": [
+    {
+      "id": "switch",
+      "type": "frontend",
+      "label": "tools switch",
+      "sublabel": "Build directions, off by default",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/stage/ToolsPopover.tsx",
+          "line": 193
+        }
+      ]
+    },
+    {
+      "id": "brief",
+      "type": "frontend",
+      "label": "brief in the composer",
+      "sublabel": "opened by the + in the header",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/BriefToolbar.tsx",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "poll",
+      "type": "frontend",
+      "label": "useGeneration",
+      "sublabel": "reads the jobs on every nudge",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/generation/useGeneration.ts",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "id": "states",
+      "type": "frontend",
+      "label": "rows, card and stage cover",
+      "sublabel": "building, checking, failed, stopped",
+      "pos": [
+        40,
+        480
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/rail/Row.tsx",
+          "line": 35
+        },
+        {
+          "path": "packages/shell/src/generation/GenerationCard.tsx",
+          "line": 32
+        },
+        {
+          "path": "packages/shell/src/generation/GenerationCover.tsx",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "type": "backend",
+      "label": "POST /api/generate",
+      "sublabel": "the engine from #110",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1124
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "type": "backend",
+      "label": "generation job",
+      "sublabel": "builds the set in parallel",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 201
+        }
+      ]
+    },
+    {
+      "id": "act",
+      "type": "backend",
+      "label": "stop, retry, replace",
+      "sublabel": "POST /api/generate/\u2026",
+      "pos": [
+        450,
+        480
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1119
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "switch",
+        "brief",
+        "poll",
+        "states"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "switch-brief",
+      "from": "switch",
+      "to": "brief",
+      "label": "turns it on",
+      "labelAt": [
+        165,
+        161
+      ]
+    },
+    {
+      "id": "brief-start",
+      "from": "brief",
+      "to": "start",
+      "label": "brief, count",
+      "variant": "emphasis"
+    },
+    {
+      "id": "start-job",
+      "from": "start",
+      "to": "job",
+      "label": "starts a set",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "job-poll",
+      "from": "job",
+      "to": "poll",
+      "label": "generation nudge",
+      "variant": "emphasis"
+    },
+    {
+      "id": "poll-states",
+      "from": "poll",
+      "to": "states",
+      "label": "each slot's state",
+      "labelAt": [
+        165,
+        441
+      ]
+    },
+    {
+      "id": "states-act",
+      "from": "states",
+      "to": "act",
+      "label": "a button pressed"
+    },
+    {
+      "id": "act-job",
+      "from": "act",
+      "to": "job",
+      "label": "one slot"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "A brief in the composer, behind a setting",
+        "Each direction's state on its row and the stage",
+        "Stop, retry and a new idea where they happen"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The engine and its routes, from #110",
+        "Change requests in the composer"
+      ]
+    }
+  ]
+}

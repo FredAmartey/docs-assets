@@ -80,6 +80,7 @@ documents.
 | `0112-tests-cli` | [#112](https://github.com/FredAmartey/leglas/pull/112) |
 | `0113-tests-rest` | [#113](https://github.com/FredAmartey/leglas/pull/113) |
 | `0114-claude-opus-5-5` | [#114](https://github.com/FredAmartey/leglas/pull/114) |
+| `0115-generation-interface` | [#115](https://github.com/FredAmartey/leglas/pull/115) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
