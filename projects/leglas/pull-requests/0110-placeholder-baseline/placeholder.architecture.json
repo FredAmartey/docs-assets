@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The placeholder baseline leglas new writes renders instead of throwing",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "3c9d1f9ee21fa4f884218fe5b736d13301f43386"
+    }
+  },
+  "components": [
+    {
+      "id": "new",
+      "type": "backend",
+      "label": "placeholder() in new.ts",
+      "sublabel": "the note goes in as a string",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/new.ts",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "id": "file",
+      "type": "frontend",
+      "label": "current.tsx, the baseline",
+      "sublabel": "renders its note as text",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "new.test.ts",
+      "sublabel": "compiles and runs the output",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/new.test.ts",
+          "line": 127
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "external",
+      "label": "the project's page",
+      "sublabel": "shows current by default",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "new-file",
+      "from": "new",
+      "to": "file",
+      "label": "writes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "file-page",
+      "from": "file",
+      "to": "page",
+      "label": "rendered on",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "tests-new",
+      "from": "tests",
+      "to": "new",
+      "label": "tsc and a real render",
+      "labelAt": [
+        165,
+        151
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "new",
+        "tests"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The note was read as JSX code: ReferenceError on render",
+        "Tests now compile and run what leglas new writes"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The switch templates and their production guard",
+        "--from, which writes a real baseline instead"
+      ]
+    }
+  ]
+}
