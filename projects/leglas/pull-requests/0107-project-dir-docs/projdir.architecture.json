@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "docs/agents.md now says LEGLAS_PROJECT_DIR wins, as the MCP server does",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6da45de5a89a1b78129f82ad7b1b2b55c8cf22b0"
+    }
+  },
+  "components": [
+    {
+      "id": "docs",
+      "type": "frontend",
+      "label": "docs/agents.md",
+      "sublabel": "override first, then MCP roots",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/agents.md",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "frontend",
+      "label": "the docs page on the site",
+      "sublabel": "renders the same text",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "code",
+      "type": "backend",
+      "label": "hostProject in mcp/project.ts",
+      "sublabel": "override, then roots, then cwd",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/project.ts",
+          "line": 92
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "project.test.ts",
+      "sublabel": "the override outranks both",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/project.test.ts",
+          "line": 75
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "docs-site",
+      "from": "docs",
+      "to": "site",
+      "label": "rendered to"
+    },
+    {
+      "id": "docs-code",
+      "from": "docs",
+      "to": "code",
+      "label": "now matches",
+      "labelAt": [
+        165,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "test-code",
+      "from": "test",
+      "to": "code",
+      "label": "pins the order"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "docs"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "One sentence in docs/agents.md",
+        "It had the override applying only with no roots"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The server's order, pinned by project.test.ts",
+        "The changelog, which already said override"
+      ]
+    }
+  ]
+}

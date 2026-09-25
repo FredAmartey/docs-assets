@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A failed update now says why in npm's own words",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "a40187ab4f71475bc81a284abfd14bdef191f21e"
+    }
+  },
+  "components": [
+    {
+      "id": "npm",
+      "type": "external",
+      "label": "The npm installer",
+      "sublabel": "lists details before its message",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "reason",
+      "type": "backend",
+      "label": "The reason finder",
+      "sublabel": "now skips npm's detail lines",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/update.ts",
+          "line": 583
+        }
+      ]
+    },
+    {
+      "id": "phase",
+      "type": "backend",
+      "label": "Leglas's update status",
+      "sublabel": "records the failure and reason",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/update.ts",
+          "line": 710
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "frontend",
+      "label": "The update panel",
+      "sublabel": "shows you the reason",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "npm-reason",
+      "from": "npm",
+      "to": "reason",
+      "label": "reports the failure",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reason-phase",
+      "from": "reason",
+      "to": "phase",
+      "label": "passes npm's message",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "phase-panel",
+      "from": "phase",
+      "to": "panel",
+      "label": "shows it"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "reason"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The reason is npm's own message",
+        "A permission failure now says permission denied"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Reasons from other installers",
+        "The exit number shown before the reason"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, when updating Leglas failed because npm had no permission to write, the panel said syscall mkdir, one of the details npm prints before its real message.",
+        "Now the panel shows npm's message, permission denied with the folder it could not write, and a network failure says which address could not be reached.",
+        "Anyone whose update fails can see why and fix it."
+      ]
+    }
+  ]
+}

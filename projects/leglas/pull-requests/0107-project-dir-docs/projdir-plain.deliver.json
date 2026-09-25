@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "projdir-plain.architecture.json",
+  "output": "projdir-plain.html",
+  "specification": {
+    "sha256": "df193b85a67288fc112f0de1247c44ce1450afba6065ba29598137704506860f",
+    "bytes": 3280
+  },
+  "artifact": {
+    "sha256": "eebfa1a290b8f3990bc7ea734a038b3ddc3e57a7bef6da4601c137900f2d3073",
+    "bytes": 801714
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "6da45de5a89a1b78129f82ad7b1b2b55c8cf22b0",
+    "references": 3
+  }
+}

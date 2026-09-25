@@ -1,0 +1,5 @@
+structure: PASS
+labels: 0 FAIL, 2 WARN
+  WARN over-four components[0].sublabel "setting first, then the host" (5 words)
+  WARN over-four components[1].label "The guide on the website" (5 words)
+result: PASS

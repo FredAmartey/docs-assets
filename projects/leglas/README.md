@@ -71,6 +71,8 @@ documents.
 | `0103-follow-ups-101` | [#103](https://github.com/FredAmartey/leglas/pull/103) |
 | `0104-text-wrap-pretty` | [#104](https://github.com/FredAmartey/leglas/pull/104) |
 | `0105-live-update-frame` | [#105](https://github.com/FredAmartey/leglas/pull/105) |
+| `0106-installer-reason` | [#106](https://github.com/FredAmartey/leglas/pull/106) |
+| `0107-project-dir-docs` | [#107](https://github.com/FredAmartey/leglas/pull/107) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

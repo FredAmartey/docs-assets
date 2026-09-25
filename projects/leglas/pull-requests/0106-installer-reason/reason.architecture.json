@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A failed npm update reports npm's message instead of its first field",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "a40187ab4f71475bc81a284abfd14bdef191f21e"
+    }
+  },
+  "components": [
+    {
+      "id": "npm",
+      "type": "external",
+      "label": "npm i -g leglas@x",
+      "sublabel": "prints its fields, then the message",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "reason",
+      "type": "backend",
+      "label": "installerReason in update.ts",
+      "sublabel": "skips code, syscall, path, errno",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/update.ts",
+          "line": 583
+        }
+      ]
+    },
+    {
+      "id": "phase",
+      "type": "backend",
+      "label": "the update service's phase",
+      "sublabel": "failed: exited N. <message>",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/update.ts",
+          "line": 710
+        }
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "frontend",
+      "label": "the update panel",
+      "sublabel": "shows the reason",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "npm-reason",
+      "from": "npm",
+      "to": "reason",
+      "label": "stderr on exit",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reason-phase",
+      "from": "reason",
+      "to": "phase",
+      "label": "npm's own line",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "phase-panel",
+      "from": "phase",
+      "to": "panel",
+      "label": "status"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "reason"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Skips every field npm writes ahead of its message",
+        "EACCES reads permission denied, not syscall mkdir"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Yarn, pnpm and bun reasons",
+        "The 404 reason and the exit code prefix"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+structure: PASS
+labels: 0 FAIL, 3 WARN
+  WARN over-four components[0].sublabel "lists details before its message" (5 words)
+  WARN over-four components[1].sublabel "now skips npm's detail lines" (5 words)
+  WARN over-four components[2].sublabel "records the failure and reason" (5 words)
+result: PASS

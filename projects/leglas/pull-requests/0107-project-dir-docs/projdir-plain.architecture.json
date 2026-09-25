@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The agents guide now says the project setting always wins",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "6da45de5a89a1b78129f82ad7b1b2b55c8cf22b0"
+    }
+  },
+  "components": [
+    {
+      "id": "docs",
+      "type": "frontend",
+      "label": "The agents guide",
+      "sublabel": "setting first, then the host",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "docs/agents.md",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "frontend",
+      "label": "The guide on the website",
+      "sublabel": "shows the same words",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "code",
+      "type": "backend",
+      "label": "The server's project lookup",
+      "sublabel": "setting, host, then folder",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/project.ts",
+          "line": 92
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "The project lookup check",
+      "sublabel": "the setting beats both",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/project.test.ts",
+          "line": 75
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "docs-site",
+      "from": "docs",
+      "to": "site",
+      "label": "shown on"
+    },
+    {
+      "id": "docs-code",
+      "from": "docs",
+      "to": "code",
+      "label": "now agrees with",
+      "labelAt": [
+        165,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "test-code",
+      "from": "test",
+      "to": "code",
+      "label": "holds it to that"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "docs"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "One sentence in the agents guide",
+        "It said the setting only counted when the host named no project"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the server picks the project",
+        "The release notes, which were already right"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change the agents guide said the project setting only counted when the agent host named no project, the opposite of what Leglas does.",
+        "Now it says the setting wins whenever it is set, and the host's project is used otherwise.",
+        "Anyone setting it to point Leglas at a project can trust the guide's description."
+      ]
+    }
+  ]
+}
