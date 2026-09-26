@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "99792b9581637a7391cf7aad3d57a32b4803cd20"
+      "revision": "13314ec13c331f2c69a1342762d78d138a981874"
     }
   },
   "components": [
@@ -57,7 +57,7 @@
       "sources": [
         {
           "path": "packages/server/src/config/local-previews.ts",
-          "line": 160
+          "line": 173
         }
       ]
     },
@@ -78,7 +78,7 @@
       "sources": [
         {
           "path": "packages/cli/src/run-share.ts",
-          "line": 385
+          "line": 389
         }
       ]
     },
