@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "49fd2af0c4a273f523a5f4e30efd0c7f35ee31d4"
+      "revision": "676bec803183e24451bc1ea9ebb622c1b68177ec"
     }
   },
   "components": [
@@ -139,7 +139,7 @@
       "title": "What a host now reads",
       "items": [
         "Read-only, destructive, repeatable, open world",
-        "The workflow in tool names, 1463 characters"
+        "The workflow in tool names, 1505 characters"
       ]
     },
     {
