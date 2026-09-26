@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Comments in every package say only the non-obvious why",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "a52f70fbe5e6d7585d214e5219daebb5120806be"
+    }
+  },
+  "components": [
+    {
+      "id": "mcp",
+      "type": "backend",
+      "label": "leglas-mcp",
+      "sublabel": "236 \u2192 175 comment lines",
+      "tag": "comments",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "type": "backend",
+      "label": "leglas CLI",
+      "sublabel": "667 \u2192 477 comment lines",
+      "tag": "comments",
+      "pos": [
+        430,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 94
+        }
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "external",
+      "label": "scripts, site, tests",
+      "sublabel": "490 \u2192 332 comment lines",
+      "tag": "comments",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "scripts/api-surface.ts",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "@leglas/server",
+      "sublabel": "3,231 \u2192 2,469 comment lines",
+      "tag": "comments",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 843
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "shell interface",
+      "sublabel": "3,609 \u2192 2,738 comment lines",
+      "tag": "comments",
+      "pos": [
+        430,
+        380
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 201
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "mcp-cli",
+      "from": "mcp",
+      "to": "cli",
+      "label": "calls its run functions"
+    },
+    {
+      "id": "cli-server",
+      "from": "cli",
+      "to": "server",
+      "label": "starts",
+      "labelAt": [
+        565,
+        171
+      ]
+    },
+    {
+      "id": "scripts-server",
+      "from": "scripts",
+      "to": "server",
+      "label": "api-surface reads types"
+    },
+    {
+      "id": "server-shell",
+      "from": "server",
+      "to": "shell",
+      "label": "serves",
+      "labelAt": [
+        565,
+        331
+      ]
+    }
+  ]
+}
