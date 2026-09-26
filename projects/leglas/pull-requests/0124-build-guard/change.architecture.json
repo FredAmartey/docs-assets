@@ -2,13 +2,16 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "A build that edits a file other than its own is stopped, and what Leglas keeps is put back",
+    "title": "A build that edits another file is stopped, and kept files are put back",
     "quality_profile": "showcase",
-    "viewBox": [740, 500],
+    "viewBox": [
+      740,
+      500
+    ],
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "af8c89bac20930fd5002c4b2194327ec262659a8"
+      "revision": "918630a1d1a3dd9f483ebb8b403c598bdc50d95f"
     }
   },
   "components": [
@@ -17,62 +20,166 @@
       "type": "external",
       "label": "build or fix run",
       "sublabel": "Claude or Codex, one slot's file",
-      "pos": [40, 60],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/generation/generation.ts", "line": 661 }]
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 755
+        }
+      ]
     },
     {
       "id": "edited",
       "type": "backend",
       "label": "editedFiles",
       "sublabel": "every file a line says it edited",
-      "pos": [450, 60],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 656 }]
+      "pos": [
+        450,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/agents.ts",
+          "line": 650
+        }
+      ]
     },
     {
       "id": "check",
       "type": "backend",
       "label": "stray check",
       "sublabel": "not its own file: stop the run",
-      "pos": [450, 200],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/generation/generation.ts", "line": 611 }]
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 685
+        }
+      ]
     },
     {
       "id": "plan",
       "type": "backend",
       "label": "plan",
       "sublabel": "the set's slots go into the switch",
-      "pos": [40, 200],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/generation/generation.ts", "line": 923 }]
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 1025
+        }
+      ]
     },
     {
       "id": "kept",
       "type": "database",
       "label": "kept files",
       "sublabel": "switch, directions, their imports",
-      "pos": [40, 340],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/generation/generation.ts", "line": 577 }]
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 639
+        }
+      ]
     },
     {
       "id": "strayed",
       "type": "backend",
       "label": "after the run",
       "sublabel": "fails the slot, names the file",
-      "pos": [450, 340],
-      "size": [250, 62],
-      "sources": [{ "path": "packages/server/src/generation/generation.ts", "line": 548 }]
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 579
+        }
+      ]
     }
   ],
   "connections": [
-    { "id": "run-edited", "from": "run", "to": "edited", "label": "each stream line", "variant": "emphasis" },
-    { "id": "edited-check", "from": "edited", "to": "check", "label": "edited paths", "labelAt": [575, 161] },
-    { "id": "check-strayed", "from": "check", "to": "strayed", "label": "a stray", "labelAt": [575, 301] },
-    { "id": "plan-kept", "from": "plan", "to": "kept", "label": "snapshots", "labelAt": [165, 301] },
-    { "id": "kept-strayed", "from": "kept", "to": "strayed", "label": "puts a kept file back" }
+    {
+      "id": "run-edited",
+      "from": "run",
+      "to": "edited",
+      "label": "each stream line",
+      "variant": "emphasis"
+    },
+    {
+      "id": "edited-check",
+      "from": "edited",
+      "to": "check",
+      "label": "edited paths",
+      "labelAt": [
+        575,
+        161
+      ]
+    },
+    {
+      "id": "check-strayed",
+      "from": "check",
+      "to": "strayed",
+      "label": "a stray",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "plan-kept",
+      "from": "plan",
+      "to": "kept",
+      "label": "snapshots",
+      "labelAt": [
+        165,
+        301
+      ]
+    },
+    {
+      "id": "kept-strayed",
+      "from": "kept",
+      "to": "strayed",
+      "label": "puts a kept file back"
+    }
   ],
   "cards": [
     {
