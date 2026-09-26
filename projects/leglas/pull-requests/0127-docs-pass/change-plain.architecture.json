@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The manual now matches what Leglas does",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "54d0e3363518a72c831ced4ae6be8d78c315af4d"
+    }
+  },
+  "components": [
+    {
+      "id": "docs",
+      "type": "database",
+      "label": "Manual pages",
+      "sublabel": "four pages updated",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "tag": "updated",
+      "sources": [
+        {
+          "path": "docs/sharing.md",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "Page builder",
+      "sublabel": "turns each page into HTML",
+      "pos": [
+        430,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 556
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "type": "external",
+      "label": "GitHub",
+      "sublabel": "shows the files as written",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "frontend",
+      "label": "Leglas website",
+      "sublabel": "the manual online",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "contrib",
+      "type": "database",
+      "label": "Contributor guide",
+      "sublabel": "a few lines updated",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "tag": "updated",
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 59
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "docs-render",
+      "from": "docs",
+      "to": "render",
+      "label": "read by"
+    },
+    {
+      "id": "render-site",
+      "from": "render",
+      "to": "site",
+      "label": "publishes",
+      "labelAt": [
+        565,
+        181
+      ]
+    },
+    {
+      "id": "docs-github",
+      "from": "docs",
+      "to": "github",
+      "label": "shown on",
+      "labelAt": [
+        175,
+        181
+      ]
+    },
+    {
+      "id": "contrib-github",
+      "from": "contrib",
+      "to": "github",
+      "label": "shown on",
+      "labelAt": [
+        175,
+        341
+      ]
+    }
+  ]
+}

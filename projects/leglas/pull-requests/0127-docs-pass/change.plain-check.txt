@@ -1,0 +1,6 @@
+structure: PASS
+labels: 0 FAIL, 3 WARN
+  WARN over-four components[1].sublabel "turns each page into HTML" (5 words)
+  WARN all-caps components[1].sublabel "turns each page into HTML" check this is a name readers know
+  WARN over-four components[2].sublabel "shows the files as written" (5 words)
+result: PASS

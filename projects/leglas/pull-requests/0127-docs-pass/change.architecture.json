@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The manual and CONTRIBUTING drop their stale lines",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "54d0e3363518a72c831ced4ae6be8d78c315af4d"
+    }
+  },
+  "components": [
+    {
+      "id": "docs",
+      "type": "database",
+      "label": "docs/*.md",
+      "sublabel": "guide, sharing, configuration, architecture",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "docs/sharing.md",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "site/docs.ts",
+      "sublabel": "renders each page",
+      "pos": [
+        430,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/docs.ts",
+          "line": 556
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "type": "external",
+      "label": "GitHub",
+      "sublabel": "reads the markdown as is",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "type": "frontend",
+      "label": "leglas.vercel.app/docs",
+      "sublabel": "the manual on the site",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "contrib",
+      "type": "database",
+      "label": "CONTRIBUTING.md",
+      "sublabel": "site, server and changelog lines",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "CONTRIBUTING.md",
+          "line": 59
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "docs-render",
+      "from": "docs",
+      "to": "render",
+      "label": "parsed by"
+    },
+    {
+      "id": "render-site",
+      "from": "render",
+      "to": "site",
+      "label": "writes",
+      "labelAt": [
+        565,
+        181
+      ]
+    },
+    {
+      "id": "docs-github",
+      "from": "docs",
+      "to": "github",
+      "label": "shown on",
+      "labelAt": [
+        175,
+        181
+      ]
+    },
+    {
+      "id": "contrib-github",
+      "from": "contrib",
+      "to": "github",
+      "label": "shown on",
+      "labelAt": [
+        175,
+        341
+      ]
+    }
+  ]
+}
