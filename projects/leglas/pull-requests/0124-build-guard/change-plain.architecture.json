@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A build that changes the wrong file is now stopped, and the file is put back",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "af8c89bac20930fd5002c4b2194327ec262659a8"
+    }
+  },
+  "components": [
+    {
+      "id": "run",
+      "type": "external",
+      "label": "An agent building a design",
+      "sublabel": "Claude or Codex, one file",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 661
+        }
+      ]
+    },
+    {
+      "id": "edited",
+      "type": "backend",
+      "label": "Reads what it changed",
+      "sublabel": "every file it says it edited",
+      "pos": [
+        450,
+        60
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/agents/agents.ts",
+          "line": 656
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "Catches a wrong file",
+      "sublabel": "stops the agent straight away",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 611
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "backend",
+      "label": "Sets up the new designs",
+      "sublabel": "adds them to the design list",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 923
+        }
+      ]
+    },
+    {
+      "id": "kept",
+      "type": "database",
+      "label": "Copies set aside",
+      "sublabel": "the list, designs and shared files",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 577
+        }
+      ]
+    },
+    {
+      "id": "strayed",
+      "type": "backend",
+      "label": "Reports what went wrong",
+      "sublabel": "marks it failed, names the file",
+      "pos": [
+        450,
+        340
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 548
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-edited",
+      "from": "run",
+      "to": "edited",
+      "label": "everything it reports",
+      "variant": "emphasis"
+    },
+    {
+      "id": "edited-check",
+      "from": "edited",
+      "to": "check",
+      "label": "each file it changed",
+      "labelAt": [
+        575,
+        161
+      ]
+    },
+    {
+      "id": "check-strayed",
+      "from": "check",
+      "to": "strayed",
+      "label": "a file not its own",
+      "labelAt": [
+        575,
+        301
+      ]
+    },
+    {
+      "id": "plan-kept",
+      "from": "plan",
+      "to": "kept",
+      "label": "saves copies first",
+      "labelAt": [
+        165,
+        301
+      ]
+    },
+    {
+      "id": "kept-strayed",
+      "from": "kept",
+      "to": "strayed",
+      "label": "puts a copy back"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What it adds",
+      "items": [
+        "Stops a build changing other files",
+        "Puts shared files back",
+        "Says which file was changed"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Builds that keep to their file",
+        "Files a shell command writes"
+      ]
+    }
+  ]
+}
