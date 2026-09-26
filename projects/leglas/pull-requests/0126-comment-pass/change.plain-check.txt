@@ -1,8 +1,8 @@
 structure: PASS
 labels: 0 FAIL, 5 WARN
   WARN over-four components[0].sublabel "236 \u2192 175 note lines" (5 words)
-  WARN over-four components[1].sublabel "667 \u2192 477 note lines" (5 words)
+  WARN over-four components[1].sublabel "667 \u2192 478 note lines" (5 words)
   WARN over-four components[2].sublabel "490 \u2192 332 note lines" (5 words)
-  WARN over-four components[3].sublabel "3,231 \u2192 2,469 note lines" (5 words)
-  WARN over-four components[4].sublabel "3,609 \u2192 2,738 note lines" (5 words)
+  WARN over-four components[3].sublabel "3,231 \u2192 2,464 note lines" (5 words)
+  WARN over-four components[4].sublabel "3,609 \u2192 2,730 note lines" (5 words)
 result: PASS

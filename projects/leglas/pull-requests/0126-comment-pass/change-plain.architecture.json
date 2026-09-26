@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "a52f70fbe5e6d7585d214e5219daebb5120806be"
+      "revision": "0bfc299e8eb538ca1eb4653e118823f50ad27057"
     }
   },
   "components": [
@@ -40,7 +40,7 @@
       "id": "cli",
       "type": "backend",
       "label": "Command line",
-      "sublabel": "667 \u2192 477 note lines",
+      "sublabel": "667 \u2192 478 note lines",
       "tag": "notes",
       "pos": [
         430,
@@ -82,7 +82,7 @@
       "id": "server",
       "type": "backend",
       "label": "Local server",
-      "sublabel": "3,231 \u2192 2,469 note lines",
+      "sublabel": "3,231 \u2192 2,464 note lines",
       "tag": "notes",
       "pos": [
         430,
@@ -103,7 +103,7 @@
       "id": "shell",
       "type": "frontend",
       "label": "Browser interface",
-      "sublabel": "3,609 \u2192 2,738 note lines",
+      "sublabel": "3,609 \u2192 2,730 note lines",
       "tag": "notes",
       "pos": [
         430,
