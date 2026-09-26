@@ -7,8 +7,8 @@
   "visualReview": "pending",
   "artifact": {
     "path": "change-plain.html",
-    "sha256": "d8cf8c935df1103cf5514796d44c92587392266c90311c8cf7fa866d1872ba4e",
-    "bytes": 803011
+    "sha256": "acdb99d47679cdce4d4b236b73a3ccd939deef225130749446d5e5847db3c294",
+    "bytes": 802729
   },
   "state": {
     "detail": "read",

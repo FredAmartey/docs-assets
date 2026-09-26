@@ -11,7 +11,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "5489152e8036228b05a8585c74797cf3d9f9e153"
+      "revision": "faf899580127315a6150fb0bf8564a9b5f3a48e2"
     }
   },
   "components": [
@@ -31,9 +31,9 @@
     },
     {
       "id": "record",
-      "type": "database",
-      "label": ".leglas/server.json",
-      "sublabel": "port of the running Leglas",
+      "type": "backend",
+      "label": "The running Leglas",
+      "sublabel": "server.json and /leglas/api/config",
       "tag": "unchanged",
       "pos": [
         450,
@@ -47,6 +47,10 @@
         {
           "path": "packages/server/src/server-info.ts",
           "line": 38
+        },
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1354
         }
       ]
     },
@@ -71,7 +75,7 @@
         },
         {
           "path": "packages/cli/src/run-previews.ts",
-          "line": 141
+          "line": 138
         },
         {
           "path": "packages/mcp/src/tools.ts",
@@ -131,7 +135,7 @@
       "id": "commands-record",
       "from": "commands",
       "to": "record",
-      "label": "reads the port"
+      "label": "asks its port and rail"
     },
     {
       "id": "commands-shell",
@@ -147,7 +151,8 @@
       "title": "What the link opens",
       "items": [
         "One direction on the stage",
-        "Two side by side, second on the right"
+        "Two side by side, second on the right",
+        "Only directions on the running rail"
       ]
     },
     {
