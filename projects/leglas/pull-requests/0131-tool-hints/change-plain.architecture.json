@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Each Leglas tool now says whether it only reads, can delete or goes online",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "49fd2af0c4a273f523a5f4e30efd0c7f35ee31d4"
+    }
+  },
+  "components": [
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Leglas's tools for agents",
+      "sublabel": "each says if it only reads",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 139
+        },
+        {
+          "path": "packages/mcp/src/instructions.ts",
+          "line": 7
+        },
+        {
+          "path": "packages/mcp/src/bin.ts",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "host",
+      "type": "external",
+      "label": "The app running your agent",
+      "sublabel": "decides what to ask you",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "runs",
+      "type": "backend",
+      "label": "The commands behind them",
+      "sublabel": "unchanged by this",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/index.ts",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "Your coding agent",
+      "sublabel": "starts with the steps",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "server"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "server-host",
+      "from": "server",
+      "to": "host",
+      "label": "hints and the steps",
+      "variant": "emphasis"
+    },
+    {
+      "id": "host-agent",
+      "from": "host",
+      "to": "agent",
+      "label": "the steps to follow",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "server-runs",
+      "from": "server",
+      "to": "runs",
+      "label": "same commands",
+      "labelAt": [
+        165,
+        151
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the app now learns",
+      "items": [
+        "Which tools only read",
+        "Which can delete something",
+        "Which go online"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "What each tool does",
+        "What each tool returns"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before, every Leglas tool looked to your agent's app as if it might delete things or go online, and agents without the Leglas skill got no steps to follow.",
+        "Now each tool says whether it only reads, can delete something, is safe to repeat or goes online, and the steps come with the connection.",
+        "The app can skip asking you before a tool that only reads, and your agent knows the steps from the start."
+      ]
+    }
+  ]
+}

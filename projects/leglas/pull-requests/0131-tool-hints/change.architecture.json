@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Every MCP tool declares its hints, and the server sends the workflow",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "49fd2af0c4a273f523a5f4e30efd0c7f35ee31d4"
+    }
+  },
+  "components": [
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "leglas-mcp",
+      "sublabel": "12 tools with hints, instructions",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 139
+        },
+        {
+          "path": "packages/mcp/src/instructions.ts",
+          "line": 7
+        },
+        {
+          "path": "packages/mcp/src/bin.ts",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "host",
+      "type": "external",
+      "label": "MCP host",
+      "sublabel": "Claude Code, Cursor, Codex",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "runs",
+      "type": "backend",
+      "label": "CLI run functions",
+      "sublabel": "what each tool calls",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/index.ts",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "The agent",
+      "sublabel": "starts from the workflow",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "server"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "server-host",
+      "from": "server",
+      "to": "host",
+      "label": "hints and instructions",
+      "variant": "emphasis"
+    },
+    {
+      "id": "host-agent",
+      "from": "host",
+      "to": "agent",
+      "label": "instructions in context",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "server-runs",
+      "from": "server",
+      "to": "runs",
+      "label": "same calls",
+      "labelAt": [
+        165,
+        151
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What a host now reads",
+      "items": [
+        "Read-only, destructive, repeatable, open world",
+        "The workflow in tool names, 1463 characters"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every tool's input and envelope",
+        "The channel note for change requests"
+      ]
+    }
+  ]
+}

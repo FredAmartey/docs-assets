@@ -93,6 +93,7 @@ documents.
 | `0125-prose-pass` | [#125](https://github.com/FredAmartey/leglas/pull/125) |
 | `0126-comment-pass` | [#126](https://github.com/FredAmartey/leglas/pull/126) |
 | `0127-docs-pass` | [#127](https://github.com/FredAmartey/leglas/pull/127) |
+| `0131-tool-hints` | [#131](https://github.com/FredAmartey/leglas/pull/131) |
 | `0130-interface-links` | [#130](https://github.com/FredAmartey/leglas/pull/130) |
 | `0129-changelog-guard` | [#129](https://github.com/FredAmartey/leglas/pull/129) |
 | `0128-one-set-of-rules` | [#128](https://github.com/FredAmartey/leglas/pull/128) |

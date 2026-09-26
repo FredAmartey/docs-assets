@@ -1,0 +1,6 @@
+structure: PASS
+labels: 0 FAIL, 3 WARN
+  WARN over-four components[0].sublabel "each says if it only reads" (6 words)
+  WARN over-four components[1].label "The app running your agent" (5 words)
+  WARN over-four components[1].sublabel "decides what to ask you" (5 words)
+result: PASS
