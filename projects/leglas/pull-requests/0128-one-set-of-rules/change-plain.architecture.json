@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Typed commands and agent tools now follow one set of rules",
+    "quality_profile": "showcase",
+    "viewBox": [
+      780,
+      742
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "1842eef986e8935fdaa4b7152b24ae6111a65141"
+    }
+  },
+  "components": [
+    {
+      "id": "terminal",
+      "type": "external",
+      "label": "Someone typing a command",
+      "sublabel": "person or agent",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "host",
+      "type": "external",
+      "label": "An agent's app",
+      "sublabel": "uses tools, not commands",
+      "pos": [
+        40,
+        440
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "parity",
+      "type": "backend",
+      "label": "An automatic check",
+      "sublabel": "new: options matched or explained",
+      "tag": "new",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/parity.test.ts",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "id": "parser",
+      "type": "backend",
+      "label": "The command reader",
+      "sublabel": "changed: form, then rules",
+      "tag": "changed",
+      "pos": [
+        430,
+        40
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 246
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "backend",
+      "label": "The shared rules",
+      "sublabel": "new: limits, defaults, refusals",
+      "tag": "new",
+      "pos": [
+        430,
+        240
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/rules.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "The agent tools",
+      "sublabel": "changed: rules, then action",
+      "tag": "changed",
+      "pos": [
+        430,
+        440
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 220
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "The actions themselves",
+      "sublabel": "unchanged: adding, sharing, showing",
+      "tag": "unchanged",
+      "pos": [
+        430,
+        640
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-previews.ts",
+          "line": 82
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "terminal-parser",
+      "from": "terminal",
+      "to": "parser",
+      "label": "types a command"
+    },
+    {
+      "id": "host-tools",
+      "from": "host",
+      "to": "tools",
+      "label": "calls a tool",
+      "labelDx": -44
+    },
+    {
+      "id": "parser-rules",
+      "from": "parser",
+      "to": "rules",
+      "label": "checks the input",
+      "labelAt": [
+        550,
+        171
+      ]
+    },
+    {
+      "id": "tools-rules",
+      "from": "tools",
+      "to": "rules",
+      "label": "now checks it too",
+      "variant": "emphasis"
+    },
+    {
+      "id": "parser-run",
+      "from": "parser",
+      "to": "run",
+      "label": "passes the request",
+      "fromSide": "right",
+      "toSide": "right"
+    },
+    {
+      "id": "tools-run",
+      "from": "tools",
+      "to": "run",
+      "label": "passes the same request",
+      "labelAt": [
+        550,
+        571
+      ]
+    },
+    {
+      "id": "parity-parser",
+      "from": "parity",
+      "to": "parser",
+      "label": "reads commands and options",
+      "variant": "dashed"
+    },
+    {
+      "id": "parity-tools",
+      "from": "parity",
+      "to": "tools",
+      "label": "reads every tool option",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Now refused by the agent tools too",
+      "items": [
+        "A design with nothing to show, or an empty note",
+        "Stopping a share while naming a design",
+        "A picture width without a picture",
+        "A starting point with no file name"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Typed commands answer exactly as before",
+        "An agent can still start the viewer on any free port",
+        "Watching for requests and reading the log stay typed commands"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, an agent's tool could let through a request a typed command would refuse, or answer it confusingly.",
+        "Now both follow the same rules before acting, and an automatic check fails if a new command or option reaches only one of them.",
+        "Agents and people now get the same yes or no whichever way they ask."
+      ]
+    }
+  ]
+}

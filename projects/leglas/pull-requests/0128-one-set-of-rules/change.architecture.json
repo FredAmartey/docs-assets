@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One set of rules for the command line and MCP",
+    "quality_profile": "showcase",
+    "viewBox": [
+      780,
+      742
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "1842eef986e8935fdaa4b7152b24ae6111a65141"
+    }
+  },
+  "components": [
+    {
+      "id": "terminal",
+      "type": "external",
+      "label": "a shell",
+      "sublabel": "person or agent",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "host",
+      "type": "external",
+      "label": "an MCP host",
+      "sublabel": "agent without a shell",
+      "pos": [
+        40,
+        440
+      ],
+      "size": [
+        230,
+        62
+      ]
+    },
+    {
+      "id": "parity",
+      "type": "backend",
+      "label": "parity.test.ts",
+      "sublabel": "new: each flag mapped or explained",
+      "tag": "new",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        230,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/parity.test.ts",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "id": "parser",
+      "type": "backend",
+      "label": "args.ts, the CLI parser",
+      "sublabel": "changed: syntax, then the rules",
+      "tag": "changed",
+      "pos": [
+        430,
+        40
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 246
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "backend",
+      "label": "rules.ts",
+      "sublabel": "new: limits, defaults, refusals",
+      "tag": "new",
+      "pos": [
+        430,
+        240
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/rules.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "tools.ts, the MCP tools",
+      "sublabel": "changed: the rules, then the run",
+      "tag": "changed",
+      "pos": [
+        430,
+        440
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 220
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "run functions",
+      "sublabel": "unchanged: runAdd, runShare, runShow",
+      "tag": "unchanged",
+      "pos": [
+        430,
+        640
+      ],
+      "size": [
+        240,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-previews.ts",
+          "line": 82
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "terminal-parser",
+      "from": "terminal",
+      "to": "parser",
+      "label": "argv"
+    },
+    {
+      "id": "host-tools",
+      "from": "host",
+      "to": "tools",
+      "label": "tools/call",
+      "labelDx": -44
+    },
+    {
+      "id": "parser-rules",
+      "from": "parser",
+      "to": "rules",
+      "label": "asks",
+      "labelAt": [
+        550,
+        171
+      ]
+    },
+    {
+      "id": "tools-rules",
+      "from": "tools",
+      "to": "rules",
+      "label": "asks, new",
+      "variant": "emphasis"
+    },
+    {
+      "id": "parser-run",
+      "from": "parser",
+      "to": "run",
+      "label": "options",
+      "fromSide": "right",
+      "toSide": "right"
+    },
+    {
+      "id": "tools-run",
+      "from": "tools",
+      "to": "run",
+      "label": "same options",
+      "labelAt": [
+        550,
+        571
+      ]
+    },
+    {
+      "id": "parity-parser",
+      "from": "parity",
+      "to": "parser",
+      "label": "commands, flags",
+      "variant": "dashed"
+    },
+    {
+      "id": "parity-tools",
+      "from": "parity",
+      "to": "tools",
+      "label": "parameters",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "MCP now refuses these, in the CLI's words",
+      "items": [
+        "add with neither url nor file, or an empty note",
+        "share with stop and a title or reach",
+        "show with a width but no screenshot",
+        "scaffold with an empty baseline path"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Kept on purpose",
+      "items": [
+        "CLI messages and exit codes, byte for byte",
+        "start takes port 0 for any free port",
+        "watch and log have no tool"
+      ]
+    }
+  ]
+}

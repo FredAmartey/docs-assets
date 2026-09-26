@@ -1,0 +1,4 @@
+structure: PASS
+labels: 0 FAIL, 1 WARN
+  WARN over-four components[2].sublabel "new: options matched or explained" (5 words)
+result: PASS
