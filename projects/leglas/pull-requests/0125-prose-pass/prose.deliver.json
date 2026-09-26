@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "prose.architecture.json",
+  "output": "prose.html",
+  "specification": {
+    "sha256": "4e4af3bcaa95edff03dcfc0d86236c0e2b50cde2fbae7163b01abd45a115cb67",
+    "bytes": 2347
+  },
+  "artifact": {
+    "sha256": "5cd7feb5e0139996498f8220af8f44844c7907d86b529db803946dbc850bbc71",
+    "bytes": 798319
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "2cf2380ed7617272e273f83966d5e37e45b5bcae",
+    "references": 3
+  }
+}

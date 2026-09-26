@@ -90,6 +90,7 @@ documents.
 | `0122-generation-codex` | [#122](https://github.com/FredAmartey/leglas/pull/122) |
 | `0123-share-test-backlog` | [#123](https://github.com/FredAmartey/leglas/pull/123) |
 | `0124-build-guard` | [#124](https://github.com/FredAmartey/leglas/pull/124) |
+| `0125-prose-pass` | [#125](https://github.com/FredAmartey/leglas/pull/125) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

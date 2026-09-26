@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The changelog is rewritten; the page and release notes read it as before",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      300
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2cf2380ed7617272e273f83966d5e37e45b5bcae"
+    }
+  },
+  "components": [
+    {
+      "id": "changelog",
+      "type": "database",
+      "label": "CHANGELOG.md",
+      "sublabel": "every entry cut to its facts",
+      "tag": "changed",
+      "pos": [
+        40,
+        120
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "changelog page",
+      "sublabel": "site/changelog.ts renders it",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/changelog.ts",
+          "line": 87
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "external",
+      "label": "GitHub release notes",
+      "sublabel": "publish.yml copies an entry",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/publish.yml",
+          "line": 156
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "changelog-page",
+      "from": "changelog",
+      "to": "page",
+      "label": "parsed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "changelog-notes",
+      "from": "changelog",
+      "to": "notes",
+      "label": "at release"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "changelog"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Changelog: 10,741 to 6,380 words",
+        "Comments in 14 files, no code"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The page, its parser and the release workflow"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The changelog says the same things in fewer words",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      300
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2cf2380ed7617272e273f83966d5e37e45b5bcae"
+    }
+  },
+  "components": [
+    {
+      "id": "changelog",
+      "type": "database",
+      "label": "The list of changes",
+      "sublabel": "each entry says only what matters",
+      "tag": "changed",
+      "pos": [
+        40,
+        120
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "The changelog web page",
+      "sublabel": "built from that list",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/changelog.ts",
+          "line": 87
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "external",
+      "label": "GitHub's release notes",
+      "sublabel": "one entry copied per release",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/publish.yml",
+          "line": 156
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "changelog-page",
+      "from": "changelog",
+      "to": "page",
+      "label": "shown on",
+      "variant": "emphasis"
+    },
+    {
+      "id": "changelog-notes",
+      "from": "changelog",
+      "to": "notes",
+      "label": "copied when released"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "changelog"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The wording, in about half the words"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How the page and notes are made"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, the list of what changed in each release ran to long explanations of how each fix worked.",
+        "Now each entry says what you would notice and what to do about it, in about half the words.",
+        "The web page and the release notes show the shorter entries, and nothing in the program behaves differently."
+      ]
+    }
+  ]
+}
