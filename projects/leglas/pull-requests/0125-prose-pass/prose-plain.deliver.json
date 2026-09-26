@@ -6,11 +6,11 @@
   "input": "prose-plain.architecture.json",
   "output": "prose-plain.html",
   "specification": {
-    "sha256": "57f6b0f31a9548f8adc91094cbf3302851dcbea9e4e4571fa2cb2e359278ff08",
+    "sha256": "16ce1ea1e3b1bc9ae96bc1aceb4a27237cfaa8e5dfcd527b1ca0f02044e4f294",
     "bytes": 2730
   },
   "artifact": {
-    "sha256": "0741a7dda95f5c952c2fcd1b0903e4eddb7a3fc010da36e1aac6788ed6413a63",
+    "sha256": "8a2d32644dd3bc5a2440b16fff821aa3bedb6c310e051c996fa2c2f9e71c13a7",
     "bytes": 798843
   },
   "validation": {
@@ -24,7 +24,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "2cf2380ed7617272e273f83966d5e37e45b5bcae",
+    "revision": "9794c78a3fbbc186aaf302161d5060715d117006",
     "references": 3
   }
 }
