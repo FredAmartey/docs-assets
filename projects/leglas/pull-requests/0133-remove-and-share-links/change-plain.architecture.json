@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "You can take a direction off the list or end a share link from a terminal",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "99792b9581637a7391cf7aad3d57a32b4803cd20"
+    }
+  },
+  "components": [
+    {
+      "id": "remove",
+      "type": "backend",
+      "label": "The remove command",
+      "sublabel": "for directions made here",
+      "tag": "new",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-remove.ts",
+          "line": 21
+        },
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 478
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "database",
+      "label": "This machine's list",
+      "sublabel": "of directions it added",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/config/local-previews.ts",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "The share command",
+      "sublabel": "ends one link, or all",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-share.ts",
+          "line": 385
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Leglas while it runs",
+      "sublabel": "notices changes, holds links",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1326
+        }
+      ]
+    },
+    {
+      "id": "rail",
+      "type": "frontend",
+      "label": "Leglas in your browser",
+      "sublabel": "shows the first one left",
+      "tag": "changed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 695
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "remove",
+        "share"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "rail"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "remove-registry",
+      "from": "remove",
+      "to": "registry",
+      "label": "crosses them off",
+      "variant": "emphasis"
+    },
+    {
+      "id": "registry-server",
+      "from": "registry",
+      "to": "server",
+      "label": "noticed",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "share-server",
+      "from": "share",
+      "to": "server",
+      "label": "ends or renews links",
+      "variant": "emphasis"
+    },
+    {
+      "id": "server-rail",
+      "from": "server",
+      "to": "rail",
+      "label": "says the list changed",
+      "labelAt": [
+        575,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "From a terminal or an agent",
+      "items": [
+        "Take a direction off the list",
+        "End one share link, or all of them"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Directions the project's settings list",
+        "The files behind a direction"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before, taking a direction off the list or cutting off a share link meant clicking in Leglas, and a direction removed from outside left your app's own page on screen.",
+        "Now your agent or a terminal can do both, and the screen moves to the first direction still on the list.",
+        "You can ask your agent to tidy up or to cut off a link someone shouldn't have, without opening Leglas."
+      ]
+    }
+  ]
+}

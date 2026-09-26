@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Remove a direction or end share links from a terminal, and the stage moves on",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "99792b9581637a7391cf7aad3d57a32b4803cd20"
+    }
+  },
+  "components": [
+    {
+      "id": "remove",
+      "type": "backend",
+      "label": "leglas remove, remove tool",
+      "sublabel": "directions this machine registered",
+      "tag": "new",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-remove.ts",
+          "line": 21
+        },
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 478
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "database",
+      "label": ".leglas/previews.json",
+      "sublabel": "this machine's registry",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/config/local-previews.ts",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "leglas share, share tool",
+      "sublabel": "--revoke one link, --rotate all",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-share.ts",
+          "line": 385
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "The running Leglas",
+      "sublabel": "watches the registry, holds links",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1326
+        }
+      ]
+    },
+    {
+      "id": "rail",
+      "type": "frontend",
+      "label": "The rail in the browser",
+      "sublabel": "stage moves to the first row left",
+      "tag": "changed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 695
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "remove",
+        "share"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "rail"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "remove-registry",
+      "from": "remove",
+      "to": "registry",
+      "label": "drops their entries",
+      "variant": "emphasis"
+    },
+    {
+      "id": "registry-server",
+      "from": "registry",
+      "to": "server",
+      "label": "watched",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "share-server",
+      "from": "share",
+      "to": "server",
+      "label": "revoke, rotate",
+      "variant": "emphasis"
+    },
+    {
+      "id": "server-rail",
+      "from": "server",
+      "to": "rail",
+      "label": "config changed",
+      "labelAt": [
+        575,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "From a terminal or an agent",
+      "items": [
+        "The rail's delete, for this machine's directions",
+        "End one share link, or all of them"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "A direction the config lists",
+        "The files behind a removed direction"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Checked by a test",
+      "items": [
+        "Every /leglas/api route has a tool or a reason"
+      ]
+    }
+  ]
+}
