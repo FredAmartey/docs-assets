@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The share queue test opens its connections one at a time",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      300
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "116920a7b4de1706c26f8e2c8ad15ca843264e7a"
+    }
+  },
+  "components": [
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "share queue test",
+      "sublabel": "opens 140, one at a time",
+      "tag": "changed",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.test.ts",
+          "line": 1043
+        }
+      ]
+    },
+    {
+      "id": "backlog",
+      "type": "external",
+      "label": "macOS listen backlog",
+      "sublabel": "refuses past 128 on macOS 27",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "share listener",
+      "sublabel": "12 running, 128 waiting, then 503",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.ts",
+          "line": 1119
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "test-backlog",
+      "from": "test",
+      "to": "backlog",
+      "label": "connects",
+      "variant": "emphasis"
+    },
+    {
+      "id": "backlog-share",
+      "from": "backlog",
+      "to": "share",
+      "label": "accepted",
+      "labelAt": [
+        575,
+        146
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "test"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Connections open one at a time",
+        "A missing refusal fails in five seconds"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "The share and its limits"
+      ]
+    }
+  ]
+}

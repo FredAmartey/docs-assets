@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "share-queue.architecture.json",
+  "output": "share-queue.html",
+  "specification": {
+    "sha256": "f44572d133687a215f8a730d27a50b5ccb44ca51069a04463d7059a84a87c811",
+    "bytes": 2287
+  },
+  "artifact": {
+    "sha256": "151673d7a2594dc99cf94d574debb35a1ef3aa0e89e977adaee346d0bb2f5a2d",
+    "bytes": 797736
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "116920a7b4de1706c26f8e2c8ad15ca843264e7a",
+    "references": 2
+  }
+}

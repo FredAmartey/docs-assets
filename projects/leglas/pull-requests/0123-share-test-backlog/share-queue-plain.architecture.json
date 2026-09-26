@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A sharing check passes on macOS 27",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      300
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "116920a7b4de1706c26f8e2c8ad15ca843264e7a"
+    }
+  },
+  "components": [
+    {
+      "id": "test",
+      "type": "backend",
+      "label": "A sharing check",
+      "sublabel": "opens 140 connections, one by one",
+      "tag": "changed",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.test.ts",
+          "line": 1043
+        }
+      ]
+    },
+    {
+      "id": "backlog",
+      "type": "external",
+      "label": "The Mac's waiting line",
+      "sublabel": "turns away any past 128",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        50
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "The shared page's server",
+      "sublabel": "serves 12, holds 128, refuses more",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        190
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/share/share.ts",
+          "line": 1119
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "test-backlog",
+      "from": "test",
+      "to": "backlog",
+      "label": "connects",
+      "variant": "emphasis"
+    },
+    {
+      "id": "backlog-share",
+      "from": "backlog",
+      "to": "share",
+      "label": "hands each on",
+      "labelAt": [
+        575,
+        146
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "test"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Connections open one at a time"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "How sharing works"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, one sharing check opened 140 connections at once, and on macOS 27, which turns away any past 128 waiting, it hung and failed.",
+        "Now it opens them one at a time and still checks that the next one is refused.",
+        "The whole test suite passes on a Mac again."
+      ]
+    }
+  ]
+}
