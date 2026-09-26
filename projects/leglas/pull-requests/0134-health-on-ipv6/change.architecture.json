@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "probe() dials an app on [::1] without the URL's brackets",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "086bbba62dd1de7c4b0f83648b87d94f246ce6e1"
+    }
+  },
+  "components": [
+    {
+      "id": "run",
+      "type": "frontend",
+      "label": "leglas run",
+      "sublabel": "starts the app, reads health",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 152
+        },
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 238
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "external",
+      "label": "Your app",
+      "sublabel": "Vite, listening on ::1 alone",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "health",
+      "type": "backend",
+      "label": "Health route and watcher",
+      "sublabel": "/leglas/api/health, live watch",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2490
+        },
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 724
+        }
+      ]
+    },
+    {
+      "id": "probe",
+      "type": "backend",
+      "label": "probe()",
+      "sublabel": "drops the brackets, then dials",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 424
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "The interface",
+      "sublabel": "banner and stale mark",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2546
+        },
+        {
+          "path": "packages/shell/src/stage/Pane.tsx",
+          "line": 277
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "probe"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-app",
+      "from": "run",
+      "to": "app",
+      "label": "starts it at http://[::1]:port"
+    },
+    {
+      "id": "health-probe",
+      "from": "health",
+      "to": "probe",
+      "label": "is it up?"
+    },
+    {
+      "id": "probe-app",
+      "from": "probe",
+      "to": "app",
+      "label": "TCP connect to ::1",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        132
+      ]
+    },
+    {
+      "id": "health-run",
+      "from": "health",
+      "to": "run",
+      "label": "reachable",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "health-shell",
+      "from": "health",
+      "to": "shell",
+      "label": "reachable",
+      "labelAt": [
+        165,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "probe() dials [::1] as ::1",
+        "Health, the watcher and run's warning all read it"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "IPv4 and hostname addresses",
+        "The proxy, which already dropped the brackets"
+      ]
+    }
+  ]
+}

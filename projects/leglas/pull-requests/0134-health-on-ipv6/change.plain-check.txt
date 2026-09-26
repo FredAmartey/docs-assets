@@ -1,0 +1,11 @@
+structure: PASS
+labels: 0 FAIL, 8 WARN
+  WARN over-four components[0].sublabel "starts your app for you" (5 words)
+  WARN over-four components[1].sublabel "only on the newer home address" (6 words)
+  WARN over-four components[2].sublabel "for the screen and terminal" (5 words)
+  WARN over-four components[3].label "The knock on your app" (5 words)
+  WARN over-four components[3].sublabel "now reads the address right" (5 words)
+  WARN over-four components[4].sublabel "warns when your app is down" (6 words)
+  WARN over-four connections[0].label "starts it, notes its address" (5 words)
+  WARN all-caps cards[2].items[0] "Before, when Leglas started your app and the app listened only on the newer form of this computer's own address (IPv6), Leglas's check couldn't reach it and said the app had stopped, though the page worked." check this is a name readers know
+result: PASS

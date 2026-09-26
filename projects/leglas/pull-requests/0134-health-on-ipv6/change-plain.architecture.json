@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas no longer says your working app is down",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "086bbba62dd1de7c4b0f83648b87d94f246ce6e1"
+    }
+  },
+  "components": [
+    {
+      "id": "run",
+      "type": "frontend",
+      "label": "Starting Leglas",
+      "sublabel": "starts your app for you",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 152
+        },
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 238
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "external",
+      "label": "Your app",
+      "sublabel": "only on the newer home address",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "health",
+      "type": "backend",
+      "label": "The is-it-up answer",
+      "sublabel": "for the screen and terminal",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2490
+        },
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 724
+        }
+      ]
+    },
+    {
+      "id": "probe",
+      "type": "backend",
+      "label": "The knock on your app",
+      "sublabel": "now reads the address right",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "changed",
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 424
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "Leglas on screen",
+      "sublabel": "warns when your app is down",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "tag": "unchanged",
+      "sources": [
+        {
+          "path": "packages/shell/src/Shell.tsx",
+          "line": 2546
+        },
+        {
+          "path": "packages/shell/src/stage/Pane.tsx",
+          "line": 277
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "probe"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "run-app",
+      "from": "run",
+      "to": "app",
+      "label": "starts it, notes its address"
+    },
+    {
+      "id": "health-probe",
+      "from": "health",
+      "to": "probe",
+      "label": "is it up?"
+    },
+    {
+      "id": "probe-app",
+      "from": "probe",
+      "to": "app",
+      "label": "reaches it now",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        132
+      ]
+    },
+    {
+      "id": "health-run",
+      "from": "health",
+      "to": "run",
+      "label": "up or down",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "health-shell",
+      "from": "health",
+      "to": "shell",
+      "label": "up or down",
+      "labelAt": [
+        165,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The check reaches your app",
+        "The screen and terminal stop warning"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Apps on the older address",
+        "How the page itself loads"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before, when Leglas started your app and the app listened only on the newer form of this computer's own address (IPv6), Leglas's check couldn't reach it and said the app had stopped, though the page worked.",
+        "Now the check reaches the app at that address.",
+        "The warning shows only when your app really is down."
+      ]
+    }
+  ]
+}
