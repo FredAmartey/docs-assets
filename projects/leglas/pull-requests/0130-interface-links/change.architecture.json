@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A link opens the interface on the directions it names",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "5489152e8036228b05a8585c74797cf3d9f9e153"
+    }
+  },
+  "components": [
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "Your agent",
+      "sublabel": "a terminal or an MCP host",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "record",
+      "type": "database",
+      "label": ".leglas/server.json",
+      "sublabel": "port of the running Leglas",
+      "tag": "unchanged",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server-info.ts",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "type": "backend",
+      "label": "link, add, show, list",
+      "sublabel": "CLI commands and MCP tools",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-link.ts",
+          "line": 17
+        },
+        {
+          "path": "packages/cli/src/run-previews.ts",
+          "line": 141
+        },
+        {
+          "path": "packages/mcp/src/tools.ts",
+          "line": 319
+        }
+      ]
+    },
+    {
+      "id": "shell",
+      "type": "frontend",
+      "label": "The rail in the browser",
+      "sublabel": "reads ?direction and ?compare once",
+      "tag": "changed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/link.ts",
+          "line": 8
+        },
+        {
+          "path": "packages/shell/src/useShellState.ts",
+          "line": 172
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "commands",
+        "shell"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "agent-commands",
+      "from": "agent",
+      "to": "commands",
+      "label": "asks for a link",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "commands-record",
+      "from": "commands",
+      "to": "record",
+      "label": "reads the port"
+    },
+    {
+      "id": "commands-shell",
+      "from": "commands",
+      "to": "shell",
+      "label": "interface URL",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What the link opens",
+      "items": [
+        "One direction on the stage",
+        "Two side by side, second on the right"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "A reload opens the rail as before",
+        "A share viewer ignores links"
+      ]
+    }
+  ]
+}
