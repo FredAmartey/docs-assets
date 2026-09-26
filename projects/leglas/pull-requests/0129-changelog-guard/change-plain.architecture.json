@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The list of changes now mentions the build guard",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2cc0a1dd282abe14edfa5866ae4677c6c2a98bfb"
+    }
+  },
+  "components": [
+    {
+      "id": "log",
+      "type": "database",
+      "label": "List of changes",
+      "sublabel": "one new entry",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 15
+        }
+      ],
+      "tag": "new entry"
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "Page builder",
+      "sublabel": "reads each entry",
+      "pos": [
+        430,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/changelog.ts",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "backend",
+      "label": "Release notes",
+      "sublabel": "written at the next release",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/release-notes.ts",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "Changes web page",
+      "sublabel": "shown on the Leglas website",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.ts",
+          "line": 29
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "log-parse",
+      "from": "log",
+      "to": "parse",
+      "label": "read by"
+    },
+    {
+      "id": "parse-page",
+      "from": "parse",
+      "to": "page",
+      "label": "shows it",
+      "labelAt": [
+        565,
+        181
+      ]
+    },
+    {
+      "id": "log-notes",
+      "from": "log",
+      "to": "notes",
+      "label": "copied into",
+      "labelAt": [
+        175,
+        181
+      ]
+    }
+  ]
+}

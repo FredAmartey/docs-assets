@@ -1,0 +1,5 @@
+structure: PASS
+labels: 0 FAIL, 2 WARN
+  WARN over-four components[2].sublabel "written at the next release" (5 words)
+  WARN over-four components[3].sublabel "shown on the Leglas website" (5 words)
+result: PASS

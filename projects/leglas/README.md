@@ -93,6 +93,7 @@ documents.
 | `0125-prose-pass` | [#125](https://github.com/FredAmartey/leglas/pull/125) |
 | `0126-comment-pass` | [#126](https://github.com/FredAmartey/leglas/pull/126) |
 | `0127-docs-pass` | [#127](https://github.com/FredAmartey/leglas/pull/127) |
+| `0129-changelog-guard` | [#129](https://github.com/FredAmartey/leglas/pull/129) |
 | `0128-one-set-of-rules` | [#128](https://github.com/FredAmartey/leglas/pull/128) |
 
 Historical links should pin the commit that introduced this batch. Do not

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The build guard gets its changelog entry",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      340
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2cc0a1dd282abe14edfa5866ae4677c6c2a98bfb"
+    }
+  },
+  "components": [
+    {
+      "id": "log",
+      "type": "database",
+      "label": "CHANGELOG.md",
+      "sublabel": "one entry under Unreleased",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "CHANGELOG.md",
+          "line": 15
+        }
+      ],
+      "tag": "changed"
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "site/changelog.ts",
+      "sublabel": "parses the entries",
+      "pos": [
+        430,
+        60
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/changelog.ts",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "backend",
+      "label": "site/release-notes.ts",
+      "sublabel": "notes for the next release",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/release-notes.ts",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "page",
+      "type": "frontend",
+      "label": "changelog page",
+      "sublabel": "leglas.vercel.app/changelog",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        270,
+        62
+      ],
+      "sources": [
+        {
+          "path": "site/build.ts",
+          "line": 29
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "log-parse",
+      "from": "log",
+      "to": "parse",
+      "label": "read by"
+    },
+    {
+      "id": "parse-page",
+      "from": "parse",
+      "to": "page",
+      "label": "renders",
+      "labelAt": [
+        565,
+        181
+      ]
+    },
+    {
+      "id": "log-notes",
+      "from": "log",
+      "to": "notes",
+      "label": "at release",
+      "labelAt": [
+        175,
+        181
+      ]
+    }
+  ]
+}
