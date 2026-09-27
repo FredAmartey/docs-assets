@@ -1,0 +1,4 @@
+structure: PASS
+labels: 0 FAIL, 1 WARN
+  WARN over-four components[3].sublabel "nothing drawn from simple shapes" (5 words)
+result: PASS

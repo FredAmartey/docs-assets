@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Builds get each image's alt text and stop drawing things from shapes",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      462
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "42e11780f79625237f671877b18218a0a89345b6"
+    }
+  },
+  "components": [
+    {
+      "id": "public",
+      "type": "database",
+      "label": "public/ images",
+      "sublabel": "paths the app serves",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "id": "code",
+      "type": "frontend",
+      "label": "Project code",
+      "sublabel": "app first, directions last",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 140
+        },
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 197
+        }
+      ]
+    },
+    {
+      "id": "facts",
+      "type": "backend",
+      "label": "readProjectFacts",
+      "sublabel": "pairs each image with alt text",
+      "tag": "changed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 181
+        },
+        {
+          "path": "packages/server/src/generation/facts.ts",
+          "line": 366
+        }
+      ]
+    },
+    {
+      "id": "prompt",
+      "type": "backend",
+      "label": "buildPrompt",
+      "sublabel": "draw nothing from shapes",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/prompts.ts",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "external",
+      "label": "Build agent",
+      "sublabel": "writes one direction",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 889
+        },
+        {
+          "path": "packages/server/src/generation/switch-file.ts",
+          "line": 119
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "public-facts",
+      "from": "public",
+      "to": "facts",
+      "label": "image paths"
+    },
+    {
+      "id": "code-facts",
+      "from": "code",
+      "to": "facts",
+      "label": "alt text",
+      "variant": "emphasis"
+    },
+    {
+      "id": "facts-prompt",
+      "from": "facts",
+      "to": "prompt",
+      "label": "images with alt text",
+      "labelAt": [
+        575,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "prompt-agent",
+      "from": "prompt",
+      "to": "agent",
+      "label": "prompt",
+      "labelAt": [
+        575,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "agent-code",
+      "from": "agent",
+      "to": "code",
+      "label": "appends a direction"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "facts",
+        "prompt"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "30 directions, 10 sets",
+      "items": [
+        "amateur centerpiece: 43% before, 10% now",
+        "alt text that fits: 65 of 65"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What it costs",
+      "items": [
+        "median build 69 s before, 65 s now",
+        "fix runs 3 of 60 before, 0 of 30 now"
+      ]
+    }
+  ]
+}
