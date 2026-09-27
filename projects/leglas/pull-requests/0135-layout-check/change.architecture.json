@@ -222,10 +222,10 @@
     },
     {
       "dot": "slate",
-      "title": "Fix runs on those three",
+      "title": "Two fix runs on each of the three",
       "items": [
-        "11 findings down to 2",
-        "30 to 40 seconds each"
+        "11 findings to 0, then to 1",
+        "every design kept its size"
       ]
     }
   ]
