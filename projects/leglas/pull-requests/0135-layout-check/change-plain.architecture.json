@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "New designs are now checked for text that overlaps or gets cut off",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      622
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "0afc28b1f272945996543fa7d58c8ef85aa758a6"
+    }
+  },
+  "components": [
+    {
+      "id": "build",
+      "type": "external",
+      "label": "Agent writes the design",
+      "sublabel": "one file per design",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 751
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "Checks each new design",
+      "sublabel": "before calling it ready",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 869
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "Opens the design's page",
+      "sublabel": "ignores problems already there",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2674
+        }
+      ]
+    },
+    {
+      "id": "fix",
+      "type": "external",
+      "label": "Agent fixes it once",
+      "sublabel": "told exactly what to fix",
+      "tag": "changed",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/prompts.ts",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "id": "probe",
+      "type": "frontend",
+      "label": "Finds overlapping or cut-off text",
+      "sublabel": "only text people can see",
+      "tag": "new",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/layout.ts",
+          "line": 24
+        },
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 445
+        }
+      ]
+    },
+    {
+      "id": "ready",
+      "type": "backend",
+      "label": "Design marked ready",
+      "sublabel": "leftover problems written down",
+      "tag": "changed",
+      "pos": [
+        40,
+        520
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 953
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "build-check",
+      "from": "build",
+      "to": "check",
+      "label": "when the file is saved",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "check-render",
+      "from": "check",
+      "to": "render",
+      "label": "asks what looks wrong",
+      "variant": "emphasis"
+    },
+    {
+      "id": "render-probe",
+      "from": "render",
+      "to": "probe",
+      "label": "with and without the design",
+      "labelAt": [
+        575,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "check-fix",
+      "from": "check",
+      "to": "fix",
+      "label": "if anything was found",
+      "labelAt": [
+        165,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "fix-ready",
+      "from": "fix",
+      "to": "ready",
+      "label": "even if some remains",
+      "labelAt": [
+        165,
+        471
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what changed",
+      "wraps": [
+        "check",
+        "render",
+        "fix",
+        "probe",
+        "ready"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Tested on 32 designs",
+      "items": [
+        "3 flagged, each a real problem",
+        "none of 26 without one flagged"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fixing those three",
+      "items": [
+        "11 problems down to 2",
+        "30 to 40 seconds each"
+      ]
+    }
+  ]
+}

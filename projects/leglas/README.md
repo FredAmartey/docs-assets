@@ -93,6 +93,7 @@ documents.
 | `0125-prose-pass` | [#125](https://github.com/FredAmartey/leglas/pull/125) |
 | `0126-comment-pass` | [#126](https://github.com/FredAmartey/leglas/pull/126) |
 | `0127-docs-pass` | [#127](https://github.com/FredAmartey/leglas/pull/127) |
+| `0135-layout-check` | [#135](https://github.com/FredAmartey/leglas/pull/135) |
 | `0134-health-on-ipv6` | [#134](https://github.com/FredAmartey/leglas/pull/134) |
 | `0133-remove-and-share-links` | [#133](https://github.com/FredAmartey/leglas/pull/133) |
 | `0131-tool-hints` | [#131](https://github.com/FredAmartey/leglas/pull/131) |

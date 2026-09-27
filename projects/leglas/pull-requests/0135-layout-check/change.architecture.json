@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The render check measures overlapping and cut-off text and hands it to the fix run",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      622
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "0afc28b1f272945996543fa7d58c8ef85aa758a6"
+    }
+  },
+  "components": [
+    {
+      "id": "build",
+      "type": "external",
+      "label": "Build run",
+      "sublabel": "writes the direction's file",
+      "tag": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 751
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "Render check",
+      "sublabel": "generation.ts check()",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 869
+        }
+      ]
+    },
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "renderDirection",
+      "sublabel": "drops what the plain page has",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2674
+        }
+      ]
+    },
+    {
+      "id": "fix",
+      "type": "external",
+      "label": "One fix run",
+      "sublabel": "prompt carries errors and layout",
+      "tag": "changed",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/prompts.ts",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "id": "probe",
+      "type": "frontend",
+      "label": "Layout probe",
+      "sublabel": "overlapping or cut-off text",
+      "tag": "new",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/layout.ts",
+          "line": 24
+        },
+        {
+          "path": "packages/server/src/capture/capture.ts",
+          "line": 445
+        }
+      ]
+    },
+    {
+      "id": "ready",
+      "type": "backend",
+      "label": "Direction ready",
+      "sublabel": "slot.layout keeps what's left",
+      "tag": "changed",
+      "pos": [
+        40,
+        520
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 953
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "build-check",
+      "from": "build",
+      "to": "check",
+      "label": "file written",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "check-render",
+      "from": "check",
+      "to": "render",
+      "label": "asks for errors and layout",
+      "variant": "emphasis"
+    },
+    {
+      "id": "render-probe",
+      "from": "render",
+      "to": "probe",
+      "label": "direction, then plain page",
+      "labelAt": [
+        575,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "check-fix",
+      "from": "check",
+      "to": "fix",
+      "label": "either found",
+      "labelAt": [
+        165,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "fix-ready",
+      "from": "fix",
+      "to": "ready",
+      "label": "layout left is kept",
+      "labelAt": [
+        165,
+        471
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "changed in this PR",
+      "wraps": [
+        "check",
+        "render",
+        "fix",
+        "probe",
+        "ready"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "On 32 reviewed directions",
+      "items": [
+        "3 flagged, each with the reviewed fault",
+        "0 of 26 flagged without one"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fix runs on those three",
+      "items": [
+        "11 findings down to 2",
+        "30 to 40 seconds each"
+      ]
+    }
+  ]
+}
