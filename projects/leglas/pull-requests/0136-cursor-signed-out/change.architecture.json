@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "bf47d380871c253bb4ed7ab3cbefe0fd4cb348ea"
+      "revision": "9a9a0a839d11ca9e59618b5744f2ce54048e9bda"
     }
   },
   "components": [
@@ -28,13 +28,13 @@
       "pos": [450, 40],
       "size": [250, 62],
       "tag": "new",
-      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 255 }]
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 256 }]
     },
     {
       "id": "verdict",
       "type": "backend",
       "label": "Cursor's verdict",
-      "sublabel": "checks the signed-out words first",
+      "sublabel": "reads “not logged in” first",
       "pos": [40, 200],
       "size": [250, 62],
       "tag": "changed",
@@ -48,7 +48,7 @@
       "pos": [450, 200],
       "size": [250, 62],
       "tag": "new",
-      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 228 }]
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 229 }]
     },
     {
       "id": "detect",
@@ -59,7 +59,7 @@
       "size": [250, 62],
       "tag": "unchanged",
       "sources": [
-        { "path": "packages/server/src/agents/agents.ts", "line": 454 },
+        { "path": "packages/server/src/agents/agents.ts", "line": 455 },
         { "path": "packages/server/src/server.ts", "line": 1990 }
       ]
     },
