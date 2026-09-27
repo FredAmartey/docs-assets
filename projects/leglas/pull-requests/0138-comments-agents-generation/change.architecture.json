@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Comments in the agent and generation code say only the non-obvious why",
+    "quality_profile": "showcase",
+    "viewBox": [740, 340],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "87a80328f0dd7025eb66b3c5825db2562d03c7a4"
+    }
+  },
+  "components": [
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "agents.test.ts",
+      "sublabel": "54 → 46 comment lines",
+      "pos": [40, 60],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 110 }]
+    },
+    {
+      "id": "agents",
+      "type": "backend",
+      "label": "agents.ts",
+      "sublabel": "155 → 123 comment lines",
+      "pos": [450, 60],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 18 }]
+    },
+    {
+      "id": "facts",
+      "type": "backend",
+      "label": "facts.ts",
+      "sublabel": "31 → 28 comment lines",
+      "pos": [40, 220],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/generation/facts.ts", "line": 8 }]
+    },
+    {
+      "id": "generation",
+      "type": "backend",
+      "label": "generation.ts",
+      "sublabel": "137 → 135 comment lines",
+      "pos": [450, 220],
+      "size": [250, 62],
+      "sources": [
+        { "path": "packages/server/src/generation/generation.ts", "line": 51 },
+        { "path": "packages/server/src/generation/generation.ts", "line": 40 },
+        { "path": "packages/server/src/generation/generation.ts", "line": 16 }
+      ]
+    }
+  ],
+  "connections": [
+    { "id": "tests-agents", "from": "tests", "to": "agents", "label": "tests" },
+    {
+      "id": "generation-agents",
+      "from": "generation",
+      "to": "agents",
+      "label": "runs agents with",
+      "labelAt": [575, 171]
+    },
+    { "id": "generation-facts", "from": "generation", "to": "facts", "label": "tells builders with" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "25 comments cut to the why: 377 → 332 comment lines",
+        "Comments only: each file's syntax tree matches main once comments are removed"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "All code and every directive comment",
+        "generation.test.ts, whose comments were already short"
+      ]
+    }
+  ]
+}

@@ -102,6 +102,7 @@ documents.
 | `0135-layout-check` | [#135](https://github.com/FredAmartey/leglas/pull/135) |
 | `0136-cursor-signed-out` | [#136](https://github.com/FredAmartey/leglas/pull/136) |
 | `0137-set-records` | [#137](https://github.com/FredAmartey/leglas/pull/137) |
+| `0138-comments-agents-generation` | [#138](https://github.com/FredAmartey/leglas/pull/138) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

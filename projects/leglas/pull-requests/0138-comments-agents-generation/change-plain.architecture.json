@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Notes in the agent and builder code now say only what a reader can't see",
+    "quality_profile": "showcase",
+    "viewBox": [740, 340],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "87a80328f0dd7025eb66b3c5825db2562d03c7a4"
+    }
+  },
+  "components": [
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "Checks for the agent code",
+      "sublabel": "54 → 46 note lines",
+      "pos": [40, 60],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 110 }]
+    },
+    {
+      "id": "agents",
+      "type": "backend",
+      "label": "Talks to coding agents",
+      "sublabel": "155 → 123 note lines",
+      "pos": [450, 60],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 18 }]
+    },
+    {
+      "id": "facts",
+      "type": "backend",
+      "label": "What builders learn first",
+      "sublabel": "31 → 28 note lines",
+      "pos": [40, 220],
+      "size": [250, 62],
+      "sources": [{ "path": "packages/server/src/generation/facts.ts", "line": 8 }]
+    },
+    {
+      "id": "generation",
+      "type": "backend",
+      "label": "Builds sets of directions",
+      "sublabel": "137 → 135 note lines",
+      "pos": [450, 220],
+      "size": [250, 62],
+      "sources": [
+        { "path": "packages/server/src/generation/generation.ts", "line": 51 },
+        { "path": "packages/server/src/generation/generation.ts", "line": 40 },
+        { "path": "packages/server/src/generation/generation.ts", "line": 16 }
+      ]
+    }
+  ],
+  "connections": [
+    { "id": "tests-agents", "from": "tests", "to": "agents", "label": "checks it" },
+    {
+      "id": "generation-agents",
+      "from": "generation",
+      "to": "agents",
+      "label": "starts agents through it",
+      "labelAt": [575, 171]
+    },
+    { "id": "generation-facts", "from": "generation", "to": "facts", "label": "gets project facts" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "25 notes say the same in fewer words",
+        "The code itself is exactly the same"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "Everything Leglas does",
+        "Notes that were already short"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before, many notes in this code told stories: how a problem was found, what a label once said, measurements repeated in full.",
+        "Now each note says only what the code can't show, in fewer words, and the code itself is unchanged.",
+        "People working on Leglas read less to learn the same things."
+      ]
+    }
+  ]
+}
