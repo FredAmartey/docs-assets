@@ -6,11 +6,11 @@
   "input": "change.architecture.json",
   "output": "change.html",
   "specification": {
-    "sha256": "9906eda9e0e301a669115e436f1a177d71af727ed18dc21ab0cc48f2fd9f99af",
+    "sha256": "de07cd60b8c8b2149e7fe58b164bf4acb9d50eb4089b6e4f05fa3966ade46dd6",
     "bytes": 4572
   },
   "artifact": {
-    "sha256": "a97222093ab70f3714d700ff1a378dfd8028782b42980b6dbb84724b9c177305",
+    "sha256": "e06a99f6a0e39a87fe540dc4e5336b90164cda8ad19912818226d67e9efc92db",
     "bytes": 805485
   },
   "validation": {
@@ -24,7 +24,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "5861aae57d714d452dd4be5e9c9a31bc55e27d66",
+    "revision": "098458a494189d77bc1f3efe8eb2691ad8700589",
     "references": 10
   }
 }
