@@ -93,13 +93,13 @@ documents.
 | `0125-prose-pass` | [#125](https://github.com/FredAmartey/leglas/pull/125) |
 | `0126-comment-pass` | [#126](https://github.com/FredAmartey/leglas/pull/126) |
 | `0127-docs-pass` | [#127](https://github.com/FredAmartey/leglas/pull/127) |
-| `0135-layout-check` | [#135](https://github.com/FredAmartey/leglas/pull/135) |
-| `0134-health-on-ipv6` | [#134](https://github.com/FredAmartey/leglas/pull/134) |
-| `0133-remove-and-share-links` | [#133](https://github.com/FredAmartey/leglas/pull/133) |
-| `0131-tool-hints` | [#131](https://github.com/FredAmartey/leglas/pull/131) |
-| `0130-interface-links` | [#130](https://github.com/FredAmartey/leglas/pull/130) |
-| `0129-changelog-guard` | [#129](https://github.com/FredAmartey/leglas/pull/129) |
 | `0128-one-set-of-rules` | [#128](https://github.com/FredAmartey/leglas/pull/128) |
+| `0129-changelog-guard` | [#129](https://github.com/FredAmartey/leglas/pull/129) |
+| `0130-interface-links` | [#130](https://github.com/FredAmartey/leglas/pull/130) |
+| `0131-tool-hints` | [#131](https://github.com/FredAmartey/leglas/pull/131) |
+| `0133-remove-and-share-links` | [#133](https://github.com/FredAmartey/leglas/pull/133) |
+| `0134-health-on-ipv6` | [#134](https://github.com/FredAmartey/leglas/pull/134) |
+| `0135-layout-check` | [#135](https://github.com/FredAmartey/leglas/pull/135) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.
