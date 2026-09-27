@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas now tells you when Cursor is signed out",
+    "quality_profile": "showcase",
+    "viewBox": [740, 500],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "bf47d380871c253bb4ed7ab3cbefe0fd4cb348ea"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "Cursor on this computer",
+      "sublabel": "signed out, says “Not logged in”",
+      "pos": [40, 40],
+      "size": [250, 62]
+    },
+    {
+      "id": "live",
+      "type": "backend",
+      "label": "Optional live test",
+      "sublabel": "asks the real Claude, Codex, Cursor",
+      "pos": [450, 40],
+      "size": [250, 62],
+      "tag": "new",
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 255 }]
+    },
+    {
+      "id": "verdict",
+      "type": "backend",
+      "label": "Reads Cursor's answer",
+      "sublabel": "looks for “Not logged in” first",
+      "pos": [40, 200],
+      "size": [250, 62],
+      "tag": "changed",
+      "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 248 }]
+    },
+    {
+      "id": "unit",
+      "type": "backend",
+      "label": "Automatic test",
+      "sublabel": "replays Cursor's two real answers",
+      "pos": [450, 200],
+      "size": [250, 62],
+      "tag": "new",
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 228 }]
+    },
+    {
+      "id": "detect",
+      "type": "backend",
+      "label": "Checks each agent's sign-in",
+      "sublabel": "for the screen to show",
+      "pos": [40, 360],
+      "size": [250, 62],
+      "tag": "unchanged",
+      "sources": [
+        { "path": "packages/server/src/agents/agents.ts", "line": 454 },
+        { "path": "packages/server/src/server.ts", "line": 1990 }
+      ]
+    },
+    {
+      "id": "picker",
+      "type": "frontend",
+      "label": "The agent menu",
+      "sublabel": "shows “signed out”, amber dot",
+      "pos": [450, 360],
+      "size": [250, 62],
+      "tag": "unchanged",
+      "sources": [
+        { "path": "packages/shell/src/agents/AgentPicker.tsx", "line": 85 },
+        { "path": "packages/shell/src/agents/AgentPicker.tsx", "line": 224 }
+      ]
+    }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "what changed", "wraps": ["verdict"], "pad": 16 },
+    { "kind": "region", "label": "new tests", "wraps": ["live", "unit"], "pad": 16 }
+  ],
+  "connections": [
+    {
+      "id": "cli-verdict",
+      "from": "cli",
+      "to": "verdict",
+      "label": "its answer",
+      "labelAt": [165, 151]
+    },
+    {
+      "id": "verdict-detect",
+      "from": "verdict",
+      "to": "detect",
+      "label": "signed out, was signed in",
+      "variant": "emphasis",
+      "labelAt": [165, 311]
+    },
+    {
+      "id": "detect-picker",
+      "from": "detect",
+      "to": "picker",
+      "label": "each agent's sign-in"
+    },
+    {
+      "id": "live-cli",
+      "from": "live",
+      "to": "cli",
+      "label": "runs it for real"
+    },
+    {
+      "id": "unit-verdict",
+      "from": "unit",
+      "to": "verdict",
+      "label": "gives it both answers"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Leglas reads Cursor's “Not logged in” right",
+        "An automatic test replays Cursor's two answers",
+        "An optional test asks the real programs"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays the same",
+      "items": [
+        "How Claude and Codex answers are read",
+        "How long Leglas waits for an answer",
+        "What the menu shows for each answer"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before, when you were signed out of Cursor, Cursor said “Not logged in”, and Leglas took the words “logged in” in that answer for a sign-in, so the agent menu showed Cursor as ready.",
+        "Now Leglas reads the answer as signed out and says so in the menu.",
+        "You find out before you ask for a change, not when it fails."
+      ]
+    }
+  ]
+}

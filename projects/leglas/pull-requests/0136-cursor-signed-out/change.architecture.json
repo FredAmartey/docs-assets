@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas reads Cursor's “Not logged in” as signed out",
+    "quality_profile": "showcase",
+    "viewBox": [740, 500],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "bf47d380871c253bb4ed7ab3cbefe0fd4cb348ea"
+    }
+  },
+  "components": [
+    {
+      "id": "cli",
+      "type": "external",
+      "label": "cursor-agent status",
+      "sublabel": "signed out: “Not logged in”, exit 0",
+      "pos": [40, 40],
+      "size": [250, 62]
+    },
+    {
+      "id": "live",
+      "type": "backend",
+      "label": "Live test, opt-in",
+      "sublabel": "LEGLAS_LIVE_AGENTS, the real CLIs",
+      "pos": [450, 40],
+      "size": [250, 62],
+      "tag": "new",
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 255 }]
+    },
+    {
+      "id": "verdict",
+      "type": "backend",
+      "label": "Cursor's verdict",
+      "sublabel": "checks the signed-out words first",
+      "pos": [40, 200],
+      "size": [250, 62],
+      "tag": "changed",
+      "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 248 }]
+    },
+    {
+      "id": "unit",
+      "type": "backend",
+      "label": "Unit test",
+      "sublabel": "Cursor's two real answers",
+      "pos": [450, 200],
+      "size": [250, 62],
+      "tag": "new",
+      "sources": [{ "path": "packages/server/src/agents/agents.test.ts", "line": 228 }]
+    },
+    {
+      "id": "detect",
+      "type": "backend",
+      "label": "detectAgents",
+      "sublabel": "behind /leglas/api/agents",
+      "pos": [40, 360],
+      "size": [250, 62],
+      "tag": "unchanged",
+      "sources": [
+        { "path": "packages/server/src/agents/agents.ts", "line": 454 },
+        { "path": "packages/server/src/server.ts", "line": 1990 }
+      ]
+    },
+    {
+      "id": "picker",
+      "type": "frontend",
+      "label": "Agent picker",
+      "sublabel": "“signed out” mark, chip's dot",
+      "pos": [450, 360],
+      "size": [250, 62],
+      "tag": "unchanged",
+      "sources": [
+        { "path": "packages/shell/src/agents/AgentPicker.tsx", "line": 85 },
+        { "path": "packages/shell/src/agents/AgentPicker.tsx", "line": 224 }
+      ]
+    }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "changed", "wraps": ["verdict"], "pad": 16 },
+    { "kind": "region", "label": "new tests", "wraps": ["live", "unit"], "pad": 16 }
+  ],
+  "connections": [
+    {
+      "id": "cli-verdict",
+      "from": "cli",
+      "to": "verdict",
+      "label": "stdout and exit code",
+      "labelAt": [165, 151]
+    },
+    {
+      "id": "verdict-detect",
+      "from": "verdict",
+      "to": "detect",
+      "label": "signed-out, was ok",
+      "variant": "emphasis",
+      "labelAt": [165, 311]
+    },
+    {
+      "id": "detect-picker",
+      "from": "detect",
+      "to": "picker",
+      "label": "each agent's auth"
+    },
+    {
+      "id": "live-cli",
+      "from": "live",
+      "to": "cli",
+      "label": "runs it for real"
+    },
+    {
+      "id": "unit-verdict",
+      "from": "unit",
+      "to": "verdict",
+      "label": "both answers"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Cursor's verdict checks “Not logged in” before “logged in”",
+        "A unit test with both of Cursor's real answers",
+        "An opt-in live test of the real CLIs"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Claude's and Codex's verdicts",
+        "The probe and its 3 s deadline",
+        "What the picker shows for each answer"
+      ]
+    }
+  ]
+}

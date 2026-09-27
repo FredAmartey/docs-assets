@@ -100,6 +100,7 @@ documents.
 | `0133-remove-and-share-links` | [#133](https://github.com/FredAmartey/leglas/pull/133) |
 | `0134-health-on-ipv6` | [#134](https://github.com/FredAmartey/leglas/pull/134) |
 | `0135-layout-check` | [#135](https://github.com/FredAmartey/leglas/pull/135) |
+| `0136-cursor-signed-out` | [#136](https://github.com/FredAmartey/leglas/pull/136) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

@@ -1,0 +1,10 @@
+structure: PASS
+labels: 0 FAIL, 7 WARN
+  WARN over-four components[0].sublabel "signed out, says \u201cNot logged in\u201d" (6 words)
+  WARN over-four components[1].sublabel "asks the real Claude, Codex, Cursor" (6 words)
+  WARN over-four components[2].sublabel "looks for \u201cNot logged in\u201d first" (6 words)
+  WARN over-four components[3].sublabel "replays Cursor's two real answers" (5 words)
+  WARN over-four components[4].sublabel "for the screen to show" (5 words)
+  WARN over-four components[5].sublabel "shows \u201csigned out\u201d, amber dot" (5 words)
+  WARN over-four connections[1].label "signed out, was signed in" (5 words)
+result: PASS
