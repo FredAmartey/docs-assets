@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Leglas now writes down each set of designs it builds",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      622
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "3f63720d347ded897016e385b7e5852e517b2452"
+    }
+  },
+  "components": [
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "Opens each new design",
+      "sublabel": "and takes a picture",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2676
+        }
+      ]
+    },
+    {
+      "id": "engine",
+      "type": "backend",
+      "label": "Builds the set",
+      "sublabel": "notes every step",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 434
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "frontend",
+      "label": "Project setting",
+      "sublabel": "can turn records off",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/config/config.ts",
+          "line": 278
+        },
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 1422
+        }
+      ]
+    },
+    {
+      "id": "store",
+      "type": "backend",
+      "label": "Writes the record",
+      "sublabel": "keeps the newest 100",
+      "tag": "new",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 184
+        },
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 193
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "external",
+      "label": "Keeping or removing",
+      "sublabel": "rail, terminal or agent",
+      "tag": "changed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-keep.ts",
+          "line": 143
+        },
+        {
+          "path": "packages/cli/src/run-remove.ts",
+          "line": 73
+        },
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1554
+        }
+      ]
+    },
+    {
+      "id": "folder",
+      "type": "database",
+      "label": "Folder in the project",
+      "sublabel": "stays on this machine",
+      "tag": "new",
+      "pos": [
+        40,
+        520
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "render-engine",
+      "from": "render",
+      "to": "engine",
+      "label": "what's wrong, a picture",
+      "labelAt": [
+        165,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "config-engine",
+      "from": "config",
+      "to": "engine",
+      "label": "asked for each set"
+    },
+    {
+      "id": "engine-store",
+      "from": "engine",
+      "to": "store",
+      "label": "each step",
+      "labelAt": [
+        165,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "notes-store",
+      "from": "notes",
+      "to": "store",
+      "label": "which design, when"
+    },
+    {
+      "id": "store-folder",
+      "from": "store",
+      "to": "folder",
+      "label": "one folder per set",
+      "labelAt": [
+        165,
+        471
+      ],
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what's new",
+      "wraps": [
+        "store",
+        "folder"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One real set of three",
+      "items": [
+        "about a third of a megabyte",
+        "pictures included"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "the newest 100 sets",
+        "none if turned off"
+      ]
+    }
+  ]
+}

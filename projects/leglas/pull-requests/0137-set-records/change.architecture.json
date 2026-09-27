@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Each set of directions leaves a record in .leglas/generations",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      622
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "3f63720d347ded897016e385b7e5852e517b2452"
+    }
+  },
+  "components": [
+    {
+      "id": "render",
+      "type": "backend",
+      "label": "renderDirection",
+      "sublabel": "hands back a JPEG of the page",
+      "tag": "changed",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 2676
+        }
+      ]
+    },
+    {
+      "id": "engine",
+      "type": "backend",
+      "label": "Generation engine",
+      "sublabel": "records plan, runs, checks, events",
+      "tag": "changed",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 434
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "frontend",
+      "label": "recordSets",
+      "sublabel": "false keeps no record",
+      "tag": "changed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/config/config.ts",
+          "line": 278
+        },
+        {
+          "path": "packages/server/src/generation/generation.ts",
+          "line": 1422
+        }
+      ]
+    },
+    {
+      "id": "store",
+      "type": "backend",
+      "label": "record.ts",
+      "sublabel": "queued writes, newest 100",
+      "tag": "new",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 184
+        },
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 193
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "external",
+      "label": "keep and remove",
+      "sublabel": "CLI, MCP and the rail's delete",
+      "tag": "changed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-keep.ts",
+          "line": 143
+        },
+        {
+          "path": "packages/cli/src/run-remove.ts",
+          "line": 73
+        },
+        {
+          "path": "packages/server/src/server.ts",
+          "line": 1554
+        }
+      ]
+    },
+    {
+      "id": "folder",
+      "type": "database",
+      "label": ".leglas/generations/<id>/",
+      "sublabel": "set.json, events.jsonl, JPEGs",
+      "tag": "new",
+      "pos": [
+        40,
+        520
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/record.ts",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "render-engine",
+      "from": "render",
+      "to": "engine",
+      "label": "errors, layout, JPEG",
+      "labelAt": [
+        165,
+        151
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "config-engine",
+      "from": "config",
+      "to": "engine",
+      "label": "asked per set"
+    },
+    {
+      "id": "engine-store",
+      "from": "engine",
+      "to": "store",
+      "label": "record and events",
+      "labelAt": [
+        165,
+        311
+      ],
+      "variant": "emphasis"
+    },
+    {
+      "id": "notes-store",
+      "from": "notes",
+      "to": "store",
+      "label": "noteDirections"
+    },
+    {
+      "id": "store-folder",
+      "from": "store",
+      "to": "folder",
+      "label": "atomic writes",
+      "labelAt": [
+        165,
+        471
+      ],
+      "variant": "emphasis"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "store",
+        "folder"
+      ],
+      "pad": 16
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One real set of three",
+      "items": [
+        "337 KB: 30 KB of JSON, 3 JPEGs",
+        "JPEGs a quarter of a PNG's size"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "the newest 100 sets",
+        "none with recordSets: false"
+      ]
+    }
+  ]
+}
