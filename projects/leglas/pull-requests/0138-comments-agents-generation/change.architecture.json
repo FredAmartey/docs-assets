@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "87a80328f0dd7025eb66b3c5825db2562d03c7a4"
+      "revision": "062fb733b6b798612c7d3dfd47d00e4d87bb6b81"
     }
   },
   "components": [
@@ -25,7 +25,7 @@
       "id": "agents",
       "type": "backend",
       "label": "agents.ts",
-      "sublabel": "155 → 123 comment lines",
+      "sublabel": "155 → 126 comment lines",
       "pos": [450, 60],
       "size": [250, 62],
       "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 18 }]
@@ -34,7 +34,7 @@
       "id": "facts",
       "type": "backend",
       "label": "facts.ts",
-      "sublabel": "31 → 28 comment lines",
+      "sublabel": "31 → 29 comment lines",
       "pos": [40, 220],
       "size": [250, 62],
       "sources": [{ "path": "packages/server/src/generation/facts.ts", "line": 8 }]
@@ -69,7 +69,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "25 comments cut to the why: 377 → 332 comment lines",
+        "25 comments cut to the why: 377 → 336 comment lines",
         "Comments only: each file's syntax tree matches main once comments are removed"
       ]
     },

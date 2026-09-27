@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "87a80328f0dd7025eb66b3c5825db2562d03c7a4"
+      "revision": "062fb733b6b798612c7d3dfd47d00e4d87bb6b81"
     }
   },
   "components": [
@@ -25,7 +25,7 @@
       "id": "agents",
       "type": "backend",
       "label": "Talks to coding agents",
-      "sublabel": "155 → 123 note lines",
+      "sublabel": "155 → 126 note lines",
       "pos": [450, 60],
       "size": [250, 62],
       "sources": [{ "path": "packages/server/src/agents/agents.ts", "line": 18 }]
@@ -34,7 +34,7 @@
       "id": "facts",
       "type": "backend",
       "label": "What builders learn first",
-      "sublabel": "31 → 28 note lines",
+      "sublabel": "31 → 29 note lines",
       "pos": [40, 220],
       "size": [250, 62],
       "sources": [{ "path": "packages/server/src/generation/facts.ts", "line": 8 }]

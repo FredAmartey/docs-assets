@@ -2,7 +2,7 @@ structure: PASS
 labels: 0 FAIL, 5 WARN
   WARN over-four components[0].label "Checks for the agent code" (5 words)
   WARN over-four components[0].sublabel "54 \u2192 46 note lines" (5 words)
-  WARN over-four components[1].sublabel "155 \u2192 123 note lines" (5 words)
-  WARN over-four components[2].sublabel "31 \u2192 28 note lines" (5 words)
+  WARN over-four components[1].sublabel "155 \u2192 126 note lines" (5 words)
+  WARN over-four components[2].sublabel "31 \u2192 29 note lines" (5 words)
   WARN over-four components[3].sublabel "137 \u2192 135 note lines" (5 words)
 result: PASS
