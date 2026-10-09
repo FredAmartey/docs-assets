@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The command-line and agent tests shrink by 1,150 lines and still catch every deliberate break",
+    "output": "prune-cli-mcp-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        },
+        "backend": {
+          "label": "part of Leglas"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "2af443ceaac9f16085cb76162df46e27def042d2"
+    }
+  },
+  "components": [
+    {
+      "id": "eng-test",
+      "type": "frontend",
+      "label": "Agent activity tests",
+      "sublabel": "drive the real sending code",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/engagement.test.ts",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "id": "eng",
+      "type": "backend",
+      "label": "Agent activity signal",
+      "sublabel": "test-only hooks removed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/mcp/src/engagement.ts",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "id": "upd-test",
+      "type": "frontend",
+      "label": "Update check tests",
+      "sublabel": "real settings; agent runs stay quiet",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run-update.test.ts",
+          "line": 156
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "type": "backend",
+      "label": "Leglas startup",
+      "sublabel": "two test-only hooks removed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/run.ts",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "id": "args-test",
+      "type": "frontend",
+      "label": "Command-line tests",
+      "sublabel": "4 tables, was 65 tests",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.test.ts",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "Command reader",
+      "sublabel": "unchanged",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/cli/src/args.ts",
+          "line": 509
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "tests",
+      "wraps": [
+        "eng-test",
+        "upd-test",
+        "args-test"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Leglas itself",
+      "wraps": [
+        "eng",
+        "run",
+        "parse"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "eng-test-eng",
+      "from": "eng-test",
+      "to": "eng",
+      "label": "checks it for real",
+      "variant": "emphasis"
+    },
+    {
+      "id": "upd-test-run",
+      "from": "upd-test",
+      "to": "run",
+      "label": "reads real settings",
+      "variant": "emphasis"
+    },
+    {
+      "id": "args-test-parse",
+      "from": "args-test",
+      "to": "parse",
+      "label": "every command line"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The tests are 1,150 lines shorter: 279 tests instead of 414",
+        "One test file is gone; its checks moved into a broader test",
+        "Five repeated tests are gone, each covered by another test"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Breaking any moved or removed check on purpose still fails a test",
+        "The tests run slightly more of the code than before",
+        "Everything other programs can use from Leglas"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, many of Leglas's command-line and agent tests repeated each other, and two parts of Leglas carried hooks only the tests used.",
+        "Now the repeated tests are folded into tables or removed, and the tests drive the real sending code and real settings instead of those hooks.",
+        "There are 1,150 fewer lines of tests to keep up, and breaking any of the 54 moved or removed checks on purpose still makes a test fail."
+      ]
+    }
+  ]
+}

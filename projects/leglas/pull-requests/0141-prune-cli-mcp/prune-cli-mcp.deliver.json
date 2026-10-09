@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "945b10e9-0c91-4cef-9f2e-116b5a17a0a0",
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "prune-cli-mcp.architecture.json",
+  "output": "prune-cli-mcp.html",
+  "specification": {
+    "sha256": "cdabc9c865ac4d1b72bc42782460693f9c8110ac27c9525634ea7f1358b2ba66",
+    "bytes": 4160
+  },
+  "artifact": {
+    "sha256": "ab1bce8f8d3dd688df611f7cd44d2c9e73da3a365f81649c4bbcdffc0befcb8f",
+    "bytes": 753387
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "2af443ceaac9f16085cb76162df46e27def042d2",
+    "references": 6
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "disabled"
+  }
+}
