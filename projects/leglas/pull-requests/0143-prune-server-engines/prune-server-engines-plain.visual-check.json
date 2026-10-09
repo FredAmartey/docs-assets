@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "9ae5e38a-592f-49a9-a9ae-9befddbd200b",
+  "deliveryReceiptId": "1ac8e2c2-2e0b-47c9-8c71-fdd01eff1b94",
   "artifact": {
     "path": "prune-server-engines-plain.html",
-    "sha256": "7b7312b9a60a23eab5ff00f2a4076fc466f18aa34bf3b4d4c4fd9d8375b7ace0",
+    "sha256": "0d816079628004ab5653366c2823080ed82d4c70ae43e77c926cd9f3ce8113ae",
     "bytes": 753564
   },
   "state": {
@@ -969,23 +969,23 @@
         "file": "prune-server-engines-plain.visual-check.html"
       },
       {
-        "sha256": "0dc1eab1956bcab64e26f0d5c992aa6c17fcf9020cbf95385e38c03e6232083d",
-        "bytes": 108339,
+        "sha256": "785184dc0a3567252dc378dfb96ccb8f8470efc6aa1c702ce32c7c5704597c90",
+        "bytes": 108858,
         "file": "prune-server-engines-plain.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "833e4c3397f15fd2946ef69910ae211b1c5b0a3fbd9e03eadc172034a0fc9e29",
-        "bytes": 116607,
+        "sha256": "fecae3b4b9ebdaa289f1b4024bc5956395e4594616b0331d03f95157864ac3d0",
+        "bytes": 117126,
         "file": "prune-server-engines-plain.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "1f63fb580c2f6ec714423e45fb55509b40220c6c76b6b9a35e59ecb8211d4700",
-        "bytes": 170226,
+        "sha256": "158c5fef7016241e13d5c96504fd0679754c9368cd264e6899c7da711aea2576",
+        "bytes": 170662,
         "file": "prune-server-engines-plain.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "a90e6bd33589340c66ee90636c20fe308afe8dd2cb933e8cc3bee4f0cb4e46c0",
-        "bytes": 180497,
+        "sha256": "226013971238055907f768f896b109da87a67b525c533fbca56b3e8a1b0ca092",
+        "bytes": 180726,
         "file": "prune-server-engines-plain.visual-check.2048x1320.dark.png"
       }
     ]

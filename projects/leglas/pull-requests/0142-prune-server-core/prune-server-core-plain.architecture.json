@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "Server checks move from small repeated tests into the real-server test, 1,107 lines lighter",
+    "title": "Server checks move from small repeated tests into the real-server test, 1,098 lines lighter",
     "output": "prune-server-core-plain.html",
     "quality_profile": "showcase",
     "viewBox": [
@@ -138,7 +138,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "The server tests are 1,107 lines shorter: 393 tests instead of 498",
+        "The server tests are 1,098 lines shorter: 393 tests instead of 498",
         "Small tests that repeated the whole-server test are gone",
         "A viewer counter nothing read has left the server"
       ]
@@ -158,7 +158,7 @@
       "items": [
         "Before this change, many server behaviours were tested twice: once in a small test of one piece and again in a test that runs the whole server.",
         "Now the small repeats are gone, the whole-server test carries their checks, and a counter nothing read has left the server.",
-        "There are 1,107 fewer lines of tests to keep up, and breaking any of the 78 moved or removed checks on purpose still makes a test fail."
+        "There are 1,098 fewer lines of tests to keep up, and breaking any of the 78 moved or removed checks on purpose still makes a test fail."
       ]
     }
   ]

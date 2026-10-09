@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "ff2d73e2-3bcb-4206-a822-0e83c19a0c5c",
+  "deliveryReceiptId": "4e3e85e2-1cd2-4676-864d-02715a2c737d",
   "artifact": {
     "path": "prune-server-engines.html",
-    "sha256": "cb2ec4fca4a761f87f11a7527ef1e28cceac518ff432885b46614bf66045e4f2",
+    "sha256": "a8ee8dceb534c7df34813df21e802f8e94737390d3262257400e63198ac95bb9",
     "bytes": 753061
   },
   "state": {
@@ -979,13 +979,13 @@
         "file": "prune-server-engines.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "3ac72148d7339ba90ce6108058c7b206a0f0919f6ee045f0735c075c3c1922b6",
-        "bytes": 156218,
+        "sha256": "7d77f2599f48c1233803efa0067a5921e06e7352e5cbcb6ed9e0c88fe5be2710",
+        "bytes": 155832,
         "file": "prune-server-engines.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "5863ba28423cb085dd9dd124b0e312628a14d0c3cdcc66e75fdd6b06ee0c3982",
-        "bytes": 165726,
+        "sha256": "5ce48fcf4d247d9105218bc1bd77a488e0b1ee00ab374d558387716f77cf971c",
+        "bytes": 165265,
         "file": "prune-server-engines.visual-check.2048x1320.dark.png"
       }
     ]

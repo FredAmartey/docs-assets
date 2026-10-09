@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "38709574-c4aa-4f0d-a95e-e13c00a9cc28",
+  "receiptId": "69f0a977-54ed-467c-81c3-5dc90eaa104e",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "prune-shell-plain.architecture.json",
   "output": "prune-shell-plain.html",
   "specification": {
-    "sha256": "ba2cb967cac502f68295c9fa804a3fa439f23cf03be770999dbfe4bbcc123e2f",
+    "sha256": "f4196194a7ec9ed4569daaf1f1848f7b25646db7a773a29a77563458121b95d4",
     "bytes": 4718
   },
   "artifact": {
-    "sha256": "3f6f0a3df124ca93ecb3be544a29e3b50e060988b0e3ee327838c06eb12e056c",
+    "sha256": "304343cac80e5dde33e8f19bcc72974f63095f5dcfc06ff94a19e9e2a51a0403",
     "bytes": 754134
   },
   "validation": {
@@ -25,7 +25,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "aeaf3d4dd674ea97697f465fd359e788f596d2ab",
+    "revision": "bdb7cbaaebd89454a33363bc32369e5825583cf1",
     "references": 6
   },
   "update": {

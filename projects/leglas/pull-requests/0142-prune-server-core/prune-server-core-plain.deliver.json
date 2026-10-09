@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "19572c72-1d33-4b24-811c-8c2254649f70",
+  "receiptId": "59168a1b-02eb-47c3-838b-5fe7f6ae6aad",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "prune-server-core-plain.architecture.json",
   "output": "prune-server-core-plain.html",
   "specification": {
-    "sha256": "a1fbb1f40f00813fc511b488b65317793b13cc8c94dcf7dc6dd54927347dc077",
+    "sha256": "0105a2ab30399de5a0a6497f083817f6a43280d1c5b296dc754dc12a8c3de2ed",
     "bytes": 3814
   },
   "artifact": {
-    "sha256": "0bb256cb3463b8bbb596ea20a3b772c1e744be7d42888604ba63bec51ca4e3dd",
+    "sha256": "a74c39b1aa03fba7d2654d39a6b0441e33ab25f086ebeaf5fa56726514ebabed",
     "bytes": 750976
   },
   "validation": {

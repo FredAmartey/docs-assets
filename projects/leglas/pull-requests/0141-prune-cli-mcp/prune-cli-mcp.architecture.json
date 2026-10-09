@@ -196,7 +196,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "Test lines 8,329 to 7,179 (\u221213.8%); tests 414 to 279",
+        "Test lines 8,329 to 7,186 (\u221213.7%); tests 414 to 279",
         "ignore.test.ts retired: its rows run through planInit",
         "Five tests deleted, each with a named keeper"
       ]

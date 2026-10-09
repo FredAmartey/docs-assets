@@ -19,7 +19,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "7a819ce6283354433d9f6c7947ac73ef68b4f019"
+      "revision": "1283282519706c7991c8517f31df3618c86c6140"
     }
   },
   "components": [
@@ -81,7 +81,7 @@
       "sources": [
         {
           "path": "packages/server/src/generation/generation.test.ts",
-          "line": 1806
+          "line": 1812
         }
       ]
     },
@@ -167,7 +167,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "Test lines 9,016 to 7,358 (\u221218.4%); tests 243 to 187",
+        "Test lines 9,016 to 7,391 (\u221218.0%); tests 243 to 189",
         "46 tests fold into keepers and tables; setup written once per file",
         "No production code changes"
       ]
@@ -176,7 +176,7 @@
       "dot": "slate",
       "title": "What stays",
       "items": [
-        "Each moved or deleted check: a deliberate break turns its keeper red (28, plus 18 in review)",
+        "Each moved or deleted check: a deliberate break turns its keeper red (28, plus 23 in review)",
         "Review restored stop answering true, which the server would otherwise turn into a 409",
         "Server lines 91.88 to 91.93% with this lane alone"
       ]

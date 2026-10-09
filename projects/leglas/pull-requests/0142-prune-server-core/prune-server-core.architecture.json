@@ -138,7 +138,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "Test lines 11,415 to 10,308 (\u22129.7%); tests 498 to 393",
+        "Test lines 11,415 to 10,317 (\u22129.6%); tests 498 to 393",
         "19 route tests fold into stronger cases; config rejections into one table",
         "startServer: the live hub's viewer count (unread since bd5bc2e), two exports and an optional argument removed"
       ]

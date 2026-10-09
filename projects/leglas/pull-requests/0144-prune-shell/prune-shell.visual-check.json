@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "93100144-f4ee-4ed6-9ec2-6b25c8e7cb33",
+  "deliveryReceiptId": "6dd4d360-fd95-4cf8-a66b-ffefc9aad5c1",
   "artifact": {
     "path": "prune-shell.html",
-    "sha256": "9689c156a821b80b45b84e4fd840b9311ac512b3a2b06a4330582f006f8674ab",
+    "sha256": "07dd15e81717f21bcd0b4546ec65a1ab33ce8fc854deff900ec0be0df9107e74",
     "bytes": 753858
   },
   "state": {
@@ -969,8 +969,8 @@
         "file": "prune-shell.visual-check.html"
       },
       {
-        "sha256": "c0a5b3b6dab5e3b1b49224e54758b7dc541f1853046f0140f9c4b8710d0b16f8",
-        "bytes": 122388,
+        "sha256": "fde60d07b4a77f758585df537fb3fc5c0d0d7089a6625aa50f3b485ccdaeb2d6",
+        "bytes": 122391,
         "file": "prune-shell.visual-check.1440x900.light.png"
       },
       {
@@ -979,13 +979,13 @@
         "file": "prune-shell.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "7c469eedc8dad622b47ecfcb9a11c9c67b836cb5970ccbcdd18c4ec5a5197cd2",
-        "bytes": 184010,
+        "sha256": "c44e00d3c27fe83bef1d094fcadda709ebde96f15f6a1f40f0db3c8b1a8dead3",
+        "bytes": 183869,
         "file": "prune-shell.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "d2bbf9d812c437fe78ea6e5f5ac4a472e1a40c5799498e452c0510edaa9fc058",
-        "bytes": 191811,
+        "sha256": "bc6865c3745f6d7acdb76520adcd5181548ee1c92648f87abe309b204cf7ddbd",
+        "bytes": 191538,
         "file": "prune-shell.visual-check.2048x1320.dark.png"
       }
     ]

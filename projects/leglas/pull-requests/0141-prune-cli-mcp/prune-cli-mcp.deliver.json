@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "45f8c392-cae7-42c9-808e-7313ad68645d",
+  "receiptId": "d703c008-73b2-47fe-95e7-9a5eedf50eec",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "prune-cli-mcp.architecture.json",
   "output": "prune-cli-mcp.html",
   "specification": {
-    "sha256": "3ef12ec5e47a8b266b61cbd8aade67a0ac92bd272d8fb573cf6954b9e007d4b2",
+    "sha256": "72a4778be355714de79710a74a91d88076b9e24126e83ab52fbdeb2b02a2c5a6",
     "bytes": 4160
   },
   "artifact": {
-    "sha256": "69447699996db2e810f1307a3779beb17ca3c0cfff1d1e3e9cf91cc2e5c53f8a",
+    "sha256": "40079c8d34e4e0b6ee9123a429541bf011f821316e97f11e6b0abf0cdac9a1a9",
     "bytes": 753387
   },
   "validation": {

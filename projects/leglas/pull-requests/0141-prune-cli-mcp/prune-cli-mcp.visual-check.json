@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "45f8c392-cae7-42c9-808e-7313ad68645d",
+  "deliveryReceiptId": "d703c008-73b2-47fe-95e7-9a5eedf50eec",
   "artifact": {
     "path": "prune-cli-mcp.html",
-    "sha256": "69447699996db2e810f1307a3779beb17ca3c0cfff1d1e3e9cf91cc2e5c53f8a",
+    "sha256": "40079c8d34e4e0b6ee9123a429541bf011f821316e97f11e6b0abf0cdac9a1a9",
     "bytes": 753387
   },
   "state": {
@@ -974,18 +974,18 @@
         "file": "prune-cli-mcp.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "055e3ca1aa19abde809019dd1f7ef147a4227e8047316dcef4ed7806af600d1f",
-        "bytes": 125314,
+        "sha256": "452bf6c54598fe839e46f4e2f8fdff5a9a0ca52f2918e1503a2926eed4a2efaa",
+        "bytes": 125315,
         "file": "prune-cli-mcp.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "ce00e74d81670833d8040e58a461add6013eb45c1e358f561d95522697f6307a",
-        "bytes": 170793,
+        "sha256": "42e97d291be66d6f5344a0e44d5d748eb4b7270759250de6c72c506896fb2d27",
+        "bytes": 171113,
         "file": "prune-cli-mcp.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "e58832b767a3175e23d43eea1e3abcac8e808a33a81253dedb977ff68d6d1a92",
-        "bytes": 178079,
+        "sha256": "0c12351bae11f089dcc5fd0e99c5a0e1007ff11624082cd543a255667a4765ff",
+        "bytes": 178427,
         "file": "prune-cli-mcp.visual-check.2048x1320.dark.png"
       }
     ]

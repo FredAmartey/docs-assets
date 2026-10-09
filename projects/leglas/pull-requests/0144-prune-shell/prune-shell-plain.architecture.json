@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The interface tests lose 1,369 lines and run the real timer and network code",
+    "title": "The interface tests lose 1,365 lines and run the real timer and network code",
     "output": "prune-shell-plain.html",
     "quality_profile": "showcase",
     "viewBox": [
@@ -22,7 +22,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "aeaf3d4dd674ea97697f465fd359e788f596d2ab"
+      "revision": "bdb7cbaaebd89454a33363bc32369e5825583cf1"
     }
   },
   "components": [
@@ -192,7 +192,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "The interface tests are 1,369 lines shorter: 294 tests instead of 488",
+        "The interface tests are 1,365 lines shorter: 294 tests instead of 488",
         "Hooks built only for tests are gone, and so are two unused functions",
         "Small tests of one rule each are folded together"
       ]
@@ -212,7 +212,7 @@
       "items": [
         "Before this change, the interface tests swapped out timers and network calls through hooks built only for them, and many small tests checked one rule each.",
         "Now the tests put a fake clock and a fake network around the real code, fold small tests into one per rule, and two functions nothing used are gone.",
-        "There are 1,369 fewer lines of tests and 125 fewer lines of interface code, and breaking any moved or removed check on purpose still makes a test fail."
+        "There are 1,365 fewer lines of tests and 125 fewer lines of interface code, and breaking any moved or removed check on purpose still makes a test fail."
       ]
     }
   ]

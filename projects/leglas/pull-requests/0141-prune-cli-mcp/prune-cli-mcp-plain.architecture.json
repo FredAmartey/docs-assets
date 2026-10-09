@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The command-line and agent tests shrink by 1,150 lines and still catch every deliberate break",
+    "title": "The command-line and agent tests shrink by 1,143 lines and still catch every deliberate break",
     "output": "prune-cli-mcp-plain.html",
     "quality_profile": "showcase",
     "viewBox": [
@@ -196,7 +196,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "The tests are 1,150 lines shorter: 279 tests instead of 414",
+        "The tests are 1,143 lines shorter: 279 tests instead of 414",
         "One test file is gone; its checks moved into a broader test",
         "Five repeated tests are gone, each covered by another test"
       ]
@@ -216,7 +216,7 @@
       "items": [
         "Before this change, many of Leglas's command-line and agent tests repeated each other, and two parts of Leglas carried hooks only the tests used.",
         "Now the repeated tests are folded into tables or removed, and the tests drive the real sending code and real settings instead of those hooks.",
-        "There are 1,150 fewer lines of tests to keep up, and breaking any of the 54 moved or removed checks on purpose still makes a test fail."
+        "There are 1,143 fewer lines of tests to keep up, and breaking any of the 54 moved or removed checks on purpose still makes a test fail."
       ]
     }
   ]

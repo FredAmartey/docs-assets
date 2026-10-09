@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "The agent, build and capture tests lose 1,658 lines and still catch every deliberate break",
+    "title": "The agent, build and capture tests lose 1,625 lines and still catch every deliberate break",
     "output": "prune-server-engines-plain.html",
     "quality_profile": "showcase",
     "viewBox": [
@@ -19,7 +19,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "7a819ce6283354433d9f6c7947ac73ef68b4f019"
+      "revision": "1283282519706c7991c8517f31df3618c86c6140"
     }
   },
   "components": [
@@ -81,7 +81,7 @@
       "sources": [
         {
           "path": "packages/server/src/generation/generation.test.ts",
-          "line": 1806
+          "line": 1812
         }
       ]
     },
@@ -167,7 +167,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "The agent, build and capture tests are 1,658 lines shorter: 187 tests instead of 243",
+        "The agent, build and capture tests are 1,625 lines shorter: 189 tests instead of 243",
         "Small tests that repeated broader ones are folded or gone",
         "Nothing in Leglas itself changed"
       ]
@@ -187,7 +187,7 @@
       "items": [
         "Before this change, several agent, build and capture behaviours were tested twice: once in a small test and again in a broader one.",
         "Now the small repeats are gone or folded into tables, and the broader tests carry their checks; nothing in Leglas itself changed.",
-        "There are 1,658 fewer lines of tests to keep up, and breaking any moved or removed check on purpose still makes a test fail."
+        "There are 1,625 fewer lines of tests to keep up, and breaking any moved or removed check on purpose still makes a test fail."
       ]
     }
   ]

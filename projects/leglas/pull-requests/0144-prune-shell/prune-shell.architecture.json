@@ -22,7 +22,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "aeaf3d4dd674ea97697f465fd359e788f596d2ab"
+      "revision": "bdb7cbaaebd89454a33363bc32369e5825583cf1"
     }
   },
   "components": [
@@ -192,7 +192,7 @@
       "dot": "cyan",
       "title": "What changed",
       "items": [
-        "Test lines 6,927 to 5,558 (\u221219.8%); tests 488 to 294",
+        "Test lines 6,927 to 5,562 (\u221219.7%); tests 488 to 294",
         "Production \u2212125 lines: test-only seams and two dead functions",
         "168 tests folded into one test per rule"
       ]
