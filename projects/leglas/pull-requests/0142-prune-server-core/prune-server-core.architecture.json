@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Server core tests: unit replays retire into the real-server test",
+    "output": "prune-server-core.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        },
+        "backend": {
+          "label": "production code"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "68c650909e16b655b2a3d96e52dd71718c6e6fcb"
+    }
+  },
+  "components": [
+    {
+      "id": "json",
+      "type": "frontend",
+      "label": "json.test.ts",
+      "sublabel": "deleted: one predicate at a time",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "shareunits",
+      "type": "frontend",
+      "label": "share manager unit tests",
+      "sublabel": "deleted: entry and mutation checks",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "frontend",
+      "label": "branch registry join test",
+      "sublabel": "deleted: one in-flight join",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "keeper",
+      "type": "frontend",
+      "label": "server.test.ts",
+      "sublabel": "real startServer on a real port",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 3493
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 2833
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 2006
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "retired in this PR",
+      "wraps": [
+        "json",
+        "shareunits",
+        "registry"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "json-keeper",
+      "from": "json",
+      "to": "keeper",
+      "label": "body guard per route",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "shareunits-keeper",
+      "from": "shareunits",
+      "to": "keeper",
+      "label": "real share listener"
+    },
+    {
+      "id": "registry-keeper",
+      "from": "registry",
+      "to": "keeper",
+      "label": "two starts at once",
+      "fromSide": "right",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Test lines 11,415 to 10,308 (\u22129.7%); tests 498 to 393",
+        "19 route tests fold into stronger cases; config rejections into one table",
+        "startServer: the live hub's viewer count (unread since bd5bc2e), two exports and an optional argument removed"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Each moved or deleted check: a deliberate break turns its keeper red (78)",
+        "Two contracts restored in review: an explicit variant send, a share's reach",
+        "Every server folder within 2 points of its coverage; api-surface.txt unchanged"
+      ]
+    }
+  ]
+}

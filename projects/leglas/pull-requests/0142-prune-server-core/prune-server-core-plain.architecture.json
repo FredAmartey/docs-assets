@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Server checks move from small repeated tests into the real-server test, 1,107 lines lighter",
+    "output": "prune-server-core-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        },
+        "backend": {
+          "label": "part of Leglas"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "68c650909e16b655b2a3d96e52dd71718c6e6fcb"
+    }
+  },
+  "components": [
+    {
+      "id": "json",
+      "type": "frontend",
+      "label": "Data format tests",
+      "sublabel": "removed: one rule at a time",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "shareunits",
+      "type": "frontend",
+      "label": "Sharing internals tests",
+      "sublabel": "removed: repeated sharing checks",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "frontend",
+      "label": "Branch start test",
+      "sublabel": "removed: two starts at once",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "keeper",
+      "type": "frontend",
+      "label": "Whole-server tests",
+      "sublabel": "run the real Leglas server",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 3493
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 2833
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 2006
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "removed in this change",
+      "wraps": [
+        "json",
+        "shareunits",
+        "registry"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "json-keeper",
+      "from": "json",
+      "to": "keeper",
+      "label": "each route checks it",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "shareunits-keeper",
+      "from": "shareunits",
+      "to": "keeper",
+      "label": "through real sharing"
+    },
+    {
+      "id": "registry-keeper",
+      "from": "registry",
+      "to": "keeper",
+      "label": "two starts at once",
+      "fromSide": "right",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The server tests are 1,107 lines shorter: 393 tests instead of 498",
+        "Small tests that repeated the whole-server test are gone",
+        "A viewer counter nothing read has left the server"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Breaking any moved or removed check on purpose still fails a test",
+        "Two checks a review found missing are back",
+        "Everything other programs can use from Leglas"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, many server behaviours were tested twice: once in a small test of one piece and again in a test that runs the whole server.",
+        "Now the small repeats are gone, the whole-server test carries their checks, and a counter nothing read has left the server.",
+        "There are 1,107 fewer lines of tests to keep up, and breaking any of the 78 moved or removed checks on purpose still makes a test fail."
+      ]
+    }
+  ]
+}
