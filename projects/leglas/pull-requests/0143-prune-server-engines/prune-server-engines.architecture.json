@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Server engine tests: replays retire into the tests that already prove them",
+    "output": "prune-server-engines.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "7a819ce6283354433d9f6c7947ac73ef68b4f019"
+    }
+  },
+  "components": [
+    {
+      "id": "lbl",
+      "type": "frontend",
+      "label": "agents.test.ts label tests",
+      "sublabel": "deleted: Claude and Codex labels",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "cancel",
+      "type": "frontend",
+      "label": "runner cancel, saved choice",
+      "sublabel": "deleted: replays of HTTP tests",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "live",
+      "type": "frontend",
+      "label": "browser.test.ts live test",
+      "sublabel": "deleted: a second real Chrome launch",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "gen",
+      "type": "frontend",
+      "label": "generation.test.ts",
+      "sublabel": "same labels from real events",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.test.ts",
+          "line": 1806
+        }
+      ]
+    },
+    {
+      "id": "srv",
+      "type": "frontend",
+      "label": "server.test.ts (lane L1)",
+      "sublabel": "cancel and saved choice over HTTP",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 1815
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 1527
+        }
+      ]
+    },
+    {
+      "id": "cap",
+      "type": "frontend",
+      "label": "capture.test.ts",
+      "sublabel": "live capture in real Chrome",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.test.ts",
+          "line": 526
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "retired in this PR",
+      "wraps": [
+        "lbl",
+        "cancel",
+        "live"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "lbl-gen",
+      "from": "lbl",
+      "to": "gen",
+      "label": "same labels"
+    },
+    {
+      "id": "cancel-srv",
+      "from": "cancel",
+      "to": "srv",
+      "label": "over HTTP"
+    },
+    {
+      "id": "live-cap",
+      "from": "live",
+      "to": "cap",
+      "label": "one live Chrome"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Test lines 9,016 to 7,358 (\u221218.4%); tests 243 to 187",
+        "46 tests fold into keepers and tables; setup written once per file",
+        "No production code changes"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Each moved or deleted check: a deliberate break turns its keeper red (28, plus 18 in review)",
+        "Review restored stop answering true, which the server would otherwise turn into a 409",
+        "Server lines 91.88 to 91.93% with this lane alone"
+      ]
+    }
+  ]
+}

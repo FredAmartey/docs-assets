@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "ff2d73e2-3bcb-4206-a822-0e83c19a0c5c",
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "prune-server-engines.architecture.json",
+  "output": "prune-server-engines.html",
+  "specification": {
+    "sha256": "3f14337b70ec38713b718e9b69c6c0a11318bc07f862adb6afa3d5f86bb4aa0b",
+    "bytes": 3764
+  },
+  "artifact": {
+    "sha256": "cb2ec4fca4a761f87f11a7527ef1e28cceac518ff432885b46614bf66045e4f2",
+    "bytes": 753061
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "7a819ce6283354433d9f6c7947ac73ef68b4f019",
+    "references": 4
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "disabled"
+  }
+}

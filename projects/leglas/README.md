@@ -107,6 +107,8 @@ documents.
 | `0140-coverage-tool` | [#140](https://github.com/FredAmartey/leglas/pull/140) |
 | `0141-prune-cli-mcp` | [#141](https://github.com/FredAmartey/leglas/pull/141) |
 | `0142-prune-server-core` | [#142](https://github.com/FredAmartey/leglas/pull/142) |
+| `0143-prune-server-engines` | [#143](https://github.com/FredAmartey/leglas/pull/143) |
+| `0144-prune-shell` | [#144](https://github.com/FredAmartey/leglas/pull/144) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

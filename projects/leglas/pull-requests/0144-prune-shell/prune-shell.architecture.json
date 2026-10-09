@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Shell tests: fake clock and network around the real code, test-only seams gone",
+    "output": "prune-shell.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        },
+        "backend": {
+          "label": "production code"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "aeaf3d4dd674ea97697f465fd359e788f596d2ab"
+    }
+  },
+  "components": [
+    {
+      "id": "nettest",
+      "type": "frontend",
+      "label": "poll and live tests",
+      "sublabel": "fake timers, stubbed WebSocket",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/poll.test.ts",
+          "line": 7
+        },
+        {
+          "path": "packages/shell/src/net/live.test.ts",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "id": "apitest",
+      "type": "frontend",
+      "label": "agent-api, framing, note tests",
+      "sublabel": "stubbed global fetch",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/agent-api.test.ts",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "id": "deadtest",
+      "type": "frontend",
+      "label": "shortLink, imageFilesFrom tests",
+      "sublabel": "deleted with the code",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "net",
+      "type": "backend",
+      "label": "startPoll, startLive",
+      "sublabel": "PollTimers, LiveOptions seams gone",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/poll.ts",
+          "line": 64
+        },
+        {
+          "path": "packages/shell/src/net/live.ts",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "readAgents and the note calls",
+      "sublabel": "AgentFetcher, fetcher params gone",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/agent-api.ts",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "dead",
+      "type": "backend",
+      "label": "shortLink, imageFilesFrom",
+      "sublabel": "deleted: no production caller",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "tests",
+      "wraps": [
+        "nettest",
+        "apitest",
+        "deadtest"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "production code",
+      "wraps": [
+        "net",
+        "api",
+        "dead"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "net-e",
+      "from": "nettest",
+      "to": "net",
+      "label": "drives the real loop",
+      "variant": "emphasis"
+    },
+    {
+      "id": "api-e",
+      "from": "apitest",
+      "to": "api",
+      "label": "real request code",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dead-e",
+      "from": "deadtest",
+      "to": "dead",
+      "label": "both gone"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Test lines 6,927 to 5,558 (\u221219.8%); tests 488 to 294",
+        "Production \u2212125 lines: test-only seams and two dead functions",
+        "168 tests folded into one test per rule"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Each moved or deleted check: a deliberate break turns its keeper red (about 120)",
+        "Review restored the idle poll stop and the last-draft send blocker, and fixed a signature check that could not fail",
+        "Shell lines 66.03 to 65.85%; startLive keeps url for a server test"
+      ]
+    }
+  ]
+}

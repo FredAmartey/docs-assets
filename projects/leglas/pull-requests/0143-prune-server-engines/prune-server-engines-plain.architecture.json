@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The agent, build and capture tests lose 1,658 lines and still catch every deliberate break",
+    "output": "prune-server-engines-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "7a819ce6283354433d9f6c7947ac73ef68b4f019"
+    }
+  },
+  "components": [
+    {
+      "id": "lbl",
+      "type": "frontend",
+      "label": "Agent label tests",
+      "sublabel": "removed: repeated label checks",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "cancel",
+      "type": "frontend",
+      "label": "Stop and choice tests",
+      "sublabel": "removed: repeats of server tests",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "live",
+      "type": "frontend",
+      "label": "Second browser test",
+      "sublabel": "removed: a repeat browser launch",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "gen",
+      "type": "frontend",
+      "label": "Build tests",
+      "sublabel": "check the same labels",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/generation/generation.test.ts",
+          "line": 1806
+        }
+      ]
+    },
+    {
+      "id": "srv",
+      "type": "frontend",
+      "label": "Whole-server tests",
+      "sublabel": "stop and saved choice, for real",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 1815
+        },
+        {
+          "path": "packages/server/src/server.test.ts",
+          "line": 1527
+        }
+      ]
+    },
+    {
+      "id": "cap",
+      "type": "frontend",
+      "label": "Capture tests",
+      "sublabel": "capture in a real browser",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/capture/capture.test.ts",
+          "line": 526
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "removed in this change",
+      "wraps": [
+        "lbl",
+        "cancel",
+        "live"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "lbl-gen",
+      "from": "lbl",
+      "to": "gen",
+      "label": "same labels"
+    },
+    {
+      "id": "cancel-srv",
+      "from": "cancel",
+      "to": "srv",
+      "label": "through the server"
+    },
+    {
+      "id": "live-cap",
+      "from": "live",
+      "to": "cap",
+      "label": "one real browser"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The agent, build and capture tests are 1,658 lines shorter: 187 tests instead of 243",
+        "Small tests that repeated broader ones are folded or gone",
+        "Nothing in Leglas itself changed"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Breaking any moved or removed check on purpose still fails a test",
+        "A check a review found missing is back",
+        "How much of the server the tests run"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, several agent, build and capture behaviours were tested twice: once in a small test and again in a broader one.",
+        "Now the small repeats are gone or folded into tables, and the broader tests carry their checks; nothing in Leglas itself changed.",
+        "There are 1,658 fewer lines of tests to keep up, and breaking any moved or removed check on purpose still makes a test fail."
+      ]
+    }
+  ]
+}

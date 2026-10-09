@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The interface tests lose 1,369 lines and run the real timer and network code",
+    "output": "prune-shell-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "test"
+        },
+        "backend": {
+          "label": "part of Leglas"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "aeaf3d4dd674ea97697f465fd359e788f596d2ab"
+    }
+  },
+  "components": [
+    {
+      "id": "nettest",
+      "type": "frontend",
+      "label": "Live update tests",
+      "sublabel": "fake clock, fake socket",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/poll.test.ts",
+          "line": 7
+        },
+        {
+          "path": "packages/shell/src/net/live.test.ts",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "id": "apitest",
+      "type": "frontend",
+      "label": "Agent and note tests",
+      "sublabel": "fake network, real code",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/agent-api.test.ts",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "id": "deadtest",
+      "type": "frontend",
+      "label": "Tests of unused code",
+      "sublabel": "removed with the code",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    },
+    {
+      "id": "net",
+      "type": "backend",
+      "label": "Live updates",
+      "sublabel": "timer hooks removed",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/net/poll.ts",
+          "line": 64
+        },
+        {
+          "path": "packages/shell/src/net/live.ts",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Agent requests",
+      "sublabel": "network hooks removed",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/shell/src/agents/agent-api.ts",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "dead",
+      "type": "backend",
+      "label": "Two unused functions",
+      "sublabel": "removed: nothing called them",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "tests",
+      "wraps": [
+        "nettest",
+        "apitest",
+        "deadtest"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Leglas itself",
+      "wraps": [
+        "net",
+        "api",
+        "dead"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "net-e",
+      "from": "nettest",
+      "to": "net",
+      "label": "runs the real loop",
+      "variant": "emphasis"
+    },
+    {
+      "id": "api-e",
+      "from": "apitest",
+      "to": "api",
+      "label": "real request code",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dead-e",
+      "from": "deadtest",
+      "to": "dead",
+      "label": "both gone"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The interface tests are 1,369 lines shorter: 294 tests instead of 488",
+        "Hooks built only for tests are gone, and so are two unused functions",
+        "Small tests of one rule each are folded together"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Breaking any moved or removed check on purpose still fails a test",
+        "Two checks a review found missing are back",
+        "Everything other programs can use from Leglas"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, the interface tests swapped out timers and network calls through hooks built only for them, and many small tests checked one rule each.",
+        "Now the tests put a fake clock and a fake network around the real code, fold small tests into one per rule, and two functions nothing used are gone.",
+        "There are 1,369 fewer lines of tests and 125 fewer lines of interface code, and breaking any moved or removed check on purpose still makes a test fail."
+      ]
+    }
+  ]
+}
