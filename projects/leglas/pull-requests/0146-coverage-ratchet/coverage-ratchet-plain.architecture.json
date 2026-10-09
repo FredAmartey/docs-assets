@@ -25,7 +25,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "447935a2354f4df03cc80a33fe54c01a05f02a79"
+      "revision": "156a6cc202e413caced3a6d0dc31fdacef87e44e"
     }
   },
   "components": [
@@ -85,7 +85,7 @@
       "sources": [
         {
           "path": "vitest.config.ts",
-          "line": 38
+          "line": 40
         }
       ]
     },

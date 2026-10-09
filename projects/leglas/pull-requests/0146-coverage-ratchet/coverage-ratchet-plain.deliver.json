@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "d4af6911-e947-49ae-8cbe-1d30f6e1b2d2",
+  "receiptId": "d100a417-f7bf-4fd3-bcb8-ab352ebd21d9",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "coverage-ratchet-plain.architecture.json",
   "output": "coverage-ratchet-plain.html",
   "specification": {
-    "sha256": "fea66ebfa5c9d413c2ae9290e21b1699a07bb13c6bf523220f1e4eacfd38d2e4",
+    "sha256": "320d6e38eae4bc19cd987bec7d1b9abd3afe87ae4abcdcfaa049c98dab1c024e",
     "bytes": 3672
   },
   "artifact": {
-    "sha256": "cbca493a156cf81b32d31ff3b0e67ff1158729bb78cc24adefc9c3ee1a143fbf",
+    "sha256": "f11f6a19a24ea010a9365dc15f54152640697181efc7895b3f6014753adfb581",
     "bytes": 750826
   },
   "validation": {
@@ -25,7 +25,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "447935a2354f4df03cc80a33fe54c01a05f02a79",
+    "revision": "156a6cc202e413caced3a6d0dc31fdacef87e44e",
     "references": 3
   },
   "update": {

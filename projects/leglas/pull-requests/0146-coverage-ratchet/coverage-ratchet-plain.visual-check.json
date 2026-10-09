@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "d4af6911-e947-49ae-8cbe-1d30f6e1b2d2",
+  "deliveryReceiptId": "d100a417-f7bf-4fd3-bcb8-ab352ebd21d9",
   "artifact": {
     "path": "coverage-ratchet-plain.html",
-    "sha256": "cbca493a156cf81b32d31ff3b0e67ff1158729bb78cc24adefc9c3ee1a143fbf",
+    "sha256": "f11f6a19a24ea010a9365dc15f54152640697181efc7895b3f6014753adfb581",
     "bytes": 750826
   },
   "state": {
@@ -974,18 +974,18 @@
         "file": "coverage-ratchet-plain.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "9cab77b922333858e827641efaa0a349aa7f0f84fd420ab4b68aea00ac768267",
-        "bytes": 123599,
+        "sha256": "98fe3fb18c58a1b7110f75f0560825eaff6cb2b69bbfa90e3bb5067641d173a0",
+        "bytes": 123600,
         "file": "coverage-ratchet-plain.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "62cd6943c62c51ee774b4351ef294d47b60b55374e9455af5f95efada163b11c",
-        "bytes": 178030,
+        "sha256": "f42343463525eed118f2ad4a7796c3c07533336a5702d55dd6d83d5682de2725",
+        "bytes": 178033,
         "file": "coverage-ratchet-plain.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "dcb0553f52d433e08695b34e861d03b311e97ca04d96898c8d9641804c55ebb7",
-        "bytes": 186832,
+        "sha256": "6697abd3da1211fca6dd25204143a3f3a086c8cdca193152730684a9deb0b1d8",
+        "bytes": 186830,
         "file": "coverage-ratchet-plain.visual-check.2048x1320.dark.png"
       }
     ]
