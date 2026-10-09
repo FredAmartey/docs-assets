@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "945b10e9-0c91-4cef-9f2e-116b5a17a0a0",
+  "receiptId": "45f8c392-cae7-42c9-808e-7313ad68645d",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "prune-cli-mcp.architecture.json",
   "output": "prune-cli-mcp.html",
   "specification": {
-    "sha256": "cdabc9c865ac4d1b72bc42782460693f9c8110ac27c9525634ea7f1358b2ba66",
+    "sha256": "3ef12ec5e47a8b266b61cbd8aade67a0ac92bd272d8fb573cf6954b9e007d4b2",
     "bytes": 4160
   },
   "artifact": {
-    "sha256": "ab1bce8f8d3dd688df611f7cd44d2c9e73da3a365f81649c4bbcdffc0befcb8f",
+    "sha256": "69447699996db2e810f1307a3779beb17ca3c0cfff1d1e3e9cf91cc2e5c53f8a",
     "bytes": 753387
   },
   "validation": {
@@ -25,7 +25,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "2af443ceaac9f16085cb76162df46e27def042d2",
+    "revision": "fd20e5df63f4774e09f7764d7a77e942a60ca7b6",
     "references": 6
   },
   "update": {

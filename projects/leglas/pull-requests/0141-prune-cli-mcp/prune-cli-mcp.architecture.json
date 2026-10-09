@@ -22,7 +22,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "2af443ceaac9f16085cb76162df46e27def042d2"
+      "revision": "fd20e5df63f4774e09f7764d7a77e942a60ca7b6"
     }
   },
   "components": [
@@ -82,7 +82,7 @@
       "sources": [
         {
           "path": "packages/cli/src/run-update.test.ts",
-          "line": 156
+          "line": 163
         }
       ]
     },
