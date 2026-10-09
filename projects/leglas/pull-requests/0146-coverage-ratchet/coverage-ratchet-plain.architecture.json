@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Checks now fail when a change leaves more of the code untested",
+    "output": "coverage-ratchet-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      360
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "check step"
+        },
+        "backend": {
+          "label": "limit"
+        },
+        "security": {
+          "label": "result"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "447935a2354f4df03cc80a33fe54c01a05f02a79"
+    }
+  },
+  "components": [
+    {
+      "id": "job",
+      "type": "frontend",
+      "label": "Checks on each change",
+      "sublabel": "every push and request",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "id": "cov",
+      "type": "frontend",
+      "label": "Tests that count lines",
+      "sublabel": "were plain tests before",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "caps",
+      "type": "backend",
+      "label": "Untested-code limits",
+      "sublabel": "2,130 lines, 2,962 paths",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "fail",
+      "type": "security",
+      "label": "The check fails",
+      "sublabel": "when a count passes its limit",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what this adds",
+      "wraps": [
+        "cov",
+        "caps"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "job-cov",
+      "from": "job",
+      "to": "cov",
+      "label": "runs"
+    },
+    {
+      "id": "cov-caps",
+      "from": "cov",
+      "to": "caps",
+      "label": "counts what no test ran",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "caps-fail",
+      "from": "caps",
+      "to": "fail",
+      "label": "over a limit",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "The checks run the tests while counting untested lines",
+        "Each limit is today's count plus a little room",
+        "Removing a test that was the only check on some code fails the checks"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Every test still runs, in about the same time",
+        "The coverage percentages, which stay a report",
+        "Who lowers a limit: a person, on purpose"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, nothing stopped a change from leaving more of Leglas's code untested, as long as every remaining test passed.",
+        "Now the checks on every change count the lines and paths no test runs and fail when either count goes over its limit.",
+        "Removing tests that were the only check on some code now shows up as a failed check instead of a slightly smaller number."
+      ]
+    }
+  ]
+}

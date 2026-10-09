@@ -1,0 +1,5 @@
+structure: PASS
+labels: 0 FAIL, 2 WARN
+  WARN over-four components[3].sublabel "when a count passes its limit" (6 words)
+  WARN over-four connections[1].label "counts what no test ran" (5 words)
+result: PASS

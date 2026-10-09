@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "CI fails when uncovered lines or branches pass their caps",
+    "output": "coverage-ratchet.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      360
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "CI step"
+        },
+        "backend": {
+          "label": "coverage rule"
+        },
+        "security": {
+          "label": "gate"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "447935a2354f4df03cc80a33fe54c01a05f02a79"
+    }
+  },
+  "components": [
+    {
+      "id": "job",
+      "type": "frontend",
+      "label": "CI test job",
+      "sublabel": "every push and pull request",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "id": "cov",
+      "type": "frontend",
+      "label": "pnpm test:coverage",
+      "sublabel": "was pnpm test",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "caps",
+      "type": "backend",
+      "label": "uncovered caps",
+      "sublabel": "2,130 lines, 2,962 branches",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "fail",
+      "type": "security",
+      "label": "the job fails",
+      "sublabel": "when a count passes its cap",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "cov",
+        "caps"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "job-cov",
+      "from": "job",
+      "to": "cov",
+      "label": "runs"
+    },
+    {
+      "id": "cov-caps",
+      "from": "cov",
+      "to": "caps",
+      "label": "counts uncovered",
+      "variant": "emphasis",
+      "labelAt": [
+        575,
+        151
+      ]
+    },
+    {
+      "id": "caps-fail",
+      "from": "caps",
+      "to": "fail",
+      "label": "over a cap",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "CI runs pnpm test:coverage instead of pnpm test",
+        "Caps: CI's uncovered count plus 12 for timing races",
+        "Deleting references.test.ts fails the run: 2,155 lines against 2,130"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Every test still runs; coverage adds no measurable time",
+        "Percentages are reported, not gated",
+        "Lowering a cap is a deliberate edit"
+      ]
+    }
+  ]
+}
