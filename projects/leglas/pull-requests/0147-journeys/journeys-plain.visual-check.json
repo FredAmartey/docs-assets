@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "81aade1d-9cf7-4173-95b8-b744983cf205",
+  "deliveryReceiptId": "903d7275-11a3-4806-a7eb-16b59cb45285",
   "artifact": {
     "path": "journeys-plain.html",
-    "sha256": "dcc8dd594595e0e2f3ef0a9807edb65804fcad378544e70c2469186f2140bb2e",
+    "sha256": "85eae56ab48ea26e58df9f3338101e431934dd71f835e5975150b4a7b6c065d9",
     "bytes": 757649
   },
   "state": {
@@ -974,13 +974,13 @@
         "file": "journeys-plain.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "a7a98e1d1e92771c28072fd7cbad61a51d38c6b2fda3f3f589aca4b5e8476a46",
-        "bytes": 118481,
+        "sha256": "7820dd58a590c6e888fab0e952c6e6baf46de7be1ffd047ca41d04022e5f684b",
+        "bytes": 118479,
         "file": "journeys-plain.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "14590e8deee31f42d37a386d9b414b633994921c74f8eca65e0d89560bd07282",
-        "bytes": 152304,
+        "sha256": "e836c940745a41dbf6c2f31d90a1792ff1b7f4854a0bb50afdebcfae40b27a35",
+        "bytes": 152294,
         "file": "journeys-plain.visual-check.2048x1320.light.png"
       },
       {

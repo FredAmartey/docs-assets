@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "81aade1d-9cf7-4173-95b8-b744983cf205",
+  "receiptId": "903d7275-11a3-4806-a7eb-16b59cb45285",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "journeys-plain.architecture.json",
   "output": "/privatejourneys-plain.html",
   "specification": {
-    "sha256": "236ca0e4a4767c192c44d1dac949929ef53e221b9bbb667725a890c2958ed1d9",
+    "sha256": "babc516385ee8c54209222556b7c79ebd3f607fcbf5b98b68851bd01719dff01",
     "bytes": 5810
   },
   "artifact": {
-    "sha256": "dcc8dd594595e0e2f3ef0a9807edb65804fcad378544e70c2469186f2140bb2e",
+    "sha256": "85eae56ab48ea26e58df9f3338101e431934dd71f835e5975150b4a7b6c065d9",
     "bytes": 757649
   },
   "validation": {
@@ -25,7 +25,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "fa2600ab483b5b9ac06006a4184a90ed9d3778ae",
+    "revision": "8e0bc84d2c30861d7c6a03136d51d9b70683d9c7",
     "references": 14
   },
   "update": {

@@ -12,7 +12,7 @@
     "repository": {
       "url": "https://github.com/FredAmartey/leglas",
       "provider": "github",
-      "revision": "fa2600ab483b5b9ac06006a4184a90ed9d3778ae"
+      "revision": "8e0bc84d2c30861d7c6a03136d51d9b70683d9c7"
     }
   },
   "components": [
@@ -32,7 +32,7 @@
       "sources": [
         {
           "path": ".github/workflows/ci.yml",
-          "line": 30
+          "line": 31
         }
       ],
       "tag": "new"
@@ -61,7 +61,7 @@
         },
         {
           "path": "bench/ceilings.ts",
-          "line": 137
+          "line": 139
         }
       ],
       "tag": "new"
@@ -107,11 +107,11 @@
       "sources": [
         {
           "path": "bench/journeys.ts",
-          "line": 511
+          "line": 555
         },
         {
           "path": "bench/journeys.ts",
-          "line": 690
+          "line": 735
         }
       ]
     },
@@ -131,7 +131,7 @@
       "sources": [
         {
           "path": "bench/journeys.ts",
-          "line": 701
+          "line": 752
         },
         {
           "path": "bench/probe.ts",
@@ -167,7 +167,7 @@
         },
         {
           "path": "bench/journeys.ts",
-          "line": 179
+          "line": 178
         }
       ],
       "tag": "new"
@@ -263,7 +263,7 @@
       "items": [
         "pnpm bench boots the built CLI on a fixture app with a probe preloaded and walks boot and idle in headless Chrome",
         "Each count has one exact ceiling: above fails, below is stale until bench:update lowers it, a raise needs --why",
-        "CI runs one walk on every pull request and refuses a ceiling that rose without a raised entry"
+        "CI runs one walk on every pull request, on a pinned image and Chrome, and refuses a ceiling that rose without a raised entry"
       ]
     },
     {
