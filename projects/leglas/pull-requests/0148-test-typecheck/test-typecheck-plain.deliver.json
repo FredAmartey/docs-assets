@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d8661d2e-a8bf-4c52-af6b-9a176bc674c6",
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "test-typecheck-plain.architecture.json",
+  "output": "test-typecheck-plain.html",
+  "specification": {
+    "sha256": "e3718b21dff19dca5f398a55d90fe9d612708805a1a2576529cd037fd6fc26aa",
+    "bytes": 4254
+  },
+  "artifact": {
+    "sha256": "042745e80ab0c81497d5ff6c87ed64dc48dc46faa2ee90adc6b7ef5e47640d8d",
+    "bytes": 753227
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "c9b126fb52861722d7c15f0d4bd005628a079abd",
+    "references": 5
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "disabled"
+  }
+}

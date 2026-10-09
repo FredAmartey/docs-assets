@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "pnpm typecheck now reads the cli, mcp and server tests",
+    "output": "test-typecheck.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "command"
+        },
+        "backend": {
+          "label": "TypeScript config"
+        },
+        "external": {
+          "label": "test files"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "c9b126fb52861722d7c15f0d4bd005628a079abd"
+    }
+  },
+  "components": [
+    {
+      "id": "root",
+      "type": "frontend",
+      "label": "pnpm typecheck",
+      "sublabel": "in CI and before every tag",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "frontend",
+      "label": "cli, mcp, server typecheck",
+      "sublabel": "one script per package",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/package.json",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "backend",
+      "label": "tsconfig.json",
+      "sublabel": "source only, tests left out",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/tsconfig.json",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "tsconfig.test.json",
+      "sublabel": "the tests, never emitted",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/tsconfig.test.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "files",
+      "type": "external",
+      "label": "the package tests",
+      "sublabel": "about 260 errors fixed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/test-helpers.ts",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "tests"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "root-scripts",
+      "from": "root",
+      "to": "scripts",
+      "label": "builds, then runs",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "scripts-source",
+      "from": "scripts",
+      "to": "source",
+      "label": "first"
+    },
+    {
+      "id": "scripts-tests",
+      "from": "scripts",
+      "to": "tests",
+      "label": "then",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    },
+    {
+      "id": "tests-files",
+      "from": "tests",
+      "to": "files",
+      "label": "reads",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "A tsconfig.test.json per package, run after the source check",
+        "About 260 errors fixed in tests: readJson<T>, filled fixtures, required() on index reads",
+        "Three spawn dependency types narrowed to what the code uses"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "Build output: the test configs never emit",
+        "Runtime behaviour: the production changes are types only",
+        "Shell tests: already checked by the shell's own config"
+      ]
+    }
+  ]
+}

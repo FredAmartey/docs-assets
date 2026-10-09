@@ -1,0 +1,11 @@
+structure: PASS
+labels: 0 FAIL, 8 WARN
+  WARN over-four components[0].sublabel "runs the count once each time" (6 words)
+  WARN over-four components[1].sublabel "one exact number per count" (5 words)
+  WARN over-four components[2].sublabel "starts Leglas, counts its work" (5 words)
+  WARN over-four components[3].sublabel "opens Leglas like a person would" (6 words)
+  WARN over-four components[4].sublabel "a counter rides along inside" (5 words)
+  WARN over-four components[5].sublabel "same answers on every computer" (5 words)
+  WARN over-four connections[3].label "starts it with a counter" (5 words)
+  WARN over-four connections[5].label "shows the app, asks agents" (5 words)
+result: PASS

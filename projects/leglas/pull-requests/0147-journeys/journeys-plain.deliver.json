@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "3accb30c-73fe-4a91-8f15-59aae40bf834",
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "journeys-plain.architecture.json",
+  "output": "/privatejourneys-plain.html",
+  "specification": {
+    "sha256": "469272ce84c271a6fe2dfb35589ed61b7a799a303814858dffa7caac77683da9",
+    "bytes": 5713
+  },
+  "artifact": {
+    "sha256": "7c1341925e55b6a70b426b523c77dd92636a500f63b7c5310c925378f8cd4ef7",
+    "bytes": 758072
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "verified": true,
+    "repository": "https://github.com/FredAmartey/leglas",
+    "revision": "fa2600ab483b5b9ac06006a4184a90ed9d3778ae",
+    "references": 14
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "disabled"
+  }
+}

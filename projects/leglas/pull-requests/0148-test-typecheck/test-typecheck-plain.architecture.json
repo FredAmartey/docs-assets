@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "The type check now reads the tests too, so a mistake in one can't hide",
+    "output": "test-typecheck-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "command"
+        },
+        "backend": {
+          "label": "settings"
+        },
+        "external": {
+          "label": "tests"
+        }
+      }
+    },
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "c9b126fb52861722d7c15f0d4bd005628a079abd"
+    }
+  },
+  "components": [
+    {
+      "id": "root",
+      "type": "frontend",
+      "label": "Type check",
+      "sublabel": "on every change and release",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "frontend",
+      "label": "Each package's check",
+      "sublabel": "three code packages",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/package.json",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "backend",
+      "label": "Code settings",
+      "sublabel": "the code, tests left out",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/tsconfig.json",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "Test settings",
+      "sublabel": "the tests, checked only",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/tsconfig.test.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "files",
+      "type": "external",
+      "label": "The tests",
+      "sublabel": "about 260 mistakes fixed",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/test-helpers.ts",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what this adds",
+      "wraps": [
+        "tests"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "root-scripts",
+      "from": "root",
+      "to": "scripts",
+      "label": "builds, then runs",
+      "labelAt": [
+        165,
+        151
+      ]
+    },
+    {
+      "id": "scripts-source",
+      "from": "scripts",
+      "to": "source",
+      "label": "first"
+    },
+    {
+      "id": "scripts-tests",
+      "from": "scripts",
+      "to": "tests",
+      "label": "then",
+      "variant": "emphasis",
+      "labelAt": [
+        165,
+        311
+      ]
+    },
+    {
+      "id": "tests-files",
+      "from": "tests",
+      "to": "files",
+      "label": "reads",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "Each package's check now reads its tests after its code",
+        "About 260 type mistakes in the tests are fixed",
+        "Three internal types now ask only for what the code uses"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "What gets built and shipped",
+        "How Leglas behaves",
+        "The interface's tests, which were already checked"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, the type check read the command line, agent connector and server code but skipped their tests, so about 260 mistakes had piled up in them unseen.",
+        "Now each package's check reads its tests too, and those mistakes are fixed.",
+        "A test that quietly drifts from the code it checks now fails the check instead of passing on stale assumptions."
+      ]
+    }
+  ]
+}

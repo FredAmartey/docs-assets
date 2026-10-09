@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Every proposed change now counts the work Leglas does when it starts and sits open",
+    "output": "journeys-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      640
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "fa2600ab483b5b9ac06006a4184a90ed9d3778ae"
+    }
+  },
+  "components": [
+    {
+      "id": "ci",
+      "type": "cloud",
+      "label": "Checks on every change",
+      "sublabel": "runs the count once each time",
+      "pos": [
+        285,
+        40
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 30
+        }
+      ],
+      "tag": "new"
+    },
+    {
+      "id": "ceilings",
+      "type": "database",
+      "label": "Saved limits",
+      "sublabel": "one exact number per count",
+      "pos": [
+        20,
+        200
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "bench/ceilings.json",
+          "line": 2
+        },
+        {
+          "path": "bench/ceilings.ts",
+          "line": 90
+        },
+        {
+          "path": "bench/ceilings.ts",
+          "line": 137
+        }
+      ],
+      "tag": "new"
+    },
+    {
+      "id": "runner",
+      "type": "frontend",
+      "label": "The counting run",
+      "sublabel": "starts Leglas, counts its work",
+      "pos": [
+        285,
+        200
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 19
+        },
+        {
+          "path": "bench/run.ts",
+          "line": 349
+        }
+      ],
+      "tag": "new"
+    },
+    {
+      "id": "chrome",
+      "type": "external",
+      "label": "A hidden browser",
+      "sublabel": "opens Leglas like a person would",
+      "pos": [
+        550,
+        200
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "bench/journeys.ts",
+          "line": 511
+        },
+        {
+          "path": "bench/journeys.ts",
+          "line": 690
+        }
+      ]
+    },
+    {
+      "id": "leglas",
+      "type": "backend",
+      "label": "Leglas itself, unchanged",
+      "sublabel": "a counter rides along inside",
+      "pos": [
+        285,
+        360
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "bench/journeys.ts",
+          "line": 701
+        },
+        {
+          "path": "bench/probe.ts",
+          "line": 98
+        },
+        {
+          "path": "bench/probe.ts",
+          "line": 117
+        }
+      ]
+    },
+    {
+      "id": "fixture",
+      "type": "external",
+      "label": "Practice app, fake agents",
+      "sublabel": "same answers on every computer",
+      "pos": [
+        285,
+        520
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "bench/fixture/server.ts",
+          "line": 53
+        },
+        {
+          "path": "bench/fake-agent.sh",
+          "line": 9
+        },
+        {
+          "path": "bench/journeys.ts",
+          "line": 179
+        }
+      ],
+      "tag": "new"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what this adds",
+      "wraps": [
+        "ci",
+        "runner",
+        "ceilings"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "what this adds",
+      "wraps": [
+        "fixture"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "ci-runner",
+      "from": "ci",
+      "to": "runner",
+      "label": "starts it",
+      "labelAt": [
+        370,
+        151
+      ]
+    },
+    {
+      "id": "runner-ceilings",
+      "from": "runner",
+      "to": "ceilings",
+      "label": "compares",
+      "variant": "emphasis"
+    },
+    {
+      "id": "runner-chrome",
+      "from": "runner",
+      "to": "chrome",
+      "label": "controls"
+    },
+    {
+      "id": "runner-leglas",
+      "from": "runner",
+      "to": "leglas",
+      "label": "starts it with a counter",
+      "labelAt": [
+        370,
+        311
+      ]
+    },
+    {
+      "id": "chrome-leglas",
+      "from": "chrome",
+      "to": "leglas",
+      "label": "opens its page",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "labelAt": [
+        635,
+        326
+      ]
+    },
+    {
+      "id": "leglas-fixture",
+      "from": "leglas",
+      "to": "fixture",
+      "label": "shows the app, asks agents",
+      "labelAt": [
+        370,
+        471
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "A new command starts Leglas on a practice app, opens it in a hidden browser and counts what it does",
+        "Each count has one saved limit; going over fails, and raising a limit takes a written reason"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "Leglas itself: no product code changed",
+        "The everyday tests and checks"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, nothing counted the work Leglas does when it starts or while it sits open, so a heavier version could ship without anyone noticing.",
+        "Now every proposed change starts Leglas on a practice app, counts the programs it starts and the requests it makes, and fails if any count goes over its saved limit.",
+        "Each improvement becomes a floor that later changes cannot quietly undo."
+      ]
+    }
+  ]
+}
