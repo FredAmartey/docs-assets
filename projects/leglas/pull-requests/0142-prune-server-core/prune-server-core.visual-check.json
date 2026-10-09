@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "bd02701a-cf2c-4208-820f-f39be7f5d4db",
+  "deliveryReceiptId": "907c8394-71e5-48d4-ad7b-ddf62b9efc08",
   "artifact": {
     "path": "prune-server-core.html",
-    "sha256": "be81224efc9121aeb1b052c1d44a8f37c7c21b82706fe5f4d6bb5cbf55d21f5b",
+    "sha256": "a195598d5e37ff236e0b67a5f1d11fca25a93514b8085c6443ee0f2f84d3f6bb",
     "bytes": 750389
   },
   "state": {
@@ -984,8 +984,8 @@
         "file": "prune-server-core.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "67cd87f67992a75c3f8e017c60ef192fd0dbf9ea043f1fdcc32568e945d2b19d",
-        "bytes": 146442,
+        "sha256": "20defe42394649e3f25b0b738638a386c079bd71a1b69558a293489a1b487d41",
+        "bytes": 146440,
         "file": "prune-server-core.visual-check.2048x1320.dark.png"
       }
     ]
