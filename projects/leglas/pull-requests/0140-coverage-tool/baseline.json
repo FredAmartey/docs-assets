@@ -1,0 +1,3531 @@
+{
+  "about": "Coverage and test baseline for the test-pruning campaign. Temporary: the campaign folder is stripped before any PR. All paths are repo-relative.",
+  "base": {
+    "commit": "d7c72d99e4a9f2571b2b2dc4d8f753ed5f9cea8f",
+    "branch": "main"
+  },
+  "environment": {
+    "node": "v24.21.0",
+    "pnpm": "11.20.0",
+    "vitest": "4.1.11",
+    "coverageProvider": "@vitest/coverage-v8 4.1.11",
+    "os": "linux x64",
+    "cpus": 4,
+    "user": "root",
+    "ipv6": false,
+    "browser": "the image's Playwright Chromium 141, run through a wrapper that adds --no-sandbox (Chromium refuses to start as root without it), named by LEGLAS_BROWSER"
+  },
+  "command": "pnpm test:coverage (pnpm build && vitest run --passWithNoTests --coverage), with LEGLAS_BROWSER set",
+  "coverageScope": {
+    "include": ["packages/*/src/**/*.{ts,tsx}", "site/*.ts", "scripts/*.ts"],
+    "exclude": [
+      "**/*.test.{ts,tsx}",
+      "**/test-helpers.ts",
+      "**/dist/**",
+      "evals/**",
+      ".claude/**",
+      ".leglas/**"
+    ],
+    "sourceFiles": 169,
+    "filesWithNoExecutableCode": [
+      "packages/cli/src/index.ts",
+      "packages/cli/src/watch.ts",
+      "packages/mcp/src/index.ts",
+      "packages/server/src/index.ts",
+      "packages/server/src/timers.ts",
+      "packages/shell/src/types.ts",
+      "packages/shell/src/net/timers.ts",
+      "packages/shell/src/rail/drag.ts"
+    ],
+    "filesAtZero": [
+      "packages/cli/src/bin.ts",
+      "packages/cli/src/run-classify.ts",
+      "packages/cli/src/run-explore.ts",
+      "packages/cli/src/run-init.ts",
+      "packages/cli/src/run-new.ts",
+      "packages/mcp/src/bin.ts",
+      "packages/shell/src/App.tsx",
+      "packages/shell/src/main.tsx",
+      "packages/shell/src/rail/DeleteRemovedDialog.tsx"
+    ]
+  },
+  "coverage": {
+    "baselineRun": "run 2 of 5; 3 of 5 runs gave exactly these totals",
+    "total": {
+      "lines": {
+        "covered": 9793,
+        "total": 11921,
+        "pct": 82.14
+      },
+      "branches": {
+        "covered": 7852,
+        "total": 10816,
+        "pct": 72.59
+      },
+      "functions": {
+        "covered": 2237,
+        "total": 2979,
+        "pct": 75.09
+      },
+      "statements": {
+        "covered": 11067,
+        "total": 13925,
+        "pct": 79.47
+      }
+    },
+    "byPackage": {
+      "cli": {
+        "files": 34,
+        "lines": {
+          "covered": 1246,
+          "total": 1601,
+          "pct": 77.82
+        },
+        "branches": {
+          "covered": 1071,
+          "total": 1457,
+          "pct": 73.5
+        },
+        "functions": {
+          "covered": 184,
+          "total": 237,
+          "pct": 77.63
+        },
+        "statements": {
+          "covered": 1386,
+          "total": 1823,
+          "pct": 76.02
+        }
+      },
+      "mcp": {
+        "files": 7,
+        "lines": {
+          "covered": 175,
+          "total": 202,
+          "pct": 86.63
+        },
+        "branches": {
+          "covered": 113,
+          "total": 133,
+          "pct": 84.96
+        },
+        "functions": {
+          "covered": 60,
+          "total": 77,
+          "pct": 77.92
+        },
+        "statements": {
+          "covered": 203,
+          "total": 238,
+          "pct": 85.29
+        }
+      },
+      "scripts": {
+        "files": 1,
+        "lines": {
+          "covered": 106,
+          "total": 113,
+          "pct": 93.8
+        },
+        "branches": {
+          "covered": 67,
+          "total": 81,
+          "pct": 82.71
+        },
+        "functions": {
+          "covered": 16,
+          "total": 16,
+          "pct": 100
+        },
+        "statements": {
+          "covered": 121,
+          "total": 129,
+          "pct": 93.79
+        }
+      },
+      "server": {
+        "files": 42,
+        "lines": {
+          "covered": 5380,
+          "total": 5855,
+          "pct": 91.88
+        },
+        "branches": {
+          "covered": 4082,
+          "total": 5012,
+          "pct": 81.44
+        },
+        "functions": {
+          "covered": 1187,
+          "total": 1360,
+          "pct": 87.27
+        },
+        "statements": {
+          "covered": 6055,
+          "total": 6814,
+          "pct": 88.86
+        }
+      },
+      "shell": {
+        "files": 79,
+        "lines": {
+          "covered": 2440,
+          "total": 3695,
+          "pct": 66.03
+        },
+        "branches": {
+          "covered": 2205,
+          "total": 3767,
+          "pct": 58.53
+        },
+        "functions": {
+          "covered": 718,
+          "total": 1215,
+          "pct": 59.09
+        },
+        "statements": {
+          "covered": 2819,
+          "total": 4422,
+          "pct": 63.74
+        }
+      },
+      "site": {
+        "files": 6,
+        "lines": {
+          "covered": 446,
+          "total": 455,
+          "pct": 98.02
+        },
+        "branches": {
+          "covered": 314,
+          "total": 366,
+          "pct": 85.79
+        },
+        "functions": {
+          "covered": 72,
+          "total": 74,
+          "pct": 97.29
+        },
+        "statements": {
+          "covered": 483,
+          "total": 499,
+          "pct": 96.79
+        }
+      }
+    },
+    "byFolder": {
+      "server/(src root)": {
+        "files": 10,
+        "lines": {
+          "covered": 1580,
+          "total": 1737,
+          "pct": 90.96
+        },
+        "branches": {
+          "covered": 1378,
+          "total": 1639,
+          "pct": 84.07
+        },
+        "functions": {
+          "covered": 343,
+          "total": 392,
+          "pct": 87.5
+        },
+        "statements": {
+          "covered": 1787,
+          "total": 2001,
+          "pct": 89.3
+        }
+      },
+      "server/agents": {
+        "files": 8,
+        "lines": {
+          "covered": 982,
+          "total": 1091,
+          "pct": 90
+        },
+        "branches": {
+          "covered": 810,
+          "total": 1029,
+          "pct": 78.71
+        },
+        "functions": {
+          "covered": 217,
+          "total": 251,
+          "pct": 86.45
+        },
+        "statements": {
+          "covered": 1113,
+          "total": 1297,
+          "pct": 85.81
+        }
+      },
+      "server/branches": {
+        "files": 3,
+        "lines": {
+          "covered": 176,
+          "total": 185,
+          "pct": 95.13
+        },
+        "branches": {
+          "covered": 90,
+          "total": 107,
+          "pct": 84.11
+        },
+        "functions": {
+          "covered": 53,
+          "total": 62,
+          "pct": 85.48
+        },
+        "statements": {
+          "covered": 197,
+          "total": 212,
+          "pct": 92.92
+        }
+      },
+      "server/capture": {
+        "files": 4,
+        "lines": {
+          "covered": 530,
+          "total": 569,
+          "pct": 93.14
+        },
+        "branches": {
+          "covered": 327,
+          "total": 394,
+          "pct": 82.99
+        },
+        "functions": {
+          "covered": 134,
+          "total": 162,
+          "pct": 82.71
+        },
+        "statements": {
+          "covered": 595,
+          "total": 654,
+          "pct": 90.97
+        }
+      },
+      "server/config": {
+        "files": 5,
+        "lines": {
+          "covered": 177,
+          "total": 188,
+          "pct": 94.14
+        },
+        "branches": {
+          "covered": 200,
+          "total": 222,
+          "pct": 90.09
+        },
+        "functions": {
+          "covered": 27,
+          "total": 29,
+          "pct": 93.1
+        },
+        "statements": {
+          "covered": 200,
+          "total": 215,
+          "pct": 93.02
+        }
+      },
+      "server/generation": {
+        "files": 7,
+        "lines": {
+          "covered": 889,
+          "total": 948,
+          "pct": 93.77
+        },
+        "branches": {
+          "covered": 544,
+          "total": 689,
+          "pct": 78.95
+        },
+        "functions": {
+          "covered": 201,
+          "total": 225,
+          "pct": 89.33
+        },
+        "statements": {
+          "covered": 1006,
+          "total": 1110,
+          "pct": 90.63
+        }
+      },
+      "server/requests": {
+        "files": 3,
+        "lines": {
+          "covered": 370,
+          "total": 391,
+          "pct": 94.62
+        },
+        "branches": {
+          "covered": 310,
+          "total": 371,
+          "pct": 83.55
+        },
+        "functions": {
+          "covered": 94,
+          "total": 105,
+          "pct": 89.52
+        },
+        "statements": {
+          "covered": 421,
+          "total": 461,
+          "pct": 91.32
+        }
+      },
+      "server/share": {
+        "files": 2,
+        "lines": {
+          "covered": 676,
+          "total": 746,
+          "pct": 90.61
+        },
+        "branches": {
+          "covered": 423,
+          "total": 561,
+          "pct": 75.4
+        },
+        "functions": {
+          "covered": 118,
+          "total": 134,
+          "pct": 88.05
+        },
+        "statements": {
+          "covered": 736,
+          "total": 864,
+          "pct": 85.18
+        }
+      },
+      "shell/(src root)": {
+        "files": 13,
+        "lines": {
+          "covered": 923,
+          "total": 1497,
+          "pct": 61.65
+        },
+        "branches": {
+          "covered": 752,
+          "total": 1371,
+          "pct": 54.85
+        },
+        "functions": {
+          "covered": 286,
+          "total": 525,
+          "pct": 54.47
+        },
+        "statements": {
+          "covered": 1080,
+          "total": 1832,
+          "pct": 58.95
+        }
+      },
+      "shell/agents": {
+        "files": 6,
+        "lines": {
+          "covered": 129,
+          "total": 163,
+          "pct": 79.14
+        },
+        "branches": {
+          "covered": 205,
+          "total": 269,
+          "pct": 76.2
+        },
+        "functions": {
+          "covered": 52,
+          "total": 67,
+          "pct": 77.61
+        },
+        "statements": {
+          "covered": 153,
+          "total": 196,
+          "pct": 78.06
+        }
+      },
+      "shell/annotate": {
+        "files": 4,
+        "lines": {
+          "covered": 84,
+          "total": 322,
+          "pct": 26.08
+        },
+        "branches": {
+          "covered": 70,
+          "total": 332,
+          "pct": 21.08
+        },
+        "functions": {
+          "covered": 24,
+          "total": 85,
+          "pct": 28.23
+        },
+        "statements": {
+          "covered": 101,
+          "total": 385,
+          "pct": 26.23
+        }
+      },
+      "shell/composer": {
+        "files": 4,
+        "lines": {
+          "covered": 4,
+          "total": 7,
+          "pct": 57.14
+        },
+        "branches": {
+          "covered": 21,
+          "total": 34,
+          "pct": 61.76
+        },
+        "functions": {
+          "covered": 4,
+          "total": 6,
+          "pct": 66.66
+        },
+        "statements": {
+          "covered": 4,
+          "total": 7,
+          "pct": 57.14
+        }
+      },
+      "shell/generation": {
+        "files": 6,
+        "lines": {
+          "covered": 109,
+          "total": 114,
+          "pct": 95.61
+        },
+        "branches": {
+          "covered": 118,
+          "total": 137,
+          "pct": 86.13
+        },
+        "functions": {
+          "covered": 45,
+          "total": 50,
+          "pct": 90
+        },
+        "statements": {
+          "covered": 128,
+          "total": 138,
+          "pct": 92.75
+        }
+      },
+      "shell/lineage": {
+        "files": 5,
+        "lines": {
+          "covered": 329,
+          "total": 374,
+          "pct": 87.96
+        },
+        "branches": {
+          "covered": 200,
+          "total": 274,
+          "pct": 72.99
+        },
+        "functions": {
+          "covered": 65,
+          "total": 78,
+          "pct": 83.33
+        },
+        "statements": {
+          "covered": 370,
+          "total": 430,
+          "pct": 86.04
+        }
+      },
+      "shell/net": {
+        "files": 4,
+        "lines": {
+          "covered": 114,
+          "total": 120,
+          "pct": 95
+        },
+        "branches": {
+          "covered": 49,
+          "total": 63,
+          "pct": 77.77
+        },
+        "functions": {
+          "covered": 32,
+          "total": 37,
+          "pct": 86.48
+        },
+        "statements": {
+          "covered": 126,
+          "total": 140,
+          "pct": 90
+        }
+      },
+      "shell/preview": {
+        "files": 8,
+        "lines": {
+          "covered": 219,
+          "total": 254,
+          "pct": 86.22
+        },
+        "branches": {
+          "covered": 171,
+          "total": 213,
+          "pct": 80.28
+        },
+        "functions": {
+          "covered": 54,
+          "total": 58,
+          "pct": 93.1
+        },
+        "statements": {
+          "covered": 256,
+          "total": 306,
+          "pct": 83.66
+        }
+      },
+      "shell/rail": {
+        "files": 7,
+        "lines": {
+          "covered": 59,
+          "total": 134,
+          "pct": 44.02
+        },
+        "branches": {
+          "covered": 171,
+          "total": 307,
+          "pct": 55.7
+        },
+        "functions": {
+          "covered": 16,
+          "total": 45,
+          "pct": 35.55
+        },
+        "statements": {
+          "covered": 62,
+          "total": 152,
+          "pct": 40.78
+        }
+      },
+      "shell/references": {
+        "files": 3,
+        "lines": {
+          "covered": 47,
+          "total": 61,
+          "pct": 77.04
+        },
+        "branches": {
+          "covered": 40,
+          "total": 63,
+          "pct": 63.49
+        },
+        "functions": {
+          "covered": 15,
+          "total": 21,
+          "pct": 71.42
+        },
+        "statements": {
+          "covered": 57,
+          "total": 73,
+          "pct": 78.08
+        }
+      },
+      "shell/share": {
+        "files": 5,
+        "lines": {
+          "covered": 140,
+          "total": 258,
+          "pct": 54.26
+        },
+        "branches": {
+          "covered": 117,
+          "total": 261,
+          "pct": 44.82
+        },
+        "functions": {
+          "covered": 45,
+          "total": 114,
+          "pct": 39.47
+        },
+        "statements": {
+          "covered": 163,
+          "total": 303,
+          "pct": 53.79
+        }
+      },
+      "shell/stage": {
+        "files": 2,
+        "lines": {
+          "covered": 15,
+          "total": 26,
+          "pct": 57.69
+        },
+        "branches": {
+          "covered": 60,
+          "total": 91,
+          "pct": 65.93
+        },
+        "functions": {
+          "covered": 8,
+          "total": 18,
+          "pct": 44.44
+        },
+        "statements": {
+          "covered": 16,
+          "total": 32,
+          "pct": 50
+        }
+      },
+      "shell/ui": {
+        "files": 8,
+        "lines": {
+          "covered": 150,
+          "total": 197,
+          "pct": 76.14
+        },
+        "branches": {
+          "covered": 113,
+          "total": 166,
+          "pct": 68.07
+        },
+        "functions": {
+          "covered": 49,
+          "total": 67,
+          "pct": 73.13
+        },
+        "statements": {
+          "covered": 169,
+          "total": 228,
+          "pct": 74.12
+        }
+      },
+      "shell/update": {
+        "files": 4,
+        "lines": {
+          "covered": 118,
+          "total": 168,
+          "pct": 70.23
+        },
+        "branches": {
+          "covered": 118,
+          "total": 186,
+          "pct": 63.44
+        },
+        "functions": {
+          "covered": 23,
+          "total": 44,
+          "pct": 52.27
+        },
+        "statements": {
+          "covered": 134,
+          "total": 200,
+          "pct": 67
+        }
+      }
+    }
+  },
+  "stability": {
+    "runs": [
+      {
+        "run": 1,
+        "lines": 9793,
+        "branches": 7852,
+        "functions": 2238,
+        "statements": 11067,
+        "wallSeconds": 56.2
+      },
+      {
+        "run": 2,
+        "lines": 9793,
+        "branches": 7852,
+        "functions": 2237,
+        "statements": 11067,
+        "wallSeconds": 55.7
+      },
+      {
+        "run": 3,
+        "lines": 9795,
+        "branches": 7854,
+        "functions": 2237,
+        "statements": 11070,
+        "wallSeconds": 55.4
+      },
+      {
+        "run": 4,
+        "lines": 9793,
+        "branches": 7852,
+        "functions": 2237,
+        "statements": 11067,
+        "wallSeconds": 55.8
+      },
+      {
+        "run": 5,
+        "lines": 9793,
+        "branches": 7852,
+        "functions": 2237,
+        "statements": 11067,
+        "wallSeconds": 56.2
+      }
+    ],
+    "range": {
+      "lines": {
+        "minCovered": 9793,
+        "maxCovered": 9795,
+        "spreadPoints": 0.017
+      },
+      "branches": {
+        "minCovered": 7852,
+        "maxCovered": 7854,
+        "spreadPoints": 0.018
+      },
+      "functions": {
+        "minCovered": 2237,
+        "maxCovered": 2238,
+        "spreadPoints": 0.034
+      },
+      "statements": {
+        "minCovered": 11067,
+        "maxCovered": 11070,
+        "spreadPoints": 0.022
+      }
+    },
+    "unstableCounters": [
+      {
+        "file": "packages/server/src/proxy.ts",
+        "kind": "statement",
+        "line": 155,
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "0/3"
+      },
+      {
+        "file": "packages/server/src/proxy.ts",
+        "kind": "branch",
+        "line": 155,
+        "label": "if arm 0",
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "0/3"
+      },
+      {
+        "file": "packages/server/src/server.ts",
+        "kind": "statement",
+        "line": 729,
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "0/3"
+      },
+      {
+        "file": "packages/server/src/server.ts",
+        "kind": "statement",
+        "line": 731,
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "0/3"
+      },
+      {
+        "file": "packages/server/src/server.ts",
+        "kind": "branch",
+        "line": 728,
+        "label": "if arm 0",
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "0/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 473,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 475,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 477,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 545,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 551,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "statement",
+        "line": 553,
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "function",
+        "line": 472,
+        "label": "livePid",
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "function",
+        "line": 545,
+        "label": "(anonymous_60)",
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "function",
+        "line": 550,
+        "label": "(anonymous_61)",
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "function",
+        "line": 882,
+        "label": "(anonymous_89)",
+        "hitInFullRuns": "1/5",
+        "hitInL2AloneRuns": "1/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "branch",
+        "line": 545,
+        "label": "binary-expr arm 1",
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      },
+      {
+        "file": "packages/server/src/capture/browser.ts",
+        "kind": "branch",
+        "line": 549,
+        "label": "binary-expr arm 1",
+        "hitInFullRuns": "0/5",
+        "hitInL2AloneRuns": "2/3"
+      }
+    ],
+    "worstCaseIfEveryUnstableCounterFlips": {
+      "lines": {
+        "counters": 9,
+        "points": 0.075
+      },
+      "branches": {
+        "counters": 4,
+        "points": 0.037
+      },
+      "functions": {
+        "counters": 4,
+        "points": 0.134
+      },
+      "statements": {
+        "counters": 9,
+        "points": 0.065
+      }
+    },
+    "note": "Every unstable counter is a timing race: a double-close guard (proxy.ts), a health probe resolving after shutdown (server.ts), a rejected Browser.close, and the orphan-profile reaper, which takes its real path only when another Leglas Chrome profile is in the temp dir at that moment (browser.ts). Per-test pass/fail was identical in all runs."
+  },
+  "browserDependence": {
+    "withoutBrowser": {
+      "lines": {
+        "covered": 9747,
+        "total": 11921,
+        "pct": 81.76
+      },
+      "branches": {
+        "covered": 7807,
+        "total": 10816,
+        "pct": 72.18
+      },
+      "functions": {
+        "covered": 2213,
+        "total": 2979,
+        "pct": 74.28
+      },
+      "statements": {
+        "covered": 11016,
+        "total": 13925,
+        "pct": 79.1
+      }
+    },
+    "skippedWithoutBrowser": 12,
+    "skippedWithBrowser": 2,
+    "note": "Without a browser the real-browser describe blocks skip instead of failing. A run with more than 2 skipped cases is not comparable to this baseline."
+  },
+  "tests": {
+    "files": 105,
+    "lines": 35687,
+    "declarations": 1643,
+    "runtimeCases": {
+      "total": 1865,
+      "passed": 1859,
+      "failed": 4,
+      "skipped": 2
+    },
+    "unhandledErrors": 2,
+    "unhandledErrorsNote": "listen EAFNOSUPPORT ::1, raised during the two IPv6 tests in proxy.test.ts and server.test.ts",
+    "statusRunsCompared": 7,
+    "baselineFailures": [
+      {
+        "file": "packages/server/src/proxy.test.ts",
+        "test": "proxy reaches a target that is an IPv6 literal",
+        "lane": "L1",
+        "cause": "environment",
+        "reason": "environment: the VM kernel has no IPv6, so listening on ::1 fails with EAFNOSUPPORT and the test times out at 20s"
+      },
+      {
+        "file": "packages/server/src/server.test.ts",
+        "test": "startServer reports the dev server as reachable when it is up on ::1",
+        "lane": "L1",
+        "cause": "environment",
+        "reason": "environment: no IPv6 in the VM kernel; the ::1 origin cannot listen and the test times out at 30s"
+      },
+      {
+        "file": "packages/server/src/branches/worktree.test.ts",
+        "test": "startAppProcess finds a dev server listening on IPv6 only, and reports a URL that reaches it",
+        "lane": "L1",
+        "cause": "environment",
+        "reason": "environment: no IPv6 in the VM kernel; the IPv6-only fixture dev server exits 1"
+      },
+      {
+        "file": "packages/server/src/generation/generation.test.ts",
+        "test": "a generation's lifecycle a layout fix that strays is undone only when every file it touched can be put back",
+        "lane": "L2",
+        "cause": "environment",
+        "reason": "environment: runs as root, and chmod 0o444 does not stop root writing the file back, so the locked row reads ready; passes with CAP_DAC_OVERRIDE dropped, fails without"
+      }
+    ],
+    "skipped": [
+      {
+        "file": "packages/server/src/agents/agents.test.ts",
+        "test": "the real agent CLIs named in LEGLAS_LIVE_AGENTS read as signed in",
+        "reason": "needs LEGLAS_LIVE_AGENTS and signed-in agent CLIs; CI skips it too"
+      },
+      {
+        "file": "packages/server/src/agents/agents.test.ts",
+        "test": "the real agent CLIs named in LEGLAS_LIVE_AGENTS read as signed out with no saved login",
+        "reason": "needs LEGLAS_LIVE_AGENTS and signed-in agent CLIs; CI skips it too"
+      }
+    ],
+    "byFile": {
+      "packages/cli/src/args.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 683,
+        "declarations": 65,
+        "cases": {
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 23
+      },
+      "packages/cli/src/baseline.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 61,
+        "declarations": 8,
+        "cases": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/cli/src/bin-update.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 162,
+        "declarations": 3,
+        "cases": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/cli/src/dev-server-owner.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 61,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/cli/src/explore.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 81,
+        "declarations": 9,
+        "cases": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/cli/src/ignore.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 40,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 3
+      },
+      "packages/cli/src/init.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 131,
+        "declarations": 15,
+        "cases": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/cli/src/keep.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 133,
+        "declarations": 11,
+        "cases": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 7
+      },
+      "packages/cli/src/new.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 300,
+        "declarations": 23,
+        "cases": {
+          "passed": 26,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 1550
+      },
+      "packages/cli/src/restart.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 172,
+        "declarations": 8,
+        "cases": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 13
+      },
+      "packages/cli/src/run-explore-build.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 169,
+        "declarations": 5,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 29
+      },
+      "packages/cli/src/run-keep.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 108,
+        "declarations": 4,
+        "cases": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 48
+      },
+      "packages/cli/src/run-link.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 92,
+        "declarations": 5,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 53
+      },
+      "packages/cli/src/run-log.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 97,
+        "declarations": 5,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 16
+      },
+      "packages/cli/src/run-previews.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 223,
+        "declarations": 10,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 78
+      },
+      "packages/cli/src/run-remove.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 126,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 59
+      },
+      "packages/cli/src/run-share.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 630,
+        "declarations": 19,
+        "cases": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 146
+      },
+      "packages/cli/src/run-show.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 466,
+        "declarations": 15,
+        "cases": {
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 128
+      },
+      "packages/cli/src/run-update.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 174,
+        "declarations": 10,
+        "cases": {
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 35
+      },
+      "packages/cli/src/run-watch.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 420,
+        "declarations": 16,
+        "cases": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 1165
+      },
+      "packages/cli/src/run.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 465,
+        "declarations": 17,
+        "cases": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 651
+      },
+      "packages/cli/src/show.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 132,
+        "declarations": 8,
+        "cases": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/cli/src/shutdown.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 55,
+        "declarations": 3,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/mcp/src/channel.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 217,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 369
+      },
+      "packages/mcp/src/engagement.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 149,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 27
+      },
+      "packages/mcp/src/parity.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 489,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 23
+      },
+      "packages/mcp/src/project.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 168,
+        "declarations": 11,
+        "cases": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 10
+      },
+      "packages/mcp/src/tools.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 703,
+        "declarations": 25,
+        "cases": {
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 2615
+      },
+      "packages/server/src/agents/agent-command.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 144,
+        "declarations": 18,
+        "cases": {
+          "passed": 18,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 10
+      },
+      "packages/server/src/agents/agents.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 756,
+        "declarations": 38,
+        "cases": {
+          "passed": 43,
+          "failed": 0,
+          "skipped": 2
+        },
+        "durationMs": 203
+      },
+      "packages/server/src/agents/claude-agent-session.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 628,
+        "declarations": 15,
+        "cases": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 122
+      },
+      "packages/server/src/agents/codex-app-server.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 416,
+        "declarations": 9,
+        "cases": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 2059
+      },
+      "packages/server/src/agents/failure.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 128,
+        "declarations": 9,
+        "cases": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/server/src/agents/process-tree.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 72,
+        "declarations": 4,
+        "cases": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/server/src/agents/runner.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 1708,
+        "declarations": 36,
+        "cases": {
+          "passed": 37,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 2302
+      },
+      "packages/server/src/branches/branches.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 285,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 26
+      },
+      "packages/server/src/branches/classify.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 115,
+        "declarations": 11,
+        "cases": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/server/src/branches/worktree.test.ts": {
+        "lane": "L1",
+        "status": "fail",
+        "lines": 225,
+        "declarations": 13,
+        "cases": {
+          "passed": 12,
+          "failed": 1,
+          "skipped": 0
+        },
+        "durationMs": 4899
+      },
+      "packages/server/src/capture/browser.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 941,
+        "declarations": 32,
+        "cases": {
+          "passed": 32,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4537
+      },
+      "packages/server/src/capture/capture.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 1036,
+        "declarations": 19,
+        "cases": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6364
+      },
+      "packages/server/src/capture/hydration.test.ts": {
+        "lane": "L2",
+        "status": "pass",
+        "lines": 59,
+        "declarations": 5,
+        "cases": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 9
+      },
+      "packages/server/src/config/config-branch.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 142,
+        "declarations": 16,
+        "cases": {
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/server/src/config/config.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 159,
+        "declarations": 19,
+        "cases": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/server/src/config/find-config.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 69,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 9
+      },
+      "packages/server/src/config/load-config.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 90,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 55
+      },
+      "packages/server/src/config/local-previews.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 312,
+        "declarations": 23,
+        "cases": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 290
+      },
+      "packages/server/src/config/renames.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 89,
+        "declarations": 10,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 11
+      },
+      "packages/server/src/frame-policy.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 118,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 39
+      },
+      "packages/server/src/generation/generation.test.ts": {
+        "lane": "L2",
+        "status": "fail",
+        "lines": 3128,
+        "declarations": 58,
+        "cases": {
+          "passed": 57,
+          "failed": 1,
+          "skipped": 0
+        },
+        "durationMs": 12415
+      },
+      "packages/server/src/json.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 22,
+        "declarations": 3,
+        "cases": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 3
+      },
+      "packages/server/src/live.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 273,
+        "declarations": 10,
+        "cases": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 20
+      },
+      "packages/server/src/log.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 165,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 7
+      },
+      "packages/server/src/proxy.test.ts": {
+        "lane": "L1",
+        "status": "fail",
+        "lines": 359,
+        "declarations": 14,
+        "cases": {
+          "passed": 13,
+          "failed": 1,
+          "skipped": 0
+        },
+        "durationMs": 20101
+      },
+      "packages/server/src/requests/annotations.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 397,
+        "declarations": 34,
+        "cases": {
+          "passed": 34,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 73
+      },
+      "packages/server/src/requests/attachments.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 461,
+        "declarations": 16,
+        "cases": {
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 63
+      },
+      "packages/server/src/requests/requests.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 818,
+        "declarations": 55,
+        "cases": {
+          "passed": 55,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 82
+      },
+      "packages/server/src/server-info.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 116,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 280
+      },
+      "packages/server/src/server.test.ts": {
+        "lane": "L1",
+        "status": "fail",
+        "lines": 3949,
+        "declarations": 119,
+        "cases": {
+          "passed": 147,
+          "failed": 1,
+          "skipped": 0
+        },
+        "durationMs": 33829
+      },
+      "packages/server/src/share/share.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 1267,
+        "declarations": 42,
+        "cases": {
+          "passed": 42,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 13343
+      },
+      "packages/server/src/share/tunnel.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 313,
+        "declarations": 9,
+        "cases": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 154
+      },
+      "packages/server/src/update.test.ts": {
+        "lane": "L1",
+        "status": "pass",
+        "lines": 1671,
+        "declarations": 64,
+        "cases": {
+          "passed": 148,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 469
+      },
+      "packages/shell/src/Shell.test.tsx": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 1293,
+        "declarations": 46,
+        "cases": {
+          "passed": 46,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 3846
+      },
+      "packages/shell/src/agents/agent-api.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 214,
+        "declarations": 11,
+        "cases": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 51
+      },
+      "packages/shell/src/agents/mcp-connect.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 46,
+        "declarations": 5,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/shell/src/agents/request-status.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 465,
+        "declarations": 32,
+        "cases": {
+          "passed": 39,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 12
+      },
+      "packages/shell/src/annotate/anchor.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 183,
+        "declarations": 12,
+        "cases": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/shell/src/annotate/annotate.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 204,
+        "declarations": 24,
+        "cases": {
+          "passed": 24,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 12
+      },
+      "packages/shell/src/annotate/annotations-api.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 47,
+        "declarations": 2,
+        "cases": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 35
+      },
+      "packages/shell/src/generation/generation.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 228,
+        "declarations": 16,
+        "cases": {
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/shell/src/keymap.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 126,
+        "declarations": 17,
+        "cases": {
+          "passed": 17,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/shell/src/lineage/Gutter.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 70,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/shell/src/lineage/lineage.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 519,
+        "declarations": 41,
+        "cases": {
+          "passed": 41,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 15
+      },
+      "packages/shell/src/lineage/provenance.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 58,
+        "declarations": 10,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 6
+      },
+      "packages/shell/src/naming.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 57,
+        "declarations": 10,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/shell/src/net/live.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 296,
+        "declarations": 9,
+        "cases": {
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/shell/src/net/poll.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 413,
+        "declarations": 14,
+        "cases": {
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 114
+      },
+      "packages/shell/src/prefs.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 170,
+        "declarations": 20,
+        "cases": {
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 9
+      },
+      "packages/shell/src/preview/compare.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 244,
+        "declarations": 27,
+        "cases": {
+          "passed": 27,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 8
+      },
+      "packages/shell/src/preview/framing.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 90,
+        "declarations": 4,
+        "cases": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 33
+      },
+      "packages/shell/src/preview/health.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 66,
+        "declarations": 10,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/shell/src/preview/overlays.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 50,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 3
+      },
+      "packages/shell/src/preview/preview-frame.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 156,
+        "declarations": 8,
+        "cases": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 10
+      },
+      "packages/shell/src/preview/preview-message.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 32,
+        "declarations": 2,
+        "cases": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 2
+      },
+      "packages/shell/src/preview/rendered.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 355,
+        "declarations": 25,
+        "cases": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 105
+      },
+      "packages/shell/src/preview/scan.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 152,
+        "declarations": 13,
+        "cases": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 7
+      },
+      "packages/shell/src/rail/tags.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 33,
+        "declarations": 3,
+        "cases": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/shell/src/reference.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 107,
+        "declarations": 15,
+        "cases": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/shell/src/references/references.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 181,
+        "declarations": 17,
+        "cases": {
+          "passed": 17,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 10
+      },
+      "packages/shell/src/share/share.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 284,
+        "declarations": 20,
+        "cases": {
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 14
+      },
+      "packages/shell/src/ui/clipboard.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 58,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/shell/src/ui/kit.test.tsx": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 113,
+        "declarations": 3,
+        "cases": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 58
+      },
+      "packages/shell/src/ui/orb.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 27,
+        "declarations": 5,
+        "cases": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 2
+      },
+      "packages/shell/src/ui/tip.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 100,
+        "declarations": 12,
+        "cases": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 5
+      },
+      "packages/shell/src/ui/toasts.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 59,
+        "declarations": 7,
+        "cases": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 4
+      },
+      "packages/shell/src/ui/widget.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 107,
+        "declarations": 12,
+        "cases": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 7
+      },
+      "packages/shell/src/update/update.test.ts": {
+        "lane": "L4",
+        "status": "pass",
+        "lines": 324,
+        "declarations": 18,
+        "cases": {
+          "passed": 18,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 7
+      },
+      "scripts/api-surface.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 169,
+        "declarations": 9,
+        "cases": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 31
+      },
+      "site/build.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 229,
+        "declarations": 5,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 1436
+      },
+      "site/changelog.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 310,
+        "declarations": 17,
+        "cases": {
+          "passed": 17,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 72
+      },
+      "site/docs.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 465,
+        "declarations": 30,
+        "cases": {
+          "passed": 30,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 62
+      },
+      "site/release-notes.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 120,
+        "declarations": 8,
+        "cases": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 307
+      },
+      "test/copy.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 56,
+        "declarations": 1,
+        "cases": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 35
+      },
+      "test/docs.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 44,
+        "declarations": 2,
+        "cases": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 11
+      },
+      "test/plugin.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 140,
+        "declarations": 6,
+        "cases": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 95
+      },
+      "test/publish.test.ts": {
+        "lane": "L3",
+        "status": "pass",
+        "lines": 89,
+        "declarations": 2,
+        "cases": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "durationMs": 39
+      }
+    }
+  },
+  "lanes": {
+    "L1": {
+      "testFiles": 22,
+      "testLines": 11415,
+      "supportFiles": ["packages/server/src/test-helpers.ts"],
+      "supportLines": 40,
+      "declarations": 498,
+      "runtimeCases": 619,
+      "baselineFailures": 3,
+      "coverageAlone": {
+        "statementsHit": 3943,
+        "statementsHitByPackage": {
+          "server": 3874,
+          "shell": 69
+        },
+        "statementsOnlyThisLaneHits": 2573,
+        "statementsOnlyThisLaneHitsByPackage": {
+          "server": 2571,
+          "shell": 2
+        },
+        "statementsOnlyThisLaneHitsByFolder": {
+          "server/(src root)": 1310,
+          "server/agents": 1,
+          "server/branches": 166,
+          "server/capture": 2,
+          "server/config": 81,
+          "server/generation": 16,
+          "server/requests": 324,
+          "server/share": 671,
+          "shell/net": 2
+        },
+        "runTotals": {
+          "tests": 619,
+          "passed": 616,
+          "failed": 3,
+          "skipped": 0
+        }
+      }
+    },
+    "L2": {
+      "testFiles": 11,
+      "testLines": 9016,
+      "supportFiles": [],
+      "supportLines": 0,
+      "declarations": 243,
+      "runtimeCases": 275,
+      "baselineFailures": 1,
+      "coverageAlone": {
+        "statementsHit": 3490,
+        "statementsHitByPackage": {
+          "server": 3490
+        },
+        "statementsOnlyThisLaneHits": 2023,
+        "statementsOnlyThisLaneHitsByPackage": {
+          "server": 2023
+        },
+        "statementsOnlyThisLaneHitsByFolder": {
+          "server/(src root)": 49,
+          "server/agents": 775,
+          "server/capture": 312,
+          "server/generation": 887
+        },
+        "runTotals": {
+          "tests": 275,
+          "passed": 272,
+          "failed": 1,
+          "skipped": 2
+        }
+      }
+    },
+    "L3": {
+      "testFiles": 37,
+      "testLines": 8329,
+      "supportFiles": ["packages/cli/src/test-helpers.ts"],
+      "supportLines": 12,
+      "declarations": 414,
+      "runtimeCases": 471,
+      "baselineFailures": 0,
+      "coverageAlone": {
+        "statementsHit": 2449,
+        "statementsHitByPackage": {
+          "server": 244,
+          "cli": 1386,
+          "mcp": 203,
+          "shell": 12,
+          "scripts": 121,
+          "site": 483
+        },
+        "statementsOnlyThisLaneHits": 2193,
+        "statementsOnlyThisLaneHitsByPackage": {
+          "cli": 1386,
+          "mcp": 203,
+          "scripts": 121,
+          "site": 483
+        },
+        "runTotals": {
+          "tests": 471,
+          "passed": 471,
+          "failed": 0,
+          "skipped": 0
+        }
+      }
+    },
+    "L4": {
+      "testFiles": 35,
+      "testLines": 6927,
+      "supportFiles": [],
+      "supportLines": 0,
+      "declarations": 488,
+      "runtimeCases": 500,
+      "baselineFailures": 0,
+      "coverageAlone": {
+        "statementsHit": 2817,
+        "statementsHitByPackage": {
+          "shell": 2817
+        },
+        "statementsOnlyThisLaneHits": 2738,
+        "statementsOnlyThisLaneHitsByPackage": {
+          "shell": 2738
+        },
+        "statementsOnlyThisLaneHitsByFolder": {
+          "shell/(src root)": 1072,
+          "shell/net": 63,
+          "shell/references": 54,
+          "shell/lineage": 363,
+          "shell/agents": 153,
+          "shell/annotate": 101,
+          "shell/composer": 4,
+          "shell/generation": 128,
+          "shell/preview": 256,
+          "shell/rail": 62,
+          "shell/share": 163,
+          "shell/stage": 16,
+          "shell/ui": 169,
+          "shell/update": 134
+        },
+        "runTotals": {
+          "tests": 500,
+          "passed": 500,
+          "failed": 0,
+          "skipped": 0
+        }
+      }
+    }
+  },
+  "laneAttribution": {
+    "method": "each lane's test files run alone with coverage; a statement counts for a lane when that lane's run executes it",
+    "statementsHitByUnionOfLanes": 11073,
+    "statementsHitByFullRun": 11067,
+    "hitOnlyInFullRun": [],
+    "hitOnlyInLaneRuns": [
+      "packages/server/src/capture/browser.ts:473",
+      "packages/server/src/capture/browser.ts:475",
+      "packages/server/src/capture/browser.ts:477",
+      "packages/server/src/capture/browser.ts:545",
+      "packages/server/src/capture/browser.ts:551",
+      "packages/server/src/capture/browser.ts:553"
+    ],
+    "hitOnlyInLaneRunsNote": "the orphan-profile reaper race in browser.ts, listed under stability.unstableCounters",
+    "statementsByExactLaneSet": {
+      "L1": 2573,
+      "L1+L2": 1223,
+      "L1+L2+L3": 80,
+      "L1+L4": 67,
+      "L2": 2023,
+      "L2+L3": 164,
+      "L3": 2193,
+      "L3+L4": 12,
+      "L4": 2738
+    },
+    "statementsByExactLaneSetNote": "A statement under L1+L2 is hit by those two lanes and no other. If both prune the tests that reach it, neither lane alone sees the loss; only a run of the merged lanes does.",
+    "crossPackageStatements": {
+      "L3 -> packages/server/src/json.ts": 4,
+      "L3 -> packages/server/src/live.ts": 3,
+      "L3 -> packages/server/src/server-info.ts": 11,
+      "L3 -> packages/server/src/agents/agent-command.ts": 3,
+      "L3 -> packages/server/src/agents/agents.ts": 11,
+      "L3 -> packages/server/src/capture/browser.ts": 175,
+      "L3 -> packages/server/src/capture/capture.ts": 8,
+      "L3 -> packages/server/src/capture/layout.ts": 1,
+      "L3 -> packages/server/src/requests/annotations.ts": 9,
+      "L3 -> packages/server/src/requests/attachments.ts": 5,
+      "L3 -> packages/server/src/requests/requests.ts": 14,
+      "L1 -> packages/shell/src/json.ts": 3,
+      "L1 -> packages/shell/src/net/live.ts": 63,
+      "L1 -> packages/shell/src/references/references.ts": 3,
+      "L3 -> packages/shell/src/link.ts": 5,
+      "L3 -> packages/shell/src/lineage/lineage.ts": 7
+    },
+    "statementsHitOnlyByAnotherPackagesTests": {
+      "packages/shell/src/net/live.ts": 2
+    }
+  },
+  "coverageBlind": [
+    {
+      "file": "packages/cli/src/run-watch.test.ts",
+      "test": "leglas watch --json, as a process > stdout is JSON lines while the agent's output goes to stderr",
+      "why": "starts the built cli bin (dist/bin.js) in a child process"
+    },
+    {
+      "file": "packages/mcp/src/tools.test.ts",
+      "test": "what the tools tell a host about themselves > the published server's instructions name every tool it lists, and fit what a host keeps",
+      "why": "starts the built mcp bin (dist/bin.js) over stdio in a child process"
+    },
+    {
+      "file": "site/release-notes.test.ts",
+      "test": "prints %s from any working directory (2 rows) and a missing version exits with the specified sentence",
+      "why": "runs site/release-notes.ts as a script in a child node; the in-process tests in the same file still cover its exported functions"
+    },
+    {
+      "file": "packages/mcp/src/*.test.ts",
+      "test": "every mcp test that reaches cli or server code",
+      "why": "mcp imports the cli through the package export, which is the built bundle with the server inlined and no source map; cli and server code reached this way counts nowhere"
+    },
+    {
+      "file": "packages/cli/src/*.test.ts",
+      "test": "every cli test that reaches server code (run.test.ts starts a real server)",
+      "why": "cli imports @leglas/server through its export, the built dist with no source map; server code reached this way counts nowhere"
+    }
+  ],
+  "notBlind": "Server tests that spawn node (agents/runner, generation, branches/worktree, capture) start fixture scripts, git or Chrome; the production code that drives them runs in-process and is measured.",
+  "wallTime": {
+    "testCoverageSeconds": {
+      "min": 55.4,
+      "max": 56.2,
+      "includes": "pnpm build (about 5s) and coverage processing"
+    },
+    "vitestDurationWithCoverageSeconds": [50.75, 50.05, 50.06, 50.44, 50.79],
+    "pnpmTestSeconds": 47.38,
+    "pnpmTestOnMainVitestSeconds": 50.66
+  },
+  "files": {
+    "packages/cli/src/args.ts": {
+      "lines": [300, 367],
+      "branches": [283, 360],
+      "functions": [13, 18],
+      "statements": [339, 418]
+    },
+    "packages/cli/src/baseline.ts": {
+      "lines": [17, 19],
+      "branches": [5, 6],
+      "functions": [1, 1],
+      "statements": [17, 19]
+    },
+    "packages/cli/src/bin-start.ts": {
+      "lines": [12, 15],
+      "branches": [10, 14],
+      "functions": [5, 6],
+      "statements": [14, 17]
+    },
+    "packages/cli/src/bin.ts": {
+      "lines": [0, 76],
+      "branches": [0, 48],
+      "functions": [0, 11],
+      "statements": [0, 78]
+    },
+    "packages/cli/src/dev-server-owner.ts": {
+      "lines": [33, 45],
+      "branches": [33, 43],
+      "functions": [7, 10],
+      "statements": [38, 52]
+    },
+    "packages/cli/src/explore.ts": {
+      "lines": [5, 5],
+      "branches": [5, 5],
+      "functions": [1, 1],
+      "statements": [5, 5]
+    },
+    "packages/cli/src/help.ts": {
+      "lines": [1, 1],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [1, 1]
+    },
+    "packages/cli/src/ignore.ts": {
+      "lines": [6, 6],
+      "branches": [10, 10],
+      "functions": [3, 3],
+      "statements": [9, 9]
+    },
+    "packages/cli/src/index.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/cli/src/init.ts": {
+      "lines": [18, 18],
+      "branches": [11, 12],
+      "functions": [1, 1],
+      "statements": [18, 18]
+    },
+    "packages/cli/src/json.ts": {
+      "lines": [5, 6],
+      "branches": [3, 3],
+      "functions": [4, 4],
+      "statements": [5, 6]
+    },
+    "packages/cli/src/keep.ts": {
+      "lines": [24, 25],
+      "branches": [17, 18],
+      "functions": [7, 7],
+      "statements": [27, 28]
+    },
+    "packages/cli/src/new.ts": {
+      "lines": [21, 21],
+      "branches": [11, 12],
+      "functions": [8, 8],
+      "statements": [22, 22]
+    },
+    "packages/cli/src/resolve-title.ts": {
+      "lines": [5, 5],
+      "branches": [4, 4],
+      "functions": [1, 1],
+      "statements": [6, 6]
+    },
+    "packages/cli/src/restart.ts": {
+      "lines": [37, 37],
+      "branches": [11, 14],
+      "functions": [9, 9],
+      "statements": [42, 44]
+    },
+    "packages/cli/src/rules.ts": {
+      "lines": [32, 33],
+      "branches": [42, 45],
+      "functions": [10, 11],
+      "statements": [33, 35]
+    },
+    "packages/cli/src/run-classify.ts": {
+      "lines": [0, 13],
+      "branches": [0, 2],
+      "functions": [0, 5],
+      "statements": [0, 14]
+    },
+    "packages/cli/src/run-explore-build.ts": {
+      "lines": [62, 66],
+      "branches": [78, 99],
+      "functions": [7, 9],
+      "statements": [66, 77]
+    },
+    "packages/cli/src/run-explore.ts": {
+      "lines": [0, 9],
+      "branches": [0, 8],
+      "functions": [0, 1],
+      "statements": [0, 9]
+    },
+    "packages/cli/src/run-init.ts": {
+      "lines": [0, 23],
+      "branches": [0, 8],
+      "functions": [0, 2],
+      "statements": [0, 24]
+    },
+    "packages/cli/src/run-keep.ts": {
+      "lines": [41, 63],
+      "branches": [15, 36],
+      "functions": [6, 9],
+      "statements": [43, 70]
+    },
+    "packages/cli/src/run-link.ts": {
+      "lines": [27, 29],
+      "branches": [14, 20],
+      "functions": [4, 4],
+      "statements": [31, 35]
+    },
+    "packages/cli/src/run-log.ts": {
+      "lines": [31, 31],
+      "branches": [12, 16],
+      "functions": [6, 6],
+      "statements": [34, 36]
+    },
+    "packages/cli/src/run-new.ts": {
+      "lines": [0, 50],
+      "branches": [0, 20],
+      "functions": [0, 4],
+      "statements": [0, 54]
+    },
+    "packages/cli/src/run-previews.ts": {
+      "lines": [67, 89],
+      "branches": [65, 99],
+      "functions": [8, 9],
+      "statements": [74, 102]
+    },
+    "packages/cli/src/run-remove.ts": {
+      "lines": [26, 30],
+      "branches": [13, 22],
+      "functions": [6, 6],
+      "statements": [31, 37]
+    },
+    "packages/cli/src/run-share.ts": {
+      "lines": [158, 174],
+      "branches": [161, 205],
+      "functions": [22, 25],
+      "statements": [175, 202]
+    },
+    "packages/cli/src/run-show.ts": {
+      "lines": [67, 79],
+      "branches": [71, 94],
+      "functions": [8, 10],
+      "statements": [73, 94]
+    },
+    "packages/cli/src/run-watch.ts": {
+      "lines": [109, 113],
+      "branches": [56, 72],
+      "functions": [16, 19],
+      "statements": [118, 129]
+    },
+    "packages/cli/src/run.ts": {
+      "lines": [89, 98],
+      "branches": [97, 113],
+      "functions": [11, 15],
+      "statements": [102, 114]
+    },
+    "packages/cli/src/running.ts": {
+      "lines": [35, 37],
+      "branches": [29, 34],
+      "functions": [8, 10],
+      "statements": [40, 45]
+    },
+    "packages/cli/src/show.ts": {
+      "lines": [11, 11],
+      "branches": [14, 14],
+      "functions": [9, 9],
+      "statements": [14, 14]
+    },
+    "packages/cli/src/shutdown.ts": {
+      "lines": [7, 7],
+      "branches": [1, 1],
+      "functions": [3, 3],
+      "statements": [9, 9]
+    },
+    "packages/cli/src/watch.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/mcp/src/bin.ts": {
+      "lines": [0, 16],
+      "branches": [0, 0],
+      "functions": [0, 3],
+      "statements": [0, 16]
+    },
+    "packages/mcp/src/channel.ts": {
+      "lines": [27, 27],
+      "branches": [9, 10],
+      "functions": [8, 8],
+      "statements": [31, 31]
+    },
+    "packages/mcp/src/engagement.ts": {
+      "lines": [27, 29],
+      "branches": [15, 21],
+      "functions": [7, 12],
+      "statements": [31, 35]
+    },
+    "packages/mcp/src/index.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/mcp/src/instructions.ts": {
+      "lines": [1, 1],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [1, 1]
+    },
+    "packages/mcp/src/project.ts": {
+      "lines": [42, 43],
+      "branches": [23, 25],
+      "functions": [15, 15],
+      "statements": [49, 50]
+    },
+    "packages/mcp/src/tools.ts": {
+      "lines": [78, 86],
+      "branches": [66, 77],
+      "functions": [30, 39],
+      "statements": [91, 105]
+    },
+    "packages/server/src/frame-policy.ts": {
+      "lines": [55, 55],
+      "branches": [59, 72],
+      "functions": [13, 14],
+      "statements": [66, 67]
+    },
+    "packages/server/src/index.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/server/src/json.ts": {
+      "lines": [5, 5],
+      "branches": [3, 3],
+      "functions": [5, 5],
+      "statements": [5, 5]
+    },
+    "packages/server/src/live.ts": {
+      "lines": [106, 131],
+      "branches": [59, 83],
+      "functions": [21, 21],
+      "statements": [120, 150]
+    },
+    "packages/server/src/log.ts": {
+      "lines": [50, 54],
+      "branches": [27, 33],
+      "functions": [7, 7],
+      "statements": [55, 60]
+    },
+    "packages/server/src/proxy.ts": {
+      "lines": [101, 103],
+      "branches": [37, 50],
+      "functions": [28, 30],
+      "statements": [111, 118]
+    },
+    "packages/server/src/server-info.ts": {
+      "lines": [21, 23],
+      "branches": [24, 24],
+      "functions": [4, 6],
+      "statements": [24, 26]
+    },
+    "packages/server/src/server.ts": {
+      "lines": [871, 991],
+      "branches": [811, 990],
+      "functions": [196, 238],
+      "statements": [972, 1129]
+    },
+    "packages/server/src/timers.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/server/src/update.ts": {
+      "lines": [371, 375],
+      "branches": [358, 384],
+      "functions": [69, 71],
+      "statements": [434, 446]
+    },
+    "packages/server/src/agents/agent-command.ts": {
+      "lines": [46, 46],
+      "branches": [36, 36],
+      "functions": [8, 8],
+      "statements": [53, 53]
+    },
+    "packages/server/src/agents/agents.ts": {
+      "lines": [204, 215],
+      "branches": [259, 315],
+      "functions": [58, 62],
+      "statements": [232, 254]
+    },
+    "packages/server/src/agents/claude-agent-session.ts": {
+      "lines": [188, 229],
+      "branches": [110, 162],
+      "functions": [34, 42],
+      "statements": [210, 275]
+    },
+    "packages/server/src/agents/codex-app-server.ts": {
+      "lines": [220, 254],
+      "branches": [123, 190],
+      "functions": [44, 53],
+      "statements": [243, 304]
+    },
+    "packages/server/src/agents/failure.ts": {
+      "lines": [36, 36],
+      "branches": [69, 70],
+      "functions": [6, 6],
+      "statements": [43, 43]
+    },
+    "packages/server/src/agents/process-tree.ts": {
+      "lines": [14, 16],
+      "branches": [6, 6],
+      "functions": [4, 5],
+      "statements": [15, 17]
+    },
+    "packages/server/src/agents/runner.ts": {
+      "lines": [272, 293],
+      "branches": [207, 250],
+      "functions": [63, 75],
+      "statements": [315, 349]
+    },
+    "packages/server/src/agents/silence.ts": {
+      "lines": [2, 2],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [2, 2]
+    },
+    "packages/server/src/branches/branches.ts": {
+      "lines": [80, 84],
+      "branches": [41, 48],
+      "functions": [20, 24],
+      "statements": [86, 94]
+    },
+    "packages/server/src/branches/classify.ts": {
+      "lines": [26, 26],
+      "branches": [26, 27],
+      "functions": [9, 9],
+      "statements": [34, 34]
+    },
+    "packages/server/src/branches/worktree.ts": {
+      "lines": [70, 75],
+      "branches": [23, 32],
+      "functions": [24, 29],
+      "statements": [77, 84]
+    },
+    "packages/server/src/capture/browser.ts": {
+      "lines": [353, 382],
+      "branches": [197, 239],
+      "functions": [93, 115],
+      "statements": [397, 440]
+    },
+    "packages/server/src/capture/capture.ts": {
+      "lines": [151, 158],
+      "branches": [89, 104],
+      "functions": [38, 43],
+      "statements": [172, 182]
+    },
+    "packages/server/src/capture/hydration.ts": {
+      "lines": [15, 15],
+      "branches": [24, 25],
+      "functions": [1, 1],
+      "statements": [15, 15]
+    },
+    "packages/server/src/capture/layout.ts": {
+      "lines": [11, 14],
+      "branches": [17, 26],
+      "functions": [2, 3],
+      "statements": [11, 17]
+    },
+    "packages/server/src/config/config.ts": {
+      "lines": [88, 95],
+      "branches": [137, 145],
+      "functions": [10, 10],
+      "statements": [96, 105]
+    },
+    "packages/server/src/config/find-config.ts": {
+      "lines": [11, 11],
+      "branches": [5, 6],
+      "functions": [1, 1],
+      "statements": [13, 14]
+    },
+    "packages/server/src/config/load-config.ts": {
+      "lines": [16, 16],
+      "branches": [11, 17],
+      "functions": [2, 2],
+      "statements": [16, 16]
+    },
+    "packages/server/src/config/local-previews.ts": {
+      "lines": [46, 49],
+      "branches": [34, 39],
+      "functions": [9, 11],
+      "statements": [55, 59]
+    },
+    "packages/server/src/config/renames.ts": {
+      "lines": [16, 17],
+      "branches": [13, 15],
+      "functions": [5, 5],
+      "statements": [20, 21]
+    },
+    "packages/server/src/generation/claude.ts": {
+      "lines": [12, 12],
+      "branches": [9, 11],
+      "functions": [3, 3],
+      "statements": [13, 14]
+    },
+    "packages/server/src/generation/codex.ts": {
+      "lines": [24, 25],
+      "branches": [16, 25],
+      "functions": [7, 8],
+      "statements": [27, 29]
+    },
+    "packages/server/src/generation/facts.ts": {
+      "lines": [131, 138],
+      "branches": [95, 128],
+      "functions": [30, 31],
+      "statements": [156, 167]
+    },
+    "packages/server/src/generation/generation.ts": {
+      "lines": [565, 607],
+      "branches": [337, 400],
+      "functions": [112, 127],
+      "statements": [637, 703]
+    },
+    "packages/server/src/generation/prompts.ts": {
+      "lines": [45, 48],
+      "branches": [43, 57],
+      "functions": [14, 14],
+      "statements": [50, 57]
+    },
+    "packages/server/src/generation/record.ts": {
+      "lines": [58, 61],
+      "branches": [20, 27],
+      "functions": [22, 28],
+      "statements": [64, 72]
+    },
+    "packages/server/src/generation/switch-file.ts": {
+      "lines": [54, 57],
+      "branches": [24, 41],
+      "functions": [13, 14],
+      "statements": [59, 68]
+    },
+    "packages/server/src/requests/annotations.ts": {
+      "lines": [81, 82],
+      "branches": [63, 70],
+      "functions": [27, 28],
+      "statements": [95, 98]
+    },
+    "packages/server/src/requests/attachments.ts": {
+      "lines": [147, 166],
+      "branches": [104, 141],
+      "functions": [26, 33],
+      "statements": [159, 191]
+    },
+    "packages/server/src/requests/requests.ts": {
+      "lines": [142, 143],
+      "branches": [143, 160],
+      "functions": [41, 44],
+      "statements": [167, 172]
+    },
+    "packages/server/src/share/share.ts": {
+      "lines": [523, 565],
+      "branches": [347, 444],
+      "functions": [91, 98],
+      "statements": [572, 651]
+    },
+    "packages/server/src/share/tunnel.ts": {
+      "lines": [153, 181],
+      "branches": [76, 117],
+      "functions": [27, 36],
+      "statements": [164, 213]
+    },
+    "packages/shell/src/App.tsx": {
+      "lines": [0, 36],
+      "branches": [0, 44],
+      "functions": [0, 15],
+      "statements": [0, 42]
+    },
+    "packages/shell/src/HelpOverlay.tsx": {
+      "lines": [16, 17],
+      "branches": [6, 10],
+      "functions": [6, 7],
+      "statements": [16, 18]
+    },
+    "packages/shell/src/Shell.tsx": {
+      "lines": [663, 1089],
+      "branches": [546, 1012],
+      "functions": [198, 375],
+      "statements": [766, 1323]
+    },
+    "packages/shell/src/json.ts": {
+      "lines": [5, 5],
+      "branches": [3, 3],
+      "functions": [5, 5],
+      "statements": [5, 5]
+    },
+    "packages/shell/src/keymap.ts": {
+      "lines": [24, 24],
+      "branches": [44, 44],
+      "functions": [3, 3],
+      "statements": [35, 35]
+    },
+    "packages/shell/src/link.ts": {
+      "lines": [21, 21],
+      "branches": [20, 20],
+      "functions": [11, 11],
+      "statements": [24, 24]
+    },
+    "packages/shell/src/main.tsx": {
+      "lines": [0, 3],
+      "branches": [0, 2],
+      "functions": [0, 0],
+      "statements": [0, 4]
+    },
+    "packages/shell/src/must.ts": {
+      "lines": [2, 2],
+      "branches": [1, 2],
+      "functions": [1, 1],
+      "statements": [2, 3]
+    },
+    "packages/shell/src/naming.ts": {
+      "lines": [9, 9],
+      "branches": [13, 14],
+      "functions": [2, 2],
+      "statements": [12, 12]
+    },
+    "packages/shell/src/prefs.ts": {
+      "lines": [39, 39],
+      "branches": [29, 32],
+      "functions": [18, 18],
+      "statements": [48, 49]
+    },
+    "packages/shell/src/reference.ts": {
+      "lines": [14, 14],
+      "branches": [14, 14],
+      "functions": [2, 2],
+      "statements": [18, 18]
+    },
+    "packages/shell/src/types.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/shell/src/useShellState.ts": {
+      "lines": [130, 238],
+      "branches": [76, 174],
+      "functions": [40, 86],
+      "statements": [154, 299]
+    },
+    "packages/shell/src/agents/AgentPicker.tsx": {
+      "lines": [12, 15],
+      "branches": [33, 42],
+      "functions": [9, 12],
+      "statements": [14, 18]
+    },
+    "packages/shell/src/agents/McpConnectDialog.tsx": {
+      "lines": [32, 56],
+      "branches": [17, 48],
+      "functions": [5, 12],
+      "statements": [34, 62]
+    },
+    "packages/shell/src/agents/StatusCard.tsx": {
+      "lines": [15, 22],
+      "branches": [17, 36],
+      "functions": [6, 11],
+      "statements": [17, 26]
+    },
+    "packages/shell/src/agents/agent-api.ts": {
+      "lines": [25, 25],
+      "branches": [20, 22],
+      "functions": [11, 11],
+      "statements": [28, 30]
+    },
+    "packages/shell/src/agents/mcp-connect.ts": {
+      "lines": [5, 5],
+      "branches": [6, 6],
+      "functions": [2, 2],
+      "statements": [7, 7]
+    },
+    "packages/shell/src/agents/request-status.ts": {
+      "lines": [40, 40],
+      "branches": [112, 115],
+      "functions": [19, 19],
+      "statements": [53, 53]
+    },
+    "packages/shell/src/annotate/AnnotateLayer.tsx": {
+      "lines": [4, 238],
+      "branches": [0, 255],
+      "functions": [0, 58],
+      "statements": [4, 280]
+    },
+    "packages/shell/src/annotate/anchor.ts": {
+      "lines": [32, 34],
+      "branches": [31, 33],
+      "functions": [6, 6],
+      "statements": [38, 41]
+    },
+    "packages/shell/src/annotate/annotate.ts": {
+      "lines": [37, 37],
+      "branches": [32, 32],
+      "functions": [15, 15],
+      "statements": [47, 47]
+    },
+    "packages/shell/src/annotate/annotations-api.ts": {
+      "lines": [11, 13],
+      "branches": [7, 12],
+      "functions": [3, 6],
+      "statements": [12, 17]
+    },
+    "packages/shell/src/composer/AnnotateButton.tsx": {
+      "lines": [1, 1],
+      "branches": [7, 16],
+      "functions": [1, 1],
+      "statements": [1, 1]
+    },
+    "packages/shell/src/composer/AttachButton.tsx": {
+      "lines": [1, 4],
+      "branches": [1, 4],
+      "functions": [1, 3],
+      "statements": [1, 4]
+    },
+    "packages/shell/src/composer/ModeChip.tsx": {
+      "lines": [1, 1],
+      "branches": [8, 8],
+      "functions": [1, 1],
+      "statements": [1, 1]
+    },
+    "packages/shell/src/composer/SendButton.tsx": {
+      "lines": [1, 1],
+      "branches": [5, 6],
+      "functions": [1, 1],
+      "statements": [1, 1]
+    },
+    "packages/shell/src/generation/BriefToolbar.tsx": {
+      "lines": [3, 4],
+      "branches": [10, 10],
+      "functions": [2, 3],
+      "statements": [3, 4]
+    },
+    "packages/shell/src/generation/GenerationCard.tsx": {
+      "lines": [10, 10],
+      "branches": [16, 16],
+      "functions": [6, 6],
+      "statements": [14, 14]
+    },
+    "packages/shell/src/generation/GenerationCover.tsx": {
+      "lines": [11, 11],
+      "branches": [15, 20],
+      "functions": [6, 6],
+      "statements": [14, 14]
+    },
+    "packages/shell/src/generation/generation-api.ts": {
+      "lines": [10, 11],
+      "branches": [5, 10],
+      "functions": [5, 6],
+      "statements": [10, 13]
+    },
+    "packages/shell/src/generation/generation.ts": {
+      "lines": [55, 57],
+      "branches": [62, 67],
+      "functions": [17, 17],
+      "statements": [66, 69]
+    },
+    "packages/shell/src/generation/useGeneration.ts": {
+      "lines": [20, 21],
+      "branches": [10, 14],
+      "functions": [9, 12],
+      "statements": [21, 24]
+    },
+    "packages/shell/src/lineage/Crumbs.tsx": {
+      "lines": [17, 29],
+      "branches": [12, 38],
+      "functions": [4, 13],
+      "statements": [18, 34]
+    },
+    "packages/shell/src/lineage/Gutter.tsx": {
+      "lines": [59, 59],
+      "branches": [65, 76],
+      "functions": [9, 9],
+      "statements": [64, 65]
+    },
+    "packages/shell/src/lineage/Trail.tsx": {
+      "lines": [42, 75],
+      "branches": [13, 38],
+      "functions": [9, 13],
+      "statements": [46, 84]
+    },
+    "packages/shell/src/lineage/lineage.ts": {
+      "lines": [201, 201],
+      "branches": [92, 104],
+      "functions": [40, 40],
+      "statements": [230, 235]
+    },
+    "packages/shell/src/lineage/provenance.ts": {
+      "lines": [10, 10],
+      "branches": [18, 18],
+      "functions": [3, 3],
+      "statements": [12, 12]
+    },
+    "packages/shell/src/net/api.ts": {
+      "lines": [1, 7],
+      "branches": [0, 6],
+      "functions": [1, 4],
+      "statements": [1, 9]
+    },
+    "packages/shell/src/net/live.ts": {
+      "lines": [79, 79],
+      "branches": [36, 43],
+      "functions": [21, 23],
+      "statements": [87, 93]
+    },
+    "packages/shell/src/net/poll.ts": {
+      "lines": [34, 34],
+      "branches": [13, 14],
+      "functions": [10, 10],
+      "statements": [38, 38]
+    },
+    "packages/shell/src/net/timers.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/shell/src/preview/compare.ts": {
+      "lines": [29, 29],
+      "branches": [42, 42],
+      "functions": [6, 6],
+      "statements": [35, 35]
+    },
+    "packages/shell/src/preview/framing.ts": {
+      "lines": [17, 19],
+      "branches": [15, 17],
+      "functions": [5, 5],
+      "statements": [18, 20]
+    },
+    "packages/shell/src/preview/health.ts": {
+      "lines": [5, 5],
+      "branches": [11, 11],
+      "functions": [2, 2],
+      "statements": [5, 5]
+    },
+    "packages/shell/src/preview/overlays.ts": {
+      "lines": [2, 2],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [2, 2]
+    },
+    "packages/shell/src/preview/preview-frame.ts": {
+      "lines": [42, 43],
+      "branches": [23, 26],
+      "functions": [13, 13],
+      "statements": [47, 50]
+    },
+    "packages/shell/src/preview/preview-message.ts": {
+      "lines": [9, 9],
+      "branches": [10, 10],
+      "functions": [2, 2],
+      "statements": [14, 14]
+    },
+    "packages/shell/src/preview/rendered.ts": {
+      "lines": [89, 120],
+      "branches": [50, 82],
+      "functions": [19, 23],
+      "statements": [105, 149]
+    },
+    "packages/shell/src/preview/scan.ts": {
+      "lines": [26, 27],
+      "branches": [20, 25],
+      "functions": [7, 7],
+      "statements": [30, 31]
+    },
+    "packages/shell/src/rail/DeleteRemovedDialog.tsx": {
+      "lines": [0, 39],
+      "branches": [0, 40],
+      "functions": [0, 6],
+      "statements": [0, 44]
+    },
+    "packages/shell/src/rail/Header.tsx": {
+      "lines": [11, 15],
+      "branches": [24, 33],
+      "functions": [2, 8],
+      "statements": [11, 19]
+    },
+    "packages/shell/src/rail/Row.tsx": {
+      "lines": [37, 64],
+      "branches": [136, 214],
+      "functions": [10, 24],
+      "statements": [38, 69]
+    },
+    "packages/shell/src/rail/RowCard.tsx": {
+      "lines": [3, 3],
+      "branches": [6, 10],
+      "functions": [1, 1],
+      "statements": [4, 4]
+    },
+    "packages/shell/src/rail/Search.tsx": {
+      "lines": [3, 8],
+      "branches": [4, 8],
+      "functions": [2, 5],
+      "statements": [3, 10]
+    },
+    "packages/shell/src/rail/drag.ts": {
+      "lines": [0, 0],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [0, 0]
+    },
+    "packages/shell/src/rail/tags.ts": {
+      "lines": [5, 5],
+      "branches": [1, 2],
+      "functions": [1, 1],
+      "statements": [6, 6]
+    },
+    "packages/shell/src/references/ReferenceStrip.tsx": {
+      "lines": [1, 7],
+      "branches": [1, 12],
+      "functions": [1, 5],
+      "statements": [2, 8]
+    },
+    "packages/shell/src/references/references-api.ts": {
+      "lines": [1, 9],
+      "branches": [0, 10],
+      "functions": [0, 2],
+      "statements": [1, 11]
+    },
+    "packages/shell/src/references/references.ts": {
+      "lines": [45, 45],
+      "branches": [39, 41],
+      "functions": [14, 14],
+      "statements": [54, 54]
+    },
+    "packages/shell/src/share/SharePanel.tsx": {
+      "lines": [44, 143],
+      "branches": [46, 172],
+      "functions": [11, 70],
+      "statements": [50, 165]
+    },
+    "packages/shell/src/share/ViewerBanner.tsx": {
+      "lines": [1, 1],
+      "branches": [1, 4],
+      "functions": [1, 1],
+      "statements": [1, 1]
+    },
+    "packages/shell/src/share/share-api.ts": {
+      "lines": [3, 22],
+      "branches": [2, 13],
+      "functions": [1, 10],
+      "statements": [3, 27]
+    },
+    "packages/shell/src/share/share.ts": {
+      "lines": [75, 75],
+      "branches": [63, 64],
+      "functions": [25, 25],
+      "statements": [91, 91]
+    },
+    "packages/shell/src/share/useShare.ts": {
+      "lines": [17, 17],
+      "branches": [5, 8],
+      "functions": [7, 8],
+      "statements": [18, 19]
+    },
+    "packages/shell/src/stage/Pane.tsx": {
+      "lines": [11, 11],
+      "branches": [41, 65],
+      "functions": [3, 3],
+      "statements": [11, 11]
+    },
+    "packages/shell/src/stage/ToolsPopover.tsx": {
+      "lines": [4, 15],
+      "branches": [19, 26],
+      "functions": [5, 15],
+      "statements": [5, 21]
+    },
+    "packages/shell/src/ui/clipboard.ts": {
+      "lines": [8, 17],
+      "branches": [7, 9],
+      "functions": [2, 3],
+      "statements": [9, 18]
+    },
+    "packages/shell/src/ui/fonts.ts": {
+      "lines": [1, 1],
+      "branches": [0, 0],
+      "functions": [0, 0],
+      "statements": [1, 1]
+    },
+    "packages/shell/src/ui/kit.tsx": {
+      "lines": [87, 116],
+      "branches": [72, 113],
+      "functions": [31, 44],
+      "statements": [97, 136]
+    },
+    "packages/shell/src/ui/orb.ts": {
+      "lines": [4, 4],
+      "branches": [1, 2],
+      "functions": [1, 1],
+      "statements": [4, 4]
+    },
+    "packages/shell/src/ui/tip.ts": {
+      "lines": [16, 16],
+      "branches": [20, 20],
+      "functions": [3, 3],
+      "statements": [18, 18]
+    },
+    "packages/shell/src/ui/toasts.ts": {
+      "lines": [5, 5],
+      "branches": [1, 1],
+      "functions": [4, 4],
+      "statements": [7, 7]
+    },
+    "packages/shell/src/ui/useDismissal.ts": {
+      "lines": [13, 22],
+      "branches": [1, 10],
+      "functions": [3, 7],
+      "statements": [14, 25]
+    },
+    "packages/shell/src/ui/widget.ts": {
+      "lines": [16, 16],
+      "branches": [11, 11],
+      "functions": [5, 5],
+      "statements": [19, 19]
+    },
+    "packages/shell/src/update/UpdatePanel.tsx": {
+      "lines": [10, 16],
+      "branches": [19, 35],
+      "functions": [3, 6],
+      "statements": [12, 22]
+    },
+    "packages/shell/src/update/update-api.ts": {
+      "lines": [3, 6],
+      "branches": [2, 4],
+      "functions": [1, 4],
+      "statements": [3, 7]
+    },
+    "packages/shell/src/update/update.ts": {
+      "lines": [65, 65],
+      "branches": [83, 87],
+      "functions": [9, 9],
+      "statements": [75, 76]
+    },
+    "packages/shell/src/update/useUpdate.ts": {
+      "lines": [40, 81],
+      "branches": [14, 60],
+      "functions": [10, 25],
+      "statements": [44, 95]
+    },
+    "scripts/api-surface.ts": {
+      "lines": [106, 113],
+      "branches": [67, 81],
+      "functions": [16, 16],
+      "statements": [121, 129]
+    },
+    "site/build.ts": {
+      "lines": [22, 25],
+      "branches": [1, 2],
+      "functions": [2, 2],
+      "statements": [22, 25]
+    },
+    "site/changelog.ts": {
+      "lines": [143, 143],
+      "branches": [88, 94],
+      "functions": [23, 24],
+      "statements": [154, 157]
+    },
+    "site/chrome.ts": {
+      "lines": [32, 32],
+      "branches": [4, 4],
+      "functions": [14, 14],
+      "statements": [35, 35]
+    },
+    "site/docs.ts": {
+      "lines": [230, 230],
+      "branches": [209, 247],
+      "functions": [27, 28],
+      "statements": [250, 254]
+    },
+    "site/home.ts": {
+      "lines": [4, 4],
+      "branches": [0, 0],
+      "functions": [1, 1],
+      "statements": [4, 4]
+    },
+    "site/release-notes.ts": {
+      "lines": [15, 21],
+      "branches": [12, 19],
+      "functions": [5, 5],
+      "statements": [18, 24]
+    }
+  }
+}

@@ -1,0 +1,415 @@
+[
+  {
+    "break": "agent-command quotes",
+    "owner": "packages/server/src/agents/agent-command.ts",
+    "simulates": "single quotes are no longer quotes",
+    "keeper": "packages/server/src/agents/agent-command.test.ts -t \"keeps a quoted value together\"",
+    "red": true,
+    "tests": "1 failed | 10 skipped (11)",
+    "failed": [
+      "keeps a quoted value together as one token, in either quote",
+      "parseTemplate > keeps a quoted value together as one token, in either quote"
+    ],
+    "first assertion": "expected [ '--note', '\\'two', 'words\\'', \u2026(1) ] to deeply equal [ '--note', 'two words', '{prompt}' ]",
+    "restored": true,
+    "sha256": "321e99f0dda311a1f036849be3d7aa58a8c1fc137224a5b83ca9484885d530b5"
+  },
+  {
+    "break": "agent-command punctuation",
+    "owner": "packages/server/src/agents/agent-command.ts",
+    "simulates": "the prompt is escaped for a shell that is not there",
+    "keeper": "packages/server/src/agents/agent-command.test.ts -t \"puts the whole prompt in one argv entry\"",
+    "red": true,
+    "tests": "1 failed | 10 skipped (11)",
+    "failed": [
+      "commandFor > puts the whole prompt in one argv entry, whatever it contains",
+      "puts the whole prompt in one argv entry, whatever it contains"
+    ],
+    "first assertion": "expected [ '-p', \u2026(1) ] to deeply equal [ '-p', \u2026(1) ]",
+    "restored": true,
+    "sha256": "321e99f0dda311a1f036849be3d7aa58a8c1fc137224a5b83ca9484885d530b5"
+  },
+  {
+    "break": "agent-command failed set",
+    "owner": "packages/server/src/agents/agent-command.ts",
+    "simulates": "a failed request is handed out again",
+    "keeper": "packages/server/src/agents/agent-command.test.ts -t \"takes the first queued request in order\"",
+    "red": true,
+    "tests": "1 failed | 10 skipped (11)",
+    "failed": [
+      "nextRequest > takes the first queued request in order, skipping any that already failed",
+      "takes the first queued request in order, skipping any that already failed"
+    ],
+    "first assertion": "expected 'a' to be 'b' // Object.is equality",
+    "restored": true,
+    "sha256": "321e99f0dda311a1f036849be3d7aa58a8c1fc137224a5b83ca9484885d530b5"
+  },
+  {
+    "break": "agent-command refusals",
+    "owner": "packages/server/src/agents/agent-command.ts",
+    "simulates": "a placeholder glued after a word is let through",
+    "keeper": "packages/server/src/agents/agent-command.test.ts -t \"refuses\"",
+    "red": true,
+    "tests": "1 failed | 4 passed | 6 skipped (11)",
+    "failed": [
+      "parseTemplate > refuses \"claude --message={prompt}\" with one line that says why",
+      "refuses \"claude --message={prompt}\" with one line that says why"
+    ],
+    "first assertion": "expected a refusal for \"claude --message={prompt}\"",
+    "restored": true,
+    "sha256": "321e99f0dda311a1f036849be3d7aa58a8c1fc137224a5b83ca9484885d530b5"
+  },
+  {
+    "break": "agents cursor verdict",
+    "owner": "packages/server/src/agents/agents.ts",
+    "simulates": "Cursor's signed-out answer is read as signed in",
+    "keeper": "packages/server/src/agents/agents.test.ts -t \"verdict reads its own CLI honestly\"",
+    "red": true,
+    "tests": "1 failed | 5 passed | 37 skipped (43)",
+    "failed": ["cursor's verdict reads its own CLI honestly: \"Not logged in\\n\""],
+    "first assertion": "expected 'ok' to be 'signed-out' // Object.is equality",
+    "restored": true,
+    "sha256": "612b801d748736687f698919053bf4acedccce56eb1240943aca2fc6634d2bc7"
+  },
+  {
+    "break": "agents cursor resume",
+    "owner": "packages/server/src/agents/agents.ts",
+    "simulates": "a resumed Cursor run stops at the trust prompt",
+    "keeper": "packages/server/src/agents/agents.test.ts -t \"resume argv continues the session\"",
+    "red": true,
+    "tests": "1 failed | 42 skipped (43)",
+    "failed": ["resume argv continues the session without trying to replace its sandbox"],
+    "first assertion": "expected [ '-p', '--resume', 'chat_1', \u2026(3) ] to deeply equal [ '-p', '--resume', 'chat_1', \u2026(4) ]",
+    "restored": true,
+    "sha256": "612b801d748736687f698919053bf4acedccce56eb1240943aca2fc6634d2bc7"
+  },
+  {
+    "break": "agents retry negatives",
+    "owner": "packages/server/src/agents/agents.ts",
+    "simulates": "any system line reads as a retry",
+    "keeper": "packages/server/src/agents/agents.test.ts -t \"reads the api_retry event\"",
+    "red": true,
+    "tests": "1 failed | 42 skipped (43)",
+    "failed": [
+      "reads the api_retry event Claude prints while it backs off",
+      "retryFrom > reads the api_retry event Claude prints while it backs off"
+    ],
+    "first assertion": "expected { attempt: 1, max: null, \u2026(2) } to be null",
+    "restored": true,
+    "sha256": "612b801d748736687f698919053bf4acedccce56eb1240943aca2fc6634d2bc7"
+  },
+  {
+    "break": "agents single-quote unwrap",
+    "owner": "packages/server/src/agents/agents.ts",
+    "simulates": "a single-quoted shell command keeps its quotes",
+    "keeper": "packages/server/src/agents/agents.test.ts -t \"cleans command text\"",
+    "red": true,
+    "tests": "1 failed | 6 passed | 36 skipped (43)",
+    "failed": [
+      "activityFrom > cleans command text for the status line: \"bash -lc 'npm test'\"",
+      "cleans command text for the status line: \"bash -lc 'npm test'\""
+    ],
+    "first assertion": "expected 'running \\'npm test\\'' to be 'running npm test' // Object.is equality",
+    "restored": true,
+    "sha256": "612b801d748736687f698919053bf4acedccce56eb1240943aca2fc6634d2bc7"
+  },
+  {
+    "break": "agents cursor rows",
+    "owner": "packages/server/src/agents/agents.ts",
+    "simulates": "the first key of the wrapper is read as the tool",
+    "keeper": "packages/server/src/agents/agents.test.ts -t \"reads a Cursor tool_call\"",
+    "red": true,
+    "tests": "1 failed | 4 passed | 38 skipped (43)",
+    "failed": [
+      "activityFrom > reads a Cursor tool_call with its tool after the bookkeeping keys",
+      "reads a Cursor tool_call with its tool after the bookkeeping keys"
+    ],
+    "first assertion": "expected 'using toolCallId' to be 'editing src/Hero.tsx' // Object.is equality",
+    "restored": true,
+    "sha256": "612b801d748736687f698919053bf4acedccce56eb1240943aca2fc6634d2bc7"
+  },
+  {
+    "break": "claude unwarmed resume",
+    "owner": "packages/server/src/agents/claude-agent-session.ts",
+    "simulates": "a run naming a session with nothing warmed starts fresh",
+    "keeper": "packages/server/src/agents/claude-agent-session.test.ts -t \"a fresh turn after a resumed conversation\"",
+    "red": true,
+    "tests": "1 failed | 11 skipped (12)",
+    "failed": [
+      "Claude Agent SDK transport > a fresh turn after a resumed conversation rotates the process",
+      "a fresh turn after a resumed conversation rotates the process"
+    ],
+    "first assertion": "expected undefined to be 'claude_5' // Object.is equality",
+    "restored": true,
+    "sha256": "75651d222be9184ed6a2a5310735189b2722c8864d3650c35b9e0e7a25a3d9b4"
+  },
+  {
+    "break": "claude rotated effort",
+    "owner": "packages/server/src/agents/claude-agent-session.ts",
+    "simulates": "a new process is assumed to carry the old process's effort",
+    "keeper": "packages/server/src/agents/claude-agent-session.test.ts -t \"a fresh turn after a resumed conversation\"",
+    "red": true,
+    "tests": "1 failed | 11 skipped (12)",
+    "failed": [
+      "Claude Agent SDK transport > a fresh turn after a resumed conversation rotates the process",
+      "a fresh turn after a resumed conversation rotates the process"
+    ],
+    "first assertion": "expected [] to deeply equal [ { effortLevel: 'high' } ]",
+    "restored": true,
+    "sha256": "75651d222be9184ed6a2a5310735189b2722c8864d3650c35b9e0e7a25a3d9b4"
+  },
+  {
+    "break": "claude replacement reverse",
+    "owner": "packages/server/src/agents/claude-agent-session.ts",
+    "simulates": "a handle warmed for a session serves a fresh request",
+    "keeper": "packages/server/src/agents/claude-agent-session.test.ts -t \"a handle warmed for another conversation\"",
+    "red": true,
+    "tests": "1 failed | 11 skipped (12)",
+    "failed": [
+      "Claude Agent SDK transport > a handle warmed for another conversation is replaced, whichever way the request goes",
+      "a handle warmed for another conversation is replaced, whichever way the request goes"
+    ],
+    "first assertion": "expected [ { options: { \u2026(7) }, \u2026(1) } ] to have a length of 2 but got 1",
+    "restored": true,
+    "sha256": "75651d222be9184ed6a2a5310735189b2722c8864d3650c35b9e0e7a25a3d9b4"
+  },
+  {
+    "break": "runner claude fallback",
+    "owner": "packages/server/src/agents/runner.ts",
+    "simulates": "only Codex falls back to its CLI",
+    "keeper": "packages/server/src/agents/runner.test.ts -t \"falls back to the\"",
+    "red": true,
+    "tests": "1 failed | 1 passed | 31 skipped (33)",
+    "failed": [
+      "falls back to the claude CLI when its persistent transport is unavailable",
+      "startRunner > falls back to the claude CLI when its persistent transport is unavailable"
+    ],
+    "first assertion": "condition never held",
+    "restored": true,
+    "sha256": "c441fec679576fb9a309697e8e0bd923bfda388698d264a12db5659c0c3873b8"
+  },
+  {
+    "break": "runner resumed thread",
+    "owner": "packages/server/src/agents/runner.ts",
+    "simulates": "a new session's id never replaces the old one",
+    "keeper": "packages/server/src/agents/runner.test.ts -t \"the ninth request starts cold\"",
+    "red": true,
+    "tests": "1 failed | 32 skipped (33)",
+    "failed": [
+      "startRunner > the ninth request starts cold: eight turns is one session's whole life",
+      "the ninth request starts cold: eight turns is one session's whole life"
+    ],
+    "first assertion": "expected [ 10, 'resume', 'th_1' ] to deeply equal [ 10, 'resume', 'th_2' ]",
+    "restored": true,
+    "sha256": "c441fec679576fb9a309697e8e0bd923bfda388698d264a12db5659c0c3873b8"
+  },
+  {
+    "break": "runner resumed fork allowance",
+    "owner": "packages/server/src/agents/runner.ts",
+    "simulates": "a resumed fork loses its allowance",
+    "keeper": "packages/server/src/agents/runner.test.ts -t \"hands claude the registration allowance\"",
+    "red": true,
+    "tests": "1 failed | 32 skipped (33)",
+    "failed": [
+      "hands claude the registration allowance on a fork, cold or resumed, and only on a fork",
+      "startRunner > hands claude the registration allowance on a fork, cold or resumed, and only on a fork"
+    ],
+    "first assertion": "expected [] to deeply equal [ 'Bash(npx -y leglas show *)', \u2026(1) ]",
+    "restored": true,
+    "sha256": "c441fec679576fb9a309697e8e0bd923bfda388698d264a12db5659c0c3873b8"
+  },
+  {
+    "break": "runner warm after run",
+    "owner": "packages/server/src/agents/runner.ts",
+    "simulates": "the vendor that ran stays warm over the one asked for",
+    "keeper": "packages/server/src/agents/runner.test.ts -t \"when a run ends\"",
+    "red": true,
+    "tests": "1 failed | 1 passed | 31 skipped (33)",
+    "failed": [
+      "warm transports > when a run ends, the vendor last asked for stays warm",
+      "when a run ends, the vendor last asked for stays warm"
+    ],
+    "first assertion": "condition never held",
+    "restored": true,
+    "sha256": "c441fec679576fb9a309697e8e0bd923bfda388698d264a12db5659c0c3873b8"
+  },
+  {
+    "break": "browser explicit order",
+    "owner": "packages/server/src/capture/browser.ts",
+    "simulates": "CHROME_PATH outranks LEGLAS_BROWSER",
+    "keeper": "packages/server/src/capture/browser.test.ts -t \"finds LEGLAS_BROWSER before CHROME_PATH\"",
+    "red": true,
+    "tests": "1 failed | 35 skipped (36)",
+    "failed": [
+      "findBrowser > finds LEGLAS_BROWSER before CHROME_PATH",
+      "finds LEGLAS_BROWSER before CHROME_PATH"
+    ],
+    "first assertion": "expected '/chosen/chrome' to be '/chosen/leglas' // Object.is equality",
+    "restored": true,
+    "sha256": "5bb2d76c2b79a4d3185a71973a5bc96b1e5eb3601b6c9a428ba9490765caa1dc"
+  },
+  {
+    "break": "browser shell first",
+    "owner": "packages/server/src/capture/browser.ts",
+    "simulates": "a desktop browser wins over a headless shell",
+    "keeper": "packages/server/src/capture/browser.test.ts -t \"finds a headless shell before a desktop browser\"",
+    "red": true,
+    "tests": "1 failed | 35 skipped (36)",
+    "failed": [
+      "findBrowser > finds a headless shell before a desktop browser",
+      "finds a headless shell before a desktop browser"
+    ],
+    "first assertion": "expected '/Applications/Google Chrome.app/Conte\u2026' to be '/Users/u/Library/Caches/ms-playwright\u2026' // Object.is equality",
+    "restored": true,
+    "sha256": "5bb2d76c2b79a4d3185a71973a5bc96b1e5eb3601b6c9a428ba9490765caa1dc"
+  },
+  {
+    "break": "browser exit code",
+    "owner": "packages/server/src/capture/browser.ts",
+    "simulates": "the exit code is dropped from the startup failure",
+    "keeper": "packages/server/src/capture/browser.test.ts -t \"a startup failure carries its exit code\"",
+    "red": true,
+    "tests": "1 failed | 35 skipped (36)",
+    "failed": [
+      "a startup failure carries its exit code and what the browser itself said",
+      "launchBrowser > a startup failure carries its exit code and what the browser itself said"
+    ],
+    "first assertion": "expected [Function] to throw error including 'exit code 17' but got 'The browser did not start. It said: F\u2026'",
+    "restored": true,
+    "sha256": "5bb2d76c2b79a4d3185a71973a5bc96b1e5eb3601b6c9a428ba9490765caa1dc"
+  },
+  {
+    "break": "browser grace",
+    "owner": "packages/server/src/capture/browser.ts",
+    "simulates": "the grace period is read backwards",
+    "keeper": "packages/server/src/capture/browser.test.ts -t \"profile\"",
+    "red": true,
+    "tests": "2 failed | 1 passed | 33 skipped (36)",
+    "failed": [
+      "clears a long-abandoned profile that never got a record",
+      "reapOrphanedBrowsers > clears a long-abandoned profile that never got a record",
+      "reapOrphanedBrowsers > spares a profile whose record has not been written yet",
+      "spares a profile whose record has not been written yet"
+    ],
+    "first assertion": "expected [ '/tmp/leglas-browser-halfborn' ] to deeply equal []",
+    "restored": true,
+    "sha256": "5bb2d76c2b79a4d3185a71973a5bc96b1e5eb3601b6c9a428ba9490765caa1dc"
+  },
+  {
+    "break": "browser unreadable cache",
+    "owner": "packages/server/src/capture/browser.ts",
+    "simulates": "a cache folder that can't be read fails the search",
+    "keeper": "packages/server/src/capture/browser.test.ts -t \"finds each Windows program root\"",
+    "red": true,
+    "tests": "1 failed | 35 skipped (36)",
+    "failed": ["findBrowser > finds each Windows program root", "finds each Windows program root"],
+    "first assertion": "ENOENT: no such file or directory, scandir 'C:\\Users\\u/.cache/ms-playwright'",
+    "restored": true,
+    "sha256": "5bb2d76c2b79a4d3185a71973a5bc96b1e5eb3601b6c9a428ba9490765caa1dc"
+  },
+  {
+    "break": "capture cropBox region",
+    "owner": "packages/server/src/capture/capture.ts",
+    "simulates": "a swept region is ignored",
+    "keeper": "packages/server/src/capture/capture.test.ts -t \"cropBox\"",
+    "red": true,
+    "tests": "1 failed | 2 passed | 21 skipped (24)",
+    "failed": [
+      "cropBox > pads a swept region and clamps it at the page edge",
+      "pads a swept region and clamps it at the page edge"
+    ],
+    "first assertion": "expected { x: +0, y: +0, width: 448, \u2026(1) } to deeply equal { x: +0, y: +0, width: 320, \u2026(1) }",
+    "restored": true,
+    "sha256": "865d8e176d6d4eef909d729ee1063094c8ae8ed894db43029fe63aa970aa86d5"
+  },
+  {
+    "break": "generation late render",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "a render that outlives a stop or close still speaks for the slot",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"while a page is being rendered\"",
+    "red": true,
+    "tests": "1 failed | 1 passed | 51 skipped (53)",
+    "failed": [
+      "a generation's lifecycle > a stop while a page is being rendered leaves the direction stopped, with no fix run and its placeholder back",
+      "a stop while a page is being rendered leaves the direction stopped, with no fix run and its placeholder back"
+    ],
+    "first assertion": "expected 'ready' to be 'stopped' // Object.is equality",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  },
+  {
+    "break": "generation close drain",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "close stops waiting for writes under way",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"a stop and a close while the directions go on the rail\"",
+    "red": true,
+    "tests": "1 failed | 52 skipped (53)",
+    "failed": [
+      "a generation's lifecycle > a stop and a close while the directions go on the rail wait for them, and list them stopped",
+      "a stop and a close while the directions go on the rail wait for them, and list them stopped"
+    ],
+    "first assertion": "expected [ 'close' ] to deeply equal []",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  },
+  {
+    "break": "generation build activity",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "a build's step names its file from the wrong folder",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"a build and its fix run say what they are doing\"",
+    "red": true,
+    "tests": "1 failed | 52 skipped (53)",
+    "failed": [
+      "a build and its fix run say what they are doing, and checking starts with no step left over",
+      "a generation's lifecycle > a build and its fix run say what they are doing, and checking starts with no step left over"
+    ],
+    "first assertion": "expected { key: 'hero-ledger', \u2026(10) } to match object { state: 'building', \u2026(1) }",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  },
+  {
+    "break": "generation prune order",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "the base is looked up before the prune lets it go",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"keeps the newest hundred sets\"",
+    "red": true,
+    "tests": "1 failed | 52 skipped (53)",
+    "failed": [
+      "keeps the newest hundred sets, and a new set makes room before it looks up its base",
+      "the record of a set > keeps the newest hundred sets, and a new set makes room before it looks up its base"
+    ],
+    "first assertion": "expected [ 'gen-loyw3v28', \u2026(100) ] to have a length of 100 but got 101",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  },
+  {
+    "break": "generation codex fix sandbox",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "a fix run gets the read-only planner's sandbox",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"plans, builds and fixes with restricted Codex runs\"",
+    "red": true,
+    "tests": "1 failed | 52 skipped (53)",
+    "failed": [
+      "a set built with Codex > plans, builds and fixes with restricted Codex runs, reading its answer and its steps",
+      "plans, builds and fixes with restricted Codex runs, reading its answer and its steps"
+    ],
+    "first assertion": "expected 'exec --json --ephemeral --skip-git-re\u2026' to contain '-s workspace-write'",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  },
+  {
+    "break": "generation agent refusal",
+    "owner": "packages/server/src/generation/generation.ts",
+    "simulates": "Cursor is let through to build directions",
+    "keeper": "packages/server/src/generation/generation.test.ts -t \"is refused for\"",
+    "red": true,
+    "tests": "1 failed | 1 passed | 51 skipped (53)",
+    "failed": [
+      "is refused for cursor on the hero",
+      "starting a generation > is refused for cursor on the hero"
+    ],
+    "first assertion": "expected 202 to be 422 // Object.is equality",
+    "restored": true,
+    "sha256": "e8a76e5b834b8f3ed2273200191d5c6520d7f242a6f7354482e51166557be433"
+  }
+]
