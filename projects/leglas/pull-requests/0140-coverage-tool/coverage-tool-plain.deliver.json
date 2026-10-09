@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "a7276a74-6467-4fac-8d66-882c55eb98cd",
+  "receiptId": "a928c37e-df19-4658-ac4e-81f86b4ca4a5",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "coverage-tool-plain.architecture.json",
   "output": "coverage-tool-plain.html",
   "specification": {
-    "sha256": "2e9dbec26fc1a3da1bf3feb8293b9a02f169626d61efd6bfd7b3ba3cd322e7b7",
+    "sha256": "23a7dfc3a482c9df69a176f8bf2151689fbcc4316e4f43aab4cc39f5df24b0b0",
     "bytes": 4093
   },
   "artifact": {
-    "sha256": "ac78e8f57b6d88837cb66b8c88e93d4306b024deeba6f4a019442f38e521431c",
+    "sha256": "4711c1d9671d8aafbb7b1a71d743993e216e5c0bccf06d14dde46b68caf78f7d",
     "bytes": 753168
   },
   "validation": {
@@ -25,7 +25,7 @@
   "evidence": {
     "verified": true,
     "repository": "https://github.com/FredAmartey/leglas",
-    "revision": "ea5cda8aef4f7d3789580ad225ebe2e5534139e5",
+    "revision": "588e77a9a38233ad8b2f59bdfed46ae6081001f0",
     "references": 8
   },
   "update": {

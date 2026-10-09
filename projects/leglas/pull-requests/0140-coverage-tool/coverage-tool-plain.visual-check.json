@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "a7276a74-6467-4fac-8d66-882c55eb98cd",
+  "deliveryReceiptId": "a928c37e-df19-4658-ac4e-81f86b4ca4a5",
   "artifact": {
     "path": "coverage-tool-plain.html",
-    "sha256": "ac78e8f57b6d88837cb66b8c88e93d4306b024deeba6f4a019442f38e521431c",
+    "sha256": "4711c1d9671d8aafbb7b1a71d743993e216e5c0bccf06d14dde46b68caf78f7d",
     "bytes": 753168
   },
   "state": {
@@ -969,8 +969,8 @@
         "file": "coverage-tool-plain.visual-check.html"
       },
       {
-        "sha256": "a71d2b5bdd5fa336b496a1f69787358ed18a45cde7a5240a3133c1b5a5f762cb",
-        "bytes": 103038,
+        "sha256": "9c48a474e4175461bf44e21f96b90a7ea4bf133d53e143cea66f8c64ad0836e7",
+        "bytes": 103029,
         "file": "coverage-tool-plain.visual-check.1440x900.light.png"
       },
       {
@@ -979,8 +979,8 @@
         "file": "coverage-tool-plain.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "8a4deee46ca0130cb074bdf6c563d1c316b7124428d7270a1048ad7811c4e3d6",
-        "bytes": 165820,
+        "sha256": "daf44ede3f4ba605b7c3dd3f0c64da66956ffc1df451d2133a0e3221488960eb",
+        "bytes": 165817,
         "file": "coverage-tool-plain.visual-check.2048x1320.light.png"
       },
       {

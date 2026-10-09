@@ -6,10 +6,10 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "69622ed2-e0af-4ce1-b2b6-532d440b9730",
+  "deliveryReceiptId": "d94b3325-c758-4168-9ca5-02d4ea41f628",
   "artifact": {
     "path": "coverage-tool.html",
-    "sha256": "98aba720dbcaaa2ddbd2d6e7c0495694b2c0efdf62d6a35f9471bffe00150944",
+    "sha256": "1c4d9b534871e7e265b82e5c78241961b6766bfe9a3aa899c3e5786f87b15b1e",
     "bytes": 752419
   },
   "state": {
@@ -979,8 +979,8 @@
         "file": "coverage-tool.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "3f1b5027d2d89bd783cf9e4abf5f12dbfdababceed196f6319dfc5cc6f624ae7",
-        "bytes": 146821,
+        "sha256": "024aee92b651e544810e342edbb5e1bdeb91a6ffb83c49fffca2b341338ac4ec",
+        "bytes": 146820,
         "file": "coverage-tool.visual-check.2048x1320.light.png"
       },
       {
