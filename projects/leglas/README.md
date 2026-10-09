@@ -104,6 +104,7 @@ documents.
 | `0137-set-records` | [#137](https://github.com/FredAmartey/leglas/pull/137) |
 | `0138-comments-agents-generation` | [#138](https://github.com/FredAmartey/leglas/pull/138) |
 | `0139-centerpiece-steer` | [#139](https://github.com/FredAmartey/leglas/pull/139) |
+| `0140-coverage-tool` | [#140](https://github.com/FredAmartey/leglas/pull/140) |
 
 Historical links should pin the commit that introduced this batch. Do not
 replace an existing capture in place.

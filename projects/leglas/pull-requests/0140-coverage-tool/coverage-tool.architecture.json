@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "pnpm test:coverage measures every production file; pnpm test and CI stay as they were",
+    "output": "coverage-tool.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "ea5cda8aef4f7d3789580ad225ebe2e5534139e5"
+    }
+  },
+  "components": [
+    {
+      "id": "everyday",
+      "type": "frontend",
+      "label": "pnpm test and CI",
+      "sublabel": "unchanged",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 10
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "vitest run",
+      "sublabel": "coverage off, as before",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "script",
+      "type": "frontend",
+      "label": "pnpm test:coverage",
+      "sublabel": "new script, builds first",
+      "tag": "new",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "type": "backend",
+      "label": "vitest run --coverage",
+      "sublabel": "v8 counts all 169 source files",
+      "tag": "new",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 29
+        },
+        {
+          "path": "package.json",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "database",
+      "label": "coverage/",
+      "sublabel": "summary and JSON, gitignored",
+      "tag": "new",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 38
+        },
+        {
+          "path": ".gitignore",
+          "line": 7
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "new in this PR",
+      "wraps": [
+        "script",
+        "provider",
+        "reports"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "everyday-runner",
+      "from": "everyday",
+      "to": "runner",
+      "label": "runs"
+    },
+    {
+      "id": "script-provider",
+      "from": "script",
+      "to": "provider",
+      "label": "with --coverage",
+      "variant": "emphasis"
+    },
+    {
+      "id": "provider-reports",
+      "from": "provider",
+      "to": "reports",
+      "label": "writes",
+      "labelAt": [
+        575,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changes",
+      "items": [
+        "pnpm test:coverage builds, then runs the suite with v8 coverage",
+        "Every production file is listed, so one whose tests are deleted reads 0% instead of leaving the total"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stays",
+      "items": [
+        "pnpm test and CI run exactly as before",
+        "The test exclusions and the 30 s timeout"
+      ]
+    }
+  ]
+}

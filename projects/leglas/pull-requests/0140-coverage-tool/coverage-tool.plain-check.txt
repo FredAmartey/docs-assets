@@ -1,0 +1,7 @@
+structure: PASS
+labels: 0 FAIL, 4 WARN
+  WARN over-four components[2].sublabel "builds Leglas, then tests it" (5 words)
+  WARN over-four components[3].label "Tests with a line counter" (5 words)
+  WARN over-four components[3].sublabel "counts lines in all 169 files" (6 words)
+  WARN over-four components[4].sublabel "never saved with the project" (5 words)
+result: PASS

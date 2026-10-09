@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "A new command measures the share of code lines the tests run, in every file",
+    "output": "coverage-tool-plain.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      740,
+      500
+    ],
+    "repository": {
+      "url": "https://github.com/FredAmartey/leglas",
+      "provider": "github",
+      "revision": "ea5cda8aef4f7d3789580ad225ebe2e5534139e5"
+    }
+  },
+  "components": [
+    {
+      "id": "everyday",
+      "type": "frontend",
+      "label": "Everyday tests and checks",
+      "sublabel": "works exactly as before",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 10
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "id": "runner",
+      "type": "backend",
+      "label": "The test runner",
+      "sublabel": "measures nothing, as before",
+      "pos": [
+        450,
+        40
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "script",
+      "type": "frontend",
+      "label": "New measuring command",
+      "sublabel": "builds Leglas, then tests it",
+      "tag": "new",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "type": "backend",
+      "label": "Tests with a line counter",
+      "sublabel": "counts lines in all 169 files",
+      "tag": "new",
+      "pos": [
+        450,
+        200
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 29
+        },
+        {
+          "path": "package.json",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "database",
+      "label": "Report folder",
+      "sublabel": "never saved with the project",
+      "tag": "new",
+      "pos": [
+        450,
+        360
+      ],
+      "size": [
+        250,
+        62
+      ],
+      "sources": [
+        {
+          "path": "vitest.config.ts",
+          "line": 38
+        },
+        {
+          "path": ".gitignore",
+          "line": 7
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "what this adds",
+      "wraps": [
+        "script",
+        "provider",
+        "reports"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "everyday-runner",
+      "from": "everyday",
+      "to": "runner",
+      "label": "starts"
+    },
+    {
+      "id": "script-provider",
+      "from": "script",
+      "to": "provider",
+      "label": "starts, counting on",
+      "variant": "emphasis"
+    },
+    {
+      "id": "provider-reports",
+      "from": "provider",
+      "to": "reports",
+      "label": "saves the counts",
+      "labelAt": [
+        575,
+        311
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What changed",
+      "items": [
+        "A new command measures the share of code lines the tests run",
+        "Every code file counts, including files no test reaches"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "What stayed the same",
+      "items": [
+        "The everyday test run and the checks on every change",
+        "Which tests run and how long each may take"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "ELI5",
+      "items": [
+        "Before this change, nothing measured the share of Leglas's code that its tests run.",
+        "Now a separate command runs the same tests and counts, file by file, the lines they reached, so a file that loses all its tests shows as untested.",
+        "That number lets the coming cleanup of weak tests show how much checking it gave up."
+      ]
+    }
+  ]
+}
