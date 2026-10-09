@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "receiptId": "6f3dc90d-08de-4de0-bf88-edc89b94afd0",
+  "receiptId": "9838635b-e865-4e2e-a521-0931452b5fa5",
   "ok": true,
   "command": "deliver",
   "type": "architecture",
   "input": "journeys.architecture.json",
   "output": "/privatejourneys.html",
   "specification": {
-    "sha256": "19dd0b17f525bf8bf408d5b9c01bb1681a112b6811696ef594935ea9e36c48fb",
-    "bytes": 5345
+    "sha256": "83d0b13dbabb15f5338818c97e0508ce389981625dd66e370d68d038cef29022",
+    "bytes": 5418
   },
   "artifact": {
-    "sha256": "d01438bfde2a684eb01d6c61215e31fcffc2a399fa3fe0e78141eb0b2be3f185",
-    "bytes": 757534
+    "sha256": "27b333a1e0d4390e3608e25e289a0f19433602b27424c67ff4fa1edaebe3795e",
+    "bytes": 757052
   },
   "validation": {
     "checksPassed": 9,

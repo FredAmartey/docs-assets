@@ -109,6 +109,7 @@ documents.
 | `0142-prune-server-core` | [#142](https://github.com/FredAmartey/leglas/pull/142) |
 | `0143-prune-server-engines` | [#143](https://github.com/FredAmartey/leglas/pull/143) |
 | `0144-prune-shell` | [#144](https://github.com/FredAmartey/leglas/pull/144) |
+| `0147-journeys` | [#147](https://github.com/FredAmartey/leglas/pull/147) |
 | `0148-test-typecheck` | [#148](https://github.com/FredAmartey/leglas/pull/148) |
 
 Historical links should pin the commit that introduced this batch. Do not

@@ -6,11 +6,11 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "6f3dc90d-08de-4de0-bf88-edc89b94afd0",
+  "deliveryReceiptId": "9838635b-e865-4e2e-a521-0931452b5fa5",
   "artifact": {
     "path": "journeys.html",
-    "sha256": "d01438bfde2a684eb01d6c61215e31fcffc2a399fa3fe0e78141eb0b2be3f185",
-    "bytes": 757534
+    "sha256": "27b333a1e0d4390e3608e25e289a0f19433602b27424c67ff4fa1edaebe3795e",
+    "bytes": 757052
   },
   "state": {
     "detail": "read",
@@ -969,23 +969,23 @@
         "file": "journeys.visual-check.html"
       },
       {
-        "sha256": "db2534599ce1358130d620fc0eb5345d37f9d807e9cc5548837b952278ec9f86",
-        "bytes": 108767,
+        "sha256": "213afe7f71c838be5100d88936f23e9c71e9ef322d76fa76d5101d9284545af5",
+        "bytes": 108291,
         "file": "journeys.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "16e832d8a927a6ebf02f719e23609a827141a272e7054ca963cdefd05d415424",
-        "bytes": 116657,
+        "sha256": "6fa853a5e300f1ad2df7fffbe6bd22b3618573232bde710481c5c6df15033d96",
+        "bytes": 115577,
         "file": "journeys.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "de4633ebd249028c3fbc8a421b7d507be0b6df14ff209287f8e4da19c9d0bb95",
-        "bytes": 149204,
+        "sha256": "573036b446b36d18ea2b2a1ee9ae8a2afd7d453a5420b835a0164fe55bb879c9",
+        "bytes": 148715,
         "file": "journeys.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "ab4260e56ba49cfbb46a4b8f6f8520d0c6372864b6cfb6ab7b75ebb75ee8e4e0",
-        "bytes": 161218,
+        "sha256": "5ee36f1aa88288dfea51f70f08201360488af7de119855b2bb2230c6cb7955df",
+        "bytes": 159844,
         "file": "journeys.visual-check.2048x1320.dark.png"
       }
     ]

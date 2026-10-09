@@ -198,7 +198,7 @@
       "id": "ci-runner",
       "from": "ci",
       "to": "runner",
-      "label": "starts it",
+      "label": "checks the limits, then starts it",
       "labelAt": [
         370,
         151
@@ -237,6 +237,12 @@
       "labelAt": [
         635,
         326
+      ],
+      "via": [
+        [
+          635,
+          391
+        ]
       ]
     },
     {

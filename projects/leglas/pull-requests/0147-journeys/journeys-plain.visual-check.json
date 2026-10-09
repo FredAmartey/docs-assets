@@ -6,11 +6,11 @@
   "status": "pass",
   "visualReview": "pending",
   "provenance": "current",
-  "deliveryReceiptId": "3accb30c-73fe-4a91-8f15-59aae40bf834",
+  "deliveryReceiptId": "81aade1d-9cf7-4173-95b8-b744983cf205",
   "artifact": {
     "path": "journeys-plain.html",
-    "sha256": "7c1341925e55b6a70b426b523c77dd92636a500f63b7c5310c925378f8cd4ef7",
-    "bytes": 758072
+    "sha256": "dcc8dd594595e0e2f3ef0a9807edb65804fcad378544e70c2469186f2140bb2e",
+    "bytes": 757649
   },
   "state": {
     "detail": "read",
@@ -57,7 +57,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -111,7 +111,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -165,7 +165,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -219,7 +219,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -326,7 +326,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -380,7 +380,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -434,7 +434,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -488,7 +488,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -547,7 +547,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -601,7 +601,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -655,7 +655,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -709,7 +709,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -768,7 +768,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -823,7 +823,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -878,7 +878,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -933,7 +933,7 @@
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNonEdgeTextPx": 8.4,
         "minimumProjectedEdgeTextPx": 8,
-        "minimumProjectedNodeText": "starts it",
+        "minimumProjectedNodeText": "checks the limits, then starts it",
         "minimumProjectedNodeTextDetail": "edge",
         "minimumProjectedNodeTextOwner": {
           "kind": "edge",
@@ -969,23 +969,23 @@
         "file": "journeys-plain.visual-check.html"
       },
       {
-        "sha256": "fe50ae103994ce40f0e5b001ff1b105b8bd39a021f2d035202b9fa5d8e4fd8c4",
-        "bytes": 109881,
+        "sha256": "a2fb5262dd2657bd766ad7796ff0718b6b1b6307fa00fb0a9c21d03f6addccb8",
+        "bytes": 111279,
         "file": "journeys-plain.visual-check.1440x900.light.png"
       },
       {
-        "sha256": "2e1c31f1b8d4550b9115123dd901d99f5d691a70fdcb96d27363225c0a016c26",
-        "bytes": 117539,
+        "sha256": "a7a98e1d1e92771c28072fd7cbad61a51d38c6b2fda3f3f589aca4b5e8476a46",
+        "bytes": 118481,
         "file": "journeys-plain.visual-check.1440x900.dark.png"
       },
       {
-        "sha256": "a0a9529533133bb5eb5730189d2af0ecce5bc478ea7362df5870b1e0a308b446",
-        "bytes": 150934,
+        "sha256": "14590e8deee31f42d37a386d9b414b633994921c74f8eca65e0d89560bd07282",
+        "bytes": 152304,
         "file": "journeys-plain.visual-check.2048x1320.light.png"
       },
       {
-        "sha256": "372f7da4a30a9108d9bd63cf759e17065c0447aae1aa10da4f81775d34151b88",
-        "bytes": 162640,
+        "sha256": "b47b72e056cded0532a8e58ba688af6b287680a0ed11797d9e188c3eff0a69a0",
+        "bytes": 163297,
         "file": "journeys-plain.visual-check.2048x1320.dark.png"
       }
     ]
